@@ -1,0 +1,54 @@
+# req.unix.15 (disable route)
+net.ipv4.ip_forward = <%= @forwarding %>
+net.ipv6.conf.all.forwarding = <%= @forwarding %>
+
+# req.unix.16 (reveser path) i.e. source route verification
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.rp_filter = 1
+
+# req.unix.17 (icmp restrictive) (reduce surface on SMURF attacks)
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+net.ipv4.icmp_ratelimit = 100
+net.ipv4.icmp_ratemask = 88089          
+  # == ping, dst unreachable, source quench, time exceed, 
+  #    param problem, timestamp reply, information reply
+
+# req.unix.18 (ipv6 disable, req)
+net.ipv6.conf.all.disable_ipv6 = <%= ((@ipv6disable) ? "1" : "0") %>
+
+net.ipv4.conf.eth0.arp_ignore = 1
+net.ipv4.conf.eth0.arp_announce = 2
+net.ipv4.tcp_rfc1337 = 1                              # RFC 1337 fix F1
+net.ipv4.tcp_syncookies = 1                           # prevent SYN-flooding
+net.ipv4.conf.all.accept_source_route = 0 
+net.ipv4.conf.default.accept_source_route = 0         # prevent source route flag
+
+net.ipv4.conf.all.shared_media = 1
+net.ipv4.conf.default.shared_media = 1
+net.ipv4.conf.all.secure_redirects = 1
+net.ipv4.conf.default.secure_redirects = 1            # in case we accept redirects
+
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv6.conf.all.accept_redirects = 0
+net.ipv6.conf.default.accept_redirects = 0            # prevent malicious routes
+
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0              # we are no router, so off
+net.ipv4.icmp_ignore_bogus_error_responses = 1
+
+kernel.modules_disabled = <%= ((@disable_module_loading) ? "1" : "0") %>
+
+# magic sysrq, hotly debated, but good for safe reboot in case of hangups
+# 0 - disable sysrq
+# 1 - enable sysrq completely
+# >1 - bitmask of enabled sysrq functions:
+#   2 - control of console logging level
+#   4 - control of keyboard (SAK, unraw)
+#   8 - debugging dumps of processes etc.
+#   16 - sync command
+#   32 - remount read-only
+#   64 - signalling of processes (term, kill, oom-kill)
+#   128 - reboot/poweroff
+#   256 - nicing of all RT tasks
+kernel.sysrq = <%= 4 + 16 + 32 + 64 + 128 %>
