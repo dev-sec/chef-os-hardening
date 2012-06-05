@@ -34,6 +34,22 @@ template "/etc/login.defs" do
   )
 end
 
+template "/etc/security/limits.d/10-hard-core.conf" do
+  source "limits.conf.erb"
+  mode 0440
+  owner "root"
+  group "root"
+  only_if{ node[:security][:kernel][:disable_core_dump] }
+end
+
+template "/etc/profile.d/pinerolo_profile.sh" do
+  source "profile.conf.erb"
+  mode 0755
+  owner "root"
+  group "root"
+  only_if{ node[:security][:kernel][:disable_core_dump] }
+end
+
 include_recipe("security::sysctl")
 include_recipe("security::minimize_access")
 include_recipe("security::suid_sgid") if node[:security][:suid_sgid][:enforce]

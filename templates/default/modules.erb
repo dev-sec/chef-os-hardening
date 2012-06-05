@@ -49,7 +49,7 @@ xts
 zlib
 
 # drivers
-<% if @desktop == true %>
+<% if @node[:desktop][:disable] == false %>
 psmouse
 <% end %>
 

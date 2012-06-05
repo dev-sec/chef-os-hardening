@@ -29,12 +29,6 @@ template "/etc/sysctl.conf" do
   mode 0440
   owner "root"
   group "root"
-  variables(
-    :forwarding => node[:network][:forwarding],
-    :ipv6disable => node[:network][:ipv6][:disable],
-    :cpuvendor => cpuVendor,
-    :disable_module_loading => node[:security][:kernel][:disable_module_loading]
-  )
 end
 
 # rebuild initramfs with starting pack of modules,
@@ -47,7 +41,7 @@ if node[:security][:kernel][:disable_module_loading]
     group "root"
     variables(
       :x86_64 => (not (node[:kernel][:machine] =~ /x86_64/).nil?),
-      :desktop => (not node[:desktop][:disable])
+      :cpuvendor => cpuVendor
     )
   end
 

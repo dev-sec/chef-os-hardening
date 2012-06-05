@@ -1,6 +1,19 @@
+# 
+# This file is mostly based on guides by:
+# * Arch Linux wiki, Sysctl hardening
+#   https://wiki.archlinux.org/index.php/Sysctl
+# * NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5
+#   ...
+# * Ubuntu, ...
+#   ...
+# * Deutsche Telekom, Group IT Security, Security Requirements
+#   [not publicly available]
+# Thanks to all of you!
+# 
+
 # req.unix.15 (disable route)
-net.ipv4.ip_forward = <%= @forwarding %>
-net.ipv6.conf.all.forwarding = <%= @forwarding %>
+net.ipv4.ip_forward = <%= @node[:network][:forwarding] %>
+net.ipv6.conf.all.forwarding = <%= @node[:network][:forwarding] %>
 
 # req.unix.16 (reveser path) i.e. source route verification
 net.ipv4.conf.all.rp_filter = 1
@@ -8,18 +21,24 @@ net.ipv4.conf.default.rp_filter = 1
 
 # req.unix.17 (icmp restrictive) (reduce surface on SMURF attacks)
 net.ipv4.icmp_echo_ignore_broadcasts = 1
+net.ipv4.icmp_ignore_bogus_error_responses = 1
 net.ipv4.icmp_ratelimit = 100
 net.ipv4.icmp_ratemask = 88089          
   # == ping, dst unreachable, source quench, time exceed, 
   #    param problem, timestamp reply, information reply
 
 # req.unix.18 (ipv6 disable, req)
-net.ipv6.conf.all.disable_ipv6 = <%= ((@ipv6disable) ? "1" : "0") %>
+net.ipv6.conf.all.disable_ipv6 = <%= ((@node[:network][:ipv6][:disable]) ? "1" : "0") %>
+
+# protect against wrapping sequence numbers at gigabit speeds
+net.ipv4.tcp_timestamps = 0
 
 net.ipv4.conf.eth0.arp_ignore = 1
 net.ipv4.conf.eth0.arp_announce = 2
+
 net.ipv4.tcp_rfc1337 = 1                              # RFC 1337 fix F1
 net.ipv4.tcp_syncookies = 1                           # prevent SYN-flooding
+
 net.ipv4.conf.all.accept_source_route = 0 
 net.ipv4.conf.default.accept_source_route = 0         # prevent source route flag
 
@@ -35,9 +54,12 @@ net.ipv6.conf.default.accept_redirects = 0            # prevent malicious routes
 
 net.ipv4.conf.all.send_redirects = 0
 net.ipv4.conf.default.send_redirects = 0              # we are no router, so off
-net.ipv4.icmp_ignore_bogus_error_responses = 1
 
-kernel.modules_disabled = <%= ((@disable_module_loading) ? "1" : "0") %>
+# # log martian packets
+# net.ipv4.conf.all.log_martians = 1
+
+# handle dynamic kernel module loading at runtime:
+kernel.modules_disabled = <%= ((@node[:security][:kernel][:disable_module_loading]) ? "1" : "0") %>
 
 # magic sysrq, hotly debated, but good for safe reboot in case of hangups
 # 0 - disable sysrq
@@ -51,4 +73,6 @@ kernel.modules_disabled = <%= ((@disable_module_loading) ? "1" : "0") %>
 #   64 - signalling of processes (term, kill, oom-kill)
 #   128 - reboot/poweroff
 #   256 - nicing of all RT tasks
-kernel.sysrq = <%= 4 + 16 + 32 + 64 + 128 %>
+kernel.sysrq = <%= ((@node[:security][:kernel][:disable_sysrq]) ? "0" : "#{@node[:security][:kernel][:secure_sysrq]}" ) %>
+
+fs.suid_dumpable = <%= ((@node[:security][:kernel][:disable_core_dump]) ? "0" : "1") %>

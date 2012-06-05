@@ -35,20 +35,26 @@ default[:auth][:pam][:caching]                             = false
 # may contain: cron, consolemssaging, self_management, locate, fuse, change_user
 default[:security][:users][:allow]                         = []
 default[:security][:kernel][:disable_module_loading]       = true
+default[:security][:kernel][:disable_sysrq]                = true
+default[:security][:kernel][:disable_core_dump]            = true
 default[:security][:suid_sgid][:enforce]                   = true
 # user-defined blacklist and whitelist
 default[:security][:suid_sgid][:blacklist]                 = []
 default[:security][:suid_sgid][:whitelist]                 = []
 # if this is true, remove any suid/sgid bits from files that were not in the whitelist
 default[:security][:suid_sgid][:remove_from_unkown]        = false
-default[:security][:suid_sgid][:dry_run_on_unkown]         = true
+default[:security][:suid_sgid][:dry_run_on_unkown]         = false
 default[:security][:sudo][:disable]                        = false
 default[:security][:pkexec][:disable]                      = false
 
 
 # SYSTEM CONFIGURATION
 # ====================
-# 
+# These are not meant to be modified by the user
+
+# misc
+default[:security][:kernel][:secure_sysrq]                 = 4 + 16 + 32 + 64 + 128
+
 # suid and sgid blacklists and whitelists
 # don't change values in the system_blacklist/whitelist
 # adjust values for blacklist/whitelist instead, they can override system_blacklist/whitelist
