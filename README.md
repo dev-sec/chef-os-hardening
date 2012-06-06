@@ -1,7 +1,7 @@
 Description
 ===========
 
-This cookbook provides numerous security-related configurations, providing all-round protection.
+This cookbook provides numerous security-related configurations, providing all-round base protection.
 
 Requirements
 ============
