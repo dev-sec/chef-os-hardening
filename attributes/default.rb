@@ -32,6 +32,7 @@ default[:auth][:timeout]                                   = 60
 default[:auth][:allow_homeless]                            = false
 default[:auth][:kerberos][:disable]                        = true
 default[:auth][:pam][:caching]                             = false
+default[:auth][:root_ttys]                                 = ["console","tty1","tty2","tty3","tty4","tty5","tty6"]
 # may contain: cron, consolemssaging, self_management, locate, fuse, change_user
 default[:security][:users][:allow]                         = []
 default[:security][:kernel][:disable_module_loading]       = true

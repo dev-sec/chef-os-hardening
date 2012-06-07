@@ -52,4 +52,5 @@ end
 
 include_recipe("security::sysctl")
 include_recipe("security::minimize_access")
+include_recipe("security::securetty")
 include_recipe("security::suid_sgid") if node[:security][:suid_sgid][:enforce]
