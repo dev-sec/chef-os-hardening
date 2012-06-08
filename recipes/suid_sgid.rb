@@ -23,18 +23,18 @@
 cb,cw = [],[]
 [
 # list of files   --   check (true if blacklist, false if whitelist)
-[ node[:security][:suid_sgid][:blacklist_ipv6],             lambda{ node[:network][:ipv6][:disable]  }],
-[ node[:security][:suid_sgid][:blacklist_nfs],              lambda{ node[:network][:nfs][:disable]  }],
-[ node[:security][:suid_sgid][:blacklist_nfs4],             lambda{ node[:network][:nfs4][:disable]  }],
+[ node[:security][:suid_sgid][:blacklist_ipv6],             lambda{ not node[:network][:ipv6][:enable]  }],
+[ node[:security][:suid_sgid][:blacklist_nfs],              lambda{ not node[:network][:nfs][:enable]  }],
+[ node[:security][:suid_sgid][:blacklist_nfs4],             lambda{ not node[:network][:nfs4][:enable]  }],
 [ node[:security][:suid_sgid][:blacklist_cron],             lambda{ not node[:security][:users][:allow].include?("cron")  }],
 [ node[:security][:suid_sgid][:blacklist_consolemssaging],  lambda{ not node[:security][:users][:allow].include?("consolemssaging")  }],
 [ node[:security][:suid_sgid][:blacklist_usermanagement],   lambda{ not node[:security][:users][:allow].include?("self_management")  }],
 [ node[:security][:suid_sgid][:blacklist_locate],           lambda{ not node[:security][:users][:allow].include?("locate")  }],
 [ node[:security][:suid_sgid][:blacklist_fuse],             lambda{ not node[:security][:users][:allow].include?("fuse")  }],
-[ node[:security][:suid_sgid][:blacklist_sudo],             lambda{ node[:security][:sudo][:disable]  }],
-[ node[:security][:suid_sgid][:blacklist_pkexec],           lambda{ node[:security][:pkexec][:disable]  }],
-[ node[:security][:suid_sgid][:blacklist_desktop],          lambda{ node[:desktop][:disable]  }],
-[ node[:security][:suid_sgid][:blacklist_kerberos],         lambda{ node[:auth][:kerberos][:disable]  }],
+[ node[:security][:suid_sgid][:blacklist_sudo],             lambda{ not node[:security][:sudo][:enable]  }],
+[ node[:security][:suid_sgid][:blacklist_pkexec],           lambda{ not node[:security][:pkexec][:enable]  }],
+[ node[:security][:suid_sgid][:blacklist_desktop],          lambda{ not node[:desktop][:enable]  }],
+[ node[:security][:suid_sgid][:blacklist_kerberos],         lambda{ not node[:auth][:kerberos][:enable]  }],
 [ node[:security][:suid_sgid][:blacklist_pam_caching],      lambda{ not node[:auth][:pam][:caching]  }],
 # TODO: make conditional
 [ node[:security][:suid_sgid][:blacklist_apache],           lambda{ true }],

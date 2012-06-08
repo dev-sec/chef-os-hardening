@@ -28,7 +28,7 @@ net.ipv4.icmp_ratemask = 88089
   #    param problem, timestamp reply, information reply
 
 # req.unix.18 (ipv6 disable, req)
-net.ipv6.conf.all.disable_ipv6 = <%= ((@node[:network][:ipv6][:disable]) ? "1" : "0") %>
+net.ipv6.conf.all.disable_ipv6 = <%= ((@node[:network][:ipv6][:enable]) ? "0" : "1") %>
 
 # protect against wrapping sequence numbers at gigabit speeds
 net.ipv4.tcp_timestamps = 0
@@ -59,7 +59,7 @@ net.ipv4.conf.default.send_redirects = 0              # we are no router, so off
 # net.ipv4.conf.all.log_martians = 1
 
 # handle dynamic kernel module loading at runtime:
-kernel.modules_disabled = <%= ((@node[:security][:kernel][:disable_module_loading]) ? "1" : "0") %>
+kernel.modules_disabled = <%= ((@node[:security][:kernel][:enable_module_loading]) ? "0" : "1") %>
 
 # magic sysrq, hotly debated, but good for safe reboot in case of hangups
 # 0 - disable sysrq
@@ -73,6 +73,6 @@ kernel.modules_disabled = <%= ((@node[:security][:kernel][:disable_module_loadin
 #   64 - signalling of processes (term, kill, oom-kill)
 #   128 - reboot/poweroff
 #   256 - nicing of all RT tasks
-kernel.sysrq = <%= ((@node[:security][:kernel][:disable_sysrq]) ? "0" : "#{@node[:security][:kernel][:secure_sysrq]}" ) %>
+kernel.sysrq = <%= ((@node[:security][:kernel][:enable_sysrq]) ? "#{@node[:security][:kernel][:secure_sysrq]}" : "0" ) %>
 
-fs.suid_dumpable = <%= ((@node[:security][:kernel][:disable_core_dump]) ? "0" : "1") %>
+fs.suid_dumpable = <%= ((@node[:security][:kernel][:enable_core_dump]) ? "1" : "0") %>

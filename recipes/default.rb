@@ -39,7 +39,7 @@ template "/etc/security/limits.d/10-hard-core.conf" do
   mode 0440
   owner "root"
   group "root"
-  only_if{ node[:security][:kernel][:disable_core_dump] }
+  only_if{ not node[:security][:kernel][:enable_core_dump] }
 end
 
 template "/etc/profile.d/pinerolo_profile.sh" do
@@ -47,7 +47,7 @@ template "/etc/profile.d/pinerolo_profile.sh" do
   mode 0755
   owner "root"
   group "root"
-  only_if{ node[:security][:kernel][:disable_core_dump] }
+  only_if{ not node[:security][:kernel][:enable_core_dump] }
 end
 
 include_recipe("security::sysctl")

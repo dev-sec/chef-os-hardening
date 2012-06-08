@@ -33,7 +33,7 @@ end
 
 # rebuild initramfs with starting pack of modules,
 # if module loading at runtime is disabled
-if node[:security][:kernel][:disable_module_loading]
+if not node[:security][:kernel][:enable_module_loading]
   template "/etc/initramfs-tools/modules" do
     source "modules.erb"
     mode 0440

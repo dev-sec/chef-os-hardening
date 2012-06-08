@@ -17,36 +17,36 @@
 # limitations under the License.
 #
 
-default[:desktop][:disable]                                = true
-default[:network][:forwarding]                             = false
-default[:network][:ipv6][:disable]                         = true
-default[:network][:nfs][:disable]                          = true
-default[:network][:nfs4][:disable]                         = true
-default[:env][:extra_user_paths]                           = []
-default[:env][:umask]                                      = "027"
-default[:env][:root_path]                                  = "/"
-default[:auth][:pw_max_age]                                = 99999
-default[:auth][:pw_min_age]                                = 0
-default[:auth][:retries]                                   = 5
-default[:auth][:timeout]                                   = 60
-default[:auth][:allow_homeless]                            = false
-default[:auth][:kerberos][:disable]                        = true
-default[:auth][:pam][:caching]                             = false
-default[:auth][:root_ttys]                                 = ["console","tty1","tty2","tty3","tty4","tty5","tty6"]
+default[:desktop][:enable]                          = false
+default[:network][:forwarding]                      = false
+default[:network][:ipv6][:enable]                   = false
+default[:network][:nfs][:enable]                    = false
+default[:network][:nfs4][:enable]                   = false
+default[:env][:extra_user_paths]                    = []
+default[:env][:umask]                               = "027"
+default[:env][:root_path]                           = "/"
+default[:auth][:pw_max_age]                         = 99999
+default[:auth][:pw_min_age]                         = 0
+default[:auth][:retries]                            = 5
+default[:auth][:timeout]                            = 60
+default[:auth][:allow_homeless]                     = false
+default[:auth][:kerberos][:enable]                  = false
+default[:auth][:pam][:caching]                      = false
+default[:auth][:root_ttys]                          = ["console","tty1","tty2","tty3","tty4","tty5","tty6"]
 # may contain: cron, consolemssaging, self_management, locate, fuse, change_user
-default[:security][:users][:allow]                         = []
-default[:security][:kernel][:disable_module_loading]       = true
-default[:security][:kernel][:disable_sysrq]                = true
-default[:security][:kernel][:disable_core_dump]            = true
-default[:security][:suid_sgid][:enforce]                   = true
+default[:security][:users][:allow]                  = []
+default[:security][:kernel][:enable_module_loading] = false
+default[:security][:kernel][:enable_sysrq]          = false
+default[:security][:kernel][:enable_core_dump]      = false
+default[:security][:suid_sgid][:enforce]            = true
 # user-defined blacklist and whitelist
-default[:security][:suid_sgid][:blacklist]                 = []
-default[:security][:suid_sgid][:whitelist]                 = []
+default[:security][:suid_sgid][:blacklist]          = []
+default[:security][:suid_sgid][:whitelist]          = []
 # if this is true, remove any suid/sgid bits from files that were not in the whitelist
-default[:security][:suid_sgid][:remove_from_unkown]        = false
-default[:security][:suid_sgid][:dry_run_on_unkown]         = false
-default[:security][:sudo][:disable]                        = false
-default[:security][:pkexec][:disable]                      = false
+default[:security][:suid_sgid][:remove_from_unkown] = false
+default[:security][:suid_sgid][:dry_run_on_unkown]  = false
+default[:security][:sudo][:enable]                  = true
+default[:security][:pkexec][:enable]                = true
 
 
 # SYSTEM CONFIGURATION
