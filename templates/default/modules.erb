@@ -1,10 +1,12 @@
-# /etc/modules: kernel modules to load at boot time.
-#
-# This file contains the names of kernel modules that should be loaded
-# at boot time, one per line. Lines beginning with "#" are ignored.
+<% node[:config_disclaimer].to_s.split("\n").each do |l| %>
+# <%= l %>
+<% end %>
+# 
+# This file contains the names of kernel modules that should be loaded at boot time, one per line. Lines beginning with "#" are ignored.
+# 
+# A list of all available kernel modules kann be found with `find /lib/modules/$(uname -r)/kernel/`
 
-# via: find /lib/modules/$(uname -r)/kernel/
-
+# foundation
 loop
 lp
 rtc
