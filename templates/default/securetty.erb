@@ -1,7 +1,7 @@
-#
-# /etc/securetty
-# TTYs, from which root can log in
-# see man securetty for reference
-# 
+<% node[:config_disclaimer].to_s.split("\n").each do |l| %>
+# <%= l %>
+<% end %>
 
+# A list of TTYs, from which root can log in
+# see `man securetty` for reference
 <%= @ttys %>
