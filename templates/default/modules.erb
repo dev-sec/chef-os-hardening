@@ -6,35 +6,42 @@
 # This file contains the names of kernel modules that should be loaded at boot time, one per line. Lines beginning with "#" are ignored.
 # 
 # A list of all available kernel modules kann be found with `find /lib/modules/$(uname -r)/kernel/`
-
-# foundation
-loop
-lp
-rtc
-ext2
-btrfs
+# We will sort by folder.
 
 
-# arch
+# Arch
+# ----
+# 
+# Modules for certains builds, contains support modules and some CPU-specific optimizations.
+
 <% if @x86_64 == true %>
+# Optimize for x86_64 cryptographic features
 twofish-x86_64-3way
 twofish-x86_64
 aes-x86_64
 salsa20-x86_64
 blowfish-x86_64
 <% end %>
+
 <% if @cpuVendor == "intel" %>
+# Intel-specific optimizations
 ghash-clmulni-intel
 aesni-intel
 kvm-intel
 <% end %>
+
 <% if @cpuVendor == "amd" %>
+# AMD-specific optimizations
 kvm-amd
 <% end %>
+
 kvm
 
 
-# crypto
+# Crypto
+# ------
+
+# Some core modules which comprise strong cryptography.
 blowfish_common
 blowfish_generic
 ctr
@@ -51,19 +58,50 @@ twofish_generic
 xts
 zlib
 
-# drivers
+
+# Drivers
+# -------
+
+# Basics
+lp
+rtc
+loop
+
+# Filesystems
+ext2
+btrfs
+
 <% if @node[:desktop][:enable] %>
+# Desktop
 psmouse
+snd
+snd_ac97_codec
+snd_intel8x0
+snd_page_alloc
+snd_pcm
+snd_timer
+soundcore
+usbhid
 <% end %>
 
-# lib
+# Lib
+# ---
 xz
 
 
-# net
-# for netfilter (ie iptables):
+# Net
+# ---
+
+# All packets needed for netfilter rules (ie iptables, ebtables).
+ip_tables
+x_tables
+iptable_filter
+
+# Targets
 ipt_LOG
 ipt_REJECT
+
+# Modules
 xt_connlimit
 xt_tcpudp
 xt_recent
@@ -73,6 +111,3 @@ nf_conntrack_ipv4
 nf_defrag_ipv4
 xt_state
 nf_conntrack
-iptable_filter
-ip_tables
-x_tables
