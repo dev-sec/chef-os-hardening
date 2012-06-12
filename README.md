@@ -26,6 +26,8 @@ Attributes
 * `[:auth][:allow_homeless]` - true if to allow users without home to login
 * `[:auth][:kerberos][:enable]` - true if Kerberos is used/configured
 * `[:auth][:pam][:caching]` - true if PAM caching is used/configured
+* `[:auth][:pam][:passwdqc][:enable]` - true if you want to use strong password checking in PAM using passwdqc
+* `[:auth][:pam][:passwdqc][:options]` - set to any option line (as a string) that you want to pass to passwdqc (default: `"min=disabled,disabled,16,12,8"`)
 * `[:security][:users][:allow]` - list of things, that a user is allowed to do. May contain: `cron`, `consolemssaging`, `self_management`, `locate`, `fuse`, `change_user`
 * `[:security][:kernel][:enable_module_loading]` - true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
 * `[:security][:suid_sgid][:enforce]` - true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own
