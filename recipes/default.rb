@@ -50,6 +50,7 @@ template "/etc/profile.d/pinerolo_profile.sh" do
   only_if{ not node[:security][:kernel][:enable_core_dump] }
 end
 
+include_recipe("security::pam")
 include_recipe("security::sysctl")
 include_recipe("security::minimize_access")
 include_recipe("security::securetty")
