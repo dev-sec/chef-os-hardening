@@ -34,7 +34,7 @@ template "/etc/login.defs" do
   )
 end
 
-template "/etc/security/limits.d/10-hard-core.conf" do
+template "/etc/security/limits.d/10.hardcore.conf" do
   source "limits.conf.erb"
   mode 0440
   owner "root"

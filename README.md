@@ -26,13 +26,11 @@ Attributes
 * `[:auth][:allow_homeless]` - true if to allow users without home to login
 * `[:auth][:kerberos][:enable]` - true if Kerberos is used/configured
 * `[:auth][:pam][:caching]` - true if PAM caching is used/configured
-# may contain: 
 * `[:security][:users][:allow]` - list of things, that a user is allowed to do. May contain: `cron`, `consolemssaging`, `self_management`, `locate`, `fuse`, `change_user`
 * `[:security][:kernel][:enable_module_loading]` - true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
 * `[:security][:suid_sgid][:enforce]` - true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own
 * `[:security][:suid_sgid][:blacklist]` - a list of paths which should have their SUID/SGID bits removed 
 * `[:security][:suid_sgid][:whitelist]` - a list of paths which should not have their SUID/SGID bits altered
-# if this is true, remove any suid/sgid bits from files that were not in the whitelist
 * `[:security][:suid_sgid][:remove_from_unkown]` - true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a whitelist or blacklist
 * `[:security][:suid_sgid][:dry_run_on_unkown]` - like `remove_from_unknown`, only that changes aren't applied but only printed
 * `[:security][:sudo][:enable]` - true if you want to enable sudo
@@ -53,6 +51,20 @@ Configure attributes:
       },
       "sudo" : { "enable" : true }
     },
+
+
+Kudos
+=====
+
+This cookbook is mostly based on guides by:
+
+* [Arch Linux wiki, Sysctl hardening](https://wiki.archlinux.org/index.php/Sysctl)
+* [NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5](http://www.nsa.gov/ia/_files/os/redhat/rhel5-pamphlet-i731.pdf)
+* [Ubuntu Security/Features](https://wiki.ubuntu.com/Security/Features)
+* Deutsche Telekom, Group IT Security, Security Requirements (not publicly available)
+
+Thanks to all of you!!
+
 
 
 License and Author
