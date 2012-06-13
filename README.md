@@ -21,8 +21,9 @@ Attributes
 * `[:env][:root_path]` - where root is mounted
 * `[:auth][:pw_max_age]` - maximum password age
 * `[:auth][:pw_min_age]` - minimum password age (before allowing any other password change)
-* `[:auth][:retries]` - authentication tries/retries
-* `[:auth][:timeout]` - authentication timeout, to prevent brute-force
+* `[:auth][:retries]` - the maximum number of authentication attempts, before the account is locked for some time
+* `[:auth][:lockout_time]` - time in seconds that needs to pass, if the account was locked due to too many failed authentication attempts
+* `[:auth][:timeout]` - authentication timeout in seconds, so login will exit if this time passes
 * `[:auth][:allow_homeless]` - true if to allow users without home to login
 * `[:auth][:kerberos][:enable]` - true if Kerberos is used/configured
 * `[:auth][:pam][:caching]` - true if PAM caching is used/configured

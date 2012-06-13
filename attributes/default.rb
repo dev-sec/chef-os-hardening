@@ -29,6 +29,7 @@ default[:env][:root_path]                           = "/"
 default[:auth][:pw_max_age]                         = 60
 default[:auth][:pw_min_age]                         = 7 # discourage password cycling
 default[:auth][:retries]                            = 5
+default[:auth][:lockout_time]                       = 600 # 10min
 default[:auth][:timeout]                            = 60
 default[:auth][:allow_homeless]                     = false
 default[:auth][:kerberos][:enable]                  = false

@@ -17,24 +17,31 @@
 # limitations under the License.
 #
 
+passwdqc_path = "/usr/share/pam-configs/passwdqc"
+tally2_path   = "/usr/share/pam-configs/tally2"
+
+execute "update-pam" do
+  command "pam-auth-update --package"
+  action :nothing
+end
+
+
 if node[:auth][:pam][:passwdqc][:enable]
   # get the package for strong password checking
   package "libpam-passwdqc"
 
   # configure passwdqc via central module:
-  template "/usr/share/pam-configs/passwdqc" do
-    source "passwdqc.erb"
-    mode 0644
+  template passwdqc_path do
+    source "pam_passwdqc.erb"
+    mode 0640
     owner "root"
     group "root"
   end
-
-  # now update pam configuration
-  execute "update-pam" do
-    command "pam-auth-update --package"
-  end
-
 else
+
+  file passwdqc_path do
+    action :delete
+  end
 
   # make sure the package is not on the system,
   # if this feature is not wanted
@@ -42,3 +49,24 @@ else
     action :remove
   end
 end
+
+
+if node[:auth][:retries] > 0
+  # tally2 is needed for pam 
+  package "libpam-modules"
+
+  template tally2_path do
+    source "pam_tally2.erb"
+    mode 0640
+    owner "root"
+    group "root"
+  end
+else
+
+  file tally2_path do
+    action :delete
+  end
+end
+
+
+execute "update-pam"
