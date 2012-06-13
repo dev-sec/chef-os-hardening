@@ -25,6 +25,11 @@ execute "update-pam" do
   action :nothing
 end
 
+# remove ccreds if not necessary
+package "libpam-ccreds" do
+  action :remove
+end
+
 
 if node[:auth][:pam][:passwdqc][:enable]
   # get the package for strong password checking
