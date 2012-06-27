@@ -7,8 +7,8 @@
 # ----------
 
 # Only enable IP traffic forwarding, if required. 
-net.ipv4.ip_forward = <%= @node[:network][:forwarding] %>
-net.ipv6.conf.all.forwarding = <%= @node[:network][:forwarding] %>
+net.ipv4.ip_forward = <%= ((@node[:network][:forwarding]) ? "1" : "0") %>
+net.ipv6.conf.all.forwarding = <%= ((@node[:network][:forwarding]) ? "1" : "0") %>
 
 # Enable RFC-recommended source validation feature. It should not be used for routers on complex networks, but is helpful for end hosts and routers serving small networks.
 net.ipv4.conf.all.rp_filter = 1
