@@ -20,7 +20,7 @@
 template "/etc/securetty" do
   source "securetty.erb"
   mode "0400"
-  user "root"
+  owner "root"
   group "root"
   variables(
     :ttys => node[:auth][:root_ttys].join("\n")  
