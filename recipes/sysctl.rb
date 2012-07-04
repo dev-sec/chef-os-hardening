@@ -33,14 +33,14 @@ end
 
 # rebuild initramfs with starting pack of modules,
 # if module loading at runtime is disabled
-if not node[:security][:kernel][:enable_module_loading]
+if not node['security']['kernel']['enable_module_loading']
   template "/etc/initramfs-tools/modules" do
     source "modules.erb"
     mode 0440
     owner "root"
     group "root"
     variables(
-      :x86_64 => (not (node[:kernel][:machine] =~ /x86_64/).nil?),
+      :x86_64 => (not (node['kernel']['machine'] =~ /x86_64/).nil?),
       :cpuvendor => cpuVendor
     )
   end

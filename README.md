@@ -11,33 +11,33 @@ Requirements
 Attributes
 ==========
 
-* `[:desktop][:enable]` - true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
-* `[:network][:forwarding]` - true if this is not a router, deactivate traffic forwarding
-* `[:network][:ipv6][:enable]` - true if IPv6 is used
-* `[:network][:nfs][:enable]` - true if NFS (<4) is used
-* `[:network][:nfs4][:enable]` - true if NFS v4 is used
-* `[:env][:extra_user_paths]` - add additional paths to the user's `PATH` variable (default is empty). 
-* `[:env][:umask]` - which umask to configure for the system
-* `[:env][:root_path]` - where root is mounted
-* `[:auth][:pw_max_age]` - maximum password age
-* `[:auth][:pw_min_age]` - minimum password age (before allowing any other password change)
-* `[:auth][:retries]` - the maximum number of authentication attempts, before the account is locked for some time
-* `[:auth][:lockout_time]` - time in seconds that needs to pass, if the account was locked due to too many failed authentication attempts
-* `[:auth][:timeout]` - authentication timeout in seconds, so login will exit if this time passes
-* `[:auth][:allow_homeless]` - true if to allow users without home to login
-* `[:auth][:kerberos][:enable]` - true if Kerberos is used/configured
-* `[:auth][:pam][:caching]` - true if PAM caching is used/configured
-* `[:auth][:pam][:passwdqc][:enable]` - true if you want to use strong password checking in PAM using passwdqc
-* `[:auth][:pam][:passwdqc][:options]` - set to any option line (as a string) that you want to pass to passwdqc (default: `"min=disabled,disabled,16,12,8"`)
-* `[:security][:users][:allow]` - list of things, that a user is allowed to do. May contain: `cron`, `consolemssaging`, `self_management`, `locate`, `fuse`, `change_user`
-* `[:security][:kernel][:enable_module_loading]` - true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
-* `[:security][:suid_sgid][:enforce]` - true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own
-* `[:security][:suid_sgid][:blacklist]` - a list of paths which should have their SUID/SGID bits removed 
-* `[:security][:suid_sgid][:whitelist]` - a list of paths which should not have their SUID/SGID bits altered
-* `[:security][:suid_sgid][:remove_from_unkown]` - true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a whitelist or blacklist
-* `[:security][:suid_sgid][:dry_run_on_unkown]` - like `remove_from_unknown`, only that changes aren't applied but only printed
-* `[:security][:sudo][:enable]` - true if you want to enable sudo
-* `[:security][:pkexec][:enable]` - true if you want to enable pkexec
+* `['desktop']['enable']` - true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
+* `['network']['forwarding']` - true if this is not a router, deactivate traffic forwarding
+* `['network']['ipv6']['enable']` - true if IPv6 is used
+* `['network']['nfs']['enable']` - true if NFS (<4) is used
+* `['network']['nfs4']['enable']` - true if NFS v4 is used
+* `['env']['extra_user_paths']` - add additional paths to the user's `PATH` variable (default is empty). 
+* `['env']['umask']` - which umask to configure for the system
+* `['env']['root_path']` - where root is mounted
+* `['auth']['pw_max_age']` - maximum password age
+* `['auth']['pw_min_age']` - minimum password age (before allowing any other password change)
+* `['auth']['retries']` - the maximum number of authentication attempts, before the account is locked for some time
+* `['auth']['lockout_time']` - time in seconds that needs to pass, if the account was locked due to too many failed authentication attempts
+* `['auth']['timeout']` - authentication timeout in seconds, so login will exit if this time passes
+* `['auth']['allow_homeless']` - true if to allow users without home to login
+* `['auth']['kerberos']['enable']` - true if Kerberos is used/configured
+* `['auth']['pam']['caching']` - true if PAM caching is used/configured
+* `['auth']['pam']['passwdqc']['enable']` - true if you want to use strong password checking in PAM using passwdqc
+* `['auth']['pam']['passwdqc']['options']` - set to any option line (as a string) that you want to pass to passwdqc (default: `"min=disabled,disabled,16,12,8"`)
+* `['security']['users']['allow']` - list of things, that a user is allowed to do. May contain: `cron`, `consolemssaging`, `self_management`, `locate`, `fuse`, `change_user`
+* `['security']['kernel']['enable_module_loading']` - true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
+* `['security']['suid_sgid']['enforce']` - true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own
+* `['security']['suid_sgid']['blacklist']` - a list of paths which should have their SUID/SGID bits removed 
+* `['security']['suid_sgid']['whitelist']` - a list of paths which should not have their SUID/SGID bits altered
+* `['security']['suid_sgid']['remove_from_unkown']` - true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a whitelist or blacklist
+* `['security']['suid_sgid']['dry_run_on_unkown']` - like `remove_from_unknown`, only that changes aren't applied but only printed
+* `['security']['sudo']['enable']` - true if you want to enable sudo
+* `['security']['pkexec']['enable']` - true if you want to enable pkexec
 
 Usage
 =====

@@ -19,6 +19,6 @@
 
 ruby_block "minimize_access_to_root" do 
   block do
-    `chmod 750 '/bin/su'` if not node[:security][:users][:allow].include?("change_user")
+    `chmod 750 '/bin/su'` if not node['security']['users']['allow'].include?("change_user")
   end
 end

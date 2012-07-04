@@ -23,14 +23,14 @@ template "/etc/login.defs" do
   owner "root"
   group "root"
   variables(
-    :additional_user_paths => node[:env][:extra_user_paths].join(":"), # :/usr/local/games:/usr/games
-    :umask => node[:env][:umask],
-    :password_max_age => node[:auth][:pw_max_age],
-    :password_min_age => node[:auth][:pw_min_age],
-    :login_retries => node[:auth][:retries],
-    :login_timeout => node[:auth][:timeout],
+    :additional_user_paths => node['env']['extra_user_paths'].join(":"), # :/usr/local/games:/usr/games
+    :umask => node['env']['umask'],
+    :password_max_age => node['auth']['pw_max_age'],
+    :password_min_age => node['auth']['pw_min_age'],
+    :login_retries => node['auth']['retries'],
+    :login_timeout => node['auth']['timeout'],
     :chfn_restrict => "", # "rwh"
-    :allow_login_without_home => node[:auth][:allow_homeless]
+    :allow_login_without_home => node['auth']['allow_homeless']
   )
 end
 
@@ -39,7 +39,7 @@ template "/etc/security/limits.d/10.hardcore.conf" do
   mode 0440
   owner "root"
   group "root"
-  only_if{ not node[:security][:kernel][:enable_core_dump] }
+  only_if{ not node['security']['kernel']['enable_core_dump'] }
 end
 
 template "/etc/profile.d/pinerolo_profile.sh" do
@@ -47,11 +47,11 @@ template "/etc/profile.d/pinerolo_profile.sh" do
   mode 0755
   owner "root"
   group "root"
-  only_if{ not node[:security][:kernel][:enable_core_dump] }
+  only_if{ not node['security']['kernel']['enable_core_dump'] }
 end
 
 include_recipe("security::pam")
 include_recipe("security::sysctl")
 include_recipe("security::minimize_access")
 include_recipe("security::securetty")
-include_recipe("security::suid_sgid") if node[:security][:suid_sgid][:enforce]
+include_recipe("security::suid_sgid") if node['security']['suid_sgid']['enforce']

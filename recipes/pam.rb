@@ -31,7 +31,7 @@ package "libpam-ccreds" do
 end
 
 
-if node[:auth][:pam][:passwdqc][:enable]
+if node['auth']['pam']['passwdqc']['enable']
   # get the package for strong password checking
   package "libpam-passwdqc"
 
@@ -56,7 +56,7 @@ else
 end
 
 
-if node[:auth][:retries] > 0
+if node['auth']['retries'] > 0
   # tally2 is needed for pam 
   package "libpam-modules"
 

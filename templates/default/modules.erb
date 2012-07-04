@@ -1,4 +1,4 @@
-<% node[:config_disclaimer].to_s.split("\n").each do |l| %>
+<% node['config_disclaimer'].to_s.split("\n").each do |l| %>
 # <%= l %>
 <% end %>
 #---
@@ -71,7 +71,7 @@ loop
 ext2
 btrfs
 
-<% if @node[:desktop][:enable] %>
+<% if @node['desktop']['enable'] %>
 # Desktop
 psmouse
 snd
