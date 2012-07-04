@@ -96,6 +96,7 @@ xz
 ip_tables
 x_tables
 iptable_filter
+iptable_nat
 
 # Targets
 ipt_LOG
@@ -107,7 +108,11 @@ xt_tcpudp
 xt_recent
 xt_limit
 xt_conntrack
+nf_conntrack
 nf_conntrack_ipv4
 nf_defrag_ipv4
 xt_state
-nf_conntrack
+nf_nat
+
+# Addons
+xt_pknock
