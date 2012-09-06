@@ -38,7 +38,8 @@ cb,cw = [],[]
 [ node['security']['suid_sgid']['blacklist_pam_caching'],      lambda{ not node['auth']['pam']['caching']  }],
 # TODO: make conditional
 [ node['security']['suid_sgid']['blacklist_apache'],           lambda{ true }],
-[ node['security']['suid_sgid']['blacklist_squid'],            lambda{ true }]
+[ node['security']['suid_sgid']['blacklist_squid'],            lambda{ true }],
+[ node['security']['suid_sgid']['blacklist_postfix'],          lambda{ false }]
 ].each do |c| 
   (c[1].call == true) ? (cb += c[0]) : (cw += c[0])
 end

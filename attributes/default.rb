@@ -87,7 +87,9 @@ default['security']['suid_sgid']['system_blacklist']          = [
 "/usr/bin/mtr",                                               # investigate current state...
 "/usr/lib/evolution/camel-lock-helper-1.2",                   # investigate current state...
 "/usr/lib/pt_chown",                                          # pseudo-tty, needed?
-"/usr/lib/eject/dmcrypt-get-device"
+"/usr/lib/eject/dmcrypt-get-device",
+"/usr/bin/screen",                                            # only for multi-session access
+"/usr/lib/mc/cons.saver"                                      # midnight commander screensaver
 ]
 # conditional blacklists as provided by NSA
 default['security']['suid_sgid']['blacklist_ipv6']            = ["/bin/ping6","/usr/bin/traceroute6.iputils"]
@@ -101,6 +103,7 @@ default['security']['suid_sgid']['blacklist_usermanagement']  = ["/usr/bin/chage
 default['security']['suid_sgid']['blacklist_fuse']            = ["/bin/fusermount"]
 default['security']['suid_sgid']['blacklist_pkexec']          = ["/usr/bin/pkexec"]
 default['security']['suid_sgid']['blacklist_sudo']            = ["/usr/bin/sudo","/usr/bin/sudoedit"]
+default['security']['suid_sgid']['blacklist_postfix']         = ["/usr/sbin/postdrop","/usr/sbin/postqueue"]
 # desktop:
 default['security']['suid_sgid']['blacklist_desktop']         = [
 "/usr/bin/Xorg",                                              # xorg
