@@ -17,37 +17,9 @@
 # limitations under the License.
 #
 
-# compile conditional items of the blacklist
-# their attributes start with blacklist_
-# any conditional item that is not enabled, goes into the whitelist
-cb,cw = [],[]
-[
-# list of files   --   check (true if blacklist, false if whitelist)
-[ node['security']['suid_sgid']['blacklist_ipv6'],             lambda{ not node['network']['ipv6']['enable']  }],
-[ node['security']['suid_sgid']['blacklist_nfs'],              lambda{ not node['network']['nfs']['enable']  }],
-[ node['security']['suid_sgid']['blacklist_nfs4'],             lambda{ not node['network']['nfs4']['enable']  }],
-[ node['security']['suid_sgid']['blacklist_cron'],             lambda{ not node['security']['users']['allow'].include?("cron")  }],
-[ node['security']['suid_sgid']['blacklist_consolemssaging'],  lambda{ not node['security']['users']['allow'].include?("consolemssaging")  }],
-[ node['security']['suid_sgid']['blacklist_usermanagement'],   lambda{ not node['security']['users']['allow'].include?("self_management")  }],
-[ node['security']['suid_sgid']['blacklist_locate'],           lambda{ not node['security']['users']['allow'].include?("locate")  }],
-[ node['security']['suid_sgid']['blacklist_fuse'],             lambda{ not node['security']['users']['allow'].include?("fuse")  }],
-[ node['security']['suid_sgid']['blacklist_sudo'],             lambda{ not node['security']['sudo']['enable']  }],
-[ node['security']['suid_sgid']['blacklist_pkexec'],           lambda{ not node['security']['pkexec']['enable']  }],
-[ node['security']['suid_sgid']['blacklist_desktop'],          lambda{ not node['desktop']['enable']  }],
-[ node['security']['suid_sgid']['blacklist_kerberos'],         lambda{ not node['auth']['kerberos']['enable']  }],
-[ node['security']['suid_sgid']['blacklist_pam_caching'],      lambda{ not node['auth']['pam']['caching']  }],
-# TODO: make conditional
-[ node['security']['suid_sgid']['blacklist_apache'],           lambda{ true }],
-[ node['security']['suid_sgid']['blacklist_squid'],            lambda{ true }],
-[ node['security']['suid_sgid']['blacklist_postfix'],          lambda{ false }]
-].each do |c| 
-  (c[1].call == true) ? (cb += c[0]) : (cw += c[0])
-end
-
-
 # make user-defined blacklist/whitelist override our default lists
-sb = node['security']['suid_sgid']['system_blacklist'] + cb
-sw = node['security']['suid_sgid']['system_whitelist'] + cw
+sb = node['security']['suid_sgid']['system_blacklist']
+sw = node['security']['suid_sgid']['system_whitelist']
 b  = node['security']['suid_sgid']['blacklist']
 w  = node['security']['suid_sgid']['whitelist']
 
@@ -60,7 +32,9 @@ root      = node['env']['root_path']
 
 # walk the blacklist and remove suid and sgid bits from these items
 ruby_block "remove_suid_from_blacklists" do
-  block { SuidSgid::remove_suid_sgid_from_blacklist(blacklist) }
+  block do
+    SuidSgid::remove_suid_sgid_from_blacklist(blacklist)
+  end
 end
 
 # remove suid bits from unkown, if desired

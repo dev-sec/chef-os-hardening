@@ -21,8 +21,6 @@ default['config_disclaimer']                           = "**Note:** This file wa
 default['desktop']['enable']                           = false
 default['network']['forwarding']                       = false
 default['network']['ipv6']['enable']                   = false
-default['network']['nfs']['enable']                    = false
-default['network']['nfs4']['enable']                   = false
 default['env']['extra_user_paths']                     = []
 default['env']['umask']                                = "027"
 default['env']['root_path']                            = "/"
@@ -32,12 +30,10 @@ default['auth']['retries']                             = 5
 default['auth']['lockout_time']                        = 600 # 10min
 default['auth']['timeout']                             = 60
 default['auth']['allow_homeless']                      = false
-default['auth']['kerberos']['enable']                  = false
-default['auth']['pam']['caching']                      = false
 default['auth']['pam']['passwdqc']['enable']           = true
 default['auth']['pam']['passwdqc']['options']          = "min=disabled,disabled,16,12,8"
 default['auth']['root_ttys']                           = ["console","tty1","tty2","tty3","tty4","tty5","tty6"]
-# may contain: cron, consolemssaging, self_management, locate, fuse, change_user
+# may contain: change_user
 default['security']['users']['allow']                  = []
 default['security']['kernel']['enable_module_loading'] = false
 default['security']['kernel']['enable_sysrq']          = false
@@ -49,8 +45,6 @@ default['security']['suid_sgid']['whitelist']          = []
 # if this is true, remove any suid/sgid bits from files that were not in the whitelist
 default['security']['suid_sgid']['remove_from_unkown'] = false
 default['security']['suid_sgid']['dry_run_on_unkown']  = false
-default['security']['sudo']['enable']                  = true
-default['security']['pkexec']['enable']                = true
 
 
 # SYSTEM CONFIGURATION
@@ -61,8 +55,11 @@ default['security']['pkexec']['enable']                = true
 default['security']['kernel']['secure_sysrq']                 = 4 + 16 + 32 + 64 + 128
 
 # suid and sgid blacklists and whitelists
+# ---------------------------------------
 # don't change values in the system_blacklist/whitelist
 # adjust values for blacklist/whitelist instead, they can override system_blacklist/whitelist
+
+# list of suid/sgid entries that must be removed
 default['security']['suid_sgid']['system_blacklist']          = [
 # blacklist as provided by NSA
 "/usr/bin/rcp", "/usr/bin/rlogin", "/usr/bin/rsh",
@@ -91,36 +88,49 @@ default['security']['suid_sgid']['system_blacklist']          = [
 "/usr/bin/screen",                                            # only for multi-session access
 "/usr/lib/mc/cons.saver"                                      # midnight commander screensaver
 ]
-# conditional blacklists as provided by NSA
-default['security']['suid_sgid']['blacklist_ipv6']            = ["/bin/ping6","/usr/bin/traceroute6.iputils"]
-default['security']['suid_sgid']['blacklist_nfs']             = ["/sbin/mount.nfs", "/sbin/umount.nfs"]
-default['security']['suid_sgid']['blacklist_nfs4']            = ["/sbin/mount.nfs4", "/sbin/umount.nfs4"]
-# user stuff:
-default['security']['suid_sgid']['blacklist_cron']            = ["/usr/bin/crontab"]
-default['security']['suid_sgid']['blacklist_consolemssaging'] = ["/usr/bin/wall", "/usr/bin/write"]
-default['security']['suid_sgid']['blacklist_locate']          = ["/usr/bin/mlocate"]
-default['security']['suid_sgid']['blacklist_usermanagement']  = ["/usr/bin/chage", "/usr/bin/chfn", "/usr/bin/chsh"]
-default['security']['suid_sgid']['blacklist_fuse']            = ["/bin/fusermount"]
-default['security']['suid_sgid']['blacklist_pkexec']          = ["/usr/bin/pkexec"]
-default['security']['suid_sgid']['blacklist_sudo']            = ["/usr/bin/sudo","/usr/bin/sudoedit"]
-default['security']['suid_sgid']['blacklist_postfix']         = ["/usr/sbin/postdrop","/usr/sbin/postqueue"]
-# desktop:
-default['security']['suid_sgid']['blacklist_desktop']         = [
+
+# list of suid/sgid entries that can remain untouched
+default['security']['suid_sgid']['system_whitelist']          = [
+# whitelist as provided by NSA
+"/bin/mount", "/bin/ping", "/bin/su", "/bin/umount", "/sbin/pam_timestamp_check",
+"/sbin/unix_chkpwd", "/usr/bin/at", "/usr/bin/gpasswd", "/usr/bin/locate",
+"/usr/bin/newgrp", "/usr/bin/passwd", "/usr/bin/ssh-agent", "/usr/libexec/utempter/utempter", "/usr/sbin/lockdev",
+"/usr/sbin/sendmail.sendmail", "/usr/bin/expiry",
+# whitelist ipv6
+"/bin/ping6","/usr/bin/traceroute6.iputils",
+# whitelist nfs
+"/sbin/mount.nfs", "/sbin/umount.nfs",
+# whitelist nfs4
+"/sbin/mount.nfs4", "/sbin/umount.nfs4",
+# whitelist cron
+"/usr/bin/crontab",
+# whitelist consolemssaging
+"/usr/bin/wall", "/usr/bin/write",
+# whitelist locate
+"/usr/bin/mlocate",
+# whitelist usermanagement
+"/usr/bin/chage", "/usr/bin/chfn", "/usr/bin/chsh",
+# whitelist fuse
+"/bin/fusermount",
+# whitelist pkexec
+"/usr/bin/pkexec",
+# whitelist sudo
+"/usr/bin/sudo","/usr/bin/sudoedit",
+# whitelist postfix
+"/usr/sbin/postdrop","/usr/sbin/postqueue",
+# whitelist apache
+"/usr/sbin/suexec",
+# whitelist squid
+"/usr/lib/squid/ncsa_auth", "/usr/lib/squid/pam_auth",
+# whitelist kerberos
+"/usr/kerberos/bin/ksu",
+# whitelist pam_caching
+"/usr/sbin/ccreds_validate",
+# whitelist Xorg
 "/usr/bin/Xorg",                                              # xorg
 "/usr/bin/X",                                                 # xorg
 "/usr/lib/dbus-1.0/dbus-daemon-launch-helper",                # freedesktop ipc
 "/usr/lib/vte/gnome-pty-helper",                              # gnome
 "/usr/lib/libvte9/gnome-pty-helper",                          # gnome
 "/usr/lib/libvte-2.90-9/gnome-pty-helper"                     # gnome
-]
-default['security']['suid_sgid']['blacklist_apache']          = ["/usr/sbin/suexec"]
-default['security']['suid_sgid']['blacklist_squid']           = ["/usr/lib/squid/ncsa_auth", "/usr/lib/squid/pam_auth"]
-default['security']['suid_sgid']['blacklist_kerberos']        = ["/usr/kerberos/bin/ksu"]
-default['security']['suid_sgid']['blacklist_pam_caching']     = ["/usr/sbin/ccreds_validate"]
-default['security']['suid_sgid']['system_whitelist']          = [
-# whitelist as provided by NSA
-"/bin/mount", "/bin/ping", "/bin/su", "/bin/umount", "/sbin/pam_timestamp_check",
-"/sbin/unix_chkpwd", "/usr/bin/at", "/usr/bin/gpasswd", "/usr/bin/locate",
-"/usr/bin/newgrp", "/usr/bin/passwd", "/usr/bin/ssh-agent", "/usr/libexec/utempter/utempter", "/usr/sbin/lockdev",
-"/usr/sbin/sendmail.sendmail", "/usr/bin/expiry"
 ]
