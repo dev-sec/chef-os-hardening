@@ -16,6 +16,8 @@ Attributes
 * `['network']['forwarding'] = false`
   true if this system requires packet forwarding (eg Router), false otherwise
 * `['network']['ipv6']['enable'] = false`
+* `['network']['arp']['restricted'] = true`
+  true if you want the behavior of announcing and replying to ARP to be restricted, false otherwise
 * `['env']['extra_user_paths'] = []`
   add additional paths to the user's `PATH` variable (default is empty).
 * `['env']['umask'] = "027"`

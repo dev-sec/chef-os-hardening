@@ -21,6 +21,7 @@ default['config_disclaimer']                           = "**Note:** This file wa
 default['desktop']['enable']                           = false
 default['network']['forwarding']                       = false
 default['network']['ipv6']['enable']                   = false
+default['network']['arp']['restricted']                = true
 default['env']['extra_user_paths']                     = []
 default['env']['umask']                                = "027"
 default['env']['root_path']                            = "/"

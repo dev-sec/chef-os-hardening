@@ -38,7 +38,7 @@ net.ipv4.tcp_timestamps = 0
 # * **0** - (default) Use any local address, configured on any interface
 # * **1** - Try to avoid local addresses that are not in the target's subnet for this interface. This mode is useful when target hosts reachable via this interface require the source IP address in ARP requests to be part of their logical network configured on the receiving interface. When we generate the request we will check all our subnets that include the target IP and will preserve the source address if it is from such subnet. If there is no such subnet we select source address according to the rules for level 2.
 # * **2** - Always use the best local address for this target. In this mode we ignore the source address in the IP packet and try to select local address that we prefer for talks with the target host. Such local address is selected by looking for primary IP addresses on all our subnets on the outgoing interface that include the target IP address. If no suitable local address is found we select the first local address we have on the outgoing interface or on all other interfaces, with the hope we will receive reply for our request and even sometimes no matter the source IP address we announce.
-net.ipv4.conf.eth0.arp_ignore = 1
+net.ipv4.conf.eth0.arp_ignore = <%= ((@node['network']['arp']['restricted']) ? "1" : "0") %>
 
 
 # Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:
@@ -49,7 +49,7 @@ net.ipv4.conf.eth0.arp_ignore = 1
 # * **3** - do not reply for local addresses configured with scope host, only resolutions for global and link addresses are replied
 # * **4-7** - reserved
 # * **8** - do not reply for all local addresses
-net.ipv4.conf.eth0.arp_announce = 2
+net.ipv4.conf.eth0.arp_announce = <%= ((@node['network']['arp']['restricted']) ? "2" : "0") %>
 
 # RFC 1337 fix F1
 net.ipv4.tcp_rfc1337 = 1
