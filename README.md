@@ -12,7 +12,7 @@ Attributes
 ==========
 
 * `['desktop']['enable']` - true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
-* `['network']['forwarding']` - true if this is not a router, deactivate traffic forwarding
+* `['network']['forwarding']` - true if this system requires packet forwarding (eg Router), false otherwise
 * `['network']['ipv6']['enable']` - true if IPv6 is used
 * `['network']['nfs']['enable']` - true if NFS (<4) is used
 * `['network']['nfs4']['enable']` - true if NFS v4 is used
