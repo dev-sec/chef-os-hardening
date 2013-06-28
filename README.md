@@ -62,7 +62,7 @@ Usage
 
 Add the recipes to the run_list, it should be last:
     
-    "recipe[security]"
+    "recipe[os-hardening]"
 
 Configure attributes:
 
