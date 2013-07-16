@@ -1,0 +1,37 @@
+<% node['config_disclaimer'].to_s.split("\n").each do |l| %>
+# <%= l %>
+<% end %>
+#---
+
+#%PAM-1.0
+<% if node['auth']['retries'] > 0 %>
+auth        required      pam_tally2.so deny=<%= node['auth']['retries'] %> onerr=fail unlock_time=<%= node['auth']['lockout_time'] %>
+<% end %>
+auth        required      pam_env.so
+auth        sufficient    pam_unix.so nullok try_first_pass
+auth        requisite     pam_succeed_if.so uid >= 500 quiet
+auth        required      pam_deny.so
+
+<% if node['auth']['retries'] > 0 %>
+account     required      pam_tally2.so
+<% end %>
+account     required      pam_unix.so
+account     sufficient    pam_localuser.so
+account     sufficient    pam_succeed_if.so uid < 500 quiet
+account     required      pam_permit.so
+
+<% if node['auth']['pam']['passwdqc']['enable'] %>
+password    requisite     pam_passwdqc.so <%= node['auth']['pam']['passwdqc']['options'] %>
+<% else %>
+password    requisite     pam_cracklib.so try_first_pass retry=3 type=
+<% end %>
+
+# NSA 2.3.3.5 Upgrade Password Hashing Algorithm to SHA-512
+# NSA 2.3.3.6 Limit Password Reuse
+password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok remember=5
+password    required      pam_deny.so
+
+session     optional      pam_keyinit.so revoke
+session     required      pam_limits.so
+session     [success=1 default=ignore] pam_succeed_if.so service in crond quiet use_uid
+session     required      pam_unix.so

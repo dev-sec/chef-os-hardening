@@ -31,22 +31,40 @@ template "/etc/sysctl.conf" do
   group "root"
 end
 
-# rebuild initramfs with starting pack of modules,
-# if module loading at runtime is disabled
-if not node['security']['kernel']['enable_module_loading']
-  template "/etc/initramfs-tools/modules" do
-    source "modules.erb"
-    mode 0440
-    owner "root"
-    group "root"
-    variables(
-      :x86_64 => (not (node['kernel']['machine'] =~ /x86_64/).nil?),
-      :cpuvendor => cpuVendor
-    )
-  end
+# NSA 2.2.4.1 Set Daemon umask
+# do config for rhel-family
+case node[:platform]
+when "redhat", "centos", "fedora", "amazon", "oracle"
+  template "/etc/sysconfig/init" do
+      source "rhel_sysconfig_init.erb"
+      mode 0544
+      owner "root"
+      group "root"
+      variables()
+    end
+end
 
-  execute "update-initramfs" do
-    command "update-initramfs -u"
-    action :run
+# do initramfs config for ubuntu and debian
+case node[:platform]
+when "debian", "ubuntu"
+
+  # rebuild initramfs with starting pack of modules,
+  # if module loading at runtime is disabled
+  if not node['security']['kernel']['enable_module_loading']
+    template "/etc/initramfs-tools/modules" do
+      source "modules.erb"
+      mode 0440
+      owner "root"
+      group "root"
+      variables(
+        :x86_64 => (not (node['kernel']['machine'] =~ /x86_64/).nil?),
+        :cpuvendor => cpuVendor
+      )
+    end
+
+    execute "update-initramfs" do
+      command "update-initramfs -u"
+      action :run
+    end
   end
 end
