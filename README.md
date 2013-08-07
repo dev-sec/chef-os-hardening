@@ -41,7 +41,7 @@ Attributes
   set to any option line (as a string) that you want to pass to passwdqc
 * `['security']['users']['allow'] = []`
   list of things, that a user is allowed to do. May contain: `change_user`
-* `['security']['kernel']['enable_module_loading'] = false`
+* `['security']['kernel']['enable_module_loading'] = true`
   true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
 * `['security']['kernel']['enable_sysrq'] = false`
 * `['security']['kernel']['enable_core_dump'] = false`

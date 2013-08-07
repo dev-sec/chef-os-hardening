@@ -36,7 +36,7 @@ default['auth']['pam']['passwdqc']['options']          = "min=disabled,disabled,
 default['auth']['root_ttys']                           = ["console","tty1","tty2","tty3","tty4","tty5","tty6"]
 # may contain: change_user
 default['security']['users']['allow']                  = []
-default['security']['kernel']['enable_module_loading'] = false
+default['security']['kernel']['enable_module_loading'] = true
 default['security']['kernel']['enable_sysrq']          = false
 default['security']['kernel']['enable_core_dump']      = false
 default['security']['suid_sgid']['enforce']            = true
