@@ -41,10 +41,10 @@ default['security']['kernel']['enable_sysrq']          = false
 default['security']['kernel']['enable_core_dump']      = false
 default['security']['suid_sgid']['enforce']            = true
 # user-defined blacklist and whitelist
-default['security']['suid_sgid']['blacklist']          = []
+default['security']['suid_sgid']['blacklist']          = ["/bin/mount", "/bin/umount", "/sbin/pam_timestamp_check", "/sbin/unix_chkpwd", "/usr/bin/at", "/usr/bin/gpasswd","/usr/bin/locate", "/usr/bin/newgrp", "/usr/bin/ssh-agent", "/usr/libexec/utempter/utempter", "/usr/sbin/lockdev","/usr/sbin/sendmail.sendmail", "/usr/bin/expiry","/bin/ping6","/usr/bin/traceroute6.iputils","/sbin/mount.nfs", "/sbin/umount.nfs","/sbin/mount.nfs4","/sbin/umount.nfs4","/usr/bin/pkexec","/usr/bin/sudo","/usr/bin/sudoedit","/usr/sbin/postdrop","/usr/sbin/postqueue","/usr/sbin/suexec","/usr/bin/Xorg","/usr/bin/X","/usr/lib/dbus-1.0/dbus-daemon-launch-helper","usr/lib/vte/gnome-pty-helper","/usr/lib/libvte9/gnome-pty-helper","/usr/lib/libvte-2.90-9/gnome-pty-helper" ]
 default['security']['suid_sgid']['whitelist']          = []
 # if this is true, remove any suid/sgid bits from files that were not in the whitelist
-default['security']['suid_sgid']['remove_from_unkown'] = false
+default['security']['suid_sgid']['remove_from_unkown'] = true
 default['security']['suid_sgid']['dry_run_on_unkown']  = false
 
 
