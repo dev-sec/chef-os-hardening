@@ -2,7 +2,7 @@
 
 ## Deutsche Telekom AG
 
-# Debian / Ubuntu
+### Debian / Ubuntu
 
 1. Install ruby
 
