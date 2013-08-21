@@ -17,8 +17,16 @@
 # limitations under the License.
 #
 
-ruby_block "minimize_access_to_root" do 
-  block do
-    `chmod 750 '/bin/su'` if not node['security']['users']['allow'].include?("change_user")
+file "/etc/shadow" do
+  owner "root"
+  group "root"
+  mode "0600"
+end
+
+if not node['security']['users']['allow'].include?("change_user")
+  file "/bin/su" do
+    owner "root"
+    group "root"
+    mode "0750"
   end
 end
