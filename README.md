@@ -73,8 +73,11 @@ Configure attributes:
     },
 
 
-Kudos
-=====
+Contributors + Kudos
+====================
+
+* Christoph Hartmann
+* Patrick Meier
 
 This cookbook is mostly based on guides by:
 
