@@ -50,6 +50,15 @@ template "/etc/profile.d/pinerolo_profile.sh" do
   only_if{ not node['security']['kernel']['enable_core_dump'] }
 end
 
+# remove write permissions from path folders ($PATH) for all regular users
+# this prevents changing any system-wide command from normal users
+paths = %w{ /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin } + node['env']['extra_user_paths']
+paths.each do |folder|
+  execute "remove write permission from #{folder}" do
+    command "chmod go-w -R #{folder}"
+  end
+end
+
 include_recipe("os-hardening::pam")
 include_recipe("os-hardening::sysctl")
 include_recipe("os-hardening::minimize_access")
