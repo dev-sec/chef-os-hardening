@@ -79,6 +79,15 @@ net.ipv4.conf.default.send_redirects = 0
 # log martian packets
 #net.ipv4.conf.all.log_martians = 1
 
+# ipv6 config
+# NSA 2.5.3.2.5 Limit Network-Transmitted Configuration
+net.ipv6.conf.default.router_solicitations = 0
+net.ipv6.conf.default.accept_ra_rtr_pref = 0
+net.ipv6.conf.default.accept_ra_pinfo = 0
+net.ipv6.conf.default.accept_ra_defrtr = 0
+net.ipv6.conf.default.autoconf = 0
+net.ipv6.conf.default.dad_transmits = 0
+net.ipv6.conf.default.max_addresses = 1
 
 # System
 # ------

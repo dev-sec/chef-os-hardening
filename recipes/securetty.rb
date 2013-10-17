@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 
+# See NSA 2.3.1.1 Restrict Root Logins to System Console
 template "/etc/securetty" do
   source "securetty.erb"
   mode "0400"

@@ -17,61 +17,130 @@
 # limitations under the License.
 #
 
-passwdqc_path = "/usr/share/pam-configs/passwdqc"
-tally2_path   = "/usr/share/pam-configs/tally2"
-
 execute "update-pam" do
   command "pam-auth-update --package"
   action :nothing
 end
 
 # remove ccreds if not necessary
-package "libpam-ccreds" do
+package "pam-ccreds" do
+  package_name node['packages']['pam-ccreds']
   action :remove
 end
 
+case node[:platform]
+# do pam config for ubuntu
+when "debian", "ubuntu"
 
-if node['auth']['pam']['passwdqc']['enable']
-  # get the package for strong password checking
-  package "libpam-passwdqc"
+  passwdqc_path = "/usr/share/pam-configs/passwdqc"
+  tally2_path   = "/usr/share/pam-configs/tally2"
 
-  # configure passwdqc via central module:
-  template passwdqc_path do
-    source "pam_passwdqc.erb"
+  # See NSA 2.3.3.1.2
+  if node['auth']['pam']['passwdqc']['enable']
+
+    # remove pam_cracklib, because it does not play nice wiht passwdqc
+    package "pam-cracklib" do
+      package_name node['packages']['pam-cracklib']
+      action :remove
+    end
+
+    # get the package for strong password checking
+    package "pam-passwdqc" do
+      package_name node['packages']['pam-passwdqc']
+    end
+
+    # configure passwdqc via central module:
+    template passwdqc_path do
+      source "pam_passwdqc.erb"
+      mode 0640
+      owner "root"
+      group "root"
+    end
+
+  # deactivate passwdqc
+  else
+
+    # delete passwdqc file on ubuntu and debian
+    file passwdqc_path do
+      action :delete
+    end
+
+    # make sure the package is not on the system,
+    # if this feature is not wanted
+    package "pam-passwdqc" do
+      package_name node['packages']['pam-passwdqc']
+      action :remove
+    end
+  end
+
+  #configure tally2
+  if node['auth']['retries'] > 0
+    # tally2 is needed for pam 
+    package "libpam-modules"
+
+    template tally2_path do
+      source "pam_tally2.erb"
+      mode 0640
+      owner "root"
+      group "root"
+    end
+  else
+
+    file tally2_path do
+      action :delete
+    end
+  end
+
+  execute "update-pam"
+
+# do config for rhel-family
+when "redhat", "centos", "fedora", "amazon", "oracle"
+
+  # we do not allow to use authconfig, because it does not use the /etc/sysconfig/authconfig as a basis
+  # therefore we edit /etc/pam.d/system-auth-ac/
+  # @see http://serverfault.com/questions/292406/puppet-configuration-using-augeas-fails-if-combined-with-notify
+
+  if node['auth']['pam']['passwdqc']['enable']
+
+    # remove pam_cracklib, because it does not play nice wiht passwdqc
+    package "pam-cracklib" do
+      package_name node['packages']['pam-cracklib']
+      action :remove
+    end
+
+    # get the package for strong password checking
+    package "pam-passwdqc" do
+      package_name node['packages']['pam-passwdqc']
+    end
+
+  # deactivate passwdqc
+  else
+
+    # make sure the package is not on the system,
+    # if this feature is not wanted
+    package "pam-passwdqc" do
+      package_name node['packages']['pam-passwdqc']
+      action :remove
+    end
+  end
+
+  # run the standard config
+
+  # configure passwdqc and tally via central system-auth confic:
+  template "/etc/pam.d/system-auth-ac" do
+    source "rhel_system_auth.erb"
     mode 0640
     owner "root"
     group "root"
   end
-else
 
-  file passwdqc_path do
-    action :delete
-  end
-
-  # make sure the package is not on the system,
-  # if this feature is not wanted
-  package "libpam-passwdqc" do
-    action :remove
-  end
-end
-
-
-if node['auth']['retries'] > 0
-  # tally2 is needed for pam 
-  package "libpam-modules"
-
-  template tally2_path do
-    source "pam_tally2.erb"
+  # NSA 2.3.3.5 Upgrade Password Hashing Algorithm to SHA-512
+  template "/etc/libuser.conf" do
+    source "rhel_libuser.conf.erb"
     mode 0640
     owner "root"
     group "root"
   end
-else
 
-  file tally2_path do
-    action :delete
-  end
 end
 
-
-execute "update-pam"

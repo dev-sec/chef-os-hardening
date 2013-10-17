@@ -163,6 +163,7 @@ DEFAULT_HOME	<%= @allow_login_without_home ? "yes" : "no" %>
 #
 # Note: It is recommended to use a value consistent with
 # the PAM modules configuration.
+MD5_CRYPT_ENAB no
 ENCRYPT_METHOD SHA512
 
 # Only used if `ENCRYPT_METHOD` is set to `SHA256` or `SHA512`: Define the number of SHA rounds.
