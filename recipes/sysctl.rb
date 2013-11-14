@@ -33,8 +33,8 @@ end
 
 # NSA 2.2.4.1 Set Daemon umask
 # do config for rhel-family
-case node[:platform]
-when "redhat", "centos", "fedora", "amazon", "oracle"
+case node['platform_family']
+when "rhel", "fedora"
   template "/etc/sysconfig/init" do
       source "rhel_sysconfig_init.erb"
       mode 0544
@@ -45,8 +45,8 @@ when "redhat", "centos", "fedora", "amazon", "oracle"
 end
 
 # do initramfs config for ubuntu and debian
-case node[:platform]
-when "debian", "ubuntu"
+case node['platform_family']
+when "debian"
 
   # rebuild initramfs with starting pack of modules,
   # if module loading at runtime is disabled
