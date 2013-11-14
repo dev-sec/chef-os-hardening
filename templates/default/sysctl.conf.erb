@@ -7,8 +7,8 @@
 # ----------
 
 # Only enable IP traffic forwarding, if required.
-net.ipv4.ip_forward = <%= ((@node['network']['forwarding']) ? "1" : "0") %>
-net.ipv6.conf.all.forwarding = <%= ((@node['network']['forwarding']) ? "1" : "0") %>
+net.ipv4.ip_forward = <%= ((@node['network']['forwarding']) ? 1 : 0) %>
+net.ipv6.conf.all.forwarding = <%= ((@node['network']['forwarding']) ? 1 : 0) %>
 
 # Enable RFC-recommended source validation feature. It should not be used for
 # routers on complex networks, but is helpful for end hosts and routers serving
@@ -32,7 +32,7 @@ net.ipv4.icmp_ratelimit = 100
 net.ipv4.icmp_ratemask = 88089
 
 # Disable or Enable IPv6 as it is needed.
-net.ipv6.conf.all.disable_ipv6 = <%= ((@node['network']['ipv6']['enable']) ? "0" : "1") %>
+net.ipv6.conf.all.disable_ipv6 = <%= ((@node['network']['ipv6']['enable']) ? 0 : 1) %>
 
 # Protect against wrapping sequence numbers at gigabit speeds:
 net.ipv4.tcp_timestamps = 0
@@ -60,7 +60,7 @@ net.ipv4.tcp_timestamps = 0
 #           other interfaces, with the hope we will receive reply for our
 #           request and even sometimes no matter the source IP address we
 #           announce.
-net.ipv4.conf.eth0.arp_ignore = <%= ((@node['network']['arp']['restricted']) ? "1" : "0") %>
+net.ipv4.conf.eth0.arp_ignore = <%= ((@node['network']['arp']['restricted']) ? 1 : 0) %>
 
 
 # Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:
@@ -76,7 +76,7 @@ net.ipv4.conf.eth0.arp_ignore = <%= ((@node['network']['arp']['restricted']) ? "
 #           resolutions for global and link addresses are replied
 # * **4-7** - reserved
 # * **8** - do not reply for all local addresses
-net.ipv4.conf.eth0.arp_announce = <%= ((@node['network']['arp']['restricted']) ? "2" : "0") %>
+net.ipv4.conf.eth0.arp_announce = <%= ((@node['network']['arp']['restricted']) ? 2 : 0) %>
 
 # RFC 1337 fix F1
 net.ipv4.tcp_rfc1337 = 1
@@ -123,7 +123,7 @@ net.ipv6.conf.default.max_addresses = 1
 
 # This settings controls how the kernel behaves towards module changes at
 # runtime. Setting to 1 will disable module loading at runtime.
-kernel.modules_disabled = <%= ((@node['security']['kernel']['enable_module_loading']) ? "0" : "1") %>
+kernel.modules_disabled = <%= ((@node['security']['kernel']['enable_module_loading']) ? 0 : 1) %>
 
 # Magic Sysrq should be disabled, but can also be set to a safe value if so
 # desired for physical machines. It can allow a safe reboot if the system hangs
@@ -141,8 +141,8 @@ kernel.modules_disabled = <%= ((@node['security']['kernel']['enable_module_loadi
 # * **64**  - signalling of processes (term, kill, oom-kill)
 # * **128** - reboot/poweroff
 # * **256** - nicing of all RT tasks
-kernel.sysrq = <%= ((@node['security']['kernel']['enable_sysrq']) ? "#{@node['security']['kernel']['secure_sysrq']}" : "0" ) %>
+kernel.sysrq = <%= ((@node['security']['kernel']['enable_sysrq']) || 0) %>
 
 # Prevent core dumps with SUID. These are usually only needed by developers and
 # may contain sensitive information.
-fs.suid_dumpable = <%= ((@node['security']['kernel']['enable_core_dump']) ? "1" : "0") %>
+fs.suid_dumpable = <%= ((@node['security']['kernel']['enable_core_dump']) ? 1 : 0) %>
