@@ -69,7 +69,7 @@ when "debian"
   end
 end
 
-case node[:platform_family]
+case node['platform_family']
 when "debian"
     service "procps" do
         supports :restart => false, :reload => false
