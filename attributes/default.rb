@@ -18,13 +18,13 @@
 
 
 # Define the packages based on operating system
-case platform
-when "redhat", "centos", "fedora", "amazon", "oracle"
+case platform_family
+when "rhel", "fedora"
     default['packages']['pam-ccreds'] = "pam_ccreds"
     default['packages']['pam-passwdqc'] = "pam_passwdqc"
     default['packages']['pam-cracklib'] = "pam_cracklib"
 
-when "debian", "ubuntu"
+when "debian"
     default['packages']['pam-ccreds'] = "libpam-ccreds"
     default['packages']['pam-passwdqc'] = "libpam-passwdqc"
     default['packages']['pam-cracklib'] = "libpam-cracklib"

@@ -28,9 +28,9 @@ package "pam-ccreds" do
   action :remove
 end
 
-case node[:platform]
+case node['platform_family']
 # do pam config for ubuntu
-when "debian", "ubuntu"
+when "debian"
 
   passwdqc_path = "/usr/share/pam-configs/passwdqc"
   tally2_path   = "/usr/share/pam-configs/tally2"
@@ -94,7 +94,7 @@ when "debian", "ubuntu"
   execute "update-pam"
 
 # do config for rhel-family
-when "redhat", "centos", "fedora", "amazon", "oracle"
+when "rhel", "fedora"
 
   # we do not allow to use authconfig, because it does not use the /etc/sysconfig/authconfig as a basis
   # therefore we edit /etc/pam.d/system-auth-ac/
