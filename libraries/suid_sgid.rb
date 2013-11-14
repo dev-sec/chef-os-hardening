@@ -24,15 +24,19 @@ class Chef::Recipe::SuidSgid
       return
     end
 
-    ok = system "chmod -s '#{file}'"
-    Chef::Log.info "suid_sgid: Couldn't remove SUID/SGID from '#{file}'" if not ok
+    chmod = Mixlib::ShellOut.new("chmod -s '#{file}'")
+    chmod.run_command
+    chmod.error!
   end
 
   def self.find_all_suid_sgid_files( start_at = "/" )
     # "find / -xdev \( -perm -4000 -o -perm -2000 \) -type f -print 2>/dev/null"
     # don't limit to one filesystem, go nuts recursively: (ie without -xdev)
-    find = "find / \\( -perm -4000 -o -perm -2000 \\) -type f -print 2>/dev/null"
-    `#{find}`.split("\n")
+    findcmd = "find / \\( -perm -4000 -o -perm -2000 \\) -type f -print 2>/dev/null"
+    find = Mixlib::ShellOut.new(findcmd)
+    find.run_command
+    find.error!
+    return find.stdout.split("\n")
   end
 
   def self.remove_suid_sgid_from_blacklist( blacklist )
