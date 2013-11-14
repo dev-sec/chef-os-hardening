@@ -17,9 +17,7 @@
 # limitations under the License.
 #
 
-# TODO: these should be done by ohai...
-cpuVendor = %x[ cat /proc/cpuinfo | grep vendor_id ].split("\n").first.
-    sub(/vendor_id\s*:\s+/,"").
+cpuVendor = node['cpu']['0']['vendor_id'].
     sub(/^.*GenuineIntel.*$/,"intel").
     sub(/^.*AuthenticAMD.*$/,"amd")
 
