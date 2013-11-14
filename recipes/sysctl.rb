@@ -58,7 +58,7 @@ when "debian", "ubuntu"
       group "root"
       variables(
         :x86_64 => (not (node['kernel']['machine'] =~ /x86_64/).nil?),
-        :cpuvendor => cpuVendor
+        :cpuVendor => cpuVendor
       )
     end
 
