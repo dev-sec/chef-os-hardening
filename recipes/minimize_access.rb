@@ -23,10 +23,9 @@ file "/etc/shadow" do
   mode "0600"
 end
 
-if not node['security']['users']['allow'].include?("change_user")
-  file "/bin/su" do
-    owner "root"
-    group "root"
-    mode "0750"
-  end
+file "/bin/su" do
+  owner "root"
+  group "root"
+  mode "0750"
+  only_if { ! node['security']['users']['allow'].include?("change_user") }
 end
