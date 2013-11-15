@@ -1,41 +1,34 @@
-<% node['config_disclaimer'].to_s.split("\n").each do |l| %>
-# <%= l %>
-<% end %>
-#---
-
-# Networking
-# ----------
-
 # Only enable IP traffic forwarding, if required.
-net.ipv4.ip_forward = <%= ((@node['network']['forwarding']) ? 1 : 0) %>
-net.ipv6.conf.all.forwarding = <%= ((@node['network']['forwarding']) ? 1 : 0) %>
+default[:sysctl][:params][:net][:ipv4][:ip_forward] = 0
+default[:sysctl][:params][:net][:ipv6][:conf][:all][:forwarding] = 0
 
 # Enable RFC-recommended source validation feature. It should not be used for
 # routers on complex networks, but is helpful for end hosts and routers serving
 # small networks.
-net.ipv4.conf.all.rp_filter = 1
-net.ipv4.conf.default.rp_filter = 1
+default[:sysctl][:params][:net][:ipv4][:conf][:all][:rp_filter] = 1
+default[:sysctl][:params][:net][:ipv4][:conf][:default][:rp_filter] = 1
 
 # Reduce the surface on SMURF attacks. Make sure to ignore ECHO broadcasts,
 # which are only required in broad network analysis.
-net.ipv4.icmp_echo_ignore_broadcasts = 1
+default[:sysctl][:params][:net][:ipv4][:icmp_echo_ignore_broadcasts] = 1
 
 # There is no reason to accept bogus error responses from ICMP, so ignore them
 # instead.
-net.ipv4.icmp_ignore_bogus_error_responses = 1
+default[:sysctl][:params][:net][:ipv4][:icmp_ignore_bogus_error_responses] = 1
 
 # Limit the amount of traffic the system uses for ICMP.
-net.ipv4.icmp_ratelimit = 100
+default[:sysctl][:params][:net][:ipv4][:icmp_ratelimit] = 100
 
 # Adjust the ICMP ratelimit to include: ping, dst unreachable, source quench,
 # time exceed, param problem, timestamp reply, information reply
-net.ipv4.icmp_ratemask = 88089
+default[:sysctl][:params][:net][:ipv4][:icmp_ratemask] = 88089
 
 # Disable or Enable IPv6 as it is needed.
-net.ipv6.conf.all.disable_ipv6 = <%= ((@node['network']['ipv6']['enable']) ? 0 : 1) %>
+default[:sysctl][:params][:net][:ipv6][:conf][:all][:disable_ipv6] =
+    node[:network][:ipv6][:enable] ? 0 : 1
 
 # Protect against wrapping sequence numbers at gigabit speeds:
-net.ipv4.tcp_timestamps = 0
+default[:sysctl][:params][:net][:ipv4][:tcp_timestamps] = 0
 
 # arp_announce - INTEGER
 # Define different restriction levels for announcing the local source IP
@@ -60,7 +53,9 @@ net.ipv4.tcp_timestamps = 0
 #           other interfaces, with the hope we will receive reply for our
 #           request and even sometimes no matter the source IP address we
 #           announce.
-net.ipv4.conf.eth0.arp_ignore = <%= ((@node['network']['arp']['restricted']) ? 1 : 0) %>
+#
+default[:sysctl][:params][:net][:ipv4][:conf][:eth0][:arp_ignore] =
+    node[:network][:arp][:restricted] ? 1 : 0
 
 
 # Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:
@@ -76,47 +71,49 @@ net.ipv4.conf.eth0.arp_ignore = <%= ((@node['network']['arp']['restricted']) ? 1
 #           resolutions for global and link addresses are replied
 # * **4-7** - reserved
 # * **8** - do not reply for all local addresses
-net.ipv4.conf.eth0.arp_announce = <%= ((@node['network']['arp']['restricted']) ? 2 : 0) %>
+default[:sysctl][:params][:net][:ipv4][:conf][:eth0][:arp_announce] =
+    node[:network][:arp][:restricted] ? 2 : 0
+
 
 # RFC 1337 fix F1
-net.ipv4.tcp_rfc1337 = 1
+default[:sysctl][:params][:net][:ipv4][:tcp_rfc1337] = 1
 
 # Syncookies is used to prevent SYN-flooding attacks.
-net.ipv4.tcp_syncookies = 1
+default[:sysctl][:params][:net][:ipv4][:tcp_syncookies] = 1
 
-net.ipv4.conf.all.shared_media = 1
-net.ipv4.conf.default.shared_media = 1
+default[:sysctl][:params][:net][:ipv4][:conf][:all][:shared_media] = 1
+default[:sysctl][:params][:net][:ipv4][:conf][:default][:shared_media] = 1
 
 # Accepting source route can lead to malicious networking behavior, so disable
 # it if not needed.
-net.ipv4.conf.all.accept_source_route = 0
-net.ipv4.conf.default.accept_source_route = 0
+default[:sysctl][:params][:net][:ipv4][:conf][:all][:accept_source_route] = 0
+default[:sysctl][:params][:net][:ipv4][:conf][:default][:accept_source_route] = 0
 
 # Accepting redirects can lead to malicious networking behavior, so disable
 # it if not needed.
-net.ipv4.conf.all.accept_redirects = 0
-net.ipv4.conf.default.accept_redirects = 0
-net.ipv6.conf.all.accept_redirects = 0
-net.ipv6.conf.default.accept_redirects = 0
-net.ipv4.conf.all.secure_redirects = 0
-net.ipv4.conf.default.secure_redirects = 0
+default[:sysctl][:params][:net][:ipv4][:conf][:all][:accept_redirects] = 0
+default[:sysctl][:params][:net][:ipv4][:conf][:default][:accept_redirects] = 0
+default[:sysctl][:params][:net][:ipv6][:conf][:all][:accept_redirects] = 0
+default[:sysctl][:params][:net][:ipv6][:conf][:default][:accept_redirects] = 0
+default[:sysctl][:params][:net][:ipv4][:conf][:all][:secure_redirects] = 0
+default[:sysctl][:params][:net][:ipv4][:conf][:default][:secure_redirects] = 0
 
 # For non-routers: don't send redirects, these settings are 0
-net.ipv4.conf.all.send_redirects = 0
-net.ipv4.conf.default.send_redirects = 0
+default[:sysctl][:params][:net][:ipv4][:conf][:all][:send_redirects] = 0
+default[:sysctl][:params][:net][:ipv4][:conf][:default][:send_redirects] = 0
 
 # log martian packets
-#net.ipv4.conf.all.log_martians = 1
+default[:sysctl][:params][:net][:ipv4][:conf][:all][:log_martians] = 1
 
 # ipv6 config
 # NSA 2.5.3.2.5 Limit Network-Transmitted Configuration
-net.ipv6.conf.default.router_solicitations = 0
-net.ipv6.conf.default.accept_ra_rtr_pref = 0
-net.ipv6.conf.default.accept_ra_pinfo = 0
-net.ipv6.conf.default.accept_ra_defrtr = 0
-net.ipv6.conf.default.autoconf = 0
-net.ipv6.conf.default.dad_transmits = 0
-net.ipv6.conf.default.max_addresses = 1
+default[:sysctl][:params][:net][:ipv6][:conf][:default][:router_solicitations] = 0
+default[:sysctl][:params][:net][:ipv6][:conf][:default][:accept_ra_rtr_pref] = 0
+default[:sysctl][:params][:net][:ipv6][:conf][:default][:accept_ra_pinfo] = 0
+default[:sysctl][:params][:net][:ipv6][:conf][:default][:accept_ra_defrtr] = 0
+default[:sysctl][:params][:net][:ipv6][:conf][:default][:autoconf] = 0
+default[:sysctl][:params][:net][:ipv6][:conf][:default][:dad_transmits] = 0
+default[:sysctl][:params][:net][:ipv6][:conf][:default][:max_addresses] = 1
 
 # System
 # ------
@@ -124,7 +121,8 @@ net.ipv6.conf.default.max_addresses = 1
 # This settings controls how the kernel behaves towards module changes at
 # runtime. Setting to 1 will disable module loading at runtime.
 # Setting it to 0 is actually never supported.
-<% if (@node['security']['kernel']['enable_module_loading']) %>#<% end %>kernel.modules_disabled = 1
+default[:sysctl][:params][:kernel][:modules][:disabled] =
+    node[:security][:kernel][:enable_module_loading] ? 0 : 1
 
 # Magic Sysrq should be disabled, but can also be set to a safe value if so
 # desired for physical machines. It can allow a safe reboot if the system hangs
@@ -142,8 +140,12 @@ net.ipv6.conf.default.max_addresses = 1
 # * **64**  - signalling of processes (term, kill, oom-kill)
 # * **128** - reboot/poweroff
 # * **256** - nicing of all RT tasks
-kernel.sysrq = <%= ((@node['security']['kernel']['enable_sysrq']) || 0) %>
+default[:sysctl][:params][:kernel][:sysrq] =
+    node[:security][:kernel][:enable_sysrq] || 0
+
 
 # Prevent core dumps with SUID. These are usually only needed by developers and
 # may contain sensitive information.
-fs.suid_dumpable = <%= ((@node['security']['kernel']['enable_core_dump']) ? 1 : 0) %>
+default[:sysctl][:params][:fs][:suid_dumpable] =
+    node[:security][:kernel][:enable_core_dump] ? 1 : 0
+
