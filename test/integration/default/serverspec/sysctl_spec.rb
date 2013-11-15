@@ -94,6 +94,9 @@ describe 'IP V4 networking' do
        its(:value) { should eq 0 }
     end
 
+    context linux_kernel_parameter('net.ipv4.conf.all.log_martians') do
+       its(:value) { should eq 1 }
+    end
 
 end
 
@@ -148,3 +151,19 @@ describe 'NSA 2.5.3.2.5 Limit Network-Transmitted Configuration' do
     end
 
 end
+
+describe 'System sysctl' do
+
+    context linux_kernel_parameter('kernel.modules_disabled') do
+        its(:value) { should eq 0 }
+    end
+
+    context linux_kernel_parameter('kernel.sysrq') do
+        its(:value) { should eq 0 }
+    end
+
+    context linux_kernel_parameter('fs.suid_dumpable') do
+        its(:value) { should eq 0 }
+    end
+end
+
