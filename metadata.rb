@@ -8,3 +8,9 @@ version          "0.0.2"
 
 depends 'sysctl', '0.3.4'
 
+recipe 'os-hardening::default', 'harden the operating system (all recipes)'
+recipe 'os-hardening::minimize_access', 'enforce minimal file permissions'
+recipe 'os-hardening::pam'
+recipe 'os-hardening::securetty'
+recipe 'os-hardening::suid_sgid'
+recipe 'os-hardening::sysctl', 'set sane sysctl values'
