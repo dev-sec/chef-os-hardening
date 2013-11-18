@@ -73,6 +73,25 @@ Configure attributes:
     },
 
 
+Testing
+=======
+
+You will have to install Vagrant and dependencies on your system. After you have vagrant, you need additional plugins:
+
+    vagrant plugin install vagrant-berkshelf
+    vagrant plugin install kitchen
+
+Next install test-kitchen:
+
+    gem install test-kitchen kitchen-vagrant --pre
+
+You should now be able to run tests:
+
+    kitchen test
+
+**Limitations**: Currently test kitchen does not fully cooperate with vagrant when configured through `Gemfile`. Vagrant is not released via gems as of `1.1.0` anymore and bundler is unable to find vagrant as a provider. Use the method
+
+
 Contributors + Kudos
 ====================
 
