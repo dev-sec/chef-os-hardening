@@ -58,7 +58,7 @@ when "debian", "ubuntu"
       group "root"
       variables(
         :x86_64 => (not (node['kernel']['machine'] =~ /x86_64/).nil?),
-        :cpuvendor => cpuVendor
+        :cpuVendor => cpuVendor
       )
     end
 
@@ -68,3 +68,13 @@ when "debian", "ubuntu"
     end
   end
 end
+
+case node[:platform_family]
+when "debian"
+    service "procps" do
+        supports :restart => false, :reload => false
+        provider Chef::Provider::Service::Upstart
+        action :start
+    end
+end
+
