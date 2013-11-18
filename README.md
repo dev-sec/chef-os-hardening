@@ -78,6 +78,7 @@ Contributors + Kudos
 
 * Christoph Hartmann
 * Patrick Meier
+* Bernhard K. Weisshuhn
 
 This cookbook is mostly based on guides by:
 
