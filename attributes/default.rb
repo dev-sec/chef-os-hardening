@@ -28,6 +28,7 @@ when "debian"
     default[:packages][:pam_ccreds] = "libpam-ccreds"
     default[:packages][:pam_passwdqc] = "libpam-passwdqc"
     default[:packages][:pam_cracklib] = "libpam-cracklib"
+
 when "arch"
     default[:packages][:pam_ccreds] = "pam_ccreds"
     default[:packages][:pam_passwdqc] = "pam_passwdqc"

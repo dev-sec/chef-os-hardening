@@ -17,13 +17,14 @@
 # limitations under the License.
 #
 
+include_recipe "sysctl"
+
 cpuVendor = node[:cpu][:'0'][:vendor_id].
     sub(/^.*GenuineIntel.*$/,"intel").
     sub(/^.*AuthenticAMD.*$/,"amd")
 
-# adjust sysctl itself
-template "/etc/sysctl.conf" do
-  source "sysctl.conf.erb"
+# protect sysctl.conf
+File "/etc/sysctl.conf" do
   mode 0440
   owner "root"
   group "root"
