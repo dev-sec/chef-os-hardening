@@ -73,16 +73,36 @@ Configure attributes:
     },
 
 
+Testing
+=======
+
+You will have to install Vagrant and dependencies on your system. After you have vagrant, you need additional plugins:
+
+    vagrant plugin install vagrant-berkshelf
+    vagrant plugin install kitchen
+
+Next install test-kitchen:
+
+    gem install test-kitchen kitchen-vagrant --pre
+
+You should now be able to run tests:
+
+    kitchen test
+
+**Limitations**: Currently test kitchen does not fully cooperate with vagrant when configured through `Gemfile`. Vagrant is not released via gems as of `1.1.0` anymore and bundler is unable to find vagrant as a provider. Use the method
+
+
 Contributors + Kudos
 ====================
 
 * Christoph Hartmann
 * Patrick Meier
+* Bernhard K. Weisshuhn
 
 This cookbook is mostly based on guides by:
 
 * [Arch Linux wiki, Sysctl hardening](https://wiki.archlinux.org/index.php/Sysctl)
-* [NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5](http://www.nsa.gov/ia/_files/os/redhat/rhel5-pamphlet-i731.pdf)
+* [NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5](www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf‎)
 * [Ubuntu Security/Features](https://wiki.ubuntu.com/Security/Features)
 * Deutsche Telekom, Group IT Security, Security Requirements (not publicly available)
 
