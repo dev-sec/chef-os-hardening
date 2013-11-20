@@ -61,7 +61,7 @@ Usage
 =====
 
 Add the recipes to the run_list, it should be last:
-    
+
     "recipe[os-hardening]"
 
 Configure attributes:
@@ -102,7 +102,7 @@ Contributors + Kudos
 This cookbook is mostly based on guides by:
 
 * [Arch Linux wiki, Sysctl hardening](https://wiki.archlinux.org/index.php/Sysctl)
-* [NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5](www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf‎)
+* [NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5](www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf)
 * [Ubuntu Security/Features](https://wiki.ubuntu.com/Security/Features)
 * Deutsche Telekom, Group IT Security, Security Requirements (not publicly available)
 
