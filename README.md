@@ -1,6 +1,6 @@
 chef-os-hardening
 =================
-[![build status](http://ci.tlabscloud.com/projects/2/status.png?ref=kitchen-openstack)](http://ci.tlabscloud.com/projects/2?ref=kitchen-openstack)
+[![build status](http://ci.tlabscloud.com/projects/4/status.png?ref=master)](http://ci.tlabscloud.com/projects/4?ref=master)
 
 Description
 ===========
