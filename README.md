@@ -77,10 +77,19 @@ Configure attributes:
     },
 
 
-Testing
-=======
+Testing at T-Labs OpenStack Testbed
+===================================
 
-You will have to install Vagrant and dependencies on your system. After you have vagrant, you need additional plugins:
+T-Labs supplies automatic tests on its openstack testbed. See [the project's gitlab-ci page](http://ci.tlabscloud.com/projects/4) for details.
+
+Local Testing
+=============
+
+When you don't have access to the T-Labs testbed, you can use vagrant and Virtualbox of VMWare to run tests locally.
+
+
+You will have to install Vagrant on your system. See [Vagrant Downloads](http://downloads.vagrantup.com/) for a vagrant package suitable for your system.
+After you have vagrant, you need additional plugins:
 
     vagrant plugin install vagrant-berkshelf
     vagrant plugin install kitchen
@@ -89,11 +98,15 @@ Next install test-kitchen:
 
     gem install test-kitchen kitchen-vagrant --pre
 
+Create a local kitchen configuration:
+
+    cp .kitchen.local.yml{.example,}
+
 You should now be able to run tests:
 
     kitchen test
 
-**Limitations**: Currently test kitchen does not fully cooperate with vagrant when configured through `Gemfile`. Vagrant is not released via gems as of `1.1.0` anymore and bundler is unable to find vagrant as a provider. Use the method
+**Limitations**: Vagrant is no longer distributed as a `Gemfile`. See [the Installation instructions at vagrantup.com](http://downloads.vagrantup.com/) for instructions.
 
 
 Contributors + Kudos
