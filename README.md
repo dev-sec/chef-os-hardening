@@ -1,3 +1,7 @@
+chef-os-hardening
+=================
+[![build status](http://ci.tlabscloud.com/projects/4/status.png?ref=master)](http://ci.tlabscloud.com/projects/4?ref=master)
+
 Description
 ===========
 
