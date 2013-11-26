@@ -1,3 +1,4 @@
 exp.*
 .kitchen
 Berksfile.lock
+.kitchen.local.yml
