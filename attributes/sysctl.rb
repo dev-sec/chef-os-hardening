@@ -150,10 +150,9 @@ default[:sysctl][:params][:kernel][:sysrq] =
 default[:sysctl][:params][:fs][:suid_dumpable] =
     node[:security][:kernel][:enable_core_dump] ? 1 : 0
 
-# Enable ExecShield protection
-case node[:platform_family]
-when "rhel", "fedora"
+# Enable ExecShield protection when cpu lacks nx capability
+# Ubuntu's kernel includes an equivalent of exec-shield built in
+unless node[:cpu][0][:flags].include? "nx" or node[:platform] == "ubuntu"
     default[:sysctl][:params][:kernel]['exec-shield'] = 1
-    # Ubuntu has an exec shield equivalent built in
 end
 default[:sysctl][:params][:kernel][:randomize_va_space] = 2

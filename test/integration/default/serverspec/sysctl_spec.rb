@@ -172,8 +172,11 @@ describe 'System sysctl' do
 end
 
 describe 'ExecShield' do
-    context linux_kernel_parameter('kernel.exec-shield'), :skipOn => :Ubuntu do
-        its(:value) { should eq 1 }
+    %x( cat /proc/cpuinfo  | egrep "^flags" | grep -q ' nx ' )
+    if ($?.exitstatus != 0)
+        context linux_kernel_parameter('kernel.exec-shield') do
+            its(:value) { should eq 1 }
+        end
     end
 
     context linux_kernel_parameter('kernel.randomize_va_space') do
