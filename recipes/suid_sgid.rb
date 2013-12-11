@@ -38,7 +38,7 @@ ruby_block "remove_suid_from_blacklists" do
 end
 
 # remove suid bits from unkown, if desired
-ruby_block "remove_suid_from_unkown" do 
+ruby_block "remove_suid_from_unkown" do
   block do
     SuidSgid::remove_suid_sgid_from_unkown( whitelist, root, dry_run )
   end
