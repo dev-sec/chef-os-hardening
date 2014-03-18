@@ -62,7 +62,7 @@ This cookbook provides numerous security-related configurations, providing all-r
 
 Add the recipes to the run_list, it should be last:
 
-    "recipe[os-hardening]"
+    "recipe[base-os-hardening]"
 
 Configure attributes:
 
