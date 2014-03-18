@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: security
-# Recipe:: default
+# Cookbook Name: base-os-hardening
+# Recipe: default
 #
 # Copyright 2012, Dominik Richter
 #

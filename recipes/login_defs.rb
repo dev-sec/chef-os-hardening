@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: security
-# Recipe:: login_defs.rb
+# Cookbook Name: base-os-hardening
+# Recipe: login_defs.rb
 #
 # Copyright 2013, Deutsche Telekom AG
 #

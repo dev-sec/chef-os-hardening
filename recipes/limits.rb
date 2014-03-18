@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: security
-# Recipe:: limits.rb
+# Cookbook Name: base-os-hardening
+# Recipe: limits.rb
 #
 # Copyright 2013, Deutsche Telekom AG
 #

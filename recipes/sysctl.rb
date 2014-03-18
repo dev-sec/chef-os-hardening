@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: security
-# Recipe:: sysctl
+# Cookbook Name: base-os-hardening
+# Recipe: sysctl
 #
 # Copyright 2012, Dominik Richter
 #

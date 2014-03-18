@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: security
-# Recipe:: suid_sgid
+# Cookbook Name: base-os-hardening
+# Recipe: suid_sgid
 #
 # Copyright 2012, Dominik Richter
 #

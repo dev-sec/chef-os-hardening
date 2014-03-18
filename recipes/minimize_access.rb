@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: security
-# Recipe:: minimize_access
+# Cookbook Name: base-os-hardening
+# Recipe: minimize_access
 #
 # Copyright 2012, Dominik Richter
 #
