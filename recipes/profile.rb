@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: security
-# Recipe:: default
+# Recipe:: profile.rb
 #
-# Copyright 2012, Dominik Richter
+# Copyright 2013, Deutsche Telekom AG
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,11 +17,10 @@
 # limitations under the License.
 #
 
-include_recipe("os-hardening::limits")
-include_recipe("os-hardening::login_defs")
-include_recipe("os-hardening::minimize_access")
-include_recipe("os-hardening::pam")
-include_recipe("os-hardening::profile")
-include_recipe("os-hardening::securetty")
-include_recipe("os-hardening::suid_sgid") if node[:security][:suid_sgid][:enforce]
-include_recipe("os-hardening::sysctl")
+template "/etc/profile.d/pinerolo_profile.sh" do
+  source "profile.conf.erb"
+  mode 0755
+  owner "root"
+  group "root"
+  only_if{ not node[:security][:kernel][:enable_core_dump] }
+end
