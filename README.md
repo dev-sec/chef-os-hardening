@@ -96,7 +96,7 @@ After you have vagrant, you need additional plugins:
 
 Next install test-kitchen:
 
-    gem install test-kitchen kitchen-vagrant --pre
+    gem install test-kitchen kitchen-vagrant
 
 Create a local kitchen configuration:
 
