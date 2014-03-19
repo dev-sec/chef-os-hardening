@@ -18,12 +18,12 @@
 
 4. Download the chef cookbook
 
-        git clone ......./chef-os-hardening
+        git clone ......./chef-base-os-hardening
 
 5. Move hardening to `cookbooks`
 
         mkdir cookbooks
-        mv chef-os-hardening cookbooks/os-hardening
+        mv chef-base-os-hardening cookbooks/base-os-hardening
 
 6. Create `solo.rb`
 
@@ -42,7 +42,7 @@
                 }
             },
             "run_list":[
-                "recipe[os-hardening]"
+                "recipe[base-os-hardening]"
             ]
         }
 

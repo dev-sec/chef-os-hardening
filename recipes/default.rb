@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: security
-# Recipe:: default
+# Cookbook Name: base-os-hardening
+# Recipe: default
 #
 # Copyright 2012, Dominik Richter
 #
@@ -17,50 +17,11 @@
 # limitations under the License.
 #
 
-template "/etc/login.defs" do
-  source "login.defs.erb"
-  mode 0444
-  owner "root"
-  group "root"
-  variables(
-    :additional_user_paths => node[:env][:extra_user_paths].join(":"), # :/usr/local/games:/usr/games
-    :umask => node[:env][:umask],
-    :password_max_age => node[:auth][:pw_max_age],
-    :password_min_age => node[:auth][:pw_min_age],
-    :login_retries => node[:auth][:retries],
-    :login_timeout => node[:auth][:timeout],
-    :chfn_restrict => "", # "rwh"
-    :allow_login_without_home => node[:auth][:allow_homeless]
-  )
-end
-
-template "/etc/security/limits.d/10.hardcore.conf" do
-  source "limits.conf.erb"
-  mode 0440
-  owner "root"
-  group "root"
-  only_if{ not node[:security][:kernel][:enable_core_dump] }
-end
-
-template "/etc/profile.d/pinerolo_profile.sh" do
-  source "profile.conf.erb"
-  mode 0755
-  owner "root"
-  group "root"
-  only_if{ not node[:security][:kernel][:enable_core_dump] }
-end
-
-# remove write permissions from path folders ($PATH) for all regular users
-# this prevents changing any system-wide command from normal users
-paths = %w{ /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin } + node[:env][:extra_user_paths]
-paths.each do |folder|
-  execute "remove write permission from #{folder}" do
-    command "chmod go-w -R #{folder}"
-  end
-end
-
-include_recipe("os-hardening::pam")
-include_recipe("os-hardening::sysctl")
-include_recipe("os-hardening::minimize_access")
-include_recipe("os-hardening::securetty")
-include_recipe("os-hardening::suid_sgid") if node[:security][:suid_sgid][:enforce]
+include_recipe("base-os-hardening::limits")
+include_recipe("base-os-hardening::login_defs")
+include_recipe("base-os-hardening::minimize_access")
+include_recipe("base-os-hardening::pam")
+include_recipe("base-os-hardening::profile")
+include_recipe("base-os-hardening::securetty")
+include_recipe("base-os-hardening::suid_sgid") if node[:security][:suid_sgid][:enforce]
+include_recipe("base-os-hardening::sysctl")

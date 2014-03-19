@@ -1,19 +1,16 @@
-chef-os-hardening
-=================
+# base-os-hardening (Chef cookbook)
+
 [![build status](http://ci.tlabscloud.com/projects/4/status.png?ref=master)](http://ci.tlabscloud.com/projects/4?ref=master)
 
-Description
-===========
+## Description
 
 This cookbook provides numerous security-related configurations, providing all-round base protection.
 
-Requirements
-============
+## Requirements
 
 * Opscode chef
 
-Attributes
-==========
+## Attributes
 
 * `['desktop']['enable'] = false`
   true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
@@ -61,12 +58,11 @@ Attributes
   like `remove_from_unknown`, only that changes aren't applied but only printed
 
 
-Usage
-=====
+## Usage
 
 Add the recipes to the run_list, it should be last:
 
-    "recipe[os-hardening]"
+    "recipe[base-os-hardening]"
 
 Configure attributes:
 
@@ -77,13 +73,11 @@ Configure attributes:
     },
 
 
-Testing at T-Labs OpenStack Testbed
-===================================
+## Testing at T-Labs OpenStack Testbed
 
 T-Labs supplies automatic tests on its openstack testbed. See [the project's gitlab-ci page](http://ci.tlabscloud.com/projects/4) for details.
 
-Local Testing
-=============
+## Local Testing
 
 When you don't have access to the T-Labs testbed, you can use vagrant and Virtualbox of VMWare to run tests locally.
 
@@ -96,7 +90,7 @@ After you have vagrant, you need additional plugins:
 
 Next install test-kitchen:
 
-    gem install test-kitchen kitchen-vagrant --pre
+    gem install test-kitchen kitchen-vagrant
 
 Create a local kitchen configuration:
 
@@ -109,8 +103,7 @@ You should now be able to run tests:
 **Limitations**: Vagrant is no longer distributed as a `Gemfile`. See [the Installation instructions at vagrantup.com](http://downloads.vagrantup.com/) for instructions.
 
 
-Contributors + Kudos
-====================
+## Contributors + Kudos
 
 * Christoph Hartmann
 * Patrick Meier
@@ -126,8 +119,8 @@ This cookbook is mostly based on guides by:
 Thanks to all of you!!
 
 
-TODO
-====
+## TODO
+
 * NSA 2.2.4.3 Enable ExecShield
 * NSA 2.2.4.4 Enable Execute Disable (XD) or No Execute (NX) Support on 32-bit x86 Sys- tems for 32 bit systems
 * ensure pam-cracklib is not configured at the same time as pam-passwdqc
@@ -141,8 +134,8 @@ TODO
 * NSA 2.3.2.2 Create and Maintain a Group Containing All Human Users
 
 
-License and Author
-==================
+## License and Author
+
 Author:: Dominik Richter <dominik.richter@googlemail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");

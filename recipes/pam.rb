@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: security
-# Recipe:: pam.rb
+# Cookbook Name: base-os-hardening
+# Recipe: pam.rb
 #
 # Copyright 2012, Dominik Richter
 #
