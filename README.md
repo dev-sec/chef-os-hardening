@@ -1,7 +1,5 @@
 # base-os-hardening (Chef cookbook)
 
-[![build status](http://ci.tlabscloud.com/projects/4/status.png?ref=master)](http://ci.tlabscloud.com/projects/4?ref=master)
-
 ## Description
 
 This cookbook provides numerous security-related configurations, providing all-round base protection.
@@ -72,25 +70,17 @@ Configure attributes:
       }
     },
 
-
-## Testing at T-Labs OpenStack Testbed
-
-T-Labs supplies automatic tests on its openstack testbed. See [the project's gitlab-ci page](http://ci.tlabscloud.com/projects/4) for details.
-
 ## Local Testing
 
-When you don't have access to the T-Labs testbed, you can use vagrant and Virtualbox of VMWare to run tests locally.
-
-
-You will have to install Vagrant on your system. See [Vagrant Downloads](http://downloads.vagrantup.com/) for a vagrant package suitable for your system.
-After you have vagrant, you need additional plugins:
-
-    vagrant plugin install vagrant-berkshelf
-    vagrant plugin install kitchen
+For local testing you can use vagrant and Virtualbox of VMWare to run tests locally. You will have to install Virtualbox and Vagrant on your system. See [Vagrant Downloads](http://downloads.vagrantup.com/) for a vagrant package suitable for your system. For all our tests we use `test-kitchen`. If you are not familiar with `test-kitchen` please have a look at [their guide](http://kitchen.ci/docs/getting-started).
 
 Next install test-kitchen:
 
     gem install test-kitchen kitchen-vagrant
+
+Next install berkshelf for dependency management
+
+    gem install berkshelf
 
 Create a local kitchen configuration:
 
@@ -100,11 +90,12 @@ You should now be able to run tests:
 
     kitchen test
 
-**Limitations**: Vagrant is no longer distributed as a `Gemfile`. See [the Installation instructions at vagrantup.com](http://downloads.vagrantup.com/) for instructions.
+http://kitchen.ci/docs/getting-started
 
 
 ## Contributors + Kudos
 
+* Dominik Richter
 * Christoph Hartmann
 * Patrick Meier
 * Bernhard K. Weisshuhn
@@ -114,7 +105,7 @@ This cookbook is mostly based on guides by:
 * [Arch Linux wiki, Sysctl hardening](https://wiki.archlinux.org/index.php/Sysctl)
 * [NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5](www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf)
 * [Ubuntu Security/Features](https://wiki.ubuntu.com/Security/Features)
-* Deutsche Telekom, Group IT Security, Security Requirements (not publicly available)
+* [Deutsche Telekom, Group IT Security, Security Requirements (German)](http://www.telekom.com/static/-/155996/7/technische-sicherheitsanforderungen-si)
 
 Thanks to all of you!!
 
