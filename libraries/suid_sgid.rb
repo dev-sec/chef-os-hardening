@@ -32,7 +32,7 @@ class Chef::Recipe::SuidSgid
   def self.find_all_suid_sgid_files( start_at = "/" )
     # "find / -xdev \( -perm -4000 -o -perm -2000 \) -type f -print 2>/dev/null"
     # don't limit to one filesystem, go nuts recursively: (ie without -xdev)
-    findcmd = "find / \\( -perm -4000 -o -perm -2000 \\) -fstype local -type f -print 2>/dev/null"
+    findcmd = "find / \\( -perm -4000 -o -perm -2000 \\) -fstype local -type f ! -path '/proc/*' -print 2>/dev/null"
     find = Mixlib::ShellOut.new(findcmd)
     find.run_command
     find.error!
