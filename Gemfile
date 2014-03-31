@@ -9,3 +9,5 @@ group :integration do
   gem 'busser'
   gem 'busser-serverspec'
 end
+
+gem "foodcritic", "~> 3.0.3"
