@@ -70,9 +70,10 @@ end
 
 case node[:platform_family]
 when "debian"
+    service_provider = node[:platform] == 'ubuntu' ? Chef::Provider::Service::Upstart : nil
     service "procps" do
+        provider service_provider
         supports :restart => false, :reload => false
-        provider Chef::Provider::Service::Upstart
         action :start
     end
 end
