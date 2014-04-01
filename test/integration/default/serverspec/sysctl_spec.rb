@@ -135,23 +135,23 @@ describe 'NSA 2.5.3.2.5 Limit Network-Transmitted Configuration' do
     end
 
     context linux_kernel_parameter('net.ipv6.conf.default.accept_ra_pinfo') do
-       its(:value) { should eq 0 }
+        its(:value) { should eq 0 }
     end
 
     context linux_kernel_parameter('net.ipv6.conf.default.accept_ra_defrtr') do
-       its(:value) { should eq 0 }
+        its(:value) { should eq 0 }
     end
 
     context linux_kernel_parameter('net.ipv6.conf.default.autoconf') do
-       its(:value) { should eq 0 }
+        its(:value) { should eq 0 }
     end
 
     context linux_kernel_parameter('net.ipv6.conf.default.dad_transmits') do
-       its(:value) { should eq 0 }
+        its(:value) { should eq 0 }
     end
 
     context linux_kernel_parameter('net.ipv6.conf.default.max_addresses') do
-       its(:value) { should eq 1 }
+        its(:value) { should eq 1 }
     end
 
 end

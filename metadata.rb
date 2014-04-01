@@ -7,6 +7,9 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "0.0.2"
 
 depends 'sysctl', '0.3.4'
+depends 'ntp'
+depends 'apt'
+depends 'yum'
 
 recipe 'base-os-hardening::default', 'harden the operating system (all recipes)'
 recipe 'base-os-hardening::limits', 'prevent core dumps'
