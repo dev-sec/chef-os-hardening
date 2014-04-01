@@ -1,5 +1,9 @@
 require 'spec_helper'
 
+RSpec.configure do |c|
+    c.filter_run_excluding :skipOn => backend(Serverspec::Commands::Base).check_os[:family]
+end
+
 describe 'IP V4 networking' do
 
     context linux_kernel_parameter('net.ipv4.ip_forward') do
@@ -166,4 +170,18 @@ describe 'System sysctl' do
         its(:value) { should eq 0 }
     end
 end
+
+describe 'ExecShield' do
+    %x( cat /proc/cpuinfo  | egrep "^flags" | grep -q ' nx ' )
+    if ($?.exitstatus != 0)
+        context linux_kernel_parameter('kernel.exec-shield') do
+            its(:value) { should eq 1 }
+        end
+    end
+
+    context linux_kernel_parameter('kernel.randomize_va_space') do
+        its(:value) { should eq 2 }
+    end
+end
+
 

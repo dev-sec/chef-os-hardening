@@ -110,9 +110,9 @@ This cookbook is mostly based on guides by:
 Thanks to all of you!!
 
 
+
 ## TODO
 
-* NSA 2.2.4.3 Enable ExecShield
 * NSA 2.2.4.4 Enable Execute Disable (XD) or No Execute (NX) Support on 32-bit x86 Sys- tems for 32 bit systems
 * ensure pam-cracklib is not configured at the same time as pam-passwdqc
 * NSA 2.3.1.2 & 2.3.1.3, possibly via sudo module
