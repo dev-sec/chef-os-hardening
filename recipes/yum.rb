@@ -20,16 +20,10 @@
 include_recipe "yum"
 
 # remove unused repos
-yum_repository "CentOS-Debuginfo" do
-  action :remove
-end
-
-yum_repository "CentOS-Media" do
-  action :remove
-end
-
-yum_repository "CentOS-Vault" do
-  action :remove
+%w{CentOS-Debuginfo CentOS-Media CentOS-Vault}.each do |repo|
+  yum_repository repo do
+    action :remove
+  end
 end
 
 # NSA chapter: NSA 2.1.2.3.3 
@@ -43,25 +37,14 @@ ruby_block "check package signature in repo files" do
     file = "/etc/yum.conf"
     if File.file?(file)
         File.open(file) do |f|
-            f.each_line do |line|
-                if pattern.match(line)
-                    log file + ": gpgcheck=1 not properly configured" do
-                        level :error
-                    end
-                end
-            end
+          GPPCheck::check(f)
         end
     end
 
     Dir.glob('/etc/yum.repos.d/*').each do |file|
         next unless File.file?(file)
             File.open(file) do |f|
-                f.each_line do |line|
-                    if pattern.match(line)
-                        log file + ": gpgcheck=1 not properly configured" do
-                            level :error
-                        end
-                    end
+                GPPCheck::check(f)
             end
         end
     end
@@ -69,42 +52,11 @@ ruby_block "check package signature in repo files" do
   action :run
 end
 
-# remove yum automatic updates
-yum_package "yum-cron" do
-  action :purge
-end
-
-yum_package "yum-updatesd" do
-  action :purge
-end
-
-# remove non ssl servers
-yum_package "erase" do
-  action :purge
-end
-
-yum_package "xinetd" do
-  action :purge
-end
-
-yum_package "inetd" do
-  action :purge
-end
-
-yum_package "tftp-server" do
-  action :purge
-end
-
-yum_package "ypserv" do
-  action :purge
-end
-
-yum_package "telnet-server" do
-  action :purge
-end
-
-yum_package "rsh-server" do
-  action :purge
+# remove packages
+%w{yum-cron yum-updatesd erase xinetd inetd tftp-server ypserv telnet-server rsh-server}.each do |pkg|
+  yum_package pkg do
+    action :purge
+  end
 end
 
 # updates the system
