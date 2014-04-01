@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: security
+# Cookbook Name:: base-os-hardening
 # Library:: suid_sgid
 #
 # Copyright 2012, Dominik Richter
