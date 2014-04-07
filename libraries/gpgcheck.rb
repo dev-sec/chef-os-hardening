@@ -17,13 +17,15 @@
 # limitations under the License.
 #
 
-class Chef::Recipe::GPG
+class Chef::Recipe::GPPCheck
   def self.check( file )
-    File.open(file) do |f|
-      f.each_line do |line|
-        log file + ": gpgcheck=1 not properly configured" do
-          level :error
-          only_if { pattern.match(line) }
+    if File.file?(file)
+      File.open(file) do |f|
+        f.each_line do |line|
+          log file + ": gpgcheck=1 not properly configured" do
+            level :error
+            only_if { pattern.match(line) }
+          end
         end
       end
     end
