@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 
+include_recipe("base-os-hardening::packages")
 include_recipe("base-os-hardening::limits")
 include_recipe("base-os-hardening::login_defs")
 include_recipe("base-os-hardening::minimize_access")
