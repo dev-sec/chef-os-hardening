@@ -31,15 +31,13 @@ end
 # search /etc/yum.conf gpgcheck=1
 ruby_block "check package signature in repo files" do
   block do
-    pattern = /gpgcheck\s*=\s*0/
-
     #TODO harmonize with latter function
     file = "/etc/yum.conf"
-    GPPCheck::check(file)
+    GPGCheck::check(file)
 
-    #Dir.glob('/etc/yum.repos.d/*').each do |file|
-    #  GPPCheck::check(file)
-    #end
+    Dir.glob('/etc/yum.repos.d/*').each do |file|
+      GPGCheck::check(file)
+    end
   end
   action :run
 end

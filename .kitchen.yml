@@ -1,0 +1,52 @@
+---
+
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+- name: ubuntu-12.04
+  driver_config:
+    box: opscode-ubuntu-12.04
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box
+
+- name: centos-6.4
+  driver_config:
+    box: opscode-centos-6.4
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
+
+- name: centos-6.5
+  driver_config:
+     box: opscode-centos-6.5
+     box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
+
+- name: oracle-6.4
+  driver_config:
+    box: oracle-6.4
+    box_url: https://dl.dropbox.com/sh/yim9oyqajopoiqs/G-XIEmQJMb/oracle64-64.box
+
+- name: debian-squezze-6
+  driver_config:
+    box: debian-squezze-6
+    box_url: http://public.sphax3d.org/vagrant/squeeze64.box
+
+- name: debian-wheezy-7
+  driver_config:
+    box: debian-wheezy-7
+    box_url: https://dl.dropboxusercontent.com/u/86066173/debian-wheezy.box
+
+suites:
+- name: default
+  run_list:
+    - recipe[base-os-hardening::default]
+
+- name: modules_disabled
+  run_list:
+    - recipe[base-os-hardening::default]
+  attributes:
+    security:
+      kernel:
+        enable_module_loading: false
+
