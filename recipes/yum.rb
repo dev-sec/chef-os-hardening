@@ -1,5 +1,5 @@
 #
-# Cookbook Name: base-os-hardening
+# Cookbook Name: os-hardening
 # Recipe: pack_yum.rb
 #
 # Copyright 2013, Deutsche Telekom AG

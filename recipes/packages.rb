@@ -11,5 +11,5 @@ end
 # do package config for rhel-family
 case node[:platform_family]
 when "rhel", "fedora"
-  include_recipe("base-os-hardening::yum")
+  include_recipe("os-hardening::yum")
 end
