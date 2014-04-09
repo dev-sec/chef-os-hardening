@@ -8,3 +8,4 @@
 - [ ] NSA 2.3.1.7.1 Remove Password Parameters from libuser.conf
 - [ ] NSA 2.3.1.8 Remove Legacy ’+’ Entries from Password Files
 - [ ] NSA 2.3.2.2 Create and Maintain a Group Containing All Human Users
+- [ ] check login.defs status with current releases of Ubuntu
