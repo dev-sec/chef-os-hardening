@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: base-os-hardening
+# Cookbook Name:: os-hardening
 # Library:: suid_sgid
 #
 # Copyright 2012, Dominik Richter

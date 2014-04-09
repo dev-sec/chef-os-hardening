@@ -1,4 +1,4 @@
-# base-os-hardening (Chef cookbook)
+# os-hardening (Chef cookbook)
 
 ## Description
 
@@ -7,6 +7,13 @@ This cookbook provides numerous security-related configurations, providing all-r
 ## Requirements
 
 * Opscode chef
+* Cookbooks:
+  * Opscode sysctl `https://github.com/onehealth-cookbooks/sysctl`
+  * Opscode apt `https://github.com/opscode-cookbooks/apt.git`
+  * Opscode ntp `https://github.com/gmiranda23/ntp.git`
+  * Opscode yum `https://github.com/opscode-cookbooks/yum.git`
+
+Optional: you can use berkshelf to install dependencies.
 
 ## Attributes
 
@@ -60,7 +67,7 @@ This cookbook provides numerous security-related configurations, providing all-r
 
 Add the recipes to the run_list, it should be last:
 
-    "recipe[base-os-hardening]"
+    "recipe[os-hardening]"
 
 Configure attributes:
 
@@ -108,22 +115,6 @@ This cookbook is mostly based on guides by:
 * [Deutsche Telekom, Group IT Security, Security Requirements (German)](http://www.telekom.com/static/-/155996/7/technische-sicherheitsanforderungen-si)
 
 Thanks to all of you!!
-
-
-
-## TODO
-
-* NSA 2.2.4.4 Enable Execute Disable (XD) or No Execute (NX) Support on 32-bit x86 Sys- tems for 32 bit systems
-* ensure pam-cracklib is not configured at the same time as pam-passwdqc
-* NSA 2.3.1.2 & 2.3.1.3, possibly via sudo module
-* NSA 2.3.1.4 Block Shell and Login Access for Non-Root System Accounts
-* NSA 2.3.1.5.1 Verify that No Accounts Have Empty Password Fields
-* NSA 2.3.1.5.2 Verify that All Account Password Hashes are Shadowed
-* NSA 2.3.1.6 Verify that No Non-Root Accounts Have UID 0
-* NSA 2.3.1.7.1 Remove Password Parameters from libuser.conf
-* NSA 2.3.1.8 Remove Legacy ’+’ Entries from Password Files
-* NSA 2.3.2.2 Create and Maintain a Group Containing All Human Users
-
 
 ## License and Author
 
