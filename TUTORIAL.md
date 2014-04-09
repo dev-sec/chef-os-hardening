@@ -18,20 +18,29 @@
 
 4. Download the chef cookbook
 
-        git clone ......./chef-base-os-hardening
+        git clone ......./chef-os-hardening
 
 5. Move hardening to `cookbooks`
 
         mkdir cookbooks
-        mv chef-base-os-hardening cookbooks/base-os-hardening
+        mv chef-os-hardening cookbooks/os-hardening
 
-6. Create `solo.rb`
+6. Download some dependences for the os-hardening cookbook
+
+	cd cookbooks
+	git clone https://github.com/onehealth-cookbooks/sysctl
+	git clone https://github.com/opscode-cookbooks/apt.git
+	git clone https://github.com/gmiranda23/ntp.git
+	git clone https://github.com/opscode-cookbooks/yum.git
+	cd ..
+
+7. Create `solo.rb`
 
     This file is used to specify the configuration details for chef-solo. So create a `solo.rb` that include the `cookbook_path`.
 
         cookbook_path "cookbooks"
 
-7. Create `solo.json`
+8. Create `solo.json`
 
     Chef-solo does not interact with the Chef Server. Consequently, node-specific attributes must be located in a JSON file on the target system. Create the following `solo.json`.
 
@@ -42,12 +51,12 @@
                 }
             },
             "run_list":[
-                "recipe[base-os-hardening]"
+                "recipe[os-hardening]"
             ]
         }
 
 
-8. Run chef-solo
+9. Run chef-solo
 
         chef-solo -c solo.rb -j solo.json
 

@@ -1,4 +1,4 @@
-# base-os-hardening (Chef cookbook)
+# os-hardening (Chef cookbook)
 
 ## Description
 
@@ -7,6 +7,13 @@ This cookbook provides numerous security-related configurations, providing all-r
 ## Requirements
 
 * Opscode chef
+* Cookbooks:
+  * Opscode sysctl `https://github.com/onehealth-cookbooks/sysctl`
+  * Opscode apt `https://github.com/opscode-cookbooks/apt.git`
+  * Opscode ntp `https://github.com/gmiranda23/ntp.git`
+  * Opscode yum `https://github.com/opscode-cookbooks/yum.git`
+
+Optional: you can use berkshelf to install dependencies.
 
 ## Attributes
 
@@ -60,7 +67,7 @@ This cookbook provides numerous security-related configurations, providing all-r
 
 Add the recipes to the run_list, it should be last:
 
-    "recipe[base-os-hardening]"
+    "recipe[os-hardening]"
 
 Configure attributes:
 
