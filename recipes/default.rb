@@ -1,5 +1,5 @@
 #
-# Cookbook Name: base-os-hardening
+# Cookbook Name: os-hardening
 # Recipe: default
 #
 # Copyright 2012, Dominik Richter
@@ -17,12 +17,12 @@
 # limitations under the License.
 #
 
-include_recipe("base-os-hardening::packages")
-include_recipe("base-os-hardening::limits")
-include_recipe("base-os-hardening::login_defs")
-include_recipe("base-os-hardening::minimize_access")
-include_recipe("base-os-hardening::pam")
-include_recipe("base-os-hardening::profile")
-include_recipe("base-os-hardening::securetty")
-include_recipe("base-os-hardening::suid_sgid") if node[:security][:suid_sgid][:enforce]
-include_recipe("base-os-hardening::sysctl")
+include_recipe("os-hardening::packages")
+include_recipe("os-hardening::limits")
+include_recipe("os-hardening::login_defs")
+include_recipe("os-hardening::minimize_access")
+include_recipe("os-hardening::pam")
+include_recipe("os-hardening::profile")
+include_recipe("os-hardening::securetty")
+include_recipe("os-hardening::suid_sgid") if node[:security][:suid_sgid][:enforce]
+include_recipe("os-hardening::sysctl")

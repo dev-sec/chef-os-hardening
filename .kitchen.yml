@@ -40,11 +40,11 @@ platforms:
 suites:
 - name: default
   run_list:
-    - recipe[base-os-hardening::default]
+    - recipe[os-hardening::default]
 
 - name: modules_disabled
   run_list:
-    - recipe[base-os-hardening::default]
+    - recipe[os-hardening::default]
   attributes:
     security:
       kernel:

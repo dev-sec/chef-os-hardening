@@ -1,5 +1,5 @@
 #
-# Cookbook Name: base-os-hardening
+# Cookbook Name: os-hardening
 # Recipe: minimize_access
 #
 # Copyright 2012, Dominik Richter
