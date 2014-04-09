@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 
+# include sysctl recipe and set /etc/sysctl.d/99-chef-attributes.conf
 include_recipe "sysctl"
 
 cpuVendor = node[:cpu][:'0'][:vendor_id].
