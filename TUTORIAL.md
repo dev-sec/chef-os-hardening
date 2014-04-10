@@ -27,12 +27,12 @@
 
 6. Download some dependences for the os-hardening cookbook
 
-	cd cookbooks
-	git clone https://github.com/onehealth-cookbooks/sysctl
-	git clone https://github.com/opscode-cookbooks/apt.git
-	git clone https://github.com/gmiranda23/ntp.git
-	git clone https://github.com/opscode-cookbooks/yum.git
-	cd ..
+        cd cookbooks
+        git clone https://github.com/onehealth-cookbooks/sysctl
+        git clone https://github.com/opscode-cookbooks/apt.git
+        git clone https://github.com/gmiranda23/ntp.git
+        git clone https://github.com/opscode-cookbooks/yum.git
+        cd ..
 
 7. Create `solo.rb`
 
