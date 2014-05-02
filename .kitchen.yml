@@ -35,7 +35,7 @@ platforms:
 - name: debian-wheezy-7
   driver_config:
     box: debian-wheezy-7
-    box_url: https://dl.dropboxusercontent.com/u/86066173/debian-wheezy.box
+    box_url: https://dl.dropboxusercontent.com/s/cd583cuf0mbcix7/debian-wheezy-64-chef.box
 
 suites:
 - name: default
