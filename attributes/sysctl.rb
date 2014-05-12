@@ -18,7 +18,8 @@
 
 
 # Only enable IP traffic forwarding, if required.
-default[:sysctl][:params][:net][:ipv4][:ip_forward] = 0
+default[:sysctl][:params][:net][:ipv4][:ip_forward] =
+  node[:network][:forwarding] ? 1 : 0
 default[:sysctl][:params][:net][:ipv6][:conf][:all][:forwarding] = 0
 
 # Enable RFC-recommended source validation feature. It should not be used for
