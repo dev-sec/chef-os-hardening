@@ -18,8 +18,10 @@
 
 
 # Only enable IP traffic forwarding, if required.
-default[:sysctl][:params][:net][:ipv4][:ip_forward] = 0
-default[:sysctl][:params][:net][:ipv6][:conf][:all][:forwarding] = 0
+default[:sysctl][:params][:net][:ipv4][:ip_forward] =
+  node[:network][:forwarding] ? 1 : 0
+default[:sysctl][:params][:net][:ipv6][:conf][:all][:forwarding] =
+  (node[:network][:ipv6][:enable] and node[:network][:forwarding]) ? 1 : 0
 
 # Enable RFC-recommended source validation feature. It should not be used for
 # routers on complex networks, but is helpful for end hosts and routers serving
@@ -161,7 +163,7 @@ end
 # * **128** - reboot/poweroff
 # * **256** - nicing of all RT tasks
 default[:sysctl][:params][:kernel][:sysrq] =
-    node[:security][:kernel][:enable_sysrq] || 0
+    node[:security][:kernel][:enable_sysrq] ? node[:security][:kernel][:secure_sysrq] || 0
 
 
 # Prevent core dumps with SUID. These are usually only needed by developers and
