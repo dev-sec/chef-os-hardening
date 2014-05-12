@@ -163,7 +163,7 @@ end
 # * **128** - reboot/poweroff
 # * **256** - nicing of all RT tasks
 default[:sysctl][:params][:kernel][:sysrq] =
-    node[:security][:kernel][:enable_sysrq] || 0
+    node[:security][:kernel][:enable_sysrq] ? node[:security][:kernel][:secure_sysrq] || 0
 
 
 # Prevent core dumps with SUID. These are usually only needed by developers and
