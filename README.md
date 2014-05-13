@@ -4,6 +4,23 @@
 
 This cookbook provides numerous security-related configurations, providing all-round base protection.
 
+It configures:
+
+ * Configures package management e.g. allows only signed packages
+ * Remove packages with known issues
+ * Configures pam and pam_limits module
+ * Shadow password suite configuration
+ * Configures system path permissions
+ * Disable core dumps via soft limits
+ * Restrict Root Logins to System Console
+ * Set SUIDs
+ * Configures kernel parameters via sysctl
+
+It will not:
+
+ * Update system packages
+ * Install security patches
+
 ## Requirements
 
 * Opscode chef
@@ -61,7 +78,19 @@ Optional: you can use berkshelf to install dependencies.
   true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a whitelist or blacklist
 * `['security']['suid_sgid']['dry_run_on_unkown'] = false`
   like `remove_from_unknown`, only that changes aren't applied but only printed
+* `['security']['packages']['clean']  = true` 
+  removes packages with known issues. See section packages.
 
+## Packages
+
+We remove the following packages:
+
+ * xinetd ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.1)
+ * inetd ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.1)
+ * tftp-server ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.5)
+ * ypserv ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.4)
+ * telnet-server ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.2)
+ * rsh-server ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.3)
 
 ## Usage
 

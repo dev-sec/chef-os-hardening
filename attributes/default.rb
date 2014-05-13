@@ -77,6 +77,8 @@ default[:security][:suid_sgid][:whitelist]          = []
 default[:security][:suid_sgid][:remove_from_unkown] = false
 default[:security][:suid_sgid][:dry_run_on_unkown]  = false
 
+# remove packages with known issues
+default[:security][:packages][:clean]               = true
 
 # SYSTEM CONFIGURATION
 # ====================
