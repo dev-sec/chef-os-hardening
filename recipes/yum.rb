@@ -19,13 +19,6 @@
 
 include_recipe "yum"
 
-# remove unused repos
-%w{CentOS-Debuginfo CentOS-Media CentOS-Vault}.each do |repo|
-  yum_repository repo do
-    action :remove
-  end
-end
-
 # NSA chapter: NSA 2.1.2.3.3 
 # verify package signatures
 # search /etc/yum.conf gpgcheck=1
@@ -42,18 +35,20 @@ ruby_block "check package signature in repo files" do
   action :run
 end
 
+if node[:security][:packages][:clean]
 
-# remove packages
-%w{yum-cron yum-updatesd erase xinetd inetd tftp-server ypserv telnet-server rsh-server}.each do |pkg|
-  yum_package pkg do
-    action :purge
+  # remove unused repos
+  %w{CentOS-Debuginfo CentOS-Media CentOS-Vault}.each do |repo|
+    yum_repository repo do
+      action :remove
+    end
   end
-end
 
-# stores the current package list for later inspection
-execute "yum store installed packages" do
-  command "yum list installed >> ~/installed_$(date -d 'today' +'%Y%m%d%H%M').txt"
-  ignore_failure true
-  action :run
-end
+  # remove packages
+  %w{xinetd inetd ypserv telnet-server rsh-server}.each do |pkg|
+    yum_package pkg do
+      action :purge
+    end
+  end
 
+end

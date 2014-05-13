@@ -78,20 +78,18 @@ Optional: you can use berkshelf to install dependencies.
   true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a whitelist or blacklist
 * `['security']['suid_sgid']['dry_run_on_unkown'] = false`
   like `remove_from_unknown`, only that changes aren't applied but only printed
+* `[:security][:packages][:clean]  = true` removes packages with known issues. See section packages.
 
 ## Packages
 
 We remove the following packages:
 
- * yum-cron
- * yum-updatesd
- * erase
- * xinetd
- * inetd
- * tftp-server
- * ypserv
- * telnet-server
- * rsh-server
+ * xinetd ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.1)
+ * inetd ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.1)
+ * tftp-server ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.5)
+ * ypserv ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.4)
+ * telnet-server ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.2)
+ * rsh-server ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.3)
 
 ## Usage
 
