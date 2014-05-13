@@ -50,14 +50,7 @@ end
   end
 end
 
-# updates the system
-# consider https://github.com/cookbooks/yum as replacement
-execute "yum-update" do
-  command "yum -y update"
-  ignore_failure true
-  action :run
-end
-
+# stores the current package list for later inspection
 execute "yum store installed packages" do
   command "yum list installed >> ~/installed_$(date -d 'today' +'%Y%m%d%H%M').txt"
   ignore_failure true
