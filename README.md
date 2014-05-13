@@ -78,7 +78,8 @@ Optional: you can use berkshelf to install dependencies.
   true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a whitelist or blacklist
 * `['security']['suid_sgid']['dry_run_on_unkown'] = false`
   like `remove_from_unknown`, only that changes aren't applied but only printed
-* `[:security][:packages][:clean]  = true` removes packages with known issues. See section packages.
+* `['security']['packages']['clean']  = true` 
+  removes packages with known issues. See section packages.
 
 ## Packages
 
