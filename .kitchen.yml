@@ -5,6 +5,7 @@ driver:
 
 provisioner:
   name: chef_solo
+  test_repo_uri: "https://github.com/ehaselwanter/tests-os-hardening.git"
 
 platforms:
 - name: ubuntu-12.04
