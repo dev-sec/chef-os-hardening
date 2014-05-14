@@ -118,7 +118,6 @@ default[:security][:suid_sgid][:system_blacklist]          = [
 "/usr/lib/evolution/camel-lock-helper-1.2",                   # investigate current state...
 "/usr/lib/pt_chown",                                          # pseudo-tty, needed?
 "/usr/lib/eject/dmcrypt-get-device",
-"/usr/bin/screen",                                            # only for multi-session access
 "/usr/lib/mc/cons.saver"                                      # midnight commander screensaver
 ]
 
@@ -139,6 +138,9 @@ default[:security][:suid_sgid][:system_whitelist]          = [
 "/usr/bin/crontab",
 # whitelist consolemssaging
 "/usr/bin/wall", "/usr/bin/write",
+# whitelist: only SGID with utmp group for multi-session access
+#            impact is limited; installation/usage has some remaining risk
+"/usr/bin/screen",
 # whitelist locate
 "/usr/bin/mlocate",
 # whitelist usermanagement
