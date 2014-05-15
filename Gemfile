@@ -8,7 +8,7 @@ group :integration do
   gem 'kitchen-vagrant', '~> 0.11'
   gem 'busser'
   gem 'busser-serverspec'
-  gem 'kitchen-sharedtests', '~> 0.1.0'
+  gem 'kitchen-sharedtests', '~> 0.2.0'
 end
 
 gem "foodcritic", "~> 3.0.3"
