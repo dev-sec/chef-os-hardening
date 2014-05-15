@@ -59,28 +59,10 @@ GEM
       hashie (>= 2.0.2)
       multi_json (>= 1.3.0)
     erubis (2.7.0)
-    excon (0.33.0)
     extlib (0.9.16)
     faraday (0.8.9)
       multipart-post (~> 1.2.0)
     ffi (1.9.3)
-    fog (1.22.0)
-      fog-brightbox
-      fog-core (~> 1.21, >= 1.21.1)
-      fog-json
-      nokogiri (~> 1.5, >= 1.5.11)
-    fog-brightbox (0.0.2)
-      fog-core
-      fog-json
-    fog-core (1.22.0)
-      builder
-      excon (~> 0.33)
-      formatador (~> 0.2)
-      mime-types
-      net-scp (~> 1.1)
-      net-ssh (>= 2.1.3)
-    fog-json (1.0.0)
-      multi_json (~> 1.0)
     foodcritic (3.0.3)
       erubis
       gherkin (~> 2.11.7)
@@ -88,7 +70,6 @@ GEM
       rake
       treetop (~> 1.4.10)
       yajl-ruby (~> 1.1.0)
-    formatador (0.2.4)
     gherkin (2.11.8)
       multi_json (~> 1.3)
     git (1.2.6)
@@ -103,11 +84,7 @@ GEM
     i18n (0.6.9)
     ipaddress (0.8.0)
     json (1.8.1)
-    kitchen-openstack (1.4.0)
-      fog (~> 1.18)
-      test-kitchen (~> 1.1)
-      unf
-    kitchen-sharedtests (0.0.1)
+    kitchen-sharedtests (0.1.0)
       git
     kitchen-vagrant (0.15.0)
       test-kitchen (~> 1.0)
@@ -115,7 +92,6 @@ GEM
     logging (1.8.2)
       little-plugger (>= 1.1.3)
       multi_json (>= 1.8.4)
-    mime-types (2.2)
     minitar (0.5.4)
     mixlib-authentication (1.3.0)
       mixlib-log
@@ -188,9 +164,6 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.6)
     uuidtools (2.1.4)
     varia_model (0.3.2)
       buff-extensions (~> 0.2)
@@ -216,7 +189,6 @@ DEPENDENCIES
   busser-serverspec
   chef
   foodcritic (~> 3.0.3)
-  kitchen-openstack
-  kitchen-sharedtests
+  kitchen-sharedtests (~> 0.1.0)
   kitchen-vagrant (~> 0.11)
   test-kitchen (~> 1.0)
