@@ -27,7 +27,6 @@ It will not:
 * Cookbooks:
   * Opscode sysctl `https://github.com/onehealth-cookbooks/sysctl`
   * Opscode apt `https://github.com/opscode-cookbooks/apt.git`
-  * Opscode ntp `https://github.com/gmiranda23/ntp.git`
   * Opscode yum `https://github.com/opscode-cookbooks/yum.git`
 
 Optional: you can use berkshelf to install dependencies.

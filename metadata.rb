@@ -7,7 +7,6 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "1.0.1"
 
 depends 'sysctl', '0.3.4'
-depends 'ntp'
 depends 'apt'
 depends 'yum'
 

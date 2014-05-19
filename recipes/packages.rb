@@ -17,9 +17,6 @@
 # limitations under the License.
 #
 
-# tp should be on every machine to ensure the time is synced
-include_recipe "ntp"
-
 # do package config for ubuntu
 case node[:platform_family]
 when "debian"
