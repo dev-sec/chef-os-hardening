@@ -19,12 +19,14 @@ guard :rspec do
   watch('spec/spec_helper.rb')  { 'spec' }
 end
  
-guard :kitchen, all_on_start: false do
-  watch(%r{test/.+})
-  watch(%r{^recipes/(.+)\.rb$})
-  watch(%r{^attributes/(.+)\.rb$})
-  watch(%r{^files/(.+)})
-  watch(%r{^templates/(.+)})
-  watch(%r{^providers/(.+)\.rb})
-  watch(%r{^resources/(.+)\.rb})
-end
+if ENV['RUN_KITCHEN'] && ENV['RUN_KITCHEN'] =~ /true|True/
+  guard :kitchen, all_on_start: false do
+    watch(%r{test/.+})
+    watch(%r{^recipes/(.+)\.rb$})
+    watch(%r{^attributes/(.+)\.rb$})
+    watch(%r{^files/(.+)})
+    watch(%r{^templates/(.+)})
+    watch(%r{^providers/(.+)\.rb})
+    watch(%r{^resources/(.+)\.rb})
+  end
+end  
