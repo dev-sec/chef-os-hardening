@@ -22,5 +22,5 @@ template "/etc/security/limits.d/10.hardcore.conf" do
   mode 0440
   owner "root"
   group "root"
-  only_if{ not node[:security][:kernel][:enable_core_dump] }
+  only_if{ not node['security']['kernel']['enable_core_dump'] }
 end

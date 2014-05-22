@@ -35,7 +35,7 @@ ruby_block "check package signature in repo files" do
   action :run
 end
 
-if node[:security][:packages][:clean]
+if node['security']['packages']['clean']
 
   # remove unused repos
   %w{CentOS-Debuginfo CentOS-Media CentOS-Vault}.each do |repo|

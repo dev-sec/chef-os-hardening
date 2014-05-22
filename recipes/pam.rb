@@ -25,11 +25,11 @@ end
 
 # remove ccreds if not necessary
 package "pam-ccreds" do
-  package_name node[:packages][:pam_ccreds]
+  package_name node['packages']['pam_ccreds']
   action :remove
 end
 
-case node[:platform_family]
+case node['platform_family']
 # do pam config for ubuntu
 when "debian"
 
@@ -37,17 +37,17 @@ when "debian"
   tally2_path   = "/usr/share/pam-configs/tally2"
 
   # See NSA 2.3.3.1.2
-  if node[:auth][:pam][:passwdqc][:enable]
+  if node['auth']['pam']['passwdqc']['enable']
 
     # remove pam_cracklib, because it does not play nice wiht passwdqc
     package "pam-cracklib" do
-      package_name node[:packages][:pam_cracklib]
+      package_name node['packages']['pam_cracklib']
       action :remove
     end
 
     # get the package for strong password checking
     package "pam-passwdqc" do
-      package_name node[:packages][:pam_passwdqc]
+      package_name node['packages']['pam_passwdqc']
     end
 
     # configure passwdqc via central module:
@@ -69,13 +69,13 @@ when "debian"
     # make sure the package is not on the system,
     # if this feature is not wanted
     package "pam-passwdqc" do
-      package_name node[:packages][:pam_passwdqc]
+      package_name node['packages']['pam_passwdqc']
       action :remove
     end
   end
 
   #configure tally2
-  if node[:auth][:retries] > 0
+  if node['auth']['retries'] > 0
     # tally2 is needed for pam 
     package "libpam-modules"
 
@@ -101,17 +101,17 @@ when "rhel", "fedora"
   # therefore we edit /etc/pam.d/system-auth-ac/
   # @see http://serverfault.com/questions/292406/puppet-configuration-using-augeas-fails-if-combined-with-notify
 
-  if node[:auth][:pam][:passwdqc][:enable]
+  if node['auth']['pam']['passwdqc']['enable']
 
     # remove pam_cracklib, because it does not play nice wiht passwdqc
     package "pam-cracklib" do
-      package_name node[:packages][:pam_cracklib]
+      package_name node['packages']['pam_cracklib']
       action :remove
     end
 
     # get the package for strong password checking
     package "pam-passwdqc" do
-      package_name node[:packages][:pam_passwdqc]
+      package_name node['packages']['pam_passwdqc']
     end
 
   # deactivate passwdqc
@@ -120,7 +120,7 @@ when "rhel", "fedora"
     # make sure the package is not on the system,
     # if this feature is not wanted
     package "pam-passwdqc" do
-      package_name node[:packages][:pam_passwdqc]
+      package_name node['packages']['pam_passwdqc']
       action :remove
     end
   end
