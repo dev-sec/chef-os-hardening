@@ -19,8 +19,8 @@
 #
 
 class Chef::Recipe::SuidSgid
-  def self.remove_suid_sgid_from( file )
-    if not File::exists?(file)
+  def self.remove_suid_sgid_from(file)
+    unless File.exists?(file)
       Chef::Log.info "suid_sgid: Couldn't find file '#{file}'"
       return
     end
