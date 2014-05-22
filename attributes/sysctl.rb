@@ -20,7 +20,7 @@
 default['sysctl']['params']['net']['ipv4']['ip_forward'] =
   node['network']['forwarding'] ? 1 : 0
 default['sysctl']['params']['net']['ipv6']['conf']['all']['forwarding'] =
-  (node['network']['ipv6']['enable'] and node['network']['forwarding']) ? 1 : 0
+  (node['network']['ipv6']['enable'] && node['network']['forwarding']) ? 1 : 0
 
 # Enable RFC-recommended source validation feature. It should not be used for
 # routers on complex networks, but is helpful for end hosts and routers serving
