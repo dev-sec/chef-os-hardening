@@ -27,16 +27,16 @@ paths.each do |folder|
 end
 
 # shadow must only be accessible to user root
-file "/etc/shadow" do
-  owner "root"
-  group "root"
-  mode "0600"
+file '/etc/shadow' do
+  owner 'root'
+  group 'root'
+  mode '0600'
 end
 
 # su must only be accessible to user and group root
-file "/bin/su" do
-  owner "root"
-  group "root"
-  mode "0750"
-  only_if { ! node['security']['users']['allow'].include?("change_user") }
+file '/bin/su' do
+  owner 'root'
+  group 'root'
+  mode '0750'
+  not_if { node['security']['users']['allow'].include?('change_user') }
 end

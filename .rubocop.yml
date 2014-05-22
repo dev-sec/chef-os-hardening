@@ -2,14 +2,20 @@ AllCops:
   Excludes:
     - vendor/**
     - metadata.rb
+    - test/integration/**
+    - shared_test_repo/**
 
+Documentation:
+  Enabled: false
 AlignParameters:
-  Enabled: false
+  Enabled: true
 Encoding:
-  Enabled: false
+  Enabled: true
 HashSyntax:
-  Enabled: false
+  Enabled: true
 LineLength:
   Enabled: false
 MethodLength:
   Max: 30
+NumericLiterals:
+  MinDigits: 10

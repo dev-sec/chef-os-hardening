@@ -16,12 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 # Only enable IP traffic forwarding, if required.
 default['sysctl']['params']['net']['ipv4']['ip_forward'] =
   node['network']['forwarding'] ? 1 : 0
 default['sysctl']['params']['net']['ipv6']['conf']['all']['forwarding'] =
-  (node['network']['ipv6']['enable'] and node['network']['forwarding']) ? 1 : 0
+  (node['network']['ipv6']['enable'] && node['network']['forwarding']) ? 1 : 0
 
 # Enable RFC-recommended source validation feature. It should not be used for
 # routers on complex networks, but is helpful for end hosts and routers serving
@@ -78,7 +77,6 @@ default['sysctl']['params']['net']['ipv4']['tcp_timestamps'] = 0
 default['sysctl']['params']['net']['ipv4']['conf']['eth0']['arp_ignore'] =
     node['network']['arp']['restricted'] ? 1 : 0
 
-
 # Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:
 #
 # * **0** - (default): reply for any local target IP address, configured on
@@ -94,7 +92,6 @@ default['sysctl']['params']['net']['ipv4']['conf']['eth0']['arp_ignore'] =
 # * **8** - do not reply for all local addresses
 default['sysctl']['params']['net']['ipv4']['conf']['eth0']['arp_announce'] =
     node['network']['arp']['restricted'] ? 2 : 0
-
 
 # RFC 1337 fix F1
 default['sysctl']['params']['net']['ipv4']['tcp_rfc1337'] = 1
@@ -142,8 +139,8 @@ default['sysctl']['params']['net']['ipv6']['conf']['default']['max_addresses'] =
 # This settings controls how the kernel behaves towards module changes at
 # runtime. Setting to 1 will disable module loading at runtime.
 # Setting it to 0 is actually never supported.
-if (! node['security']['kernel']['enable_module_loading'])
-    default['sysctl']['params']['kernel']['modules_disabled'] = 1
+unless node['security']['kernel']['enable_module_loading']
+  default['sysctl']['params']['kernel']['modules_disabled'] = 1
 end
 
 # Magic Sysrq should be disabled, but can also be set to a safe value if so
@@ -163,16 +160,15 @@ end
 # * **128** - reboot/poweroff
 # * **256** - nicing of all RT tasks
 default['sysctl']['params']['kernel']['sysrq'] =
-    node['security']['kernel']['enable_sysrq'] ? node['security']['kernel']['secure_sysrq'] : 0
-
+  node['security']['kernel']['enable_sysrq'] ? node['security']['kernel']['secure_sysrq'] : 0
 
 # Prevent core dumps with SUID. These are usually only needed by developers and
 # may contain sensitive information.
 default['sysctl']['params']['fs']['suid_dumpable'] =
-    node['security']['kernel']['enable_core_dump'] ? 1 : 0
+  node['security']['kernel']['enable_core_dump'] ? 1 : 0
 
 # ExecShield protection against buffer overflows
-#unless node['platform'] == "ubuntu" # ["nx"].include?(node['cpu'][0]['flags']) or 
+# unless node['platform'] == "ubuntu" # ["nx"].include?(node['cpu'][0]['flags']) or
 case platform_family
 when 'rhel', 'fedora'
     default['sysctl']['params']['kernel']['exec-shield'] = 1
