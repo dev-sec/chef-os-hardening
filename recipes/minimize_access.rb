@@ -34,9 +34,9 @@ file '/etc/shadow' do
 end
 
 # su must only be accessible to user and group root
-file "/bin/su" do
-  owner "root"
-  group "root"
-  mode "0750"
-  only_if { ! node['security']['users']['allow'].include?("change_user") }
+file '/bin/su' do
+  owner 'root'
+  group 'root'
+  mode '0750'
+  only_if { !node['security']['users']['allow'].include?('change_user') }
 end
