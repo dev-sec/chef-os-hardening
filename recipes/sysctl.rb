@@ -21,9 +21,9 @@
 # include sysctl recipe and set /etc/sysctl.d/99-chef-attributes.conf
 include_recipe 'sysctl'
 
-cpuVendor = node['cpu']['0']['vendor_id'].
-    sub(/^.*GenuineIntel.*$/,"intel").
-    sub(/^.*AuthenticAMD.*$/,"amd")
+cpu_vendor = node['cpu']['0']['vendor_id']
+  .sub(/^.*GenuineIntel.*$/, 'intel')
+  .sub(/^.*AuthenticAMD.*$/, 'amd')
 
 # protect sysctl.conf
 File '/etc/sysctl.conf' do
@@ -51,15 +51,15 @@ when 'debian'
 
   # rebuild initramfs with starting pack of modules,
   # if module loading at runtime is disabled
-  if not node['security']['kernel']['enable_module_loading']
-    template "/etc/initramfs-tools/modules" do
-      source "modules.erb"
+  unless node['security']['kernel']['enable_module_loading']
+    template '/etc/initramfs-tools/modules' do
+      source 'modules.erb'
       mode 0440
       owner 'root'
       group 'root'
       variables(
-        :x86_64 => (not (node['kernel']['machine'] =~ /x86_64/).nil?),
-        :cpuVendor => cpuVendor
+        x86_64: ( !(node['kernel']['machine'] =~ /x86_64/).nil?),
+        cpuVendor: cpu_vendor
       )
     end
 
@@ -71,12 +71,11 @@ when 'debian'
 end
 
 case node['platform_family']
-when "debian"
-    service_provider = node['platform'] == 'ubuntu' ? Chef::Provider::Service::Upstart : nil
-    service "procps" do
-        provider service_provider
-        supports :restart => false, :reload => false
-        action :start
-    end
+when 'debian'
+  service_provider = node['platform'] == 'ubuntu' ? Chef::Provider::Service::Upstart : nil
+  service 'procps' do
+    provider service_provider
+    supports restart: false, reload: false
+    action :start
+  end
 end
-
