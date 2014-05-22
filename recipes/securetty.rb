@@ -19,11 +19,11 @@
 #
 
 # See NSA 2.3.1.1 Restrict Root Logins to System Console
-template "/etc/securetty" do
-  source "securetty.erb"
-  mode "0400"
-  owner "root"
-  group "root"
+template '/etc/securetty' do
+  source 'securetty.erb'
+  mode '0400'
+  owner 'root'
+  group 'root'
   variables(
     :ttys => node['auth']['root_ttys'].join("\n")
   )

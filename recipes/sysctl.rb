@@ -19,35 +19,35 @@
 #
 
 # include sysctl recipe and set /etc/sysctl.d/99-chef-attributes.conf
-include_recipe "sysctl"
+include_recipe 'sysctl'
 
 cpuVendor = node['cpu']['0']['vendor_id'].
     sub(/^.*GenuineIntel.*$/,"intel").
     sub(/^.*AuthenticAMD.*$/,"amd")
 
 # protect sysctl.conf
-File "/etc/sysctl.conf" do
+File '/etc/sysctl.conf' do
   mode 0440
-  owner "root"
-  group "root"
+  owner 'root'
+  group 'root'
 end
 
 # NSA 2.2.4.1 Set Daemon umask
 # do config for rhel-family
 case node['platform_family']
-when "rhel", "fedora"
-  template "/etc/sysconfig/init" do
-      source "rhel_sysconfig_init.erb"
-      mode 0544
-      owner "root"
-      group "root"
-      variables()
-    end
+when 'rhel', 'fedora'
+  template '/etc/sysconfig/init' do
+    source 'rhel_sysconfig_init.erb'
+    mode 0544
+    owner 'root'
+    group 'root'
+    variables
+  end
 end
 
 # do initramfs config for ubuntu and debian
 case node['platform_family']
-when "debian"
+when 'debian'
 
   # rebuild initramfs with starting pack of modules,
   # if module loading at runtime is disabled
@@ -55,16 +55,16 @@ when "debian"
     template "/etc/initramfs-tools/modules" do
       source "modules.erb"
       mode 0440
-      owner "root"
-      group "root"
+      owner 'root'
+      group 'root'
       variables(
         :x86_64 => (not (node['kernel']['machine'] =~ /x86_64/).nil?),
         :cpuVendor => cpuVendor
       )
     end
 
-    execute "update-initramfs" do
-      command "update-initramfs -u"
+    execute 'update-initramfs' do
+      command 'update-initramfs -u'
       action :run
     end
   end

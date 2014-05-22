@@ -17,8 +17,8 @@
 # limitations under the License.
 #
 
-template "/etc/profile.d/pinerolo_profile.sh" do
-  source "profile.conf.erb"
+template '/etc/profile.d/pinerolo_profile.sh' do
+  source 'profile.conf.erb'
   mode 0755
   owner "root"
   group "root"

@@ -17,12 +17,12 @@
 # limitations under the License.
 #
 
-include_recipe "yum"
+include_recipe 'yum'
 
-# NSA chapter: NSA 2.1.2.3.3 
+# NSA chapter: NSA 2.1.2.3.3
 # verify package signatures
 # search /etc/yum.conf gpgcheck=1
-ruby_block "check package signature in repo files" do
+ruby_block 'check package signature in repo files' do
   block do
     #TODO harmonize with latter function
     file = "/etc/yum.conf"

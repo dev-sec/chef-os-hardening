@@ -17,11 +17,11 @@
 # limitations under the License.
 #
 
-template "/etc/login.defs" do
-  source "login.defs.erb"
+template '/etc/login.defs' do
+  source 'login.defs.erb'
   mode 0444
-  owner "root"
-  group "root"
+  owner 'root'
+  group 'root'
   variables(
     :additional_user_paths => node['env']['extra_user_paths'].join(":"), # :/usr/local/games:/usr/games
     :umask => node['env']['umask'],

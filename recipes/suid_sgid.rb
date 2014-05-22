@@ -32,14 +32,14 @@ dry_run   = node['security']['suid_sgid']['dry_run_on_unkown']
 root      = node['env']['root_path']
 
 # walk the blacklist and remove suid and sgid bits from these items
-ruby_block "remove_suid_from_blacklists" do
+ruby_block 'remove_suid_from_blacklists' do
   block do
     SuidSgid::remove_suid_sgid_from_blacklist(blacklist)
   end
 end
 
 # remove suid bits from unkown, if desired
-ruby_block "remove_suid_from_unkown" do
+ruby_block 'remove_suid_from_unkown' do
   block do
     SuidSgid::remove_suid_sgid_from_unkown( whitelist, root, dry_run )
   end

@@ -18,12 +18,12 @@
 # limitations under the License.
 #
 
-include_recipe("os-hardening::packages")
-include_recipe("os-hardening::limits")
-include_recipe("os-hardening::login_defs")
-include_recipe("os-hardening::minimize_access")
-include_recipe("os-hardening::pam")
-include_recipe("os-hardening::profile")
-include_recipe("os-hardening::securetty")
-include_recipe("os-hardening::suid_sgid") if node['security']['suid_sgid']['enforce']
-include_recipe("os-hardening::sysctl")
+include_recipe('os-hardening::packages')
+include_recipe('os-hardening::limits')
+include_recipe('os-hardening::login_defs')
+include_recipe('os-hardening::minimize_access')
+include_recipe('os-hardening::pam')
+include_recipe('os-hardening::profile')
+include_recipe('os-hardening::securetty')
+include_recipe('os-hardening::suid_sgid') if node['security']['suid_sgid']['enforce']
+include_recipe('os-hardening::sysctl')

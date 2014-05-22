@@ -18,44 +18,44 @@
 # limitations under the License.
 #
 
-execute "update-pam" do
-  command "pam-auth-update --package"
+execute 'update-pam' do
+  command 'pam-auth-update --package'
   action :nothing
 end
 
 # remove ccreds if not necessary
-package "pam-ccreds" do
+package 'pam-ccreds' do
   package_name node['packages']['pam_ccreds']
   action :remove
 end
 
 case node['platform_family']
 # do pam config for ubuntu
-when "debian"
+when 'debian'
 
-  passwdqc_path = "/usr/share/pam-configs/passwdqc"
-  tally2_path   = "/usr/share/pam-configs/tally2"
+  passwdqc_path = '/usr/share/pam-configs/passwdqc'
+  tally2_path   = '/usr/share/pam-configs/tally2'
 
   # See NSA 2.3.3.1.2
   if node['auth']['pam']['passwdqc']['enable']
 
     # remove pam_cracklib, because it does not play nice wiht passwdqc
-    package "pam-cracklib" do
+    package 'pam-cracklib' do
       package_name node['packages']['pam_cracklib']
       action :remove
     end
 
     # get the package for strong password checking
-    package "pam-passwdqc" do
+    package 'pam-passwdqc' do
       package_name node['packages']['pam_passwdqc']
     end
 
     # configure passwdqc via central module:
     template passwdqc_path do
-      source "pam_passwdqc.erb"
+      source 'pam_passwdqc.erb'
       mode 0640
-      owner "root"
-      group "root"
+      owner 'root'
+      group 'root'
     end
 
   # deactivate passwdqc
@@ -68,22 +68,22 @@ when "debian"
 
     # make sure the package is not on the system,
     # if this feature is not wanted
-    package "pam-passwdqc" do
+    package 'pam-passwdqc' do
       package_name node['packages']['pam_passwdqc']
       action :remove
     end
   end
 
-  #configure tally2
+  # configure tally2
   if node['auth']['retries'] > 0
-    # tally2 is needed for pam 
-    package "libpam-modules"
+    # tally2 is needed for pam
+    package 'libpam-modules'
 
     template tally2_path do
-      source "pam_tally2.erb"
+      source 'pam_tally2.erb'
       mode 0640
-      owner "root"
-      group "root"
+      owner 'root'
+      group 'root'
     end
   else
 
@@ -92,10 +92,10 @@ when "debian"
     end
   end
 
-  execute "update-pam"
+  execute 'update-pam'
 
 # do config for rhel-family
-when "rhel", "fedora"
+when 'rhel', 'fedora'
 
   # we do not allow to use authconfig, because it does not use the /etc/sysconfig/authconfig as a basis
   # therefore we edit /etc/pam.d/system-auth-ac/
@@ -104,13 +104,13 @@ when "rhel", "fedora"
   if node['auth']['pam']['passwdqc']['enable']
 
     # remove pam_cracklib, because it does not play nice wiht passwdqc
-    package "pam-cracklib" do
+    package 'pam-cracklib' do
       package_name node['packages']['pam_cracklib']
       action :remove
     end
 
     # get the package for strong password checking
-    package "pam-passwdqc" do
+    package 'pam-passwdqc' do
       package_name node['packages']['pam_passwdqc']
     end
 
@@ -119,7 +119,7 @@ when "rhel", "fedora"
 
     # make sure the package is not on the system,
     # if this feature is not wanted
-    package "pam-passwdqc" do
+    package 'pam-passwdqc' do
       package_name node['packages']['pam_passwdqc']
       action :remove
     end
@@ -128,20 +128,19 @@ when "rhel", "fedora"
   # run the standard config
 
   # configure passwdqc and tally via central system-auth confic:
-  template "/etc/pam.d/system-auth-ac" do
-    source "rhel_system_auth.erb"
+  template '/etc/pam.d/system-auth-ac' do
+    source 'rhel_system_auth.erb'
     mode 0640
-    owner "root"
-    group "root"
+    owner 'root'
+    group 'root'
   end
 
   # NSA 2.3.3.5 Upgrade Password Hashing Algorithm to SHA-512
-  template "/etc/libuser.conf" do
-    source "rhel_libuser.conf.erb"
+  template '/etc/libuser.conf' do
+    source 'rhel_libuser.conf.erb'
     mode 0640
-    owner "root"
-    group "root"
+    owner 'root'
+    group 'root'
   end
 
 end
-

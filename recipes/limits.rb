@@ -17,8 +17,8 @@
 # limitations under the License.
 #
 
-template "/etc/security/limits.d/10.hardcore.conf" do
-  source "limits.conf.erb"
+template '/etc/security/limits.d/10.hardcore.conf' do
+  source 'limits.conf.erb'
   mode 0440
   owner "root"
   group "root"
