@@ -21,7 +21,7 @@
 # include sysctl recipe and set /etc/sysctl.d/99-chef-attributes.conf
 include_recipe "sysctl"
 
-cpuVendor = node[:cpu][:'0'][:vendor_id].
+cpuVendor = node['cpu']['0']['vendor_id'].
     sub(/^.*GenuineIntel.*$/,"intel").
     sub(/^.*AuthenticAMD.*$/,"amd")
 
@@ -34,7 +34,7 @@ end
 
 # NSA 2.2.4.1 Set Daemon umask
 # do config for rhel-family
-case node[:platform_family]
+case node['platform_family']
 when "rhel", "fedora"
   template "/etc/sysconfig/init" do
       source "rhel_sysconfig_init.erb"
@@ -46,19 +46,19 @@ when "rhel", "fedora"
 end
 
 # do initramfs config for ubuntu and debian
-case node[:platform_family]
+case node['platform_family']
 when "debian"
 
   # rebuild initramfs with starting pack of modules,
   # if module loading at runtime is disabled
-  if not node[:security][:kernel][:enable_module_loading]
+  if not node['security']['kernel']['enable_module_loading']
     template "/etc/initramfs-tools/modules" do
       source "modules.erb"
       mode 0440
       owner "root"
       group "root"
       variables(
-        :x86_64 => (not (node[:kernel][:machine] =~ /x86_64/).nil?),
+        :x86_64 => (not (node['kernel']['machine'] =~ /x86_64/).nil?),
         :cpuVendor => cpuVendor
       )
     end
@@ -70,9 +70,9 @@ when "debian"
   end
 end
 
-case node[:platform_family]
+case node['platform_family']
 when "debian"
-    service_provider = node[:platform] == 'ubuntu' ? Chef::Provider::Service::Upstart : nil
+    service_provider = node['platform'] == 'ubuntu' ? Chef::Provider::Service::Upstart : nil
     service "procps" do
         provider service_provider
         supports :restart => false, :reload => false
