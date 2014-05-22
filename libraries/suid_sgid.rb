@@ -37,7 +37,7 @@ class Chef::Recipe::SuidSgid
     find = Mixlib::ShellOut.new(findcmd)
     find.run_command
     find.error!
-    return find.stdout.split("\n")
+    find.stdout.split("\n")
   end
 
   def self.remove_suid_sgid_from_blacklist( blacklist )
