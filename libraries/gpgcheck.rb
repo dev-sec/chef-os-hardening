@@ -19,7 +19,7 @@
 #
 
 class Chef::Recipe::GPGCheck
-  def self.check( file )
+  def self.check(file)
     pattern = /gpgcheck\s*=\s*0/
 
     if File.file?(file)
@@ -33,6 +33,3 @@ class Chef::Recipe::GPGCheck
     end
   end
 end
-
-
-
