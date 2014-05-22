@@ -45,7 +45,7 @@ class Chef::Recipe::SuidSgid
     .select { |file| File.exists?(file) }
     .each do|file|
       Chef::Log.info "suid_sgid: Blacklist SUID/SGID for '#{file}', removing bit..."
-      self.remove_suid_sgid_from(file)
+      remove_suid_sgid_from(file)
     end
   end
 
@@ -58,7 +58,7 @@ class Chef::Recipe::SuidSgid
 
     all_suid_sgid_files.each do|file|
       Chef::Log.info "suid_sgid: SUID/SGID on '#{file}'" + ((dry_run) ? ' (dry_run)' : ', removing bit...')
-      self.remove_suid_sgid_from(file) unless dry_run
+      remove_suid_sgid_from(file) unless dry_run
     end
   end
 end
