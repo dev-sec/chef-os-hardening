@@ -23,14 +23,13 @@ template '/etc/login.defs' do
   owner 'root'
   group 'root'
   variables(
-    :additional_user_paths => node['env']['extra_user_paths'].join(":"), # :/usr/local/games:/usr/games
-    :umask => node['env']['umask'],
-    :password_max_age => node['auth']['pw_max_age'],
-    :password_min_age => node['auth']['pw_min_age'],
-    :login_retries => node['auth']['retries'],
-    :login_timeout => node['auth']['timeout'],
-    :chfn_restrict => "", # "rwh"
-    :allow_login_without_home => node['auth']['allow_homeless']
+    additional_user_paths: node['env']['extra_user_paths'].join(':'), # :/usr/local/games:/usr/games
+    umask: node['env']['umask'],
+    password_max_age: node['auth']['pw_max_age'],
+    password_min_age: node['auth']['pw_min_age'],
+    login_retries: node['auth']['retries'],
+    login_timeout: node['auth']['timeout'],
+    chfn_restrict: '', # "rwh"
+    allow_login_without_home: node['auth']['allow_homeless']
   )
 end
-
