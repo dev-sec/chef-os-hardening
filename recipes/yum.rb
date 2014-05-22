@@ -24,12 +24,12 @@ include_recipe 'yum'
 # search /etc/yum.conf gpgcheck=1
 ruby_block 'check package signature in repo files' do
   block do
-    #TODO harmonize with latter function
-    file = "/etc/yum.conf"
-    GPGCheck::check(file)
+    # TODO: harmonize with latter function
+    config_file = '/etc/yum.conf'
+    GPGCheck.check(config_file)
 
     Dir.glob('/etc/yum.repos.d/*').each do |file|
-      GPGCheck::check(file)
+      GPGCheck.check(file)
     end
   end
   action :run
