@@ -139,8 +139,8 @@ default['sysctl']['params']['net']['ipv6']['conf']['default']['max_addresses'] =
 # This settings controls how the kernel behaves towards module changes at
 # runtime. Setting to 1 will disable module loading at runtime.
 # Setting it to 0 is actually never supported.
-if (! node['security']['kernel']['enable_module_loading'])
-    default['sysctl']['params']['kernel']['modules_disabled'] = 1
+unless node['security']['kernel']['enable_module_loading']
+  default['sysctl']['params']['kernel']['modules_disabled'] = 1
 end
 
 # Magic Sysrq should be disabled, but can also be set to a safe value if so
