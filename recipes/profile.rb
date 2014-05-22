@@ -20,7 +20,7 @@
 template '/etc/profile.d/pinerolo_profile.sh' do
   source 'profile.conf.erb'
   mode 0755
-  owner "root"
-  group "root"
-  only_if{ not node['security']['kernel']['enable_core_dump'] }
+  owner 'root'
+  group 'root'
+  not_if { node['security']['kernel']['enable_core_dump'] }
 end
