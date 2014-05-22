@@ -17,3 +17,5 @@ LineLength:
   Enabled: false
 MethodLength:
   Max: 30
+NumericLiterals:
+  MinDigits: 10
