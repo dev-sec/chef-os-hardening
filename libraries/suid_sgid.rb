@@ -40,26 +40,25 @@ class Chef::Recipe::SuidSgid
     find.stdout.split("\n")
   end
 
-  def self.remove_suid_sgid_from_blacklist( blacklist )
-    blacklist.
-    find_all{|file| File::exists?(file)}.
-    each{|file| 
+  def self.remove_suid_sgid_from_blacklist(blacklist)
+    blacklist
+    .select { |file| File.exists?(file) }
+    .each do|file|
       Chef::Log.info "suid_sgid: Blacklist SUID/SGID for '#{file}', removing bit..."
       self.remove_suid_sgid_from(file)
-    }
+    end
   end
 
-  def self.remove_suid_sgid_from_unkown( whitelist = [], root = "/", dry_run = false )
-    self.find_all_suid_sgid_files( root ).
-    find_all{|file| 
+  def self.remove_suid_sgid_from_unkown(whitelist = [], root = '/', dry_run = false)
+    all_suid_sgid_files = find_all_suid_sgid_files(root).select do|file|
       in_whitelist = whitelist.include?(file)
-      Chef::Log.info "suid_sgid: Whitelisted file '#{file}', not altering SUID/SGID bit" if in_whitelist and not dry_run
-      not in_whitelist
-    }.
-    each{|file|
-      Chef::Log.info "suid_sgid: SUID/SGID on '#{file}'" + ((dry_run) ? " (dry_run)" : ", removing bit...")
-      self.remove_suid_sgid_from(file) if not dry_run
-    }
-  end
+      Chef::Log.info "suid_sgid: Whitelisted file '#{file}', not altering SUID/SGID bit" if in_whitelist && !dry_run
+      !in_whitelist
+    end
 
+    all_suid_sgid_files.each do|file|
+      Chef::Log.info "suid_sgid: SUID/SGID on '#{file}'" + ((dry_run) ? ' (dry_run)' : ', removing bit...')
+      self.remove_suid_sgid_from(file) unless dry_run
+    end
+  end
 end
