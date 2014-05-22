@@ -124,7 +124,7 @@ default[:sysctl][:params][:net][:ipv4][:conf][:all][:send_redirects] = 0
 default[:sysctl][:params][:net][:ipv4][:conf][:default][:send_redirects] = 0
 
 # log martian packets
-default[:sysctl][:params][:net][:ipv4][:conf][:all][:log_martians] = 1
+default[:sysctl][:params][:net][:ipv4][:conf][:all][:log_martians] = 0
 
 # ipv6 config
 # NSA 2.5.3.2.5 Limit Network-Transmitted Configuration
