@@ -75,7 +75,7 @@ default['sysctl']['params']['net']['ipv4']['tcp_timestamps'] = 0
 #           request and even sometimes no matter the source IP address we
 #           announce.
 #
-default['sysctl']['params']['net']['ipv4']['conf']['eth0']['arp_ignore'] =
+default['sysctl']['params']['net']['ipv4']['conf']['all']['arp_ignore'] =
     node['network']['arp']['restricted'] ? 1 : 0
 
 # Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:
@@ -91,7 +91,7 @@ default['sysctl']['params']['net']['ipv4']['conf']['eth0']['arp_ignore'] =
 #           resolutions for global and link addresses are replied
 # * **4-7** - reserved
 # * **8** - do not reply for all local addresses
-default['sysctl']['params']['net']['ipv4']['conf']['eth0']['arp_announce'] =
+default['sysctl']['params']['net']['ipv4']['conf']['all']['arp_announce'] =
     node['network']['arp']['restricted'] ? 2 : 0
 
 # RFC 1337 fix F1
