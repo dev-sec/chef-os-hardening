@@ -8,7 +8,7 @@ It configures:
 
  * Configures package management e.g. allows only signed packages
  * Remove packages with known issues
- * Configures pam and pam_limits module
+ * Configures `pam` and `pam_limits` module
  * Shadow password suite configuration
  * Configures system path permissions
  * Disable core dumps via soft limits
@@ -93,7 +93,7 @@ We remove the following packages:
 
 ## Usage
 
-Add the recipes to the run_list, it should be last:
+Add the recipes to the `run_list`, it should be last:
 
     "recipe[os-hardening]"
 
