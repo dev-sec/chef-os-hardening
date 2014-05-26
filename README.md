@@ -130,10 +130,11 @@ http://kitchen.ci/docs/getting-started
 
 ## Contributors + Kudos
 
-* Dominik Richter
-* Christoph Hartmann
-* Patrick Meier
-* Bernhard K. Weisshuhn
+* Dominik Richter [arlimus](https://github.com/arlimus)
+* Bernhard Weisshuhn [bkw](https://github.com/bkw)
+* Christoph Hartmann [chris-rock](https://github.com/chris-rock)
+* Edmund Haselwanter [ehaselwanter](https://github.com/ehaselwanter)
+* Patrick Meier [atomic111](https://github.com/atomic111)
 
 This cookbook is mostly based on guides by:
 
