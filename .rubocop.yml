@@ -2,8 +2,9 @@ AllCops:
   Excludes:
     - vendor/**
     - metadata.rb
-    - test/integration/**
-    - shared_test_repo/**
+    - '**/Puppetfile'
+    - Puppetfile
+
 
 Documentation:
   Enabled: false
