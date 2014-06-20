@@ -35,7 +35,7 @@ task :foodcritic do
   if Gem::Version.new('1.9.2') <= Gem::Version.new(RUBY_VERSION.dup)
     puts "Running Foodcritic tests..."
     FoodCritic::Rake::LintTask.new do |t|
-      t.options = { :fail_tags => ['correctness'] }
+      t.options = { :fail_tags => ['any'] }
     puts "done."    
     end
   else
