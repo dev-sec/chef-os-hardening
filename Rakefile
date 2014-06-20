@@ -14,6 +14,10 @@ task :default => :unit
 desc "Run linters"
 task :lint => [ :rubocop, :foodcritic ]
 
+# Lint the cookbook
+desc "Run all linters: rubocop and foodcritic"
+task :run_all_linters => [ :rubocop, :foodcritic ]
+
 # Run the whole shebang
 desc "Run all tests"
 task :test => [ :lint, :integration ]
