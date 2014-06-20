@@ -14,6 +14,10 @@ task :default => :unit
 desc "Run linters"
 task :lint => [ :rubocop, :foodcritic ]
 
+# Lint the cookbook
+desc "Run all linters: rubocop and foodcritic"
+task :run_all_linters => [ :rubocop, :foodcritic ]
+
 # Run the whole shebang
 desc "Run all tests"
 task :test => [ :lint, :integration ]
@@ -31,7 +35,7 @@ task :foodcritic do
   if Gem::Version.new('1.9.2') <= Gem::Version.new(RUBY_VERSION.dup)
     puts "Running Foodcritic tests..."
     FoodCritic::Rake::LintTask.new do |t|
-      t.options = { :fail_tags => ['correctness'] }
+      t.options = { :fail_tags => ['any'] }
     puts "done."    
     end
   else
