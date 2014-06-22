@@ -31,15 +31,15 @@ class Chef::Recipe::SuidSgid
     chmod.error!
   end
 
-  def self.find_all_suid_sgid_files(start_at = '/')
-    # "find / -xdev \( -perm -4000 -o -perm -2000 \) -type f -print 2>/dev/null"
-    # don't limit to one filesystem, go nuts recursively: (ie without -xdev)
-    findcmd = "find / \\( -perm -4000 -o -perm -2000 \\) -type f ! -path '/proc/*' -print 2>/dev/null"
-    find = Mixlib::ShellOut.new(findcmd)
-    find.run_command
-    find.error!
-    find.stdout.split("\n")
-  end
+      def self.find_all_suid_sgid_files(start_at = '/')
+        # "find / -xdev \( -perm -4000 -o -perm -2000 \) -type f -print 2>/dev/null"
+        # don't limit to one filesystem, go nuts recursively: (ie without -xdev)
+        findcmd = "find #{start_at} \\( -perm -4000 -o -perm -2000 \\) -type f ! -path '/proc/*' -print 2>/dev/null"
+        find = Mixlib::ShellOut.new(findcmd)
+        find.run_command
+        find.error!
+        find.stdout.split("\n")
+      end
 
   def self.remove_suid_sgid_from_blacklist(blacklist)
     blacklist
