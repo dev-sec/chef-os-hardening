@@ -19,9 +19,11 @@
 # limitations under the License.
 #
 
-class Chef::Recipe::GPGCheck
-  def self.check(file)
-    pattern = /gpgcheck\s*=\s*0/
+module Chef
+  module Recipe
+    class GPGCheck
+      def self.check(file)
+        pattern = /gpgcheck\s*=\s*0/
 
     if File.file?(file)
       File.open(file) do |f|
