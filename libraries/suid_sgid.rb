@@ -21,7 +21,7 @@
 
 class Chef::Recipe::SuidSgid
   def self.remove_suid_sgid_from(file)
-    unless File.exists?(file)
+    unless File.exist?(file)
       Chef::Log.info "suid_sgid: Couldn't find file '#{file}'"
       return
     end
@@ -43,7 +43,7 @@ class Chef::Recipe::SuidSgid
 
   def self.remove_suid_sgid_from_blacklist(blacklist)
     blacklist
-    .select { |file| File.exists?(file) }
+    .select { |file| File.exist?(file) }
     .each do|file|
       Chef::Log.info "suid_sgid: Blacklist SUID/SGID for '#{file}', removing bit..."
       remove_suid_sgid_from(file)
