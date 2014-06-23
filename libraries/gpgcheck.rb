@@ -19,8 +19,8 @@
 # limitations under the License.
 #
 
-module Chef
-  module Recipe
+class Chef
+  class Recipe
     class GPGCheck
       def self.check(file)
         pattern = /gpgcheck\s*=\s*0/
