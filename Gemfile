@@ -8,7 +8,7 @@ group :test do
     gem 'chefspec',   '~> 3.4'
     gem 'foodcritic', '~> 3.0'
     gem 'thor-foodcritic'
-    gem 'rubocop',    '~> 0.18.1'
+    gem 'rubocop',    '~> 0.23'
 end
 
 group :development do
