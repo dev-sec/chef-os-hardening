@@ -19,8 +19,8 @@
 # limitations under the License.
 #
 
-module Chef
-  module Recipe
+class Chef
+  class Recipe
     class SuidSgid
       def self.remove_suid_sgid_from(file)
         unless File.exist?(file)
