@@ -172,7 +172,7 @@ default['sysctl']['params']['fs']['suid_dumpable'] =
 # unless node['platform'] == "ubuntu" # ["nx"].include?(node['cpu'][0]['flags']) or
 case platform_family
 when 'rhel', 'fedora'
-    default['sysctl']['params']['kernel']['exec-shield'] = 1
+  default['sysctl']['params']['kernel']['exec-shield'] = 1
 end
 
 # Virtual memory regions protection
