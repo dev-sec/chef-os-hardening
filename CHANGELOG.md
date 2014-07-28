@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1
+
+* improvement: specified supported operating systems in metadata
+
 ## 1.1.0
 
 * improvement: remove NTP from os-hardening
