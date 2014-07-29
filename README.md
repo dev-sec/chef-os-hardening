@@ -132,10 +132,10 @@ bundle install
 bundle exec rake lint
 
 # Fetch tests
-thor kitchen:fetch-remote-tests
+bundle exec thor kitchen:fetch-remote-tests
 
 # Run tests
-kitchen test
+bundle exec kitchen test
 ```
 
 http://kitchen.ci/docs/getting-started
