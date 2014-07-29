@@ -123,7 +123,20 @@ Create a local kitchen configuration:
 
 You should now be able to run tests:
 
-    kitchen test
+```bash
+# Install dependencies
+gem install bundler
+bundle install
+
+# Do lint checks
+bundle exec rake lint
+
+# Fetch tests
+bundle exec thor kitchen:fetch-remote-tests
+
+# Run tests
+bundle exec kitchen test
+```
 
 http://kitchen.ci/docs/getting-started
 
