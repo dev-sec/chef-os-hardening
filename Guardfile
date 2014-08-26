@@ -1,32 +1,32 @@
-# Guardfile 
+# encoding: utf-8
+
+# Guardfile
 
 guard :rubocop do
-  watch(%r{.+\.rb$})
-  watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
+  watch(/.+\.rb$/)
+  watch(/(?:.+\/)?\.rubocop\.yml$/) { |m| File.dirname(m[0]) }
 end
- 
-guard :foodcritic, cookbook_paths: '.', cli: "-f any --tags ~FC023" do
-  watch(%r{attributes/.+\.rb$})
-  watch(%r{providers/.+\.rb$})
-  watch(%r{recipes/.+\.rb$})
-  watch(%r{resources/.+\.rb$})
-  watch(%r{metadata.rb})
+
+guard :foodcritic, cookbook_paths: '.', cli: '-f any --tags ~FC023' do
+  watch(/attributes\/.+\.rb$/)
+  watch(/providers\/.+\.rb$/)
+  watch(/recipes\/.+\.rb$/)
+  watch(/resources\/.+\.rb$/)
+  watch(/metadata.rb/)
 end
- 
+
 guard :rspec do
-  watch(%r{^spec/.+_spec\.rb$})
-  watch(%r{^(recipes)/(.+)\.rb$})     { |m| "spec/#{m[1]}_spec.rb" }
+  watch(/^spec\/.+_spec\.rb$/)
+  watch(/^(recipes)\/(.+)\.rb$/)     { |m| "spec/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { 'spec' }
 end
- 
-if ENV['RUN_KITCHEN'] && ENV['RUN_KITCHEN'] =~ /true|True/
-  guard :kitchen, all_on_start: false do
-    watch(%r{test/.+})
-    watch(%r{^recipes/(.+)\.rb$})
-    watch(%r{^attributes/(.+)\.rb$})
-    watch(%r{^files/(.+)})
-    watch(%r{^templates/(.+)})
-    watch(%r{^providers/(.+)\.rb})
-    watch(%r{^resources/(.+)\.rb})
-  end
-end  
+
+guard :kitchen, all_on_start: false do
+  watch(/test\/.+/)
+  watch(/^recipes\/(.+)\.rb$/)
+  watch(/^attributes\/(.+)\.rb$/)
+  watch(/^files\/(.+)/)
+  watch(/^templates\/(.+)/)
+  watch(/^providers\/(.+)\.rb/)
+  watch(/^resources\/(.+)\.rb/)
+end
