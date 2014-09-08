@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.2
+
+* improvement: extend support for chef-sysctl from 0.3.x-0.6.x
+* improvement: fix linting to current rubocop (0.25)
+
 ## 1.1.1
 
 * improvement: specified supported operating systems in metadata
