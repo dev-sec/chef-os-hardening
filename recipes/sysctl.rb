@@ -20,7 +20,14 @@
 #
 
 # include sysctl recipe and set /etc/sysctl.d/99-chef-attributes.conf
-include_recipe 'sysctl::apply'
+if cookbook_version('sysctl', '< 0.6.0')
+  log 'DEPRECATION: You use an older version of chef-sysctl. chef-os-hardening will not support this version in future releases.' do
+    level :warn
+  end
+  include_recipe 'sysctl'
+else
+  include_recipe 'sysctl::apply'
+end
 
 cpu_vendor = node['cpu']['0']['vendor_id']
   .sub(/^.*GenuineIntel.*$/, 'intel')
