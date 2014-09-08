@@ -29,7 +29,7 @@ supports 'centos', '>= 6.4'
 supports 'redhat', '>= 6.4'
 supports 'oracle', '>= 6.4'
 
-depends 'sysctl', '0.3.4'
+depends 'sysctl', '>= 0.3.0'
 depends 'apt'
 depends 'yum'
 
