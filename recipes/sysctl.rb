@@ -20,7 +20,7 @@
 #
 
 # include sysctl recipe and set /etc/sysctl.d/99-chef-attributes.conf
-include_recipe 'sysctl'
+include_recipe 'sysctl::apply'
 
 cpu_vendor = node['cpu']['0']['vendor_id']
   .sub(/^.*GenuineIntel.*$/, 'intel')
