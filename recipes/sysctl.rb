@@ -85,5 +85,6 @@ when 'debian'
     provider service_provider
     supports restart: false, reload: false
     action [:enable, :start]
+    only_if { cookbook_version('sysctl', '< 0.6.0') }
   end
 end
