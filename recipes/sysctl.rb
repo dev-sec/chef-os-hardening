@@ -84,6 +84,6 @@ when 'debian'
   service 'procps' do
     provider service_provider
     supports restart: false, reload: false
-    action :start
+    action [:enable, :start]
   end
 end
