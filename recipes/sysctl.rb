@@ -20,6 +20,7 @@
 #
 
 # include sysctl recipe and set /etc/sysctl.d/99-chef-attributes.conf
+# TODO: This is deprecated. Remove after sysctl >= 0.6.0
 if cookbook_version('sysctl', '< 0.6.0')
   log 'DEPRECATION: You use an older version of chef-sysctl. chef-os-hardening will not support this version in future releases.' do
     level :warn
@@ -78,13 +79,16 @@ when 'debian'
   end
 end
 
-case node['platform_family']
-when 'debian'
-  service_provider = node['platform'] == 'ubuntu' ? Chef::Provider::Service::Upstart : nil
-  service 'procps' do
-    provider service_provider
-    supports restart: false, reload: false
-    action [:enable, :start]
-    only_if { cookbook_version('sysctl', '< 0.6.0') }
+# Conditional handling of procps reload
+# TODO: This is deprecated. Remove after sysctl >= 0.6.0
+if cookbook_version('sysctl', '< 0.6.0')
+  case node['platform_family']
+  when 'debian'
+    service_provider = node['platform'] == 'ubuntu' ? Chef::Provider::Service::Upstart : nil
+    service 'procps' do
+      provider service_provider
+      supports restart: false, reload: false
+      action [:enable, :start]
+    end
   end
 end
