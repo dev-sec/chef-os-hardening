@@ -22,7 +22,7 @@ task run_all_linters: [:rubocop, :foodcritic]
 
 # Run the whole shebang
 desc 'Run all tests'
-task test: [:lint, :integration]
+task test: [:lint, :integration, :spec]
 
 # RSpec
 desc 'Run chefspec tests'
