@@ -1,7 +1,4 @@
-# encoding: utf-8
-#
-# Cookbook Name: os-hardening
-# Recipe: limits.rb
+# encoding: UTF-8
 #
 # Copyright 2014, Deutsche Telekom AG
 #
@@ -18,10 +15,20 @@
 # limitations under the License.
 #
 
-template '/etc/security/limits.d/10.hardcore.conf' do
-  source 'limits.conf.erb'
-  mode '0440'
-  owner 'root'
-  group 'root'
-  not_if { node['security']['kernel']['enable_core_dump'] }
+require_relative '../spec_helper'
+
+describe 'os-hardening::limits' do
+
+  let(:chef_run) do
+    ChefSpec::Runner.new.converge(described_recipe)
+  end
+
+  it 'creates /etc/sysconfig/init' do
+    expect(chef_run).to create_template('/etc/security/limits.d/10.hardcore.conf').with(
+      user:   'root',
+      group:  'root',
+      mode: '0440'
+    )
+  end
+
 end
