@@ -81,7 +81,8 @@ end
 
 # Conditional handling of procps reload
 # TODO: This is deprecated. Remove after sysctl >= 0.6.0
-if cookbook_version('sysctl', '< 0.6.0')
+# ignore FC023: @see https://github.com/acrmp/foodcritic/issues/151
+if cookbook_version('sysctl', '< 0.6.0') # ~FC023
   case node['platform_family']
   when 'debian'
     service_provider = node['platform'] == 'ubuntu' ? Chef::Provider::Service::Upstart : nil
