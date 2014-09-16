@@ -26,6 +26,7 @@ describe 'os-hardening::default' do
       # on rhel and debian, but apply requires it for notification
       # therefore we set it manually here
       node.set['sysctl']['conf_dir'] = '/etc/sysctl.d'
+      node.set['cpu']['0']['vendor_id'] = 'GenuineIntel'
     end.converge(described_recipe)
   end
 
