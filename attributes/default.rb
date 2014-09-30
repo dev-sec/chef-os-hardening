@@ -168,3 +168,6 @@ default['security']['suid_sgid']['system_whitelist']          = [
   '/usr/lib/libvte9/gnome-pty-helper',                          # gnome
   '/usr/lib/libvte-2.90-9/gnome-pty-helper'                     # gnome
 ]
+
+# set default cpu vendor
+default['security']['cpu_vendor'] = 'intel'
