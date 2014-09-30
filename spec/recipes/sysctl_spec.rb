@@ -30,7 +30,6 @@ describe 'os-hardening::sysctl' do
 
     it 'should detect intel cpu' do
       intel_run.converge(described_recipe)
-      expect(intel_run.node['cpu']['0']['vendor_id']).to eq('AuthenticAMD')
       expect(intel_run.node['security']['cpu_vendor']).to eq('intel')
     end
 
