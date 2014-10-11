@@ -32,14 +32,14 @@ describe 'os-hardening::default' do
 
   # check that the recipres are executed
   it 'default should include os-hardening recipes by default' do
-    chef_run.should include_recipe 'os-hardening::packages'
-    chef_run.should include_recipe 'os-hardening::limits'
-    chef_run.should include_recipe 'os-hardening::login_defs'
-    chef_run.should include_recipe 'os-hardening::minimize_access'
-    chef_run.should include_recipe 'os-hardening::pam'
-    chef_run.should include_recipe 'os-hardening::profile'
-    chef_run.should include_recipe 'os-hardening::securetty'
-    chef_run.should include_recipe 'os-hardening::sysctl'
+    expect(chef_run).to include_recipe 'os-hardening::packages'
+    expect(chef_run).to include_recipe 'os-hardening::limits'
+    expect(chef_run).to include_recipe 'os-hardening::login_defs'
+    expect(chef_run).to include_recipe 'os-hardening::minimize_access'
+    expect(chef_run).to include_recipe 'os-hardening::pam'
+    expect(chef_run).to include_recipe 'os-hardening::profile'
+    expect(chef_run).to include_recipe 'os-hardening::securetty'
+    expect(chef_run).to include_recipe 'os-hardening::sysctl'
   end
 
 end
