@@ -75,8 +75,8 @@ default['security']['suid_sgid']['blacklist']          = []
 default['security']['suid_sgid']['whitelist']          = []
 # if this is true, remove any suid/sgid bits from files that were not in the
 # whitelist
-default['security']['suid_sgid']['remove_from_unkown'] = false
-default['security']['suid_sgid']['dry_run_on_unkown']  = false
+default['security']['suid_sgid']['remove_from_unknown'] = false
+default['security']['suid_sgid']['dry_run_on_unknown']  = false
 
 # remove packages with known issues
 default['security']['packages']['clean']               = true

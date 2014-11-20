@@ -29,7 +29,7 @@ blacklist = (sb - w + b).uniq
 whitelist = (sw - b + w).uniq
 
 # root    = "/"
-dry_run   = node['security']['suid_sgid']['dry_run_on_unkown']
+dry_run   = node['security']['suid_sgid']['dry_run_on_unknown']
 root      = node['env']['root_path']
 
 # walk the blacklist and remove suid and sgid bits from these items
@@ -39,9 +39,10 @@ ruby_block 'remove_suid_from_blacklists' do
   end
 end
 
-# remove suid bits from unkown, if desired
-ruby_block 'remove_suid_from_unkown' do
+# remove suid bits from unknown, if desired
+ruby_block 'remove_suid_from_unknown' do
   block do
-    SuidSgid.remove_suid_sgid_from_unkown(whitelist, root, dry_run)
+    SuidSgid.remove_suid_sgid_from_unknown(whitelist, root, dry_run)
   end
-end if node['security']['suid_sgid']['remove_from_unkown'] || node['security']['suid_sgid']['dry_run_on_unkown']
+end if node['security']['suid_sgid']['remove_from_unknown'] ||
+    node['security']['suid_sgid']['dry_run_on_unknown']
