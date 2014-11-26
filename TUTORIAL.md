@@ -31,6 +31,7 @@
         git clone https://github.com/onehealth-cookbooks/sysctl
         git clone https://github.com/opscode-cookbooks/apt.git
         git clone https://github.com/opscode-cookbooks/yum.git
+        git clone https://github.com/opscode-cookbooks/ohai.git
         cd ..
 
 7. Create `solo.rb`
