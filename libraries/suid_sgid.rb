@@ -45,11 +45,11 @@ class Chef
 
       def self.remove_suid_sgid_from_blacklist(blacklist)
         blacklist
-        .select { |file| File.exist?(file) }
-        .each do|file|
-          Chef::Log.info "suid_sgid: Blacklist SUID/SGID for '#{file}', removing bit..."
-          remove_suid_sgid_from(file)
-        end
+          .select { |file| File.exist?(file) }
+          .each do|file|
+            Chef::Log.info "suid_sgid: Blacklist SUID/SGID for '#{file}', removing bit..."
+            remove_suid_sgid_from(file)
+          end
       end
 
       def self.remove_suid_sgid_from_unkown(whitelist = [], root = '/', dry_run = false)
