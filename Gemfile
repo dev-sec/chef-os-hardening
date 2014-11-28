@@ -7,7 +7,7 @@ gem 'chef',       '~> 11.12'
 
 group :test do
   gem 'rake'
-  gem 'chefspec', '~> 4.0'
+  gem 'chefspec', '~> 4.1.1'
   gem 'foodcritic', '~> 3.0'
   gem 'thor-foodcritic'
   gem 'rubocop',    '~> 0.23'

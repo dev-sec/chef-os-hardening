@@ -33,8 +33,8 @@ end
 # try to determine the real cpu vendor
 begin
   cpu_vendor = node['cpu']['0']['vendor_id']
-    .sub(/^.*GenuineIntel.*$/, 'intel')
-    .sub(/^.*AuthenticAMD.*$/, 'amd')
+               .sub(/^.*GenuineIntel.*$/, 'intel')
+               .sub(/^.*AuthenticAMD.*$/, 'amd')
   node.default['security']['cpu_vendor'] = cpu_vendor
 rescue
   log 'WARNING: Could not properly determine the cpu vendor. Fallback to intel cpu.' do

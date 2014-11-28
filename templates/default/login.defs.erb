@@ -109,14 +109,14 @@ PASS_MIN_DAYS <%= @password_min_age.to_s %>
 PASS_WARN_AGE	7
 
 # Min/max values for automatic uid selection in useradd
-UID_MIN			 1000
+UID_MIN			 <%= @uid_min.to_s %>
 UID_MAX			60000
 # System accounts
 #SYS_UID_MIN		  100
 #SYS_UID_MAX		  999
 
 # Min/max values for automatic gid selection in groupadd
-GID_MIN			 1000
+GID_MIN			 <%= @gid_min.to_s %>
 GID_MAX			60000
 # System accounts
 #SYS_GID_MIN		  100

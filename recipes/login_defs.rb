@@ -20,7 +20,7 @@
 
 template '/etc/login.defs' do
   source 'login.defs.erb'
-  mode 0444
+  mode '0444'
   owner 'root'
   group 'root'
   variables(
@@ -31,6 +31,8 @@ template '/etc/login.defs' do
     login_retries: node['auth']['retries'],
     login_timeout: node['auth']['timeout'],
     chfn_restrict: '', # "rwh"
-    allow_login_without_home: node['auth']['allow_homeless']
+    allow_login_without_home: node['auth']['allow_homeless'],
+    uid_min: node['auth']['uid_min'],
+    gid_min: node['auth']['gid_min']
   )
 end

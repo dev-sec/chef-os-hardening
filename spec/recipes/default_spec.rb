@@ -21,7 +21,7 @@ describe 'os-hardening::default' do
 
   # converge
   let(:chef_run) do
-    ChefSpec::Runner.new do |node|
+    ChefSpec::ServerRunner.new do |node|
       # sysctl/attributes/default.rb will set the config dir
       # on rhel and debian, but apply requires it for notification
       # therefore we set it manually here
