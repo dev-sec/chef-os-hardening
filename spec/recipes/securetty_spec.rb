@@ -20,7 +20,7 @@ require_relative '../spec_helper'
 describe 'os-hardening::securetty' do
 
   let(:chef_run) do
-    ChefSpec::Runner.new.converge(described_recipe)
+    ChefSpec::ServerRunner.new.converge(described_recipe)
   end
 
   it 'creates /etc/securetty' do
