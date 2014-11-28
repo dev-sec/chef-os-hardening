@@ -20,7 +20,10 @@ require_relative '../spec_helper'
 describe 'os-hardening::login_defs' do
 
   let(:chef_run) do
-    ChefSpec::ServerRunner.new.converge(described_recipe)
+    ChefSpec::ServerRunner.new do |node|
+      node.set['auth']['uid_min'] = 5000
+      node.set['auth']['gid_min'] = 5000
+    end.converge(described_recipe)
   end
 
   it 'creates /etc/login.defs' do
@@ -28,5 +31,11 @@ describe 'os-hardening::login_defs' do
       .with(mode: '0444')
       .with(owner: 'root')
       .with(group: 'root')
+  end
+
+  it 'uses uid_min and gid_min in /etc/login.defs' do
+    expect(chef_run).to render_file('/etc/login.defs')
+      .with_content(/^UID_MIN\s+5000$/)
+      .with_content(/^GID_MIN\s+5000$/)
   end
 end
