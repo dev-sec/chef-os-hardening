@@ -17,6 +17,8 @@
 
 require 'chefspec'
 require 'chefspec/berkshelf'
+require 'coveralls'
 
 # coverage report
-ChefSpec::Coverage.start!
+Coveralls.wear!
+at_exit { ChefSpec::Coverage.report! }
