@@ -1,5 +1,10 @@
 # os-hardening (Chef cookbook)
 
+[![Supermarket](http://img.shields.io/cookbook/v/os-hardening.svg)][1]
+[![Build Status](http://img.shields.io/travis/TelekomLabs/chef-os-hardening.svg)][2]
+[![Code Coverage](http://img.shields.io/coveralls/TelekomLabs/chef-os-hardening.svg)][3]
+[![Dependencies](http://img.shields.io/gemnasium/TelekomLabs/chef-os-hardening.svg)][4]
+
 ## Description
 
 This cookbook provides numerous security-related configurations, providing all-round base protection.
@@ -189,3 +194,8 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+[1]: https://supermarket.getchef.com/cookbooks/os-hardening
+[2]: http://travis-ci.org/TelekomLabs/chef-os-hardening
+[3]: https://coveralls.io/r/TelekomLabs/chef-os-hardening
+[4]: https://gemnasium.com/TelekomLabs/chef-os-hardening
