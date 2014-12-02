@@ -3,14 +3,15 @@
 source 'https://rubygems.org'
 
 gem 'berkshelf',  '~> 3.0'
-gem 'chef',       '~> 11.12'
+gem 'chef',       '~> 11.14'
 
 group :test do
   gem 'rake'
-  gem 'chefspec', '~> 4.1.1'
+  gem 'chefspec',   '~> 4.1.1'
   gem 'foodcritic', '~> 3.0'
   gem 'thor-foodcritic'
-  gem 'rubocop',    '~> 0.23'
+  gem 'rubocop',    '~> 0.27.0'
+  gem 'coveralls',  require: false
 end
 
 group :development do
