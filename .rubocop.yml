@@ -4,6 +4,7 @@ AllCops:
   - vendor/**/*
   - test/**/*
   - metadata.rb
+  - Berksfile
 Documentation:
   Enabled: false
 AlignParameters:
