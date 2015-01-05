@@ -24,6 +24,7 @@ paths = %w(/usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin) + node[
 paths.each do |folder|
   execute "remove write permission from #{folder}" do
     command "chmod go-w -R #{folder}"
+    not_if "find #{folder}  -perm -go+w -type f | wc -l | egrep '^0$'"
   end
 end
 

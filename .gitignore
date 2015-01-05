@@ -5,3 +5,4 @@ Berksfile.lock
 shared_test_repo/
 test/integration
 Gemfile.lock
+coverage
