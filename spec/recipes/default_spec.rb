@@ -27,6 +27,13 @@ describe 'os-hardening::default' do
       # therefore we set it manually here
       node.set['sysctl']['conf_dir'] = '/etc/sysctl.d'
       node.set['cpu']['0']['vendor_id'] = 'GenuineIntel'
+      node.set['env']['extra_user_paths'] = []
+
+      paths = %w(/usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin) + node['env']['extra_user_paths']
+      paths.each do |folder|
+        stub_command("find #{folder}  -perm -go+w -type f | wc -l | egrep '^0$'").and_return(false)
+      end
+
     end.converge(described_recipe)
   end
 
