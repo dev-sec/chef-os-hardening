@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.0
+
+* feature: make UID and GID_MIN configurable in login.defs
+* feature: integrate chefspec
+* improvement: linting
+* improvement: only restart procps for sysctl when necessary
+* improvement: cpu detection for lockdown profile
+* bugfix: add missing ohai dependency for standalone installation
+* bugfix: site location in Berkshelf
+
+
 ## 1.1.2
 
 * improvement: extend support for chef-sysctl from 0.3.x-0.6.x
