@@ -34,7 +34,9 @@ ruby_block 'check package signature in repo files' do
     end
 
     rhn_conf = '/etc/yum/pluginconf.d/rhnplugin.conf'
-    GPGCheck.check(rhn_conf) if File.file?(rhn_conf)
+    File.file?(rhn_conf) do
+      GPGCheck.check(rhn_conf)
+    end
   end
   action :run
 end
