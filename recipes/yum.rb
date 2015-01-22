@@ -32,7 +32,7 @@ ruby_block 'check package signature in repo files' do
     Dir.glob('/etc/yum.repos.d/*').each do |file|
       GPGCheck.check(file)
     end
-    
+
     rhn_conf = '/etc/yum/pluginconf.d/rhnplugin.conf'
     GPGCheck.check(rhn_conf) if File.file?(rhn_conf)
   end
