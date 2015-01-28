@@ -51,7 +51,7 @@ EOF
 cat > solo.json <<EOF
 {
     "security" : {"suid_sgid": {
-        "remove_from_unkown" : true,
+        "remove_from_unknown" : true,
         "system_whitelist" : []
         }
     },
