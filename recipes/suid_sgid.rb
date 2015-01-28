@@ -45,4 +45,4 @@ ruby_block 'remove_suid_from_unknown' do
     SuidSgid.remove_suid_sgid_from_unknown(whitelist, root, dry_run)
   end
 end if node['security']['suid_sgid']['remove_from_unknown'] ||
-    node['security']['suid_sgid']['dry_run_on_unknown']
+       node['security']['suid_sgid']['dry_run_on_unknown']
