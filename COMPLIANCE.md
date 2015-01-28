@@ -7,15 +7,15 @@ See reference documentation [here](http://www.telekom.com/static/-/155996/7/tech
 
 #### 3.21 Unix Requirements v1.2 
 
-| Requirement |                      Configuration                       |
-|-------------|----------------------------------------------------------|
-| 6           | active by default                                        |
-| 9           | active by default                                        |
-| 11          | active by default                                        |
-| 10          | active by default                                        |
-| 14          | `['security']['suid_sgid']['remove_from_unkown'] = true` |
-| 16          | active by default                                        |
-| 17          | active by default                                        |
+| Requirement |                      Configuration                        |
+|-------------|-----------------------------------------------------------|
+| 6           | active by default                                         |
+| 9           | active by default                                         |
+| 11          | active by default                                         |
+| 10          | active by default                                         |
+| 14          | `['security']['suid_sgid']['remove_from_unknown'] = true` |
+| 16          | active by default                                         |
+| 17          | active by default                                         |
 
 #### 3.01 Technical Baseline Security for IT/NT Systems 
 
