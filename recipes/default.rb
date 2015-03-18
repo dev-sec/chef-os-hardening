@@ -22,6 +22,7 @@
 include_recipe('os-hardening::packages')
 include_recipe('os-hardening::limits')
 include_recipe('os-hardening::login_defs')
+include_recipe('os-hardening::adduser')
 include_recipe('os-hardening::minimize_access')
 include_recipe('os-hardening::pam')
 include_recipe('os-hardening::profile')
