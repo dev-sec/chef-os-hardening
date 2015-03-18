@@ -1,7 +1,7 @@
 # encoding: utf-8
 #
 # Cookbook Name: os-hardening
-# Recipe: adduser.rb
+# Recipe: useradd.rb
 #
 # Copyright 2015, Deutsche Telekom AG
 #
@@ -18,19 +18,14 @@
 # limitations under the License.
 #
 
-template node['adduser']['conf'] do
-  only_if { File.exist?(node['adduser']['conf']) }
-  source 'adduser.conf.erb'
+template node['useradd']['conf'] do
+  source 'default_useradd.erb'
   mode '0444'
   owner 'root'
   group 'root'
   variables(
-    dhome: node['useradd']['dhome'],
-    skel: node['useradd']['skel'],
-    usergroups: node['useradd']['usergroups'],
     users_gid: node['useradd']['users_gid'],
-    dir_mode: '0' + (0777 & ~(node['env']['umask'].to_i(8))).to_s(8),
-    gid_min: node['auth']['gid_min'],
-    uid_min: node['auth']['uid_min']
+    dhome: node['useradd']['dhome'],
+    skel: node['useradd']['skel']
   )
 end

@@ -12,7 +12,7 @@ DSHELL=/bin/bash
 
 # The DHOME variable specifies the directory containing users' home
 # directories.
-DHOME=/home
+DHOME=<%= @dhome %>
 
 # If GROUPHOMES is "yes", then the home directories will be created as
 # /home/groupname/user.
@@ -26,7 +26,7 @@ LETTERHOMES=no
 # The SKEL variable specifies the directory containing "skeletal" user
 # files; in other words, files such as a sample .profile that will be
 # copied to the new user's home directory when it is created.
-SKEL=/etc/skel
+SKEL=<%= @skel %>
 
 # FIRST_SYSTEM_[GU]ID to LAST_SYSTEM_[GU]ID inclusive is the range for UIDs
 # for dynamically allocated administrative and system accounts/groups.
@@ -54,7 +54,7 @@ USERGROUPS=<%= @usergroups %>
 
 # If USERGROUPS is "no", then USERS_GID should be the GID of the group
 # `users' (or the equivalent group) on your system.
-USERS_GID=100
+USERS_GID=<%= @users_gid %>
 
 # If DIR_MODE is set, directories will be created with the specified
 # mode. Otherwise the default mode 0755 will be used.

@@ -65,7 +65,11 @@ default['auth']['root_ttys']                          = %w(console tty1 tty2 tty
 default['auth']['uid_min']                             = 1000
 default['auth']['gid_min']                             = 1000
 default['adduser']['conf']                             = '/etc/adduser.conf'
+default['useradd']['conf']                             = '/etc/default/useradd'
 default['useradd']['usergroups']                       = 'yes' # per-user gids
+default['useradd']['users_gid']                        = 100 # if above is 'no'
+default['useradd']['dhome']                            = '/home'
+default['useradd']['skel']                             = '/etc/skel'
 # may contain: change_user
 default['security']['users']['allow']                  = []
 default['security']['kernel']['enable_module_loading'] = true
