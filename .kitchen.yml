@@ -37,6 +37,10 @@ platforms:
   driver_config:
     box: debian-7
     box_url: https://s3.eu-central-1.amazonaws.com/ffuenf-vagrantboxes/debian/debian-7.7.0-amd64_virtualbox.box
+- name: debian-8
+  driver_config:
+    box: debian-8
+    box_url: https://s3.eu-central-1.amazonaws.com/ffuenf-vagrantboxes/debian/debian-8.0.0-amd64_virtualbox.box
 suites:
 - name: default
   run_list:
