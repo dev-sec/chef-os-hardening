@@ -197,9 +197,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-
 [1]: https://supermarket.getchef.com/cookbooks/os-hardening
 [2]: http://travis-ci.org/hardening-io/chef-os-hardening
 [3]: https://coveralls.io/r/hardening-io/chef-os-hardening
 [4]: https://gemnasium.com/hardening-io/chef-os-hardening
-[5]: https://gitter.im/hardening-io
+[5]: https://gitter.im/hardening-io/general
