@@ -17,19 +17,15 @@
 
 require_relative '../spec_helper'
 
-describe 'os-hardening::adduser' do
+describe 'os-hardening::useradd' do
 
-  conffile = '/etc/adduser.conf'
+  conffile = '/etc/default/useradd'
 
   let(:chef_run) do
     ChefSpec::ServerRunner.new do |node|
-      node.set['env']['umask'] = '067'
-      node.set['auth']['uid_min'] = 5000
-      node.set['auth']['gid_min'] = 3000
-      node.set['useradd']['usergroups'] = 'no'
-      node.set['useradd']['users_gid'] = '42'
+      node.set['useradd']['users_gid'] = '47'
       node.set['useradd']['skel'] = '/etc/.skel'
-      node.set['useradd']['dhome'] = '/user/dirs'
+      node.set['useradd']['dhome'] = '/home/dirs'
     end.converge(described_recipe)
   end
 
@@ -40,18 +36,10 @@ describe 'os-hardening::adduser' do
       with(group: 'root')
   end
 
-  it 'uses uid_min, gid_min, usergroups and umask in ' + conffile do
-    expect(chef_run).to render_file(conffile).
-      with_content(/^FIRST_UID=5000$/).
-      with_content(/^FIRST_GID=3000$/).
-      with_content(/^USERGROUPS=no$/).
-      with_content(/^DIR_MODE=0710$/)
-  end
-
   it 'uses users_gid, skel, and dhome in ' + conffile do
     expect(chef_run).to render_file(conffile).
-      with_content(/^USERS_GID=42$/).
+      with_content(/^GROUP=47$/).
       with_content(%r{^SKEL=/etc/\.skel$}).
-      with_content(%r{^DHOME=/user/dirs$})
+      with_content(%r{^HOME=/home/dirs$})
   end
 end
