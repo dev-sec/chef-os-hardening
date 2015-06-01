@@ -44,9 +44,9 @@ class Chef
       end
 
       def self.remove_suid_sgid_from_blacklist(blacklist)
-        blacklist
-          .select { |file| File.exist?(file) }
-          .each do|file|
+        blacklist.
+          select { |file| File.exist?(file) }.
+          each do|file|
             Chef::Log.info "suid_sgid: Blacklist SUID/SGID for '#{file}', removing bit..."
             remove_suid_sgid_from(file)
           end
