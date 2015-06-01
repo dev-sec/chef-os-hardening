@@ -27,15 +27,15 @@ describe 'os-hardening::login_defs' do
   end
 
   it 'creates /etc/login.defs' do
-    expect(chef_run).to create_template('/etc/login.defs')
-      .with(mode: '0444')
-      .with(owner: 'root')
-      .with(group: 'root')
+    expect(chef_run).to create_template('/etc/login.defs').
+      with(mode: '0444').
+      with(owner: 'root').
+      with(group: 'root')
   end
 
   it 'uses uid_min and gid_min in /etc/login.defs' do
-    expect(chef_run).to render_file('/etc/login.defs')
-      .with_content(/^UID_MIN\s+5000$/)
-      .with_content(/^GID_MIN\s+5000$/)
+    expect(chef_run).to render_file('/etc/login.defs').
+      with_content(/^UID_MIN\s+5000$/).
+      with_content(/^GID_MIN\s+5000$/)
   end
 end
