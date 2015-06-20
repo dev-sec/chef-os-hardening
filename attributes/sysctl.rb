@@ -134,6 +134,14 @@ default['sysctl']['params']['net']['ipv6']['conf']['default']['autoconf'] = 0
 default['sysctl']['params']['net']['ipv6']['conf']['default']['dad_transmits'] = 0
 default['sysctl']['params']['net']['ipv6']['conf']['default']['max_addresses'] = 1
 
+# Disable acceptance of router advertisements
+# 
+# * **0**  - do not accept router advertisements.
+# * **1**  - accept router advertisements if forwarding is disabled
+# * **2**  - accept router advertisements even if forwarding is enabled
+default['sysctl']['params']['net']['ipv6']['conf']['all']['accept_ra'] = 0
+default['sysctl']['params']['net']['ipv6']['conf']['default']['accept_ra'] = 0
+
 # System
 # ------
 
