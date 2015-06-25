@@ -43,7 +43,7 @@ rescue
 end
 
 # protect sysctl.conf
-File '/etc/sysctl.conf' do
+file '/etc/sysctl.conf' do
   mode 0440
   owner 'root'
   group 'root'
