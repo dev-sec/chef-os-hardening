@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.0
+
+* feature: implement ipv6 router advertisement settings #78
+* feature: chef 11 and chef 12 support #77
+* feature: RHN config check #71
+* bugfix: 12.4.0 support #81
+* bugfix SUID/SGID bit cleaning API spelling
+
 ## 1.2.0
 
 * feature: make UID and GID_MIN configurable in login.defs

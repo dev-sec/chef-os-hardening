@@ -21,7 +21,7 @@ maintainer_email "dominik.richter@googlemail.com"
 license          "Apache 2.0"
 description      "Installs/Configures security"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.2.0"
+version          "1.3.0"
 
 supports 'ubuntu', '>= 12.04'
 supports 'debian', '>= 6.0'
