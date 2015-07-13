@@ -18,6 +18,13 @@
 # limitations under the License.
 #
 
+directory '/etc/security/limits.d' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  recursive true
+end
+
 template '/etc/security/limits.d/10.hardcore.conf' do
   source 'limits.conf.erb'
   mode '0440'
