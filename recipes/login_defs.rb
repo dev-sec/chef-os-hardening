@@ -33,6 +33,10 @@ template '/etc/login.defs' do
     chfn_restrict: '', # "rwh"
     allow_login_without_home: node['auth']['allow_homeless'],
     uid_min: node['auth']['uid_min'],
-    gid_min: node['auth']['gid_min']
+    gid_min: node['auth']['gid_min'],
+    sys_uid_min: node['auth']['sys_uid_min'],
+    sys_uid_max: node['auth']['sys_uid_max'],
+    sys_gid_min: node['auth']['sys_gid_min'],
+    sys_gid_max: node['auth']['sys_gid_max']
   )
 end

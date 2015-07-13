@@ -64,6 +64,11 @@ default['auth']['pam']['passwdqc']['options']           = 'min=disabled,disabled
 default['auth']['root_ttys']                          = %w(console tty1 tty2 tty3 tty4 tty5 tty6)
 default['auth']['uid_min']                             = 1000
 default['auth']['gid_min']                             = 1000
+default['auth']['sys_uid_min']                         = 100
+default['auth']['sys_uid_max']                         = 999
+default['auth']['sys_gid_min']                         = 100
+default['auth']['sys_gid_max']                         = 999
+
 # may contain: change_user
 default['security']['users']['allow']                  = []
 default['security']['kernel']['enable_module_loading'] = true
