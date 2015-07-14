@@ -53,6 +53,7 @@ We deprecated `sysctl` version before `0.6.0`. Future versions of this cookbook 
 * `['env']['extra_user_paths'] = []`
   add additional paths to the user's `PATH` variable (default is empty).
 * `['env']['umask'] = "027"`
+  initial umask for processes (can also determine home directory mode for newly created users)
 * `['env']['root_path'] = "/"`
   where root is mounted
 * `['auth']['pw_max_age'] = 60`
@@ -71,6 +72,24 @@ We deprecated `sysctl` version before `0.6.0`. Future versions of this cookbook 
   true if you want to use strong password checking in PAM using passwdqc
 * `['auth']['pam']['passwdqc']['options'] = "min=disabled,disabled,16,12,8"`
   set to any option line (as a string) that you want to pass to passwdqc
+* `['auth']['root_ttys'] = ['console', 'tty1', 'tty2', 'tty3', 'tty4', 'tty5', 'tty6']`
+  list of terminal devices where root login is allowed
+* `['auth']['uid_min'] = 1000`
+  minimum uid value for newly-created non-system user
+* `['auth']['gid_min'] = 1000`
+  minimum gid value for newly-created non-system user
+* `['adduser']['conf'] = "/etc/adduser.conf"`
+  path of configuration file for `adduser` command (will not be created or updated if it does not exist) 
+* `['useradd']['conf'] = "/etc/default/useradd"`
+  path of defaults file for `useradd` command
+* `['useradd']['usergroups'] = 'yes'`
+  'yes' if each user should have a private group of the same name, 'no' otherwise
+* `['useradd']['users_gid'] = 100`
+  gid of default group for newly created users (only used if 'usergroups' is 'no')
+* `['useradd']['dhome'] = "/home"`
+  default directory location for home directories of newly created users
+* `['useradd']['skel'] = "/etc/skel"`
+  template directory for home directories of newly created users
 * `['security']['users']['allow'] = []`
   list of things, that a user is allowed to do. May contain: `change_user`
 * `['security']['kernel']['enable_module_loading'] = true`

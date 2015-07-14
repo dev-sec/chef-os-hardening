@@ -1,9 +1,9 @@
 # encoding: utf-8
 #
 # Cookbook Name: os-hardening
-# Recipe: login_defs.rb
+# Recipe: useradd.rb
 #
-# Copyright 2014, Deutsche Telekom AG
+# Copyright 2015, Deutsche Telekom AG
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,22 +18,14 @@
 # limitations under the License.
 #
 
-template '/etc/login.defs' do
-  source 'login.defs.erb'
+template node['useradd']['conf'] do
+  source 'default_useradd.erb'
   mode '0444'
   owner 'root'
   group 'root'
   variables(
-    additional_user_paths: node['env']['extra_user_paths'].join(':'), # :/usr/local/games:/usr/games
-    umask: node['env']['umask'],
-    password_max_age: node['auth']['pw_max_age'],
-    password_min_age: node['auth']['pw_min_age'],
-    login_retries: node['auth']['retries'],
-    login_timeout: node['auth']['timeout'],
-    chfn_restrict: '', # "rwh"
-    allow_login_without_home: node['auth']['allow_homeless'],
-    usergroups: node['useradd']['usergroups'],
-    uid_min: node['auth']['uid_min'],
-    gid_min: node['auth']['gid_min']
+    users_gid: node['useradd']['users_gid'],
+    dhome: node['useradd']['dhome'],
+    skel: node['useradd']['skel']
   )
 end
