@@ -7,12 +7,12 @@ provisioner:
 platforms:
 - name: ubuntu-12.04
   driver_config:
-    box: opscode-ubuntu-12.04
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box
+    box: ubuntu/precise64
+    box_url: https://atlas.hashicorp.com/ubuntu/boxes/precise64/versions/20150730.1.0/providers/virtualbox.box
 - name: ubuntu-14.04
   driver_config:
-    box: opscode-ubuntu-14.04
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
+    box: ubuntu/trusty64
+    box_url: https://atlas.hashicorp.com/ubuntu/boxes/trusty64/versions/20150609.0.10/providers/virtualbox.box
 - name: centos-6.4
   driver_config:
     box: opscode-centos-6.4
@@ -20,11 +20,11 @@ platforms:
 - name: centos-6.5
   driver_config:
     box: opscode-centos-6.5
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
+    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
 - name: centos-7.1
   driver_config:
     box: opscode-centos-7.1
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.1_chef-provisionerless.box
+    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.1_chef-provisionerless.box
 - name: oracle-6.4
   driver_config:
     box: oracle-6.4
@@ -35,16 +35,16 @@ platforms:
     box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel65-64.box
 - name: debian-6
   driver_config:
-    box: debian-6
-    box_url: https://s3.eu-central-1.amazonaws.com/ffuenf-vagrantboxes/debian/debian-6.0.10-amd64_virtualbox.box
+    box: ffuenf/debian-6.0.10-amd64
+    box_url: https://atlas.hashicorp.com/ffuenf/boxes/debian-6.0.10-amd64/versions/1.0.11/providers/virtualbox.box
 - name: debian-7
   driver_config:
-    box: debian-7
-    box_url: https://s3.eu-central-1.amazonaws.com/ffuenf-vagrantboxes/debian/debian-7.7.0-amd64_virtualbox.box
+    box: debian/wheezy64
+    box_url: https://atlas.hashicorp.com/debian/boxes/wheezy64/versions/7.8.5/providers/virtualbox.box
 - name: debian-8
   driver_config:
-    box: debian-8
-    box_url: https://s3.eu-central-1.amazonaws.com/ffuenf-vagrantboxes/debian/debian-8.0.0-amd64_virtualbox.box
+    box: debian/jessie64
+    box_url: https://atlas.hashicorp.com/debian/boxes/jessie64/versions/8.1.0/providers/virtualbox.box
 suites:
 - name: default
   run_list:
