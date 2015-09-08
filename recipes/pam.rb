@@ -26,7 +26,7 @@ end
 
 # remove ccreds if not necessary
 package 'pam-ccreds' do
-  package_name node['packages']['pam_ccreds']
+  package_name node['hardening-io']['packages']['pam_ccreds']
   action :remove
 end
 
@@ -42,13 +42,13 @@ when 'debian'
 
     # remove pam_cracklib, because it does not play nice wiht passwdqc
     package 'pam-cracklib' do
-      package_name node['packages']['pam_cracklib']
+      package_name node['hardening-io']['packages']['pam_cracklib']
       action :remove
     end
 
     # get the package for strong password checking
     package 'pam-passwdqc' do
-      package_name node['packages']['pam_passwdqc']
+      package_name node['hardening-io']['packages']['pam_passwdqc']
     end
 
     # configure passwdqc via central module:
@@ -70,7 +70,7 @@ when 'debian'
     # make sure the package is not on the system,
     # if this feature is not wanted
     package 'pam-passwdqc' do
-      package_name node['packages']['pam_passwdqc']
+      package_name node['hardening-io']['packages']['pam_passwdqc']
       action :remove
     end
   end
@@ -106,13 +106,13 @@ when 'rhel', 'fedora'
 
     # remove pam_cracklib, because it does not play nice wiht passwdqc
     package 'pam-cracklib' do
-      package_name node['packages']['pam_cracklib']
+      package_name node['hardening-io']['packages']['pam_cracklib']
       action :remove
     end
 
     # get the package for strong password checking
     package 'pam-passwdqc' do
-      package_name node['packages']['pam_passwdqc']
+      package_name node['hardening-io']['packages']['pam_passwdqc']
     end
 
   # deactivate passwdqc
@@ -121,7 +121,7 @@ when 'rhel', 'fedora'
     # make sure the package is not on the system,
     # if this feature is not wanted
     package 'pam-passwdqc' do
-      package_name node['packages']['pam_passwdqc']
+      package_name node['hardening-io']['packages']['pam_passwdqc']
       action :remove
     end
   end

@@ -21,24 +21,24 @@
 # Define the packages based on operating system
 case platform_family
 when 'rhel', 'fedora'
-  default['packages']['pam_ccreds'] = 'pam_ccreds'
-  default['packages']['pam_passwdqc'] = 'pam_passwdqc'
-  default['packages']['pam_cracklib'] = 'pam_cracklib'
+  default['hardening-io']['packages']['pam_ccreds'] = 'pam_ccreds'
+  default['hardening-io']['packages']['pam_passwdqc'] = 'pam_passwdqc'
+  default['hardening-io']['packages']['pam_cracklib'] = 'pam_cracklib'
 
 when 'debian'
-  default['packages']['pam_ccreds'] = 'libpam-ccreds'
-  default['packages']['pam_passwdqc'] = 'libpam-passwdqc'
-  default['packages']['pam_cracklib'] = 'libpam-cracklib'
+  default['hardening-io']['packages']['pam_ccreds'] = 'libpam-ccreds'
+  default['hardening-io']['packages']['pam_passwdqc'] = 'libpam-passwdqc'
+  default['hardening-io']['packages']['pam_cracklib'] = 'libpam-cracklib'
 
 when 'arch'
-  default['packages']['pam_ccreds'] = 'pam_ccreds'
-  default['packages']['pam_passwdqc'] = 'pam_passwdqc'
-  default['packages']['pam_cracklib'] = 'pam_cracklib'
+  default['hardening-io']['packages']['pam_ccreds'] = 'pam_ccreds'
+  default['hardening-io']['packages']['pam_passwdqc'] = 'pam_passwdqc'
+  default['hardening-io']['packages']['pam_cracklib'] = 'pam_cracklib'
 
 else
-  default['packages']['pam_ccreds'] = 'pam_ccreds'
-  default['packages']['pam_passwdqc'] = 'pam_passwdqc'
-  default['packages']['pam_cracklib'] = 'pam_cracklib'
+  default['hardening-io']['packages']['pam_ccreds'] = 'pam_ccreds'
+  default['hardening-io']['packages']['pam_passwdqc'] = 'pam_passwdqc'
+  default['hardening-io']['packages']['pam_cracklib'] = 'pam_cracklib'
 end
 
 # rhel, centos autoconf configuration
