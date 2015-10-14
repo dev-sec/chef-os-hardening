@@ -21,7 +21,7 @@
 # do package config for ubuntu
 case node['platform_family']
 when 'debian'
-  include_recipe('apt')
+  include_recipe('os-hardening::apt')
 end
 
 # do package config for rhel-family
