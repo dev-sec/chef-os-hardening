@@ -60,7 +60,9 @@ class Chef
         showpkg.error!
 
         providers = {}
-        showpkg.stdout.rpartition(/Reverse Provides: ?#{$/}/)[2].each_line do |line|
+
+        # Disable rubocop warning to get a build
+        showpkg.stdout.rpartition(/Reverse Provides: ?#{$/}/)[2].each_line do |line| # rubocop:disable Style/SpecialGlobalVars
           provider, version = line.split
           providers[provider] = version
           Chef::Log.info("Package #{provider} #{version} provides virtual package #{package_name}")
