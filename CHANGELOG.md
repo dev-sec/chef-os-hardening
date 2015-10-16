@@ -1,5 +1,10 @@
 # Changelog
 
+## x.y.z (pending)
+
+* bugfix: Fix issue with `execute[update-pam]` in Chef 12.5+
+  [#95](https://github.com/hardening-io/chef-os-hardening/issues/95)
+
 ## 1.3.0
 
 * feature: implement ipv6 router advertisement settings #78

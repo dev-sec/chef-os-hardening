@@ -19,11 +19,6 @@
 # limitations under the License.
 #
 
-execute 'update-pam' do
-  command 'pam-auth-update --package'
-  action :nothing
-end
-
 # remove ccreds if not necessary
 package 'pam-ccreds' do
   package_name node['packages']['pam_ccreds']
@@ -93,7 +88,9 @@ when 'debian'
     end
   end
 
-  execute 'update-pam'
+  execute 'update-pam' do
+    command 'pam-auth-update --package'
+  end
 
 # do config for rhel-family
 when 'rhel', 'fedora'
