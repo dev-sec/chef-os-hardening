@@ -45,6 +45,8 @@ platforms:
   driver_config:
     box: debian/jessie64
     box_url: https://atlas.hashicorp.com/debian/boxes/jessie64/versions/8.1.0/providers/virtualbox.box
+verifier:
+  name: inspec
 suites:
 - name: default
   run_list:

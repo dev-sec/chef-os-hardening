@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 
 gem 'berkshelf',  '~> 4.0'
 gem 'chef',       '>= 12.0'
+gem 'inspec', path: '../../.'
+gem 'r-train', git: 'git@github.com:chef/train.git'
 
 group :test do
   gem 'rake'
@@ -12,6 +14,9 @@ group :test do
   gem 'thor-foodcritic'
   gem 'rubocop',    '~> 0.28.0'
   gem 'coveralls',  require: false
+  gem 'bundler', '~> 1.5'
+  gem 'minitest', '~> 5.5'
+  gem 'simplecov', '~> 0.10'
 end
 
 group :development do
@@ -26,6 +31,8 @@ group :integration do
   gem 'test-kitchen', '~> 1.0'
   gem 'kitchen-vagrant'
   gem 'kitchen-sharedtests', '~> 0.2.0'
+  gem 'kitchen-inspec', git: 'git@github.com:chef/kitchen-inspec.git'
+  gem 'concurrent-ruby', '~> 0.9'
 end
 
 group :openstack do
