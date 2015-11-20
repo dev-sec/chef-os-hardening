@@ -3,6 +3,7 @@
 # Cookbook Name:: os-hardening
 # Library:: apt_package_extras
 #
+# Copyright 2008, Opscode Inc.
 # Copyright 2015, Hardening Framework Team
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
