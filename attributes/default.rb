@@ -84,9 +84,9 @@ default['security']['suid_sgid']['remove_from_unknown'] = false
 default['security']['suid_sgid']['dry_run_on_unknown']  = false
 
 # Allow interactive startup (rhel, centos)
-default['security']['init']['prompt']                   = false
+default['security']['init']['prompt']                   = true
 # Require root password for single user mode. (rhel, centos)
-default['security']['init']['single']                   = true
+default['security']['init']['single']                   = false
 
 # remove packages with known issues
 default['security']['packages']['clean']               = true
