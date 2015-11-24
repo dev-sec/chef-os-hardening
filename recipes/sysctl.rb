@@ -58,7 +58,10 @@ when 'rhel', 'fedora'
     mode 0544
     owner 'root'
     group 'root'
-    variables
+    variables(
+      prompt: node['security']['init']['prompt'],
+      single: node['security']['init']['single']
+    )
   end
 end
 
