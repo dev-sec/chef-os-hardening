@@ -51,7 +51,7 @@ if node['security']['packages']['clean']
   end
 
   # remove packages
-  %w(xinetd inetd ypserv telnet-server rsh-server).each do |pkg|
+  node['security']['packages']['list'].each do |pkg|
     yum_package pkg do
       action :purge
     end

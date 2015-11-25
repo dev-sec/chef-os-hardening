@@ -90,6 +90,14 @@ default['security']['init']['single']                   = false
 
 # remove packages with known issues
 default['security']['packages']['clean']               = true
+# list of packages with known issues
+default['security']['packages']['list']               = [
+  'xinetd',
+  'inetd',
+  'ypserv',
+  'telnet-server',
+  'rsh-server'
+]
 
 # SYSTEM CONFIGURATION
 # ====================

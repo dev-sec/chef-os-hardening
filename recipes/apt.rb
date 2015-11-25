@@ -27,7 +27,7 @@ if node['security']['packages']['clean']
 
   # remove packages and handle virtual packages correctly.
   # this is the same package list as used for the redhat distro family
-  %w(xinetd inetd ypserv telnet-server rsh-server).each do |pkg|
+  node['security']['packages']['list'].each do |pkg|
 
     if !AptPackageExtras.virtual_package?(pkg)
       package pkg do
