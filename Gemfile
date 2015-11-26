@@ -4,8 +4,7 @@ source 'https://rubygems.org'
 
 gem 'berkshelf',  '~> 4.0'
 gem 'chef',       '>= 12.0'
-gem 'inspec', path: '../../.'
-gem 'r-train', git: 'git@github.com:chef/train.git'
+gem 'inspec', '~> 0.9'
 
 group :test do
   gem 'rake'
@@ -31,7 +30,7 @@ group :integration do
   gem 'test-kitchen', '~> 1.0'
   gem 'kitchen-vagrant'
   gem 'kitchen-sharedtests', '~> 0.2.0'
-  gem 'kitchen-inspec', git: 'git@github.com:chef/kitchen-inspec.git'
+  gem 'kitchen-inspec', '~> 0.9'
   gem 'concurrent-ruby', '~> 0.9'
 end
 
