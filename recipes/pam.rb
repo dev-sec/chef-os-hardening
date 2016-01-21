@@ -103,13 +103,13 @@ when 'rhel', 'fedora'
     if node['platform_version'].to_f < 7
       # remove pam_cracklib, because it does not play nice wiht passwdqc in versions less than 7
       package 'pam-cracklib' do
-	package_name node['packages']['pam_cracklib']
-	action :remove
+        package_name node['packages']['pam_cracklib']
+        action :remove
       end
 
       # get the package for strong password checking
       package 'pam-passwdqc' do
-	package_name node['packages']['pam_passwdqc']
+        package_name node['packages']['pam_passwdqc']
       end
 
       # deactivate passwdqc
@@ -118,8 +118,8 @@ when 'rhel', 'fedora'
       # make sure the package is not on the system,
       # if this feature is not wanted
       package 'pam-passwdqc' do
-	package_name node['packages']['pam_passwdqc']
-	action :remove
+        package_name node['packages']['pam_passwdqc']
+        action :remove
       end
     end
   else
