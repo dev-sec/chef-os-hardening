@@ -100,7 +100,7 @@ when 'rhel', 'fedora'
   # @see http://serverfault.com/questions/292406/puppet-configuration-using-augeas-fails-if-combined-with-notify
 
   if node['auth']['pam']['passwdqc']['enable']
-    if node[:platform_version] < 7
+    if node['platform_version'].to_f < 7
       # remove pam_cracklib, because it does not play nice wiht passwdqc in versions less than 7
       package 'pam-cracklib' do
 	package_name node['packages']['pam_cracklib']
