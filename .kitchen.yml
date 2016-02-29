@@ -13,6 +13,10 @@ platforms:
   driver_config:
     box: ubuntu/trusty64
     box_url: https://atlas.hashicorp.com/ubuntu/boxes/trusty64/versions/20150609.0.10/providers/virtualbox.box
+- name: centos-5.11
+  driver_config:
+    box: opscode-centos-5.11
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-5.11_provisionerless.box
 - name: centos-6.4
   driver_config:
     box: opscode-centos-6.4
