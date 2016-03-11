@@ -61,6 +61,7 @@ default['auth']['timeout']                            = 60
 default['auth']['allow_homeless']                     = false
 default['auth']['pam']['passwdqc']['enable']            = true
 default['auth']['pam']['passwdqc']['options']           = 'min=disabled,disabled,16,12,8'
+default['auth']['pam']['cracklib']['options']           = 'try_first_pass retry=3 type='
 default['auth']['root_ttys']                          = %w(console tty1 tty2 tty3 tty4 tty5 tty6)
 default['auth']['uid_min']                             = 1000
 default['auth']['gid_min']                             = 1000

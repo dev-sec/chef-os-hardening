@@ -23,7 +23,7 @@ account     required      pam_permit.so
 <% if node['auth']['pam']['passwdqc']['enable'] %>
 password    requisite     pam_passwdqc.so <%= node['auth']['pam']['passwdqc']['options'] %>
 <% else %>
-password    requisite     pam_cracklib.so try_first_pass retry=3 type=
+password    requisite     pam_cracklib.so <%= node['auth']['pam']['cracklib']['options'] %>
 <% end %>
 
 # NSA 2.3.3.5 Upgrade Password Hashing Algorithm to SHA-512
