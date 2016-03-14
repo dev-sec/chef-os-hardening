@@ -99,52 +99,38 @@ when 'rhel', 'fedora'
   # therefore we edit /etc/pam.d/system-auth-ac/
   # @see http://serverfault.com/questions/292406/puppet-configuration-using-augeas-fails-if-combined-with-notify
 
-  if node['auth']['pam']['passwdqc']['enable']
-    if node['platform_version'].to_f < 7
-      # remove pam_cracklib, because it does not play nice wiht passwdqc in versions less than 7
-      package 'pam-cracklib' do
-        package_name node['packages']['pam_cracklib']
-        action :remove
-      end
+  if node['platform_version'].to_f < 7
+    # remove pam_cracklib, because it does not play nice with passwdqc in versions less than 7
+    package 'pam-cracklib' do
+      package_name node['packages']['pam_cracklib']
+      action node['auth']['pam']['passwdqc']['enable'] ? :remove : :nothing
+    end
 
-      # get the package for strong password checking
-      package 'pam-passwdqc' do
-        package_name node['packages']['pam_passwdqc']
-      end
-
-      # deactivate passwdqc
-    else
-
-      # make sure the package is not on the system,
-      # if this feature is not wanted
-      package 'pam-passwdqc' do
-        package_name node['packages']['pam_passwdqc']
-        action :remove
-      end
+    package 'pam-passwdqc' do
+      package_name node['packages']['pam_passwdqc']
+      action node['auth']['pam']['passwdqc']['enable'] ? :install : :remove
     end
   else
-
-    # In RH-family distros > 7, 'pam_pwquality' contains both pam_cracklib and pam_passwdqc
+    # In RH-family distros > 7, 'pam_pwquality' obsoletes both pam_cracklib and pam_passwdqc
     # See https://linux.web.cern.ch/linux/rhel/releasenotes/RELEASE-NOTES-7.0-x86_64/
     package 'pam_pwquality' do
       package_name node['packages']['pam_pwquality']
     end
-    # run the standard config
+  end
 
-    # configure passwdqc and tally via central system-auth confic:
-    template '/etc/pam.d/system-auth-ac' do
-      source 'rhel_system_auth.erb'
-      mode 0640
-      owner 'root'
-      group 'root'
-    end
+  # configure passwdqc and tally via central system-auth confic:
+  template '/etc/pam.d/system-auth-ac' do
+    source 'rhel_system_auth.erb'
+    mode 0640
+    owner 'root'
+    group 'root'
+  end
 
-    # NSA 2.3.3.5 Upgrade Password Hashing Algorithm to SHA-512
-    template '/etc/libuser.conf' do
-      source 'rhel_libuser.conf.erb'
-      mode 0640
-      owner 'root'
-      group 'root'
-    end
+  # NSA 2.3.3.5 Upgrade Password Hashing Algorithm to SHA-512
+  template '/etc/libuser.conf' do
+    source 'rhel_libuser.conf.erb'
+    mode 0640
+    owner 'root'
+    group 'root'
   end
 end

@@ -24,6 +24,15 @@ when 'rhel', 'fedora'
   default['packages']['pam_ccreds'] = 'pam_ccreds'
   default['packages']['pam_passwdqc'] = 'pam_passwdqc'
   default['packages']['pam_cracklib'] = 'pam_cracklib'
+  default['packages']['pam_pwquality'] = 'libpwquality'
+
+  if platform_version.to_f < 7
+    default['auth']['pam']['passwdqc']['enable']  = true
+    default['auth']['pam']['pwquality']['enable']  = false
+  else
+    default['auth']['pam']['passwdqc']['enable']  = false
+    default['auth']['pam']['pwquality']['enable']  = true
+  end
 
 when 'debian'
   default['packages']['pam_ccreds'] = 'libpam-ccreds'
@@ -59,9 +68,9 @@ default['auth']['retries']                            = 5
 default['auth']['lockout_time']                       = 600 # 10min
 default['auth']['timeout']                            = 60
 default['auth']['allow_homeless']                     = false
-default['auth']['pam']['passwdqc']['enable']            = true
 default['auth']['pam']['passwdqc']['options']           = 'min=disabled,disabled,16,12,8'
 default['auth']['pam']['cracklib']['options']           = 'try_first_pass retry=3 type='
+default['auth']['pam']['pwquality']['options']          = 'try_first_pass retry=3 type='
 default['auth']['root_ttys']                          = %w(console tty1 tty2 tty3 tty4 tty5 tty6)
 default['auth']['uid_min']                             = 1000
 default['auth']['gid_min']                             = 1000

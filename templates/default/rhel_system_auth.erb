@@ -22,6 +22,8 @@ account     required      pam_permit.so
 
 <% if node['auth']['pam']['passwdqc']['enable'] %>
 password    requisite     pam_passwdqc.so <%= node['auth']['pam']['passwdqc']['options'] %>
+<% elsif node['auth']['pam']['pwquality']['enable'] %>
+password    requisite     pam_pwquality.so <%= node['auth']['pam']['pwquality']['options'] %>
 <% else %>
 password    requisite     pam_cracklib.so <%= node['auth']['pam']['cracklib']['options'] %>
 <% end %>
