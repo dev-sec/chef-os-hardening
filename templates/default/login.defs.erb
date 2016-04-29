@@ -111,16 +111,20 @@ PASS_WARN_AGE	7
 # Min/max values for automatic uid selection in useradd
 UID_MIN			 <%= @uid_min.to_s %>
 UID_MAX			60000
+<% unless node['platform_family'] == 'rhel' and node['platform_version'].to_f < 6.0 %>
 # System accounts
 SYS_UID_MIN		  <%= @sys_uid_min.to_s %>
 SYS_UID_MAX		  <%= @sys_uid_max.to_s %>
+<% end %>
 
 # Min/max values for automatic gid selection in groupadd
 GID_MIN			 <%= @gid_min.to_s %>
 GID_MAX			60000
+<% unless node['platform_family'] == 'rhel' and node['platform_version'].to_f < 6.0 %>
 # System accounts
 SYS_GID_MIN		  <%= @sys_gid_min.to_s %>
 SYS_GID_MAX		  <%= @sys_gid_max.to_s %>
+<% end %>
 
 # Max number of login retries if password is bad. This will most likely be overriden by PAM, since the default pam_unix module has it's own built in of 3 retries. However, this is a safe fallback in case you are using an authentication module that does not enforce PAM_MAXTRIES.
 LOGIN_RETRIES		<%= @login_retries.to_s %>

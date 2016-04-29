@@ -25,8 +25,8 @@ version          "1.3.1"
 
 supports 'ubuntu', '>= 12.04'
 supports 'debian', '>= 6.0'
-supports 'centos', '>= 6.4'
-supports 'redhat', '>= 6.4'
+supports 'centos', '>= 5.0'
+supports 'redhat', '>= 5.0'
 supports 'oracle', '>= 6.4'
 
 depends 'sysctl', '>= 0.3.0'
