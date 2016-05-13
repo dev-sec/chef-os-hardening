@@ -43,8 +43,6 @@ We deprecated `sysctl` version before `0.6.0`. Future versions of this cookbook 
 
 ## Attributes
 
-* `['desktop']['enable'] = false`
-  true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
 * `['network']['forwarding'] = false`
   true if this system requires packet forwarding (eg Router), false otherwise
 * `['network']['ipv6']['enable'] = false`
@@ -88,9 +86,9 @@ We deprecated `sysctl` version before `0.6.0`. Future versions of this cookbook 
 * `['security']['suid_sgid']['dry_run_on_unknown'] = false`
   like `remove_from_unknown` above, only that SUID/SGID bits aren't removed.
   It will still search the filesystems to look for SUID/SGID bits but it will only print them in your log. This option is only ever recommended, when you first configure `remove_from_unknown` for SUID/SGID bits, so that you can see the files that are being changed and make adjustments to your `whitelist` and `blacklist`.
-* `['security']['packages']['clean'] = true` 
+* `['security']['os-hardening']['packages']['clean'] = true` 
   removes packages with known issues.
-* `['security']['packages']['list'] = ['xinetd','inetd','ypserv','telnet-server','rsh-server']` 
+* `['security']['os-hardening']['packages']['list'] = ['xinetd','inetd','ypserv','telnet-server','rsh-server']` 
   list of packages to remove, by default we remove the following packages:
   * xinetd ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.1)
   * inetd ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.1)

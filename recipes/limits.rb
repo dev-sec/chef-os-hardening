@@ -30,5 +30,5 @@ template '/etc/security/limits.d/10.hardcore.conf' do
   mode '0440'
   owner 'root'
   group 'root'
-  not_if { node['security']['kernel']['enable_core_dump'] }
+  not_if { node['os-hardening']['security']['kernel']['enable_core_dump'] }
 end

@@ -4,4 +4,4 @@ Priority: 1024
 Conflicts: cracklib
 Password-Type: Primary
 Password:
-  requisite     pam_passwdqc.so <%= node['auth']['pam']['passwdqc']['options'] %>
+  requisite     pam_passwdqc.so <%= node['os-hardening']['auth']['pam']['passwdqc']['options'] %>

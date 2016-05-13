@@ -21,7 +21,7 @@
 
 # remove ccreds if not necessary
 package 'pam-ccreds' do
-  package_name node['packages']['pam_ccreds']
+  package_name node['os-hardening']['packages']['pam_ccreds']
   action :remove
 end
 
@@ -33,17 +33,17 @@ when 'debian'
   tally2_path   = '/usr/share/pam-configs/tally2'
 
   # See NSA 2.3.3.1.2
-  if node['auth']['pam']['passwdqc']['enable']
+  if node['os-hardening']['auth']['pam']['passwdqc']['enable']
 
     # remove pam_cracklib, because it does not play nice wiht passwdqc
     package 'pam-cracklib' do
-      package_name node['packages']['pam_cracklib']
+      package_name node['os-hardening']['packages']['pam_cracklib']
       action :remove
     end
 
     # get the package for strong password checking
     package 'pam-passwdqc' do
-      package_name node['packages']['pam_passwdqc']
+      package_name node['os-hardening']['packages']['pam_passwdqc']
     end
 
     # configure passwdqc via central module:
@@ -65,13 +65,13 @@ when 'debian'
     # make sure the package is not on the system,
     # if this feature is not wanted
     package 'pam-passwdqc' do
-      package_name node['packages']['pam_passwdqc']
+      package_name node['os-hardening']['packages']['pam_passwdqc']
       action :remove
     end
   end
 
   # configure tally2
-  if node['auth']['retries'] > 0
+  if node['os-hardening']['auth']['retries'] > 0
     # tally2 is needed for pam
     package 'libpam-modules'
 
@@ -102,19 +102,19 @@ when 'rhel', 'fedora'
   if node['platform_version'].to_f < 7
     # remove pam_cracklib, because it does not play nice with passwdqc in versions less than 7
     package 'pam-cracklib' do
-      package_name node['packages']['pam_cracklib']
-      action node['auth']['pam']['passwdqc']['enable'] ? :remove : :nothing
+      package_name node['os-hardening']['packages']['pam_cracklib']
+      action node['os-hardening']['auth']['pam']['passwdqc']['enable'] ? :remove : :nothing
     end
 
     package 'pam-passwdqc' do
-      package_name node['packages']['pam_passwdqc']
+      package_name node['os-hardening']['packages']['pam_passwdqc']
       action node['auth']['pam']['passwdqc']['enable'] ? :install : :remove
     end
   else
     # In RH-family distros > 7, 'pam_pwquality' obsoletes both pam_cracklib and pam_passwdqc
     # See https://linux.web.cern.ch/linux/rhel/releasenotes/RELEASE-NOTES-7.0-x86_64/
     package 'pam_pwquality' do
-      package_name node['packages']['pam_pwquality']
+      package_name node['os-hardening']['packages']['pam_pwquality']
     end
   end
 

@@ -26,6 +26,6 @@ template '/etc/securetty' do
   owner 'root'
   group 'root'
   variables(
-    ttys: node['auth']['root_ttys'].join("\n")
+    ttys: node['os-hardening']['auth']['root_ttys'].join("\n")
   )
 end
