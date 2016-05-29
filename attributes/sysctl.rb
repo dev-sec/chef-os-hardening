@@ -19,9 +19,9 @@
 
 # Only enable IP traffic forwarding, if required.
 default['sysctl']['params']['net']['ipv4']['ip_forward'] =
-  node['network']['forwarding'] ? 1 : 0
+  node['os-hardening']['network']['forwarding'] ? 1 : 0
 default['sysctl']['params']['net']['ipv6']['conf']['all']['forwarding'] =
-  (node['network']['ipv6']['enable'] && node['network']['forwarding']) ? 1 : 0
+  (node['os-hardening']['network']['ipv6']['enable'] && node['os-hardening']['network']['forwarding']) ? 1 : 0
 
 # Enable RFC-recommended source validation feature. It should not be used for
 # routers on complex networks, but is helpful for end hosts and routers serving
@@ -46,7 +46,7 @@ default['sysctl']['params']['net']['ipv4']['icmp_ratemask'] = 88089
 
 # Disable or Enable IPv6 as it is needed.
 default['sysctl']['params']['net']['ipv6']['conf']['all']['disable_ipv6'] =
-    node['network']['ipv6']['enable'] ? 0 : 1
+    node['os-hardening']['network']['ipv6']['enable'] ? 0 : 1
 
 # Protect against wrapping sequence numbers at gigabit speeds:
 default['sysctl']['params']['net']['ipv4']['tcp_timestamps'] = 0
@@ -76,7 +76,7 @@ default['sysctl']['params']['net']['ipv4']['tcp_timestamps'] = 0
 #           announce.
 #
 default['sysctl']['params']['net']['ipv4']['conf']['all']['arp_ignore'] =
-    node['network']['arp']['restricted'] ? 1 : 0
+    node['os-hardening']['network']['arp']['restricted'] ? 1 : 0
 
 # Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:
 #
@@ -92,7 +92,7 @@ default['sysctl']['params']['net']['ipv4']['conf']['all']['arp_ignore'] =
 # * **4-7** - reserved
 # * **8** - do not reply for all local addresses
 default['sysctl']['params']['net']['ipv4']['conf']['all']['arp_announce'] =
-    node['network']['arp']['restricted'] ? 2 : 0
+    node['os-hardening']['network']['arp']['restricted'] ? 2 : 0
 
 # RFC 1337 fix F1
 default['sysctl']['params']['net']['ipv4']['tcp_rfc1337'] = 1
