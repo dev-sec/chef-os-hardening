@@ -24,19 +24,19 @@ template '/etc/login.defs' do
   owner 'root'
   group 'root'
   variables(
-    additional_user_paths: node['env']['extra_user_paths'].join(':'), # :/usr/local/games:/usr/games
-    umask: node['env']['umask'],
-    password_max_age: node['auth']['pw_max_age'],
-    password_min_age: node['auth']['pw_min_age'],
-    login_retries: node['auth']['retries'],
-    login_timeout: node['auth']['timeout'],
+    additional_user_paths: node['os-hardening']['env']['extra_user_paths'].join(':'), # :/usr/local/games:/usr/games
+    umask: node['os-hardening']['env']['umask'],
+    password_max_age: node['os-hardening']['auth']['pw_max_age'],
+    password_min_age: node['os-hardening']['auth']['pw_min_age'],
+    login_retries: node['os-hardening']['auth']['retries'],
+    login_timeout: node['os-hardening']['auth']['timeout'],
     chfn_restrict: '', # "rwh"
-    allow_login_without_home: node['auth']['allow_homeless'],
-    uid_min: node['auth']['uid_min'],
-    gid_min: node['auth']['gid_min'],
-    sys_uid_min: node['auth']['sys_uid_min'],
-    sys_uid_max: node['auth']['sys_uid_max'],
-    sys_gid_min: node['auth']['sys_gid_min'],
-    sys_gid_max: node['auth']['sys_gid_max']
+    allow_login_without_home: node['os-hardening']['auth']['allow_homeless'],
+    uid_min: node['os-hardening']['auth']['uid_min'],
+    gid_min: node['os-hardening']['auth']['gid_min'],
+    sys_uid_min: node['os-hardening']['auth']['sys_uid_min'],
+    sys_uid_max: node['os-hardening']['auth']['sys_uid_max'],
+    sys_gid_min: node['os-hardening']['auth']['sys_gid_min'],
+    sys_gid_max: node['os-hardening']['auth']['sys_gid_max']
   )
 end

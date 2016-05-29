@@ -26,5 +26,5 @@ include_recipe('os-hardening::minimize_access')
 include_recipe('os-hardening::pam')
 include_recipe('os-hardening::profile')
 include_recipe('os-hardening::securetty')
-include_recipe('os-hardening::suid_sgid') if node['security']['suid_sgid']['enforce']
+include_recipe('os-hardening::suid_sgid') if node['os-hardening']['security']['suid_sgid']['enforce']
 include_recipe('os-hardening::sysctl')

@@ -4,7 +4,7 @@ Priority: 1024
 Conflicts: cracklib
 Auth-Type: Primary
 Auth-Initial:
-  required      pam_tally2.so deny=<%= node['auth']['retries'] %> onerr=fail unlock_time=<%= node['auth']['lockout_time'] %>
+  required      pam_tally2.so deny=<%= node['os-hardening']['auth']['retries'] %> onerr=fail unlock_time=<%= node['os-hardening']['auth']['lockout_time'] %>
 Account-Type: Primary
 Account-Initial:
   required      pam_tally2.so

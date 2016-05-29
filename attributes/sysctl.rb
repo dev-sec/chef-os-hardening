@@ -149,7 +149,7 @@ default['sysctl']['params']['net']['ipv6']['conf']['default']['accept_ra'] = 0
 # This settings controls how the kernel behaves towards module changes at
 # runtime. Setting to 1 will disable module loading at runtime.
 # Setting it to 0 is actually never supported.
-unless node['security']['kernel']['enable_module_loading']
+unless node['os-hardening']['security']['kernel']['enable_module_loading']
   default['sysctl']['params']['kernel']['modules_disabled'] = 1
 end
 
@@ -170,12 +170,12 @@ end
 # * **128** - reboot/poweroff
 # * **256** - nicing of all RT tasks
 default['sysctl']['params']['kernel']['sysrq'] =
-  node['security']['kernel']['enable_sysrq'] ? node['security']['kernel']['secure_sysrq'] : 0
+  node['os-hardening']['security']['kernel']['enable_sysrq'] ? node['os-hardening']['security']['kernel']['secure_sysrq'] : 0
 
 # Prevent core dumps with SUID. These are usually only needed by developers and
 # may contain sensitive information.
 default['sysctl']['params']['fs']['suid_dumpable'] =
-  node['security']['kernel']['enable_core_dump'] ? 1 : 0
+  node['os-hardening']['security']['kernel']['enable_core_dump'] ? 1 : 0
 
 # ExecShield protection against buffer overflows
 # unless node['platform'] == "ubuntu" # ["nx"].include?(node['cpu'][0]['flags']) or

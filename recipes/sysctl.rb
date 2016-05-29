@@ -35,7 +35,7 @@ begin
   cpu_vendor = node['cpu']['0']['vendor_id'].
                sub(/^.*GenuineIntel.*$/, 'intel').
                sub(/^.*AuthenticAMD.*$/, 'amd')
-  node.default['security']['cpu_vendor'] = cpu_vendor
+  node.default['os-hardening']['security']['cpu_vendor'] = cpu_vendor
 rescue
   log 'WARNING: Could not properly determine the cpu vendor. Fallback to intel cpu.' do
     level :warn
@@ -59,8 +59,8 @@ when 'rhel', 'fedora'
     owner 'root'
     group 'root'
     variables(
-      prompt: node['security']['init']['prompt'],
-      single: node['security']['init']['single']
+      prompt: node['os-hardening']['security']['init']['prompt'],
+      single: node['os-hardening']['security']['init']['single']
     )
   end
 end
@@ -71,7 +71,7 @@ when 'debian'
 
   # rebuild initramfs with starting pack of modules,
   # if module loading at runtime is disabled
-  unless node['security']['kernel']['enable_module_loading']
+  unless node['os-hardening']['security']['kernel']['enable_module_loading']
     template '/etc/initramfs-tools/modules' do
       source 'modules.erb'
       mode 0440
@@ -79,7 +79,7 @@ when 'debian'
       group 'root'
       variables(
         x86_64: (!(node['kernel']['machine'] =~ /x86_64/).nil?),
-        cpuVendor: node['security']['cpu_vendor']
+        cpuVendor: node['os-hardening']['security']['cpu_vendor']
       )
     end
 

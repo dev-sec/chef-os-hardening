@@ -4,15 +4,15 @@
 #---
 
 #%PAM-1.0
-<% if node['auth']['retries'] > 0 %>
-auth        required      pam_tally2.so deny=<%= node['auth']['retries'] %> onerr=fail unlock_time=<%= node['auth']['lockout_time'] %>
+<% if node['os-hardening']['auth']['retries'] > 0 %>
+auth        required      pam_tally2.so deny=<%= node['os-hardening']['auth']['retries'] %> onerr=fail unlock_time=<%= node['os-hardening']['auth']['lockout_time'] %>
 <% end %>
 auth        required      pam_env.so
 auth        sufficient    pam_unix.so nullok try_first_pass
 auth        requisite     pam_succeed_if.so uid >= 500 quiet
 auth        required      pam_deny.so
 
-<% if node['auth']['retries'] > 0 %>
+<% if node['os-hardening']['auth']['retries'] > 0 %>
 account     required      pam_tally2.so
 <% end %>
 account     required      pam_unix.so
@@ -20,9 +20,9 @@ account     sufficient    pam_localuser.so
 account     sufficient    pam_succeed_if.so uid < 500 quiet
 account     required      pam_permit.so
 
-<% if node['auth']['pam']['passwdqc']['enable'] %>
+<% if node['os-hardening']['auth']['pam']['passwdqc']['enable'] %>
 password    requisite     pam_passwdqc.so <%= node['auth']['pam']['passwdqc']['options'] %>
-<% elsif node['auth']['pam']['pwquality']['enable'] %>
+<% elsif node['os-hardening']['auth']['pam']['pwquality']['enable'] %>
 password    requisite     pam_pwquality.so <%= node['auth']['pam']['pwquality']['options'] %>
 <% else %>
 password    requisite     pam_cracklib.so <%= node['auth']['pam']['cracklib']['options'] %>
