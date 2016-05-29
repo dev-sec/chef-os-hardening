@@ -43,52 +43,54 @@ We deprecated `sysctl` version before `0.6.0`. Future versions of this cookbook 
 
 ## Attributes
 
-* `['network']['forwarding'] = false`
+* `['os-hardening']['desktop']['enable'] = false`
+  true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
+* `['os-hardening']['network']['forwarding'] = false`
   true if this system requires packet forwarding (eg Router), false otherwise
-* `['network']['ipv6']['enable'] = false`
-* `['network']['arp']['restricted'] = true`
+* `['os-hardening']['network']['ipv6']['enable'] = false`
+* `['os-hardening']['network']['arp']['restricted'] = true`
   true if you want the behavior of announcing and replying to ARP to be restricted, false otherwise
-* `['env']['extra_user_paths'] = []`
+* `['os-hardening']['env']['extra_user_paths'] = []`
   add additional paths to the user's `PATH` variable (default is empty).
-* `['env']['umask'] = "027"`
-* `['env']['root_path'] = "/"`
+* `['os-hardening']['env']['umask'] = "027"`
+* `['os-hardening']['env']['root_path'] = "/"`
   where root is mounted
-* `['auth']['pw_max_age'] = 60`
+* `['os-hardening']['auth']['pw_max_age'] = 60`
   maximum password age
-* `['auth']['pw_min_age'] = 7`
+* `['os-hardening']['auth']['pw_min_age'] = 7`
   minimum password age (before allowing any other password change)
-* `['auth']['retries'] = 5`
+* `['os-hardening']['auth']['retries'] = 5`
   the maximum number of authentication attempts, before the account is locked for some time
-* `['auth']['lockout_time'] = 600`
+* `['os-hardening']['auth']['lockout_time'] = 600`
   time in seconds that needs to pass, if the account was locked due to too many failed authentication attempts
-* `['auth']['timeout'] = 60`
+* `['os-hardening']['auth']['timeout'] = 60`
   authentication timeout in seconds, so login will exit if this time passes
-* `['auth']['allow_homeless'] = false`
+* `['os-hardening']['auth']['allow_homeless'] = false`
   true if to allow users without home to login
-* `['auth']['pam']['passwdqc']['enable'] = true`
+* `['os-hardening']['auth']['pam']['passwdqc']['enable'] = true`
   true if you want to use strong password checking in PAM using passwdqc
-* `['auth']['pam']['passwdqc']['options'] = "min=disabled,disabled,16,12,8"`
+* `['os-hardening']['auth']['pam']['passwdqc']['options'] = "min=disabled,disabled,16,12,8"`
   set to any option line (as a string) that you want to pass to passwdqc
-* `['security']['users']['allow'] = []`
+* `['os-hardening']['security']['users']['allow'] = []`
   list of things, that a user is allowed to do. May contain: `change_user`
-* `['security']['kernel']['enable_module_loading'] = true`
+* `['os-hardening']['security']['kernel']['enable_module_loading'] = true`
   true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
-* `['security']['kernel']['enable_sysrq'] = false`
-* `['security']['kernel']['enable_core_dump'] = false`
-* `['security']['suid_sgid']['enforce'] = true`
+* `['os-hardening']['security']['kernel']['enable_sysrq'] = false`
+* `['os-hardening']['security']['kernel']['enable_core_dump'] = false`
+* `['os-hardening']['security']['suid_sgid']['enforce'] = true`
   true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own
-* `['security']['suid_sgid']['blacklist'] = []`
+* `['os-hardening']['security']['suid_sgid']['blacklist'] = []`
   a list of paths which should have their SUID/SGID bits removed
-* `['security']['suid_sgid']['whitelist'] = []`
+* `['os-hardening']['security']['suid_sgid']['whitelist'] = []`
   a list of paths which should not have their SUID/SGID bits altered
-* `['security']['suid_sgid']['remove_from_unknown'] = false`
+* `['os-hardening']['security']['suid_sgid']['remove_from_unknown'] = false`
   true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Chef run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.
-* `['security']['suid_sgid']['dry_run_on_unknown'] = false`
+* `['os-hardening']['security']['suid_sgid']['dry_run_on_unknown'] = false`
   like `remove_from_unknown` above, only that SUID/SGID bits aren't removed.
   It will still search the filesystems to look for SUID/SGID bits but it will only print them in your log. This option is only ever recommended, when you first configure `remove_from_unknown` for SUID/SGID bits, so that you can see the files that are being changed and make adjustments to your `whitelist` and `blacklist`.
-* `['security']['os-hardening']['packages']['clean'] = true` 
+* `['os-hardening']['security']['packages']['clean'] = true`
   removes packages with known issues.
-* `['security']['os-hardening']['packages']['list'] = ['xinetd','inetd','ypserv','telnet-server','rsh-server']` 
+* `['os-hardening']['security']['packages']['list'] = ['xinetd','inetd','ypserv','telnet-server','rsh-server']`
   list of packages to remove, by default we remove the following packages:
   * xinetd ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.1)
   * inetd ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.1)
