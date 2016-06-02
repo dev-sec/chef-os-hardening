@@ -108,7 +108,7 @@ when 'rhel', 'fedora'
 
     package 'pam-passwdqc' do
       package_name node['os-hardening']['packages']['pam_passwdqc']
-      action node['auth']['pam']['passwdqc']['enable'] ? :install : :remove
+      action node['os-hardening']['auth']['pam']['passwdqc']['enable'] ? :install : :remove
     end
   else
     # In RH-family distros > 7, 'pam_pwquality' obsoletes both pam_cracklib and pam_passwdqc
