@@ -21,11 +21,11 @@ account     sufficient    pam_succeed_if.so uid < 500 quiet
 account     required      pam_permit.so
 
 <% if node['os-hardening']['auth']['pam']['passwdqc']['enable'] %>
-password    requisite     pam_passwdqc.so <%= node['auth']['pam']['passwdqc']['options'] %>
+password    requisite     pam_passwdqc.so <%= node['os-hardening']['auth']['pam']['passwdqc']['options'] %>
 <% elsif node['os-hardening']['auth']['pam']['pwquality']['enable'] %>
-password    requisite     pam_pwquality.so <%= node['auth']['pam']['pwquality']['options'] %>
+password    requisite     pam_pwquality.so <%= node['os-hardening']['auth']['pam']['pwquality']['options'] %>
 <% else %>
-password    requisite     pam_cracklib.so <%= node['auth']['pam']['cracklib']['options'] %>
+password    requisite     pam_cracklib.so <%= node['os-hardening']['auth']['pam']['cracklib']['options'] %>
 <% end %>
 
 # NSA 2.3.3.5 Upgrade Password Hashing Algorithm to SHA-512
