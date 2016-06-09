@@ -5,6 +5,12 @@ source 'https://rubygems.org'
 gem 'berkshelf',  '~> 4.0'
 gem 'chef',       '~> 11.18'
 
+# pin dependency for Ruby 1.9.3 since bundler is not
+# detecting that net-ssh 3 does not work with 1.9.3
+if Gem::Version.new(RUBY_VERSION) <= Gem::Version.new('1.9.3')
+  gem 'net-ssh', '~> 2.9'
+end
+
 group :test do
   gem 'rake'
   gem 'chefspec',   '~> 4.1.1'
@@ -26,8 +32,4 @@ group :integration do
   gem 'test-kitchen', '~> 1.0'
   gem 'kitchen-vagrant'
   gem 'kitchen-sharedtests', '~> 0.2.0'
-end
-
-group :openstack do
-  gem 'kitchen-openstack'
 end

@@ -148,9 +148,12 @@ bundle exec kitchen test default-ubuntu-1204
 # test on all machines
 bundle exec kitchen test
 
-# for development
+# for development, it uses docker based vms
 bundle exec kitchen create default-ubuntu-1204
 bundle exec kitchen converge default-ubuntu-1204
+
+# if you like to use the vagrant setup, use
+KITCHEN_YAML=.kitchen.vagrant.yml bundle exec kitchen converge default-ubuntu-1404
 ```
 
 http://kitchen.ci/docs/getting-started
