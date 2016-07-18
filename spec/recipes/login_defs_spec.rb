@@ -21,8 +21,8 @@ describe 'os-hardening::login_defs' do
 
   let(:chef_run) do
     ChefSpec::ServerRunner.new do |node|
-      node.set['auth']['uid_min'] = 5000
-      node.set['auth']['gid_min'] = 5000
+      node.set['os-hardening']['auth']['uid_min'] = 5000
+      node.set['os-hardening']['auth']['gid_min'] = 5000
     end.converge(described_recipe)
   end
 
