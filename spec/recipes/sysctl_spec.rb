@@ -30,7 +30,7 @@ describe 'os-hardening::sysctl' do
 
     it 'should detect intel cpu' do
       intel_run.converge(described_recipe)
-      expect(intel_run.node['security']['cpu_vendor']).to eq('intel')
+      expect(intel_run.node['os-hardening']['security']['cpu_vendor']).to eq('intel')
     end
 
   end
@@ -46,7 +46,7 @@ describe 'os-hardening::sysctl' do
 
     it 'should detect amd cpu' do
       amd_run.converge(described_recipe)
-      expect(amd_run.node['security']['cpu_vendor']).to eq('amd')
+      expect(amd_run.node['os-hardening']['security']['cpu_vendor']).to eq('amd')
     end
   end
 
@@ -60,7 +60,7 @@ describe 'os-hardening::sysctl' do
 
     it 'should detect intel cpu' do
       fallback_run.converge(described_recipe)
-      expect(fallback_run.node['security']['cpu_vendor']).to eq('intel')
+      expect(fallback_run.node['os-hardening']['security']['cpu_vendor']).to eq('intel')
     end
   end
 end
