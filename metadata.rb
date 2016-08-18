@@ -42,3 +42,6 @@ recipe 'os-hardening::profile', 'harden settings in /etc/profile.d'
 recipe 'os-hardening::securetty', 'limit the allowed TTYs for root login'
 recipe 'os-hardening::suid_sgid', 'reduce SUID and SGID bits in the filesystem'
 recipe 'os-hardening::sysctl', 'set sane sysctl values'
+
+source_url 'https://github.com/dev-sec/chef-os-hardening'
+issues_url 'https://github.com/dev-sec/chef-os-hardening/issues'
