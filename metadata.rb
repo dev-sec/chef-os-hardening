@@ -15,13 +15,13 @@
 # limitations under the License.
 #
 
-name             "os-hardening"
-maintainer       "Dominik Richter"
-maintainer_email "dominik.richter@googlemail.com"
-license          "Apache 2.0"
-description      "Installs and configures operating system hardening"
+name             'os-hardening'
+maintainer       'Dominik Richter'
+maintainer_email 'dominik.richter@googlemail.com'
+license          'Apache 2.0'
+description      'Installs and configures operating system hardening'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "2.0.0-beta"
+version          '2.0.0-beta'
 
 supports 'ubuntu', '>= 12.04'
 supports 'debian', '>= 6.0'

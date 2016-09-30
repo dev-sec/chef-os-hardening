@@ -4,7 +4,6 @@ AllCops:
   Exclude:
   - vendor/**/*
   - test/**/*
-  - metadata.rb
 Metrics/AbcSize:
   Max: 29
 Metrics/LineLength:
