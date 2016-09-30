@@ -18,7 +18,6 @@
 require_relative '../spec_helper'
 
 describe 'os-hardening::default' do
-
   # converge
   let(:chef_run) do
     ChefSpec::ServerRunner.new do |node|
@@ -33,7 +32,6 @@ describe 'os-hardening::default' do
       paths.each do |folder|
         stub_command("find #{folder}  -perm -go+w -type f | wc -l | egrep '^0$'").and_return(false)
       end
-
     end.converge(described_recipe)
   end
 
@@ -48,5 +46,4 @@ describe 'os-hardening::default' do
     expect(chef_run).to include_recipe 'os-hardening::securetty'
     expect(chef_run).to include_recipe 'os-hardening::sysctl'
   end
-
 end

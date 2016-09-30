@@ -18,7 +18,6 @@
 require_relative '../spec_helper'
 
 describe 'os-hardening::login_defs' do
-
   let(:chef_run) do
     ChefSpec::ServerRunner.new do |node|
       node.normal['os-hardening']['auth']['uid_min'] = 5000

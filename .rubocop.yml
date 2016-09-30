@@ -15,8 +15,6 @@ Style/Documentation:
 Style/DotPosition:
   EnforcedStyle: trailing
   Enabled: true
-Style/EmptyLinesAroundBlockBody:
-  Enabled: false
 Style/Encoding:
   EnforcedStyle: always
   Enabled: true
