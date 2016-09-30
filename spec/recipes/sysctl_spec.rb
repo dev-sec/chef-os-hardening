@@ -23,8 +23,8 @@ describe 'os-hardening::sysctl' do
 
     let(:intel_run) do
       ChefSpec::ServerRunner.new do |node|
-        node.set['sysctl']['conf_dir'] = '/etc/sysctl.d'
-        node.set['cpu']['0']['vendor_id'] = 'GenuineIntel'
+        node.normal['sysctl']['conf_dir'] = '/etc/sysctl.d'
+        node.normal['cpu']['0']['vendor_id'] = 'GenuineIntel'
       end
     end
 
@@ -39,8 +39,8 @@ describe 'os-hardening::sysctl' do
 
     let(:amd_run) do
       ChefSpec::ServerRunner.new do |node|
-        node.set['sysctl']['conf_dir'] = '/etc/sysctl.d'
-        node.set['cpu']['0']['vendor_id'] = 'AuthenticAMD'
+        node.normal['sysctl']['conf_dir'] = '/etc/sysctl.d'
+        node.normal['cpu']['0']['vendor_id'] = 'AuthenticAMD'
       end
     end
 
@@ -54,7 +54,7 @@ describe 'os-hardening::sysctl' do
 
     let(:fallback_run) do
       ChefSpec::ServerRunner.new do |node|
-        node.set['sysctl']['conf_dir'] = '/etc/sysctl.d'
+        node.normal['sysctl']['conf_dir'] = '/etc/sysctl.d'
       end
     end
 

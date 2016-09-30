@@ -179,7 +179,7 @@ default['sysctl']['params']['fs']['suid_dumpable'] =
 
 # ExecShield protection against buffer overflows
 # unless node['platform'] == "ubuntu" # ["nx"].include?(node['cpu'][0]['flags']) or
-case platform_family
+case node['platform_family']
 when 'rhel', 'fedora'
   default['sysctl']['params']['kernel']['exec-shield'] = 1
 end

@@ -19,7 +19,7 @@
 # limitations under the License.
 
 # Define the packages based on operating system
-case platform_family
+case node['platform_family']
 when 'rhel', 'fedora'
   default['os-hardening']['packages']['pam_ccreds'] = 'pam_ccreds'
   default['os-hardening']['packages']['pam_passwdqc'] = 'pam_passwdqc'

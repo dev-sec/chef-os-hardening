@@ -25,9 +25,9 @@ describe 'os-hardening::default' do
       # sysctl/attributes/default.rb will set the config dir
       # on rhel and debian, but apply requires it for notification
       # therefore we set it manually here
-      node.set['sysctl']['conf_dir'] = '/etc/sysctl.d'
-      node.set['cpu']['0']['vendor_id'] = 'GenuineIntel'
-      node.set['env']['extra_user_paths'] = []
+      node.normal['sysctl']['conf_dir'] = '/etc/sysctl.d'
+      node.normal['cpu']['0']['vendor_id'] = 'GenuineIntel'
+      node.normal['env']['extra_user_paths'] = []
 
       paths = %w(/usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin) + node['env']['extra_user_paths']
       paths.each do |folder|
