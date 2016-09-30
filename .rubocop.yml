@@ -28,9 +28,15 @@ Style/EmptyLinesAroundBlockBody:
 Style/Encoding:
   EnforcedStyle: always
   Enabled: true
+Style/ExtraSpacing:
+  Exclude:
+    - attributes/default.rb
 Style/HashSyntax:
   Enabled: true
 Style/NumericLiteralPrefix:
   Enabled: false
 Style/NumericLiterals:
   MinDigits: 10
+Style/SpaceAroundOperators:
+  Exclude:
+    - attributes/default.rb
