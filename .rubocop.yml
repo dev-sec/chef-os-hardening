@@ -37,6 +37,8 @@ Style/NumericLiteralPrefix:
   Enabled: false
 Style/NumericLiterals:
   MinDigits: 10
+Style/RegexpLiteral:
+  AllowInnerSlashes: true
 Style/SpaceAroundOperators:
   Exclude:
     - attributes/default.rb
