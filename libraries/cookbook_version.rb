@@ -24,7 +24,7 @@ class Chef
     def cookbook_version(cookbook_name, version_contraint)
       cb = run_context.cookbook_collection[cookbook_name]
       if cb.nil?
-        fail "Can't find cookbook #{cookbook_name}! Can't determine its version."
+        raise "Can't find cookbook #{cookbook_name}! Can't determine its version."
       end
 
       v = cb.metadata.version
