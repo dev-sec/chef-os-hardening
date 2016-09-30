@@ -21,12 +21,13 @@ guard :rspec do
   watch('spec/spec_helper.rb') { 'spec' }
 end
 
-guard :kitchen, all_on_start: false do
-  watch(/test\/.+/)
-  watch(/^recipes\/(.+)\.rb$/)
-  watch(/^attributes\/(.+)\.rb$/)
-  watch(/^files\/(.+)/)
-  watch(/^templates\/(.+)/)
-  watch(/^providers\/(.+)\.rb/)
-  watch(/^resources\/(.+)\.rb/)
-end
+# guard-kitchen is not compatable with Guard 2.x
+# guard :kitchen, all_on_start: false do
+#   watch(/test\/.+/)
+#   watch(/^recipes\/(.+)\.rb$/)
+#   watch(/^attributes\/(.+)\.rb$/)
+#   watch(/^files\/(.+)/)
+#   watch(/^templates\/(.+)/)
+#   watch(/^providers\/(.+)\.rb/)
+#   watch(/^resources\/(.+)\.rb/)
+# end
