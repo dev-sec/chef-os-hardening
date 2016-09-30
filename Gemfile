@@ -16,7 +16,7 @@ group :test do
   gem 'rake'
   gem 'chefspec',   '~> 4.2.0'
   gem 'foodcritic', '~> 4.0'
-  gem 'rubocop',    '~> 0.28.0'
+  gem 'rubocop',    '~> 0.43.0'
   gem 'coveralls',  require: false
   gem 'bundler', '~> 1.5'
   gem 'minitest', '~> 5.5'
