@@ -8,18 +8,12 @@ AllCops:
   - Berksfile
 Metrics/AbcSize:
   Max: 29
-Metrics/CyclomaticComplexity:
-  Max: 10
 Metrics/LineLength:
   Enabled: false
 Metrics/MethodLength:
   Max: 40
-Metrics/PerceivedComplexity:
-  Max: 10
 Style/Documentation:
   Enabled: false
-Style/AlignParameters:
-  Enabled: true
 Style/DotPosition:
   EnforcedStyle: trailing
   Enabled: true
