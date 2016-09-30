@@ -29,5 +29,7 @@ Style/Encoding:
   Enabled: true
 Style/HashSyntax:
   Enabled: true
+Style/NumericLiteralPrefix:
+  Enabled: false
 Style/NumericLiterals:
   MinDigits: 10
