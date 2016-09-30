@@ -61,7 +61,7 @@ class Chef
         end
 
         all_suid_sgid_files.each do |file|
-          Chef::Log.info "suid_sgid: SUID/SGID on '#{file}'" + ((dry_run) ? ' (dry_run)' : ', removing bit...')
+          Chef::Log.info "suid_sgid: SUID/SGID on '#{file}'" + dry_run ? ' (dry_run)' : ', removing bit...'
           remove_suid_sgid_from(file) unless dry_run
         end
       end
