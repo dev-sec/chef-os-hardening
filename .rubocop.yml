@@ -26,6 +26,7 @@ Style/DotPosition:
 Style/EmptyLinesAroundBlockBody:
   Enabled: false
 Style/Encoding:
+  EnforcedStyle: always
   Enabled: true
 Style/HashSyntax:
   Enabled: true
