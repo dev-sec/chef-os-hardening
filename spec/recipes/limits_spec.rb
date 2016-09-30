@@ -31,4 +31,12 @@ describe 'os-hardening::limits' do
     )
   end
 
+  it 'creates /etc/security/limits.d directory' do
+    expect(chef_run).to create_directory('/etc/security/limits.d').with(
+      user:   'root',
+      group:  'root',
+      mode: '0755',
+      recursive: true
+    )
+  end
 end
