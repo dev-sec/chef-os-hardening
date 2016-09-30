@@ -1,3 +1,5 @@
-source "https://supermarket.getchef.com"
+# encoding: utf-8
+
+source 'https://supermarket.chef.io'
 
 metadata

@@ -5,7 +5,6 @@ AllCops:
   - vendor/**/*
   - test/**/*
   - metadata.rb
-  - Berksfile
 Metrics/AbcSize:
   Max: 29
 Metrics/LineLength:
