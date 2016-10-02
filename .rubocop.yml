@@ -1,32 +1,34 @@
 ---
 AllCops:
+  DisplayCopNames: true
   Exclude:
   - vendor/**/*
   - test/**/*
-  - metadata.rb
-  - Berksfile
-Documentation:
-  Enabled: false
-AlignParameters:
-  Enabled: true
-Encoding:
-  Enabled: true
-HashSyntax:
-  Enabled: true
-LineLength:
-  Enabled: false
-EmptyLinesAroundBlockBody:
-  Enabled: false
-MethodLength:
-  Max: 40
-NumericLiterals:
-  MinDigits: 10
-Metrics/CyclomaticComplexity:
-  Max: 10
-Metrics/PerceivedComplexity:
-  Max: 10
 Metrics/AbcSize:
   Max: 29
+Metrics/LineLength:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 40
+Style/Documentation:
+  Enabled: false
 Style/DotPosition:
   EnforcedStyle: trailing
   Enabled: true
+Style/Encoding:
+  EnforcedStyle: always
+  Enabled: true
+Style/ExtraSpacing:
+  Exclude:
+    - attributes/default.rb
+Style/HashSyntax:
+  Enabled: true
+Style/NumericLiteralPrefix:
+  Enabled: false
+Style/NumericLiterals:
+  MinDigits: 10
+Style/RegexpLiteral:
+  AllowInnerSlashes: true
+Style/SpaceAroundOperators:
+  Exclude:
+    - attributes/default.rb

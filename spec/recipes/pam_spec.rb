@@ -1,9 +1,5 @@
-# encoding: utf-8
+# encoding: UTF-8
 #
-# Cookbook Name:: os-hardening
-# Library:: cookbook_version
-#
-# Copyright 2014, Dominik Richter
 # Copyright 2014, Deutsche Telekom AG
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,16 +15,14 @@
 # limitations under the License.
 #
 
-class Chef
-  class Recipe
-    def cookbook_version(cookbook_name, version_contraint)
-      cb = run_context.cookbook_collection[cookbook_name]
-      if cb.nil?
-        raise "Can't find cookbook #{cookbook_name}! Can't determine its version."
-      end
+require_relative '../spec_helper'
 
-      v = cb.metadata.version
-      Chef::VersionConstraint::Platform.new(version_contraint).include?(v)
-    end
+describe 'os-hardening::pam' do
+  let(:chef_run) do
+    ChefSpec::ServerRunner.new.converge(described_recipe)
+  end
+
+  it 'remove pam-ccreds' do
+    expect(chef_run).to remove_package('pam-ccreds')
   end
 end

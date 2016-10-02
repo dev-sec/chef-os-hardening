@@ -78,7 +78,7 @@ when 'debian'
       owner 'root'
       group 'root'
       variables(
-        x86_64: (!(node['kernel']['machine'] =~ /x86_64/).nil?),
+        x86_64: !(node['kernel']['machine'] =~ /x86_64/).nil?,
         cpuVendor: node['os-hardening']['security']['cpu_vendor']
       )
     end

@@ -18,19 +18,36 @@
 require_relative '../spec_helper'
 
 describe 'os-hardening::login_defs' do
-
   let(:chef_run) do
     ChefSpec::ServerRunner.new do |node|
-      node.set['os-hardening']['auth']['uid_min'] = 5000
-      node.set['os-hardening']['auth']['gid_min'] = 5000
+      node.normal['os-hardening']['auth']['uid_min'] = 5000
+      node.normal['os-hardening']['auth']['gid_min'] = 5000
     end.converge(described_recipe)
   end
 
   it 'creates /etc/login.defs' do
-    expect(chef_run).to create_template('/etc/login.defs').
-      with(mode: '0444').
-      with(owner: 'root').
-      with(group: 'root')
+    expect(chef_run).to create_template('/etc/login.defs').with(
+      source: 'login.defs.erb',
+      mode: '0444',
+      owner: 'root',
+      group: 'root',
+      variables: {
+        additional_user_paths: '',
+        umask: '027',
+        password_max_age: 60,
+        password_min_age: 7,
+        login_retries: 5,
+        login_timeout: 60,
+        chfn_restrict: '',
+        allow_login_without_home: false,
+        uid_min: 5000,
+        gid_min: 5000,
+        sys_uid_min: 100,
+        sys_uid_max: 999,
+        sys_gid_min: 100,
+        sys_gid_max: 999
+      }
+    )
   end
 
   it 'uses uid_min and gid_min in /etc/login.defs' do

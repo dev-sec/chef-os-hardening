@@ -15,8 +15,8 @@ end
 group :test do
   gem 'rake'
   gem 'chefspec',   '~> 4.2.0'
-  gem 'foodcritic', '~> 4.0'
-  gem 'rubocop',    '~> 0.28.0'
+  gem 'foodcritic', '~> 6.3'
+  gem 'rubocop',    '~> 0.43.0'
   gem 'coveralls',  require: false
   gem 'bundler', '~> 1.5'
   gem 'minitest', '~> 5.5'
@@ -26,7 +26,7 @@ end
 group :development do
   gem 'guard'
   gem 'guard-rspec'
-  gem 'guard-kitchen'
+  # gem 'guard-kitchen' # guard-kitchen is not compatable with Guard 2.x
   gem 'guard-rubocop'
   gem 'guard-foodcritic'
 end

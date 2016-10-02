@@ -1,8 +1,24 @@
-exp.*
-.kitchen
-Berksfile.lock
-.kitchen.local.yml
-shared_test_repo/
-test/integration
-Gemfile.lock
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
 coverage
+exp.*
+pkg/
+shared_test_repo/
+
+# Berkshelf
+.vagrant
+/cookbooks
+Berksfile.lock
+
+# Bundler
+Gemfile.lock
+bin/*
+.bundle/*
+
+# Test Kitchen
+.kitchen/
+.kitchen.local.yml
