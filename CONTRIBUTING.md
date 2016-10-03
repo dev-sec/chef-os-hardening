@@ -37,7 +37,7 @@ Some great guidelines can be found [here](https://wiki.openstack.org/wiki/GitCom
 
 This hardening project doesn't intend to reinvent the configuration stack for services. Aim to use official configuration projects first and provide hardening as a layer on top. The goal is remove the need for a user to configure all aspects of services and maintain security configuration. This way, the user can still configure a service using the interface provided by the official project.
 
-* For Chef refer to the official [opscode community cookbooks](http://community.opscode.com/cookbooks).
+* For Chef refer to the official [Chef community cookbooks](https://supermarket.chef.io/cookbooks).
 * For Puppet head to the [Puppet Forge](https://forge.puppetlabs.com/) and take a node of the Puppet supported modules.
 
 These projects are generally hosted on GitHub as well.
@@ -65,7 +65,7 @@ All tests will be reviewed internally for their validity and overall project dir
 
 ### Document your code
 
-As code is more often read than written, please provide documentation in all projects. 
+As code is more often read than written, please provide documentation in all projects.
 
 Adhere to the respective guidelines for documentation:
 

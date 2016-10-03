@@ -10,7 +10,7 @@ We recommend to use Chef client in production environments instead of the ChefDK
 
 ```bash
 apt-get install -y wget
-wget https://opscode-omnibus-packages.s3.amazonaws.com/ubuntu/12.04/x86_64/chefdk_0.3.5-1_amd64.deb
+wget https://packages.chef.io/stable/ubuntu/12.04/chefdk_0.3.5-1_amd64.deb
 dpkg -i chefdk_0.3.5-1_amd64.deb
 ```
 
@@ -18,7 +18,7 @@ dpkg -i chefdk_0.3.5-1_amd64.deb
 
 ```bash
 apt-get install git
-git clone https://github.com/TelekomLabs/chef-os-hardening.git chef-os-hardening
+git clone https://github.com/dev-sec/chef-os-hardening.git chef-os-hardening
 ```
 
 4. Download cookbook dependences with [Berkshelf](http://berkshelf.com/)

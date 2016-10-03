@@ -29,11 +29,11 @@ It will not:
 
 ## Requirements
 
-* Opscode chef
+* Chef
 * Cookbooks:
-  * Opscode sysctl `https://github.com/onehealth-cookbooks/sysctl`
-  * Opscode apt `https://github.com/opscode-cookbooks/apt.git`
-  * Opscode yum `https://github.com/opscode-cookbooks/yum.git`
+  * Sander van Zoest sysctl `https://github.com/svanzoest-cookbooks/sysctl`
+  * Chef apt `https://github.com/chef-cookbooks/apt`
+  * Chef yum `https://github.com/chef-cookbooks/yum`
 
 **Note for `sysctl` usage:**
 
