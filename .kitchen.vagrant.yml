@@ -4,17 +4,18 @@ driver:
 provisioner:
   name: chef_solo
 platforms:
-- name: ubuntu/precise64
-- name: ubuntu/trusty64
-- name: ubuntu/xenial64
-- name: bento/centos-5.11
-- name: bento/centos-6.7
-- name: centos/7
+- name: ubuntu-12.04
+- name: ubuntu-14.04
+- name: ubuntu-16.04
+- name: centos-6.8
+- name: centos-7.2
+- name: debian-6.0.10
+- name: debian-7.11
 - name: oraclelinux-5
   driver_config:
     box: oraclelinux-5
     box_url: http://cloud.terry.im/vagrant/oraclelinux-5-x86_64.box
-- name: oracle-6.5
+- name: oraclelinux-6.5
   driver_config:
     box: oraclelinux-6
     box_url: http://cloud.terry.im/vagrant/oraclelinux-6-x86_64.box
@@ -22,9 +23,6 @@ platforms:
   dfiver_config:
     box: oraclelinux-7
     box_url: http://cloud.terry.im/vagrant/oraclelinux-7-x86_64.box
-- name: bento/debian-6.0.10
-- name: debian/wheezy64
-- name: debian/jessie64
 verifier:
   name: inspec
 suites:
