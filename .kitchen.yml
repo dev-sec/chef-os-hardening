@@ -21,16 +21,13 @@ platforms:
 - name: ubuntu-14.04
   driver:
     image: ubuntu:14.04
-- name: ubuntu-15.10
+- name: ubuntu-16.06
   driver:
-    image: ubuntu:15.10
+    image: ubuntu:16.04
     pid_one_command: /bin/systemd
-- name: centos-6.6
+- name: centos-6.8
   driver:
-    image: centos:6.6
-- name: centos-6.7
-  driver:
-    image: centos:6.7
+    image: centos:6.8
     intermediate_instructions:
       - RUN yum install -y initscripts
 - name: centos-7
