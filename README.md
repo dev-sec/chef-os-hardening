@@ -29,11 +29,9 @@ It will not:
 
 ## Requirements
 
-* Chef
+* Chef >= 12.14.89
 * Cookbooks:
   * Sander van Zoest sysctl `https://github.com/svanzoest-cookbooks/sysctl`
-  * Chef apt `https://github.com/chef-cookbooks/apt`
-  * Chef yum `https://github.com/chef-cookbooks/yum`
 
 **Note for `sysctl` usage:**
 

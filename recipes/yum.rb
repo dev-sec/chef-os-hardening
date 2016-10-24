@@ -18,8 +18,6 @@
 # limitations under the License.
 #
 
-include_recipe 'yum'
-
 # NSA chapter: NSA 2.1.2.3.3
 # verify package signatures
 # search /etc/yum.conf gpgcheck=1

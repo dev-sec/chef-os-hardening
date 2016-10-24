@@ -18,8 +18,6 @@
 # limitations under the License.
 #
 
-include_recipe 'apt'
-
 # apt-get and aptitude check package signatures by default.
 # TODO: could check apt.conf to make sure this hasn't been disabled.
 
