@@ -30,6 +30,8 @@ supports 'redhat', '>= 5.0'
 supports 'oracle', '>= 6.4'
 
 depends 'sysctl', '<= 0.7.5'
+depends 'apt', '~> 3.0.0'
+depends 'yum'
 
 recipe 'os-hardening::default', 'harden the operating system (all recipes)'
 recipe 'os-hardening::limits', 'prevent core dumps'
