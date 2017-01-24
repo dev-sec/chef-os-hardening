@@ -106,7 +106,7 @@ PASS_MAX_DAYS <%= @password_max_age.to_s %>
 PASS_MIN_DAYS <%= @password_min_age.to_s %>
 
 # Number of days warning given before a password expires.
-PASS_WARN_AGE	7
+PASS_WARN_AGE	<%= @password_warn_age.to_s %>
 
 # Min/max values for automatic uid selection in useradd
 UID_MIN			 <%= @uid_min.to_s %>

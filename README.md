@@ -59,6 +59,9 @@ We deprecated `sysctl` version before `0.6.0`. Future versions of this cookbook 
   maximum password age
 * `['os-hardening']['auth']['pw_min_age'] = 7`
   minimum password age (before allowing any other password change)
+* `['os-hardening']['auth']['pw_warn_age'] = 7`
+  number of days before maximum password age occurs to warn of impending
+  change
 * `['os-hardening']['auth']['retries'] = 5`
   the maximum number of authentication attempts, before the account is locked for some time
 * `['os-hardening']['auth']['lockout_time'] = 600`
