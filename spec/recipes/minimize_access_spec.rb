@@ -34,17 +34,19 @@ describe 'os-hardening::minimize_access' do
   subject { chef_run }
 
   it 'remove write permission from /usr/local/sbin' do
-    is_expected
-      .to run_execute('remove write permission from /usr/local/sbin').with(
-        command: 'chmod go-w -R /usr/local/sbin'
-      )
+    is_expected.to run_execute(
+      'remove write permission from /usr/local/sbin'
+    ).with(
+      command: 'chmod go-w -R /usr/local/sbin'
+    )
   end
 
   it 'remove write permission from /usr/local/bin' do
-    is_expected
-      .to run_execute('remove write permission from /usr/local/bin').with(
-        command: 'chmod go-w -R /usr/local/bin'
-      )
+    is_expected.to run_execute(
+      'remove write permission from /usr/local/bin'
+    ).with(
+      command: 'chmod go-w -R /usr/local/bin'
+    )
   end
 
   it 'remove write permission from /usr/sbin' do

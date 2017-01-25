@@ -25,12 +25,13 @@ describe 'os-hardening::limits' do
   subject { chef_run }
 
   it 'creates /etc/sysconfig/init' do
-    is_expected
-      .to create_template('/etc/security/limits.d/10.hardcore.conf').with(
-        user:   'root',
-        group:  'root',
-        mode: '0440'
-      )
+    is_expected.to create_template(
+      '/etc/security/limits.d/10.hardcore.conf'
+    ).with(
+      user:   'root',
+      group:  'root',
+      mode: '0440'
+    )
   end
 
   it 'creates /etc/security/limits.d directory' do
