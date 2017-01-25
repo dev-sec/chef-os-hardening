@@ -18,12 +18,14 @@
 require_relative '../spec_helper'
 
 describe 'os-hardening::profile' do
-  let(:chef_run) do
+  cached(:chef_run) do
     ChefSpec::ServerRunner.new.converge(described_recipe)
   end
 
+  subject { chef_run }
+
   it 'create /etc/profile.d/pinerolo_profile.sh' do
-    expect(chef_run).to create_template('/etc/profile.d/pinerolo_profile.sh').with(
+    is_expected.to create_template('/etc/profile.d/pinerolo_profile.sh').with(
       source: 'profile.conf.erb',
       mode: 0755,
       owner: 'root',

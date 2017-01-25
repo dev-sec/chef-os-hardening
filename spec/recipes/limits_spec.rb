@@ -18,20 +18,23 @@
 require_relative '../spec_helper'
 
 describe 'os-hardening::limits' do
-  let(:chef_run) do
+  cached(:chef_run) do
     ChefSpec::ServerRunner.new.converge(described_recipe)
   end
 
+  subject { chef_run }
+
   it 'creates /etc/sysconfig/init' do
-    expect(chef_run).to create_template('/etc/security/limits.d/10.hardcore.conf').with(
-      user:   'root',
-      group:  'root',
-      mode: '0440'
-    )
+    is_expected
+      .to create_template('/etc/security/limits.d/10.hardcore.conf').with(
+        user:   'root',
+        group:  'root',
+        mode: '0440'
+      )
   end
 
   it 'creates /etc/security/limits.d directory' do
-    expect(chef_run).to create_directory('/etc/security/limits.d').with(
+    is_expected.to create_directory('/etc/security/limits.d').with(
       user:   'root',
       group:  'root',
       mode: '0755',
