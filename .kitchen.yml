@@ -67,4 +67,4 @@ suites:
   - recipe[os-hardening::default]
   verifier:
     inspec_tests:
-    - https://github.com/dev-sec/tests-os-hardening
+    - https://github.com/dev-sec/linux-baseline

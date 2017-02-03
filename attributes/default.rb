@@ -63,6 +63,7 @@ default['os-hardening']['env']['umask']                               = '027'
 default['os-hardening']['env']['root_path']                           = '/'
 default['os-hardening']['auth']['pw_max_age']                         = 60
 default['os-hardening']['auth']['pw_min_age']                         = 7 # discourage password cycling
+default['os-hardening']['auth']['pw_warn_age']                        = 7
 default['os-hardening']['auth']['retries']                            = 5
 default['os-hardening']['auth']['lockout_time']                       = 600 # 10min
 default['os-hardening']['auth']['timeout']                            = 60

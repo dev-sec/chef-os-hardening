@@ -36,6 +36,7 @@ describe 'os-hardening::login_defs' do
         umask: '027',
         password_max_age: 60,
         password_min_age: 7,
+        password_warn_age: 7,
         login_retries: 5,
         login_timeout: 60,
         chfn_restrict: '',
@@ -52,6 +53,7 @@ describe 'os-hardening::login_defs' do
 
   it 'uses uid_min and gid_min in /etc/login.defs' do
     expect(chef_run).to render_file('/etc/login.defs').
+      with_content(/^PASS_WARN_AGE\s+7$/).
       with_content(/^UID_MIN\s+5000$/).
       with_content(/^GID_MIN\s+5000$/)
   end
