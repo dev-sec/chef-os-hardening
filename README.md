@@ -170,9 +170,10 @@ http://kitchen.ci/docs/getting-started
 This cookbook is mostly based on guides by:
 
 * [Arch Linux wiki, Sysctl hardening](https://wiki.archlinux.org/index.php/Sysctl)
-* [NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf)
 * [Ubuntu Security/Features](https://wiki.ubuntu.com/Security/Features)
-* [Deutsche Telekom, Group IT Security, Security Requirements (German)](http://www.telekom.com/static/-/155996/7/technische-sicherheitsanforderungen-si)
+* [NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5](https://www.iad.gov/iad/library/ia-guidance/security-configuration/operating-systems/guide-to-the-secure-configuration-of-red-hat-enterprise.cfm)
+* [Deutsche Telekom, Group IT Security, Security Requirements (German)](https://www.telekom.com/psa)
+
 
 Thanks to all of you!!
 
