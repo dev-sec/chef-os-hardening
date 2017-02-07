@@ -5,4 +5,3 @@ language: ruby
 bundler_args: "--without development integration"
 gemfile:
 - Gemfile
-- gemfile.chef-11
