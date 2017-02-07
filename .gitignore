@@ -22,3 +22,7 @@ bin/*
 # Test Kitchen
 .kitchen/
 .kitchen.local.yml
+
+# RVM
+/.ruby-gemset
+/.ruby-version
