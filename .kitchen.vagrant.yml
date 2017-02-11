@@ -1,30 +1,29 @@
 ---
 driver:
   name: vagrant
+
 provisioner:
   name: chef_solo
+  require_chef_omnibus: 12.5.1
+
 platforms:
 - name: ubuntu-12.04
 - name: ubuntu-14.04
 - name: ubuntu-16.04
 - name: centos-6.8
-- name: centos-7.2
-- name: debian-6.0.10
+- name: centos-7.3
+- name: oracle-6.8
+- name: oracle-7.3
 - name: debian-7.11
-- name: oraclelinux-5
-  driver_config:
-    box: oraclelinux-5
-    box_url: http://cloud.terry.im/vagrant/oraclelinux-5-x86_64.box
-- name: oraclelinux-6.5
-  driver_config:
-    box: oraclelinux-6
-    box_url: http://cloud.terry.im/vagrant/oraclelinux-6-x86_64.box
-- name: oraclelinux-7
-  dfiver_config:
-    box: oraclelinux-7
-    box_url: http://cloud.terry.im/vagrant/oraclelinux-7-x86_64.box
+- name: debian-8.6
+- name: fedora-24
+- name: fedora-25
+- name: opensuse-leap-42.1
+- name: opensuse-13.2
+
 verifier:
   name: inspec
+
 suites:
 - name: default
   run_list:
