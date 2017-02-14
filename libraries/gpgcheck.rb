@@ -25,12 +25,12 @@ class Chef
       def self.check(file)
         pattern = /gpgcheck\s*=\s*0/
 
-        if File.file?(file)
-          File.open(file) do |f|
-            f.each_line do |line|
-              next unless pattern.match(line)
-              Chef::Log.warn file + ': gpgcheck=1 not properly configured'
-            end
+        return unless File.file?(file)
+
+        File.open(file) do |f|
+          f.each_line do |line|
+            next unless pattern.match(line)
+            Chef::Log.warn file + ': gpgcheck=1 not properly configured'
           end
         end
       end
