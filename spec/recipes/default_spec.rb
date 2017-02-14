@@ -26,9 +26,13 @@ describe 'os-hardening::default' do
       node.normal['cpu']['0']['vendor_id'] = 'GenuineIntel'
       node.normal['env']['extra_user_paths'] = []
 
-      paths = %w(/usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin) + node['env']['extra_user_paths']
+      paths = %w(
+        /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+      ) + node['env']['extra_user_paths']
       paths.each do |folder|
-        stub_command("find #{folder}  -perm -go+w -type f | wc -l | egrep '^0$'").and_return(false)
+        stub_command(
+          "find #{folder}  -perm -go+w -type f | wc -l | egrep '^0$'"
+        ).and_return(false)
       end
     end.converge(described_recipe)
   end
