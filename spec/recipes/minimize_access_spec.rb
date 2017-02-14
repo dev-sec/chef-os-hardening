@@ -15,60 +15,72 @@
 # limitations under the License.
 #
 
-require_relative '../spec_helper'
-
 describe 'os-hardening::minimize_access' do
   before do
-    stub_command("find /usr/local/sbin  -perm -go+w -type f | wc -l | egrep '^0$'").and_return(false)
-    stub_command("find /usr/local/bin  -perm -go+w -type f | wc -l | egrep '^0$'").and_return(false)
-    stub_command("find /usr/sbin  -perm -go+w -type f | wc -l | egrep '^0$'").and_return(false)
-    stub_command("find /usr/bin  -perm -go+w -type f | wc -l | egrep '^0$'").and_return(false)
-    stub_command("find /sbin  -perm -go+w -type f | wc -l | egrep '^0$'").and_return(false)
-    stub_command("find /bin  -perm -go+w -type f | wc -l | egrep '^0$'").and_return(false)
+    stub_command(
+      "find /usr/local/sbin  -perm -go+w -type f | wc -l | egrep '^0$'"
+    ).and_return(false)
+    stub_command(
+      "find /usr/local/bin  -perm -go+w -type f | wc -l | egrep '^0$'"
+    ).and_return(false)
+    stub_command(
+      "find /usr/sbin  -perm -go+w -type f | wc -l | egrep '^0$'"
+    ).and_return(false)
+    stub_command(
+      "find /usr/bin  -perm -go+w -type f | wc -l | egrep '^0$'"
+    ).and_return(false)
+    stub_command(
+      "find /sbin  -perm -go+w -type f | wc -l | egrep '^0$'"
+    ).and_return(false)
+    stub_command(
+      "find /bin  -perm -go+w -type f | wc -l | egrep '^0$'"
+    ).and_return(false)
   end
 
-  let(:chef_run) do
+  cached(:chef_run) do
     ChefSpec::ServerRunner.new.converge(described_recipe)
   end
 
+  subject { chef_run }
+
   it 'remove write permission from /usr/local/sbin' do
-    expect(chef_run).to run_execute('remove write permission from /usr/local/sbin').with(
-      command: 'chmod go-w -R /usr/local/sbin'
-    )
+    is_expected.to run_execute(
+      'remove write permission from /usr/local/sbin'
+    ).with(command: 'chmod go-w -R /usr/local/sbin')
   end
 
   it 'remove write permission from /usr/local/bin' do
-    expect(chef_run).to run_execute('remove write permission from /usr/local/bin').with(
-      command: 'chmod go-w -R /usr/local/bin'
-    )
+    is_expected.to run_execute(
+      'remove write permission from /usr/local/bin'
+    ).with(command: 'chmod go-w -R /usr/local/bin')
   end
 
   it 'remove write permission from /usr/sbin' do
-    expect(chef_run).to run_execute('remove write permission from /usr/sbin').with(
+    is_expected.to run_execute('remove write permission from /usr/sbin').with(
       command: 'chmod go-w -R /usr/sbin'
     )
   end
 
   it 'remove write permission from /usr/bin' do
-    expect(chef_run).to run_execute('remove write permission from /usr/bin').with(
+    is_expected.to run_execute('remove write permission from /usr/bin').with(
       command: 'chmod go-w -R /usr/bin'
     )
   end
 
   it 'remove write permission from /sbin' do
-    expect(chef_run).to run_execute('remove write permission from /sbin').with(
+    is_expected.to run_execute('remove write permission from /sbin').with(
       command: 'chmod go-w -R /sbin'
     )
   end
 
   it 'remove write permission from /bin' do
-    expect(chef_run).to run_execute('remove write permission from /bin').with(
+    is_expected.to run_execute('remove write permission from /bin').with(
       command: 'chmod go-w -R /bin'
     )
   end
 
   it 'creates /etc/shadow' do
-    expect(chef_run).to create_file('/etc/shadow').with(
+    is_expected.to create_file('/etc/shadow').with(
       user: 'root',
       group: 'root',
       mode: '0600'
@@ -76,7 +88,7 @@ describe 'os-hardening::minimize_access' do
   end
 
   it 'creates /etc/su' do
-    expect(chef_run).to create_file('/bin/su').with(
+    is_expected.to create_file('/bin/su').with(
       user: 'root',
       group: 'root',
       mode: '0750'

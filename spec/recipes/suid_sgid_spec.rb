@@ -15,14 +15,14 @@
 # limitations under the License.
 #
 
-require_relative '../spec_helper'
-
 describe 'os-hardening::suid_sgid' do
-  let(:chef_run) do
+  cached(:chef_run) do
     ChefSpec::ServerRunner.new.converge(described_recipe)
   end
 
+  subject { chef_run }
+
   it 'run remove_suid_from_blacklists ruby_block' do
-    expect(chef_run).to run_ruby_block('remove_suid_from_blacklists')
+    is_expected.to run_ruby_block('remove_suid_from_blacklists')
   end
 end

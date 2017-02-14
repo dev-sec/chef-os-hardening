@@ -15,18 +15,18 @@
 # limitations under the License.
 #
 
-require_relative '../spec_helper'
-
 describe 'os-hardening::login_defs' do
-  let(:chef_run) do
+  cached(:chef_run) do
     ChefSpec::ServerRunner.new do |node|
       node.normal['os-hardening']['auth']['uid_min'] = 5000
       node.normal['os-hardening']['auth']['gid_min'] = 5000
     end.converge(described_recipe)
   end
 
+  subject { chef_run }
+
   it 'creates /etc/login.defs' do
-    expect(chef_run).to create_template('/etc/login.defs').with(
+    is_expected.to create_template('/etc/login.defs').with(
       source: 'login.defs.erb',
       mode: '0444',
       owner: 'root',
@@ -52,7 +52,7 @@ describe 'os-hardening::login_defs' do
   end
 
   it 'uses uid_min and gid_min in /etc/login.defs' do
-    expect(chef_run).to render_file('/etc/login.defs').
+    is_expected.to render_file('/etc/login.defs').
       with_content(/^PASS_WARN_AGE\s+7$/).
       with_content(/^UID_MIN\s+5000$/).
       with_content(/^GID_MIN\s+5000$/)

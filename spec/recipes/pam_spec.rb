@@ -15,14 +15,14 @@
 # limitations under the License.
 #
 
-require_relative '../spec_helper'
-
 describe 'os-hardening::pam' do
-  let(:chef_run) do
+  cached(:chef_run) do
     ChefSpec::ServerRunner.new.converge(described_recipe)
   end
 
+  subject { chef_run }
+
   it 'remove pam-ccreds' do
-    expect(chef_run).to remove_package('pam-ccreds')
+    is_expected.to remove_package('pam-ccreds')
   end
 end
