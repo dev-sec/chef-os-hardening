@@ -15,8 +15,6 @@
 # limitations under the License.
 #
 
-require_relative '../spec_helper'
-
 describe 'os-hardening::minimize_access' do
   before do
     stub_command("find /usr/local/sbin  -perm -go+w -type f | wc -l | egrep '^0$'").and_return(false)

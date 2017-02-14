@@ -15,8 +15,6 @@
 # limitations under the License.
 #
 
-require_relative '../spec_helper'
-
 describe 'os-hardening::sysctl' do
   context 'intel' do
     cached(:intel_run) do

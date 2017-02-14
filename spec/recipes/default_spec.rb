@@ -15,8 +15,6 @@
 # limitations under the License.
 #
 
-require_relative '../spec_helper'
-
 describe 'os-hardening::default' do
   # converge
   cached(:chef_run) do

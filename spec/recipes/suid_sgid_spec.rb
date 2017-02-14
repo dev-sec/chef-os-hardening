@@ -15,8 +15,6 @@
 # limitations under the License.
 #
 
-require_relative '../spec_helper'
-
 describe 'os-hardening::suid_sgid' do
   cached(:chef_run) do
     ChefSpec::ServerRunner.new.converge(described_recipe)

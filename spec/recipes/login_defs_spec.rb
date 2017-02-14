@@ -15,8 +15,6 @@
 # limitations under the License.
 #
 
-require_relative '../spec_helper'
-
 describe 'os-hardening::login_defs' do
   cached(:chef_run) do
     ChefSpec::ServerRunner.new do |node|
