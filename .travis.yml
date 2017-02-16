@@ -1,7 +1,41 @@
 ---
-rvm:
-- 2.3.1
+sudo: false
 language: ruby
-bundler_args: "--without development integration"
-gemfile:
-- Gemfile
+bundler_args: "--without development"
+dist: trusty
+cache: bundler
+
+rvm: 2.3.3
+
+before_install:
+  - gem update --system # see https://github.com/bundler/bundler/issues/5357
+
+env:
+ - INSTANCE=ubuntu-12-04
+ - INSTANCE=ubuntu-14-04
+ - INSTANCE=ubuntu-16-04
+ - INSTANCE=centos-6
+ - INSTANCE=centos-7
+ - INSTANCE=debian-7
+ - INSTANCE=debian-8
+ - INSTANCE=fedora-24
+ - INSTANCE=fedora-25
+
+script:
+  -  bundle exec rake prepare_do_env kitchen KITCHEN_LOCAL_YAML=.kitchen.do.local.yml
+
+matrix:
+  allow_failures: # allow failues of integration tests as the forks might miss the DO token
+  - env: INSTANCE=ubuntu-12-04
+  - env: INSTANCE=ubuntu-14-04
+  - env: INSTANCE=ubuntu-16-04
+  - env: INSTANCE=centos-6
+  - env: INSTANCE=centos-7
+  - env: INSTANCE=debian-7
+  - env: INSTANCE=debian-8
+  - env: INSTANCE=fedora-24
+  - env: INSTANCE=fedora-25
+  include:
+    - env: UNIT_AND_LINT=1
+      script:
+        - bundle exec rake lint spec
