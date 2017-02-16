@@ -4,25 +4,21 @@
 require 'foodcritic'
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
+require 'base64'
 
 # General tasks
 
 # Rubocop before rspec so we don't lint vendored cookbooks
 desc 'Run all tests except Kitchen (default task)'
-task integration: %w(rubocop foodcritic spec)
-task default: :integration
-
-# Lint the cookbook
-desc 'Run linters'
-task lint: [:rubocop, :foodcritic]
+task default: [:lint, :spec]
 
 # Lint the cookbook
 desc 'Run all linters: rubocop and foodcritic'
-task run_all_linters: [:rubocop, :foodcritic]
+task lint: [:rubocop, :foodcritic]
 
 # Run the whole shebang
 desc 'Run all tests'
-task test: [:lint, :integration, :spec]
+task test: [:lint, :kitchen, :spec]
 
 # RSpec
 desc 'Run chefspec tests'
@@ -34,14 +30,10 @@ end
 # Foodcritic
 desc 'Run foodcritic lint checks'
 task :foodcritic do
-  if Gem::Version.new('1.9.2') <= Gem::Version.new(RUBY_VERSION.dup)
-    puts 'Running Foodcritic tests...'
-    FoodCritic::Rake::LintTask.new do |t|
-      t.options = { fail_tags: ['any'] }
-      puts 'done.'
-    end
-  else
-    puts "WARN: foodcritic run is skipped as Ruby #{RUBY_VERSION} is < 1.9.2."
+  puts 'Running Foodcritic tests...'
+  FoodCritic::Rake::LintTask.new do |t|
+    t.options = { fail_tags: ['any'] }
+    puts 'done.'
   end
 end
 
@@ -51,17 +43,6 @@ task :rubocop do
   RuboCop::RakeTask.new
 end
 
-begin
-  require 'kitchen/rake_tasks'
-  Kitchen::RakeTasks.new
-
-  desc 'Alias for kitchen:all'
-  task acceptance: 'kitchen:all'
-
-rescue LoadError
-  puts '>>>>> Kitchen gem not loaded, omitting tasks' unless ENV['CI']
-end
-
 # Automatically generate a changelog for this project. Only loaded if
 # the necessary gem is installed.
 begin
@@ -69,4 +50,28 @@ begin
   GitHubChangelogGenerator::RakeTask.new :changelog
 rescue LoadError
   puts '>>>>> GitHub Changelog Generator not loaded, omitting tasks'
+end
+
+desc 'Run kitchen integration tests'
+task :kitchen do
+  concurrency = ENV['CONCURRENCY'] || 1
+  instance = ENV['INSTANCE'] || ''
+  args = ENV['CI'] ? '--destroy=always' : ''
+  sh('sh', '-c', "bundle exec kitchen test -c #{concurrency} #{args} #{instance}")
+end
+
+desc 'Prepare CI environment for DigitalOcean usage'
+task :prepare_do_env do
+  SSH_KEY_FILE = '~/.ssh/ci_id_rsa'.freeze
+  ENV_VAR_NAME = 'CI_SSH_KEY'.freeze
+
+  ['DIGITALOCEAN_ACCESS_TOKEN', 'DIGITALOCEAN_SSH_KEY_IDS', ENV_VAR_NAME].each do |var|
+    raise "Environment variable #{var} should be set" unless ENV[var]
+  end
+
+  ssh_file = File.expand_path(SSH_KEY_FILE)
+  dir = File.dirname(ssh_file)
+  Dir.mkdir(dir, 0o700) unless Dir.exist?(dir)
+  File.open(ssh_file, 'w') { |f| f.puts Base64.decode64(ENV[ENV_VAR_NAME]) }
+  File.chmod(0o600, ssh_file)
 end

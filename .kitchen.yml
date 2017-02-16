@@ -1,70 +1,71 @@
 ---
+
+<% if ENV['DIGITALOCEAN_ACCESS_TOKEN'] %>
 driver:
-  name: dokken
-  chef_version: 12.5.1
-  privileged: true # because Docker and SystemD/Upstart
+  name: digitalocean
+  size: 512mb
 
 transport:
-  name: dokken
+  ssh_key: '~/.ssh/ci_id_rsa'
+  max_wait_until_ready: 30
 
-provisioner:
-  name: dokken
-
-verifier:
-  name: inspec
-  sudo: false
+platforms:
+- name: ubuntu-12-04-x64
+- name: ubuntu-14-04-x64
+- name: ubuntu-16-04-x64
+- name: centos-6-5-x64
+- name: centos-7-0-x64
+- name: debian-7-x64
+- name: debian-8-x64
+  # DO debian image doesn't have sudo
+  provisioner:
+    sudo: false
+  verifier:
+    sudo: false
+- name: fedora-24-x64
+- name: fedora-25-x64
+<% else %>
+driver:
+  name: vagrant
 
 platforms:
 - name: ubuntu-12.04
-  driver:
-    image: ubuntu:12.04
 - name: ubuntu-14.04
-  driver:
-    image: ubuntu:14.04
-- name: ubuntu-16.06
-  driver:
-    image: ubuntu:16.04
-    pid_one_command: /bin/systemd
+- name: ubuntu-16.04
 - name: centos-6.8
-  driver:
-    image: centos:6.8
-    intermediate_instructions:
-      - RUN yum install -y initscripts
-- name: centos-7
-  driver:
-    image: centos:7
-    pid_one_command: /usr/lib/systemd/systemd
-- name: oracle-6.6
-  driver:
-    image: oraclelinux:6.6
-- name: oracle-6.7
-  driver:
-    image: oraclelinux:6.7
-- name: oracle-7.1
-  driver:
-    image: oraclelinux:7.1
-    pid_one_command: /usr/lib/systemd/systemd
-- name: debian-6
-  driver:
-    image: debian:6
-    intermediate_instructions:
-    - RUN /usr/bin/apt-get update
-    - RUN /usr/bin/apt-get install -y procps
-- name: debian-7
-  driver:
-    image: debian:7
-    intermediate_instructions:
-    - RUN /usr/bin/apt-get update
-    - RUN /usr/bin/apt-get install -y procps
-- name: debian-8
-  driver:
-    image: debian:8
-    pid_one_command: /bin/systemd
+- name: centos-7.3
+- name: oracle-6.8
+- name: oracle-7.3
+- name: debian-7.11
+- name: debian-8.6
+- name: fedora-24
+- name: fedora-25
+- name: opensuse-leap-42.1
+- name: opensuse-13.2
+<% end %>
+
+provisioner:
+  name: chef_solo
+  require_chef_omnibus: 12.5.1
+
+verifier:
+  name: inspec
 
 suites:
 - name: default
   run_list:
   - recipe[os-hardening::default]
+  verifier:
+    inspec_tests:
+    - https://github.com/dev-sec/linux-baseline
+- name: modules_disabled
+  run_list:
+  - recipe[os-hardening::default]
+  attributes:
+    os-hardening:
+      security:
+        kernel:
+          enable_module_loading: false
   verifier:
     inspec_tests:
     - https://github.com/dev-sec/linux-baseline

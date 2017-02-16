@@ -1,6 +1,6 @@
 # Contributor Guideline
 
-This document provides an overview of how you can participat in improving this project or extending it. We are grateful for all your help: bug reports and fixes, code contributions, documentation or ideas. Feel free to join, we appreciate your support!!
+This document provides an overview of how you can participate in improving this project or extending it. We are grateful for all your help: bug reports and fixes, code contributions, documentation or ideas. Feel free to join, we appreciate your support!!
 
 ## Communication
 
@@ -8,19 +8,18 @@ This document provides an overview of how you can participat in improving this p
 
 Much of the issues, goals and ideas are tracked in the respective projects in GitHub. Please use this channel to report bugs and post ideas.
 
-### Trello
-
-The overall hardening project is organized publicly on Trello. Feel free to join and add tasks and ideas for the overall project. [https://trello.com/b/gL9v8N1q/dt-hardening](https://trello.com/b/gL9v8N1q/dt-hardening)
-
 ## git and GitHub
 
 In order to contribute code please:
 
-1. Fork the project on GitHub
+1. Fork the repository
 2. Clone the project
-3. Add changes (and tests)
-4. Commit and push
-5. Create a merge-request
+3. Create a named feature branch (like `feature/add_component_x`)
+4. Do your changes (do not forget the tests)
+5. Run the tests, ensuring they all pass (and you are not decreasing the test coverage)
+6. [Rebase][rebase-squash] it to the latest master (to ensure your changes do apply)
+7. [Squash][rebase-squash] your commits to a small amount of logical separated commits (e.g. to avoid commits with something like "reverted or fixed last commit" in the commit chain)
+8. Submit a Merge Request to the master branch of this repository
 
 To have your code merged, see the expectations listed below.
 
@@ -29,7 +28,6 @@ You can find a well-written guide [here](https://help.github.com/articles/fork-a
 Please follow common commit best-practices. Be explicit, have a short summary, a well-written description and references. This is especially important for the merge-request.
 
 Some great guidelines can be found [here](https://wiki.openstack.org/wiki/GitCommitMessages) and [here](http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message).
-
 
 ## Expectations
 
@@ -42,7 +40,7 @@ This hardening project doesn't intend to reinvent the configuration stack for se
 
 These projects are generally hosted on GitHub as well.
 
-In some cases, we in fact create the full rollout stack, but this is generally the exception ([os-hardening](https://github.com/TelekomLabs/chef-os-hardening), [ssh-hardening](https://github.com/TelekomLabs/chef-ssh-hardening)).
+In some cases, we in fact create the full rollout stack, but this is generally the exception ([os-hardening](https://github.com/dev-sec/chef-os-hardening), [ssh-hardening](https://github.com/dev-sec/chef-ssh-hardening)).
 
 
 ### Be explicit
@@ -86,3 +84,5 @@ Remember: Code is generally read much more often than written.
 ### Use Markdown
 
 Wherever possible, please refrain from any other formats and stick to simple markdown.
+
+[rebase-squash]: https://github.com/edx/edx-platform/wiki/How-to-Rebase-a-Pull-Request
