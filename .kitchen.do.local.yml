@@ -1,0 +1,21 @@
+# this file is used for configuration of DigitalOcean
+# for integration tests in the CI
+---
+driver:
+  name: digitalocean
+  size: 512mb
+
+transport:
+  ssh_key: '~/.ssh/ci_id_rsa'
+  max_wait_until_ready: 30
+
+platforms:
+- name: ubuntu-12-04-x64
+- name: ubuntu-14-04-x64
+- name: ubuntu-16-04-x64
+- name: centos-6-5-x64
+- name: centos-7-0-x64
+- name: debian-7-x64
+- name: debian-8-x64
+- name: fedora-24-x64
+- name: fedora-25-x64

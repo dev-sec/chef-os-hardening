@@ -116,46 +116,43 @@ Configure attributes:
 
 ## Local Testing
 
-For local testing you can use vagrant and Virtualbox of VMWare to run tests locally. You will have to install Virtualbox and Vagrant on your system. See [Vagrant Downloads](http://downloads.vagrantup.com/) for a vagrant package suitable for your system. For all our tests we use `test-kitchen`. If you are not familiar with `test-kitchen` please have a look at [their guide](http://kitchen.ci/docs/getting-started).
+### Local testing
 
-Next install test-kitchen:
+Please install [chef-dk](https://downloads.chef.io/chefdk), [VirtualBox](https://www.virtualbox.org/) or VMware Workstation and [Vagrant](https://www.vagrantup.com/).
 
-    gem install test-kitchen kitchen-vagrant
-
-Next install berkshelf for dependency management
-
-    gem install berkshelf
-
-Create a local kitchen configuration:
-
-    cp .kitchen.local.yml{.example,}
-
-You should now be able to run tests:
+Linting is checked with [rubocop](https://github.com/bbatsov/rubocop) and [foodcritic](http://www.foodcritic.io/):
 
 ```bash
-# Install dependencies
-gem install bundler
-bundle install
-
-# Do lint checks
-bundle exec rake lint
-
-# fast test on one machine
-bundle exec kitchen test default-ubuntu-1204
-
-# test on all machines
-bundle exec kitchen test
-
-# for development, it uses docker based vms
-bundle exec kitchen create default-ubuntu-1204
-bundle exec kitchen converge default-ubuntu-1204
-
-# if you like to use the vagrant setup, use
-KITCHEN_YAML=.kitchen.vagrant.yml bundle exec kitchen converge default-ubuntu-1404
+$ chef exec rake lint
+.....
 ```
 
-http://kitchen.ci/docs/getting-started
+Unit/spec tests are done with [chefspec](https://github.com/sethvargo/chefspec):
 
+```bash
+$ chef exec rake spec
+.....
+```
+
+Integration tests are done with [test-kitchen](https://github.com/sethvargo/chefspec):
+
+```bash
+$ chef exec rake kitchen
+.....
+# or you can use the kitchen directly
+$ kitchen test
+```
+
+### CI testing of forks
+
+You can enable testing of your fork in [Travis CI](http://travis-ci.org/). By default you will get linting and spec tests.
+
+Integration tests of this repository are conducted using [DigitalOcean](http://digitalocean.com/).
+
+If you want to have integration tests for your fork, you will have to add following [environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings) in the settings of your fork:
+- `DIGITALOCEAN_ACCESS_TOKEN` - [access token for DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api-v2)
+- `CI_SSH_KEY` - private part of some ssh key, available on DigitalOcean for your instances, in base64 encoded form (e.g. `cat id_rsa | base64 -w0 ; echo`)
+- `DIGITALOCEAN_SSH_KEY_IDS` - ID in DigitalOcean of `CI_SSH_KEY`, see [this](https://github.com/test-kitchen/kitchen-digitalocean#installation-and-setup) for more information
 
 ## Contributors + Kudos
 
