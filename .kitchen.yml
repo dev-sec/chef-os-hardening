@@ -29,9 +29,6 @@ suites:
 - name: default
   run_list:
   - recipe[os-hardening::default]
-  verifier:
-    inspec_tests:
-    - https://github.com/dev-sec/linux-baseline
 - name: modules_disabled
   run_list:
   - recipe[os-hardening::default]
@@ -42,4 +39,4 @@ suites:
           enable_module_loading: false
   verifier:
     inspec_tests:
-    - https://github.com/dev-sec/linux-baseline
+    - path: test/integration/default
