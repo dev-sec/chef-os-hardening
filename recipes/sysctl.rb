@@ -20,15 +20,7 @@
 #
 
 # include sysctl recipe and set /etc/sysctl.d/99-chef-attributes.conf
-# TODO: This is deprecated. Remove after sysctl >= 0.6.0
-if cookbook_version('sysctl', '< 0.6.0')
-  log 'DEPRECATION: You use an older version of chef-sysctl. chef-os-hardening will not support this version in future releases.' do
-    level :warn
-  end
-  include_recipe 'sysctl'
-else
-  include_recipe 'sysctl::apply'
-end
+include_recipe 'sysctl::apply'
 
 # try to determine the real cpu vendor
 begin
@@ -86,21 +78,6 @@ when 'debian'
     execute 'update-initramfs' do
       command 'update-initramfs -u'
       action :run
-    end
-  end
-end
-
-# Conditional handling of procps reload
-# TODO: This is deprecated. Remove after sysctl >= 0.6.0
-# ignore FC023: @see https://github.com/acrmp/foodcritic/issues/151
-if cookbook_version('sysctl', '< 0.6.0') # ~FC023
-  case node['platform_family']
-  when 'debian'
-    service_provider = node['platform'] == 'ubuntu' ? Chef::Provider::Service::Upstart : nil
-    service 'procps' do
-      provider service_provider
-      supports restart: false, reload: false
-      action [:enable, :start]
     end
   end
 end
