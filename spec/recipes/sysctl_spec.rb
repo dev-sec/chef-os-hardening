@@ -128,4 +128,79 @@ describe 'os-hardening::sysctl' do
       end
     end
   end
+
+  describe 'sysctl flags' do
+    let(:ipv6_enable) { false }
+    let(:network_forwarding) { false }
+    let(:chef_run) do
+      ChefSpec::SoloRunner.new do |node|
+        node.normal['os-hardening']['network']['forwarding'] =
+          network_forwarding
+        node.normal['os-hardening']['network']['ipv6']['enable'] = ipv6_enable
+      end.converge(described_recipe)
+    end
+
+    describe 'IPv4 forwarding' do
+      subject do
+        chef_run.node['sysctl']['params']['net']['ipv4']['ip_forward']
+      end
+
+      context 'when forwarding is enabled' do
+        let(:network_forwarding) { true }
+
+        it 'should enable IPv4 forwarding in sysctl attributes' do
+          is_expected.to eq(1)
+        end
+      end
+
+      context 'when forwarding is disabled' do
+        let(:network_forwarding) { false }
+
+        it 'should disable IPv4 forwarding in sysctl attributes' do
+          is_expected.to eq(0)
+        end
+      end
+    end
+
+    describe 'IPv6 forwarding' do
+      RSpec.shared_examples 'IPv6 forwarding in sysctl attributes' do |state|
+        subject { chef_run.node['sysctl']['params']['net']['ipv6']['conf']['all']['forwarding'] } # rubocop:disable Metrics/LineLength
+
+        it "should #{state == 1 ? 'enable' : 'disable'} IPv6 forwarding in sysctl attributes" do # rubocop:disable Metrics/LineLength
+          is_expected.to eq(state)
+        end
+      end
+
+      context 'when IPv6 is enabled' do
+        let(:ipv6_enable) { true }
+
+        context 'when forwarding is enabled' do
+          let(:network_forwarding) { true }
+
+          include_examples 'IPv6 forwarding in sysctl attributes', 1
+        end
+        context 'when forwarding is disabled' do
+          let(:network_forwarding) { false }
+
+          include_examples 'IPv6 forwarding in sysctl attributes', 0
+        end
+      end
+
+      context 'when IPv6 is disabled' do
+        let(:ipv6_enable) { false }
+
+        context 'when forwarding is enabled' do
+          let(:network_forwarding) { true }
+
+          include_examples 'IPv6 forwarding in sysctl attributes', 0
+        end
+
+        context 'when forwarding is disabled' do
+          let(:network_forwarding) { false }
+
+          include_examples 'IPv6 forwarding in sysctl attributes', 0
+        end
+      end
+    end
+  end
 end

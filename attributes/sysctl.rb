@@ -17,12 +17,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Only enable IP traffic forwarding, if required.
-default['sysctl']['params']['net']['ipv4']['ip_forward'] =
-  node['os-hardening']['network']['forwarding'] ? 1 : 0
-default['sysctl']['params']['net']['ipv6']['conf']['all']['forwarding'] =
-  node['os-hardening']['network']['ipv6']['enable'] && node['os-hardening']['network']['forwarding'] ? 1 : 0
-
 # Enable RFC-recommended source validation feature. It should not be used for
 # routers on complex networks, but is helpful for end hosts and routers serving
 # small networks.

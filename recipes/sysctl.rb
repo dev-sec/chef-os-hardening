@@ -19,6 +19,17 @@
 # limitations under the License.
 #
 
+# default attributes
+# We can not set this kind of defaults in the attribute files
+# as we react on value of other attributes
+# https://github.com/dev-sec/chef-ssh-hardening/issues/140#issuecomment-267779720
+
+# Only enable IP traffic forwarding, if required.
+node.default['sysctl']['params']['net']['ipv4']['ip_forward'] =
+  node['os-hardening']['network']['forwarding'] ? 1 : 0
+node.default['sysctl']['params']['net']['ipv6']['conf']['all']['forwarding'] =
+  node['os-hardening']['network']['ipv6']['enable'] && node['os-hardening']['network']['forwarding'] ? 1 : 0
+
 # include sysctl recipe and set /etc/sysctl.d/99-chef-attributes.conf
 include_recipe 'sysctl::apply'
 
