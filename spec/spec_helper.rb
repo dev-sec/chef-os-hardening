@@ -24,6 +24,10 @@ Coveralls.wear!
 at_exit { ChefSpec::Coverage.report! }
 
 RSpec.configure do |config|
+  # OS and version for mocking of ohai data, needed by chefspec
+  config.platform = 'ubuntu'
+  config.version = '16.04'
+
   config.before(:each) do
     # we have to stub this, as its executed by the sysctl cookbook
     # dependency as native ruby code
