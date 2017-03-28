@@ -132,11 +132,14 @@ describe 'os-hardening::sysctl' do
   describe 'sysctl flags' do
     let(:ipv6_enable) { false }
     let(:network_forwarding) { false }
+    let(:arp_restricted) { true }
     let(:chef_run) do
       ChefSpec::SoloRunner.new do |node|
         node.normal['os-hardening']['network']['forwarding'] =
           network_forwarding
         node.normal['os-hardening']['network']['ipv6']['enable'] = ipv6_enable
+        node.normal['os-hardening']['network']['arp']['restricted'] =
+          arp_restricted
       end.converge(described_recipe)
     end
 
@@ -223,6 +226,42 @@ describe 'os-hardening::sysctl' do
         it 'should not disable IPv6' do
           is_expected.to eq(1)
         end
+      end
+    end
+
+    describe 'ARP restrictions' do
+      RSpec.shared_examples 'ARP restrictions in sysctl attributes' do |arp_ignore, arp_announce| # rubocop:disable Metrics/LineLength
+        describe 'arp_ignore' do
+          subject do
+            chef_run.node['sysctl']['params']['net']['ipv4']['conf']['all']['arp_ignore'] # rubocop:disable Metrics/LineLength
+          end
+
+          it "should be set to #{arp_ignore}" do
+            is_expected.to eq(arp_ignore)
+          end
+        end
+
+        describe 'arp_announce' do
+          subject do
+            chef_run.node['sysctl']['params']['net']['ipv4']['conf']['all']['arp_announce'] # rubocop:disable Metrics/LineLength
+          end
+
+          it "should be set to #{arp_announce}" do
+            is_expected.to eq(arp_announce)
+          end
+        end
+      end
+
+      context 'when ARP is restricted' do
+        let(:arp_restricted) { true }
+
+        include_examples 'ARP restrictions in sysctl attributes', 1, 2
+      end
+
+      context 'when ARP is not restricted' do
+        let(:arp_restricted) { false }
+
+        include_examples 'ARP restrictions in sysctl attributes', 0, 0
       end
     end
   end
