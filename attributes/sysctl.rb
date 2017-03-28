@@ -90,25 +90,6 @@ default['sysctl']['params']['net']['ipv6']['conf']['default']['max_addresses'] =
 default['sysctl']['params']['net']['ipv6']['conf']['all']['accept_ra'] = 0
 default['sysctl']['params']['net']['ipv6']['conf']['default']['accept_ra'] = 0
 
-# Magic Sysrq should be disabled, but can also be set to a safe value if so
-# desired for physical machines. It can allow a safe reboot if the system hangs
-# and is a 'cleaner' alternative to hitting the reset button.
-# The following values are permitted:
-#
-# * **0**   - disable sysrq
-# * **1**   - enable sysrq completely
-# * **>1**  - bitmask of enabled sysrq functions:
-# * **2**   - control of console logging level
-# * **4**   - control of keyboard (SAK, unraw)
-# * **8**   - debugging dumps of processes etc.
-# * **16**  - sync command
-# * **32**  - remount read-only
-# * **64**  - signalling of processes (term, kill, oom-kill)
-# * **128** - reboot/poweroff
-# * **256** - nicing of all RT tasks
-default['sysctl']['params']['kernel']['sysrq'] =
-  node['os-hardening']['security']['kernel']['enable_sysrq'] ? node['os-hardening']['security']['kernel']['secure_sysrq'] : 0
-
 # Prevent core dumps with SUID. These are usually only needed by developers and
 # may contain sensitive information.
 default['sysctl']['params']['fs']['suid_dumpable'] =

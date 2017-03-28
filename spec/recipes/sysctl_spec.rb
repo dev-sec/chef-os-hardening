@@ -134,6 +134,7 @@ describe 'os-hardening::sysctl' do
     let(:network_forwarding) { false }
     let(:arp_restricted) { true }
     let(:enable_module_loading) { true }
+    let(:enable_sysrq) { true }
     let(:chef_run) do
       ChefSpec::SoloRunner.new do |node|
         node.normal['os-hardening']['network']['forwarding'] =
@@ -143,6 +144,8 @@ describe 'os-hardening::sysctl' do
           arp_restricted
         node.normal['os-hardening']['security']['kernel']['enable_module_loading'] = # rubocop:disable Metrics/LineLength
           enable_module_loading
+        node.normal['os-hardening']['security']['kernel']['enable_sysrq'] =
+          enable_sysrq
       end.converge(described_recipe)
     end
 
@@ -310,6 +313,28 @@ describe 'os-hardening::sysctl' do
           it 'should rebuild initramfs' do
             is_expected.to run_execute('update-initramfs')
           end
+        end
+      end
+    end
+
+    describe 'Control magic SysRq' do
+      subject do
+        chef_run.node['sysctl']['params']['kernel']['sysrq']
+      end
+
+      context 'when sysrq is enabled' do
+        let(:enable_sysrq) { true }
+
+        it 'should enable sysrq with safe value' do
+          is_expected.to eq(244)
+        end
+      end
+
+      context 'when sysrq is disabled' do
+        let(:enable_sysrq) { false }
+
+        it 'should disable sysrq' do
+          is_expected.to eq(0)
         end
       end
     end
