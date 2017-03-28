@@ -133,6 +133,7 @@ describe 'os-hardening::sysctl' do
     let(:ipv6_enable) { false }
     let(:network_forwarding) { false }
     let(:arp_restricted) { true }
+    let(:enable_module_loading) { true }
     let(:chef_run) do
       ChefSpec::SoloRunner.new do |node|
         node.normal['os-hardening']['network']['forwarding'] =
@@ -140,6 +141,8 @@ describe 'os-hardening::sysctl' do
         node.normal['os-hardening']['network']['ipv6']['enable'] = ipv6_enable
         node.normal['os-hardening']['network']['arp']['restricted'] =
           arp_restricted
+        node.normal['os-hardening']['security']['kernel']['enable_module_loading'] = # rubocop:disable Metrics/LineLength
+          enable_module_loading
       end.converge(described_recipe)
     end
 
@@ -262,6 +265,52 @@ describe 'os-hardening::sysctl' do
         let(:arp_restricted) { false }
 
         include_examples 'ARP restrictions in sysctl attributes', 0, 0
+      end
+    end
+
+    describe 'Module loading' do
+      subject do
+        chef_run.node['sysctl']['params']['kernel']['modules_disabled']
+      end
+
+      context 'when module loading is enabled' do
+        let(:enable_module_loading) { true }
+
+        it 'should not set the sysctl flag' do
+          is_expected.to eq(nil)
+        end
+
+        describe 'rebuild of initramfs' do
+          subject { chef_run }
+
+          it 'should not create initramfs module file' do
+            is_expected.not_to create_template('/etc/initramfs-tools/modules')
+          end
+
+          it 'should not rebuild initramfs' do
+            is_expected.not_to run_execute('update-initramfs')
+          end
+        end
+      end
+
+      context 'when module loading is disabled' do
+        let(:enable_module_loading) { false }
+
+        it 'should disable module loading via sysctl flag' do
+          is_expected.to eq(1)
+        end
+
+        describe 'rebuild of initramfs' do
+          subject { chef_run }
+
+          it 'should create initramfs module file' do
+            is_expected.to create_template('/etc/initramfs-tools/modules')
+          end
+
+          it 'should rebuild initramfs' do
+            is_expected.to run_execute('update-initramfs')
+          end
+        end
       end
     end
   end

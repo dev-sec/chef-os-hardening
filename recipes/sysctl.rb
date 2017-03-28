@@ -76,6 +76,13 @@ node.default['sysctl']['params']['net']['ipv4']['conf']['all']['arp_ignore'] =
 node.default['sysctl']['params']['net']['ipv4']['conf']['all']['arp_announce'] =
   node['os-hardening']['network']['arp']['restricted'] ? 2 : 0
 
+# This setting controls how the kernel behaves towards module changes at
+# runtime. Setting to 1 will disable module loading at runtime.
+# Setting it to 0 is actually never supported.
+unless node['os-hardening']['security']['kernel']['enable_module_loading']
+  node.default['sysctl']['params']['kernel']['modules_disabled'] = 1
+end
+
 # include sysctl recipe and set /etc/sysctl.d/99-chef-attributes.conf
 include_recipe 'sysctl::apply'
 

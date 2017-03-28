@@ -90,16 +90,6 @@ default['sysctl']['params']['net']['ipv6']['conf']['default']['max_addresses'] =
 default['sysctl']['params']['net']['ipv6']['conf']['all']['accept_ra'] = 0
 default['sysctl']['params']['net']['ipv6']['conf']['default']['accept_ra'] = 0
 
-# System
-# ------
-
-# This settings controls how the kernel behaves towards module changes at
-# runtime. Setting to 1 will disable module loading at runtime.
-# Setting it to 0 is actually never supported.
-unless node['os-hardening']['security']['kernel']['enable_module_loading']
-  default['sysctl']['params']['kernel']['modules_disabled'] = 1
-end
-
 # Magic Sysrq should be disabled, but can also be set to a safe value if so
 # desired for physical machines. It can allow a safe reboot if the system hangs
 # and is a 'cleaner' alternative to hitting the reset button.
