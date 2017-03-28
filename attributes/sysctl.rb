@@ -90,11 +90,6 @@ default['sysctl']['params']['net']['ipv6']['conf']['default']['max_addresses'] =
 default['sysctl']['params']['net']['ipv6']['conf']['all']['accept_ra'] = 0
 default['sysctl']['params']['net']['ipv6']['conf']['default']['accept_ra'] = 0
 
-# Prevent core dumps with SUID. These are usually only needed by developers and
-# may contain sensitive information.
-default['sysctl']['params']['fs']['suid_dumpable'] =
-  node['os-hardening']['security']['kernel']['enable_core_dump'] ? 1 : 0
-
 # ExecShield protection against buffer overflows
 # unless node['platform'] == "ubuntu" # ["nx"].include?(node['cpu'][0]['flags']) or
 case node['platform_family']

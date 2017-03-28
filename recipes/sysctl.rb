@@ -102,6 +102,11 @@ end
 node.default['sysctl']['params']['kernel']['sysrq'] =
   node['os-hardening']['security']['kernel']['enable_sysrq'] ? node['os-hardening']['security']['kernel']['secure_sysrq'] : 0
 
+# Prevent core dumps with SUID. These are usually only needed by developers and
+# may contain sensitive information.
+node.default['sysctl']['params']['fs']['suid_dumpable'] =
+  node['os-hardening']['security']['kernel']['enable_core_dump'] ? 1 : 0
+
 # include sysctl recipe and set /etc/sysctl.d/99-chef-attributes.conf
 include_recipe 'sysctl::apply'
 

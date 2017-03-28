@@ -135,6 +135,7 @@ describe 'os-hardening::sysctl' do
     let(:arp_restricted) { true }
     let(:enable_module_loading) { true }
     let(:enable_sysrq) { true }
+    let(:enable_core_dump) { true }
     let(:chef_run) do
       ChefSpec::SoloRunner.new do |node|
         node.normal['os-hardening']['network']['forwarding'] =
@@ -146,6 +147,8 @@ describe 'os-hardening::sysctl' do
           enable_module_loading
         node.normal['os-hardening']['security']['kernel']['enable_sysrq'] =
           enable_sysrq
+        node.normal['os-hardening']['security']['kernel']['enable_core_dump'] =
+          enable_core_dump
       end.converge(described_recipe)
     end
 
@@ -334,6 +337,28 @@ describe 'os-hardening::sysctl' do
         let(:enable_sysrq) { false }
 
         it 'should disable sysrq' do
+          is_expected.to eq(0)
+        end
+      end
+    end
+
+    describe 'Core dumps with SUID' do
+      subject do
+        chef_run.node['sysctl']['params']['fs']['suid_dumpable']
+      end
+
+      context 'when core dumps are enabled' do
+        let(:enable_core_dump) { true }
+
+        it 'should set suid_dumpable to safe value' do
+          is_expected.to eq(1)
+        end
+      end
+
+      context 'when core dumps are disabled' do
+        let(:enable_core_dump) { false }
+
+        it 'should set suid_dumpable to default value' do
           is_expected.to eq(0)
         end
       end
