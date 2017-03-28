@@ -202,5 +202,28 @@ describe 'os-hardening::sysctl' do
         end
       end
     end
+
+    describe 'Control IPv6' do
+      subject do
+        chef_run.
+          node['sysctl']['params']['net']['ipv6']['conf']['all']['disable_ipv6']
+      end
+
+      context 'when IPv6 is enabled' do
+        let(:ipv6_enable) { true }
+
+        it 'should not disable IPv6' do
+          is_expected.to eq(0)
+        end
+      end
+
+      context 'when IPv6 is disabled' do
+        let(:ipv6_enable) { false }
+
+        it 'should not disable IPv6' do
+          is_expected.to eq(1)
+        end
+      end
+    end
   end
 end

@@ -38,10 +38,6 @@ default['sysctl']['params']['net']['ipv4']['icmp_ratelimit'] = 100
 # time exceed, param problem, timestamp reply, information reply
 default['sysctl']['params']['net']['ipv4']['icmp_ratemask'] = 88089
 
-# Disable or Enable IPv6 as it is needed.
-default['sysctl']['params']['net']['ipv6']['conf']['all']['disable_ipv6'] =
-  node['os-hardening']['network']['ipv6']['enable'] ? 0 : 1
-
 # Protect against wrapping sequence numbers at gigabit speeds:
 default['sysctl']['params']['net']['ipv4']['tcp_timestamps'] = 0
 

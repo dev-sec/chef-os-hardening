@@ -30,6 +30,10 @@ node.default['sysctl']['params']['net']['ipv4']['ip_forward'] =
 node.default['sysctl']['params']['net']['ipv6']['conf']['all']['forwarding'] =
   node['os-hardening']['network']['ipv6']['enable'] && node['os-hardening']['network']['forwarding'] ? 1 : 0
 
+# Disable or Enable IPv6 as it is needed.
+node.default['sysctl']['params']['net']['ipv6']['conf']['all']['disable_ipv6'] =
+  node['os-hardening']['network']['ipv6']['enable'] ? 0 : 1
+
 # include sysctl recipe and set /etc/sysctl.d/99-chef-attributes.conf
 include_recipe 'sysctl::apply'
 
