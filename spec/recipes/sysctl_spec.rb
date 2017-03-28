@@ -351,7 +351,7 @@ describe 'os-hardening::sysctl' do
         let(:enable_core_dump) { true }
 
         it 'should set suid_dumpable to safe value' do
-          is_expected.to eq(1)
+          is_expected.to eq(2)
         end
       end
 
