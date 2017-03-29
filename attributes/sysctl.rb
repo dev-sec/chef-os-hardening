@@ -17,12 +17,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Only enable IP traffic forwarding, if required.
-default['sysctl']['params']['net']['ipv4']['ip_forward'] =
-  node['os-hardening']['network']['forwarding'] ? 1 : 0
-default['sysctl']['params']['net']['ipv6']['conf']['all']['forwarding'] =
-  node['os-hardening']['network']['ipv6']['enable'] && node['os-hardening']['network']['forwarding'] ? 1 : 0
-
 # Enable RFC-recommended source validation feature. It should not be used for
 # routers on complex networks, but is helpful for end hosts and routers serving
 # small networks.
@@ -44,55 +38,8 @@ default['sysctl']['params']['net']['ipv4']['icmp_ratelimit'] = 100
 # time exceed, param problem, timestamp reply, information reply
 default['sysctl']['params']['net']['ipv4']['icmp_ratemask'] = 88089
 
-# Disable or Enable IPv6 as it is needed.
-default['sysctl']['params']['net']['ipv6']['conf']['all']['disable_ipv6'] =
-  node['os-hardening']['network']['ipv6']['enable'] ? 0 : 1
-
 # Protect against wrapping sequence numbers at gigabit speeds:
 default['sysctl']['params']['net']['ipv4']['tcp_timestamps'] = 0
-
-# arp_announce - INTEGER
-# Define different restriction levels for announcing the local source IP
-# address from IP packets in ARP requests sent on interface:
-#
-# * **0** - (default) Use any local address, configured on any interface
-# * **1** - Try to avoid local addresses that are not in the target's subnet
-#           for this interface. This mode is useful when target hosts reachable
-#           via this interface require the source IP address in ARP requests to
-#           be part of their logical network configured on the receiving
-#           interface. When we generate the request we will check all our
-#           subnets that include the target IP and will preserve the source
-#           address if it is from such subnet. If there is no such subnet we
-#           select source address according to the rules for level 2.
-# * **2** - Always use the best local address for this target. In this mode
-#           we ignore the source address in the IP packet and try to select
-#           local address that we prefer for talks with the target host. Such
-#           local address is selected by looking for primary IP addresses on
-#           all our subnets on the outgoing interface that include the target
-#           IP address. If no suitable local address is found we select the
-#           first local address we have on the outgoing interface or on all
-#           other interfaces, with the hope we will receive reply for our
-#           request and even sometimes no matter the source IP address we
-#           announce.
-#
-default['sysctl']['params']['net']['ipv4']['conf']['all']['arp_ignore'] =
-  node['os-hardening']['network']['arp']['restricted'] ? 1 : 0
-
-# Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:
-#
-# * **0** - (default): reply for any local target IP address, configured on
-#           any interface
-# * **1** - reply only if the target IP address is local address configured
-#           on the incoming interface
-# * **2** - reply only if the target IP address is local address configured
-#           on the incoming interface and both with the sender's IP address are
-#           part from same subnet on this interface
-# * **3** - do not reply for local addresses configured with scope host, only
-#           resolutions for global and link addresses are replied
-# * **4-7** - reserved
-# * **8** - do not reply for all local addresses
-default['sysctl']['params']['net']['ipv4']['conf']['all']['arp_announce'] =
-  node['os-hardening']['network']['arp']['restricted'] ? 2 : 0
 
 # RFC 1337 fix F1
 default['sysctl']['params']['net']['ipv4']['tcp_rfc1337'] = 1
@@ -142,40 +89,6 @@ default['sysctl']['params']['net']['ipv6']['conf']['default']['max_addresses'] =
 # * **2**  - accept router advertisements even if forwarding is enabled
 default['sysctl']['params']['net']['ipv6']['conf']['all']['accept_ra'] = 0
 default['sysctl']['params']['net']['ipv6']['conf']['default']['accept_ra'] = 0
-
-# System
-# ------
-
-# This settings controls how the kernel behaves towards module changes at
-# runtime. Setting to 1 will disable module loading at runtime.
-# Setting it to 0 is actually never supported.
-unless node['os-hardening']['security']['kernel']['enable_module_loading']
-  default['sysctl']['params']['kernel']['modules_disabled'] = 1
-end
-
-# Magic Sysrq should be disabled, but can also be set to a safe value if so
-# desired for physical machines. It can allow a safe reboot if the system hangs
-# and is a 'cleaner' alternative to hitting the reset button.
-# The following values are permitted:
-#
-# * **0**   - disable sysrq
-# * **1**   - enable sysrq completely
-# * **>1**  - bitmask of enabled sysrq functions:
-# * **2**   - control of console logging level
-# * **4**   - control of keyboard (SAK, unraw)
-# * **8**   - debugging dumps of processes etc.
-# * **16**  - sync command
-# * **32**  - remount read-only
-# * **64**  - signalling of processes (term, kill, oom-kill)
-# * **128** - reboot/poweroff
-# * **256** - nicing of all RT tasks
-default['sysctl']['params']['kernel']['sysrq'] =
-  node['os-hardening']['security']['kernel']['enable_sysrq'] ? node['os-hardening']['security']['kernel']['secure_sysrq'] : 0
-
-# Prevent core dumps with SUID. These are usually only needed by developers and
-# may contain sensitive information.
-default['sysctl']['params']['fs']['suid_dumpable'] =
-  node['os-hardening']['security']['kernel']['enable_core_dump'] ? 1 : 0
 
 # ExecShield protection against buffer overflows
 # unless node['platform'] == "ubuntu" # ["nx"].include?(node['cpu'][0]['flags']) or
