@@ -33,12 +33,6 @@ It will not:
 * Cookbooks:
   * Sander van Zoest sysctl `https://github.com/svanzoest-cookbooks/sysctl`
 
-**Note for `sysctl` usage:**
-
-We deprecated `sysctl` version before `0.6.0`. Future versions of this cookbook will depend on version 0.6.0 and greater. If you are going to use version 0.6.0, use `sysctl::apply` instead of `sysctl::default` in your runlist to ensure the configuration change will be applied.
-
-*Optional*: you can use [berkshelf](http://berkshelf.com/) to install dependencies.
-
 ## Attributes
 
 * `['os-hardening']['desktop']['enable'] = false`
