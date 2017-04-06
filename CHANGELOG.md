@@ -1,5 +1,50 @@
 # Change Log
 
+## [v2.0.0](https://github.com/dev-sec/chef-os-hardening/tree/v2.0.0) (2017-04-06)
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v1.4.1...v2.0.0)
+
+**Implemented enhancements:**
+
+- Remove dependenies to apt and yum cookbooks. [\#132](https://github.com/dev-sec/chef-os-hardening/pull/132) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Using braket syntax to resolve deprecation message [\#131](https://github.com/dev-sec/chef-os-hardening/pull/131) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- remove old content [\#126](https://github.com/dev-sec/chef-os-hardening/pull/126) ([chris-rock](https://github.com/chris-rock))
+- Own attribute namespace for os-hardening [\#114](https://github.com/dev-sec/chef-os-hardening/pull/114) ([joshmyers](https://github.com/joshmyers))
+
+**Closed issues:**
+
+- pam\_passwdqc package install idempotence [\#134](https://github.com/dev-sec/chef-os-hardening/issues/134)
+- Openhub is not up to date [\#129](https://github.com/dev-sec/chef-os-hardening/issues/129)
+- login.defs.erb contains a non-ASCII character which causes a knife cookbook upload failure [\#122](https://github.com/dev-sec/chef-os-hardening/issues/122)
+- fixing the 4 rspec failure [\#121](https://github.com/dev-sec/chef-os-hardening/issues/121)
+- pam node attribute namespace error [\#118](https://github.com/dev-sec/chef-os-hardening/issues/118)
+- Use travis for integration testing [\#115](https://github.com/dev-sec/chef-os-hardening/issues/115)
+- attributes need to be localized to the `node\['chef-os-hardening'\]` namespace [\#113](https://github.com/dev-sec/chef-os-hardening/issues/113)
+
+**Merged pull requests:**
+
+- Docs: removing obsolete sysctl hint [\#151](https://github.com/dev-sec/chef-os-hardening/pull/151) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Moving the attributes with dependencies on other attributes to the recipes [\#150](https://github.com/dev-sec/chef-os-hardening/pull/150) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Cleanup of sysctl dependency [\#149](https://github.com/dev-sec/chef-os-hardening/pull/149) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Disable entropy testing [\#146](https://github.com/dev-sec/chef-os-hardening/pull/146) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Execute integration tests in DigitalOcean [\#144](https://github.com/dev-sec/chef-os-hardening/pull/144) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Update of Gemfile [\#141](https://github.com/dev-sec/chef-os-hardening/pull/141) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Remove dependenies to apt and yum cookbooks. [\#140](https://github.com/dev-sec/chef-os-hardening/pull/140) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Update of kitchen vagrant file [\#139](https://github.com/dev-sec/chef-os-hardening/pull/139) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Fix the version in metadata.rb [\#138](https://github.com/dev-sec/chef-os-hardening/pull/138) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Cleanup, update of links in readme [\#137](https://github.com/dev-sec/chef-os-hardening/pull/137) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Use caching to improve spec performance [\#136](https://github.com/dev-sec/chef-os-hardening/pull/136) ([ncs-alane](https://github.com/ncs-alane))
+- Add attribute to control login.defs PASS\_WARN\_AGE [\#135](https://github.com/dev-sec/chef-os-hardening/pull/135) ([ncs-alane](https://github.com/ncs-alane))
+- Revert "Remove dependenies to apt and yum cookbooks." [\#133](https://github.com/dev-sec/chef-os-hardening/pull/133) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Update test-kitchen settings [\#130](https://github.com/dev-sec/chef-os-hardening/pull/130) ([shortdudey123](https://github.com/shortdudey123))
+- Opscode =\> Chef [\#128](https://github.com/dev-sec/chef-os-hardening/pull/128) ([shortdudey123](https://github.com/shortdudey123))
+- Update Rubocop, Foodcritic, and Chefspec coverage [\#127](https://github.com/dev-sec/chef-os-hardening/pull/127) ([shortdudey123](https://github.com/shortdudey123))
+- Fix links to opensource tools in README [\#125](https://github.com/dev-sec/chef-os-hardening/pull/125) ([netflash](https://github.com/netflash))
+- FIX for issue \#122 non-ASCII character [\#124](https://github.com/dev-sec/chef-os-hardening/pull/124) ([atomic111](https://github.com/atomic111))
+- Update rhel\_system\_auth.erb [\#120](https://github.com/dev-sec/chef-os-hardening/pull/120) ([phillym](https://github.com/phillym))
+- \[pam-attr-namespace-fix\] [\#119](https://github.com/dev-sec/chef-os-hardening/pull/119) ([rljohnsn](https://github.com/rljohnsn))
+- Use new InSpec integration tests [\#117](https://github.com/dev-sec/chef-os-hardening/pull/117) ([chris-rock](https://github.com/chris-rock))
+- Fix issues highlighted in \#114 [\#116](https://github.com/dev-sec/chef-os-hardening/pull/116) ([chris-rock](https://github.com/chris-rock))
+
 ## [v1.4.1](https://github.com/dev-sec/chef-os-hardening/tree/v1.4.1) (2016-05-29)
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v1.3.1...v1.4.1)
 
