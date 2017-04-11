@@ -20,7 +20,9 @@ platforms:
 
 provisioner:
   name: chef_solo
-  require_chef_omnibus: 12.5.1
+<% if ENV['CHEF_VERSION'] %>
+  require_chef_omnibus: <%= ENV['CHEF_VERSION'] %>
+<% end %>
 
 verifier:
   name: inspec

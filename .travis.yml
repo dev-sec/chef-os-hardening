@@ -14,8 +14,10 @@ env:
  - INSTANCE=ubuntu-12-04
  - INSTANCE=ubuntu-14-04
  - INSTANCE=ubuntu-16-04
+ - INSTANCE=ubuntu-16-04 CHEF_VERSION=12.5.1
  - INSTANCE=centos-6
  - INSTANCE=centos-7
+ - INSTANCE=centos-7 CHEF_VERSION=12.5.1
  - INSTANCE=debian-7
  - INSTANCE=debian-8
  - INSTANCE=fedora-24
@@ -29,8 +31,10 @@ matrix:
   - env: INSTANCE=ubuntu-12-04
   - env: INSTANCE=ubuntu-14-04
   - env: INSTANCE=ubuntu-16-04
+  - env: INSTANCE=ubuntu-16-04 CHEF_VERSION=12.5.1
   - env: INSTANCE=centos-6
   - env: INSTANCE=centos-7
+  - env: INSTANCE=centos-7 CHEF_VERSION=12.5.1
   - env: INSTANCE=debian-7
   - env: INSTANCE=debian-8
   - env: INSTANCE=fedora-24
