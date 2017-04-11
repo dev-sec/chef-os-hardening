@@ -1,5 +1,16 @@
 # Change Log
 
+## [v2.0.1](https://github.com/dev-sec/chef-os-hardening/tree/v2.0.1) (2017-04-11)
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v2.0.0...v2.0.1)
+
+**Fixed bugs:**
+
+- \['os-hardening'\]\['desktop'\]\['enable'\] is missing in 2.0.0 [\#153](https://github.com/dev-sec/chef-os-hardening/issues/153)
+
+**Merged pull requests:**
+
+- Default value for \['os-hardening'\]\['desktop'\]\['enable'\] [\#154](https://github.com/dev-sec/chef-os-hardening/pull/154) ([artem-sidorenko](https://github.com/artem-sidorenko))
+
 ## [v2.0.0](https://github.com/dev-sec/chef-os-hardening/tree/v2.0.0) (2017-04-06)
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v1.4.1...v2.0.0)
 
