@@ -49,5 +49,6 @@ describe 'os-hardening::default' do
     is_expected.to include_recipe 'os-hardening::profile'
     is_expected.to include_recipe 'os-hardening::securetty'
     is_expected.to include_recipe 'os-hardening::sysctl'
+    is_expected.to include_recipe 'os-hardening::auditd'
   end
 end
