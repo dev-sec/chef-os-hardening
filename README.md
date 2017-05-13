@@ -128,7 +128,7 @@ $ chef exec rake spec
 .....
 ```
 
-Integration tests are done with [test-kitchen](https://github.com/sethvargo/chefspec):
+Integration tests are done with [test-kitchen](http://kitchen.ci/) and [inspec](https://www.inspec.io/):
 
 ```bash
 $ chef exec rake kitchen
