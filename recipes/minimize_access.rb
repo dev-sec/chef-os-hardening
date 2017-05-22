@@ -28,11 +28,17 @@ paths.each do |folder|
   end
 end
 
-# shadow must only be accessible to user root
+# limit access to shadow. On debian family group shadow should be able to read it
+# (otherwise screensavers might break etc)
 file '/etc/shadow' do
   owner 'root'
-  group 'root'
-  mode '0600'
+  if node['platform_family'] == 'debian'
+    group 'shadow'
+    mode '0640'
+  else
+    group 'root'
+    mode '0600'
+  end
 end
 
 # su must only be accessible to user and group root
