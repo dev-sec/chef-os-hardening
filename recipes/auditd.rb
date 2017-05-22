@@ -1,10 +1,9 @@
 # encoding: utf-8
 #
 # Cookbook Name: os-hardening
-# Recipe: default
+# Recipe: auditd.rb
 #
-# Copyright 2012, Dominik Richter
-# Copyright 2014, Deutsche Telekom AG
+# Copyright 2017, Artem Sidorenko
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,13 +18,4 @@
 # limitations under the License.
 #
 
-include_recipe('os-hardening::packages')
-include_recipe('os-hardening::limits')
-include_recipe('os-hardening::login_defs')
-include_recipe('os-hardening::minimize_access')
-include_recipe('os-hardening::pam')
-include_recipe('os-hardening::profile')
-include_recipe('os-hardening::securetty')
-include_recipe('os-hardening::suid_sgid') if node['os-hardening']['security']['suid_sgid']['enforce']
-include_recipe('os-hardening::sysctl')
-include_recipe('os-hardening::auditd')
+package 'auditd'
