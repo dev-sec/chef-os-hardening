@@ -18,4 +18,4 @@
 # limitations under the License.
 #
 
-package 'auditd'
+package node['os-hardening']['packages']['auditd']

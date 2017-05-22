@@ -25,6 +25,7 @@ when 'rhel', 'fedora'
   default['os-hardening']['packages']['pam_passwdqc'] = 'pam_passwdqc'
   default['os-hardening']['packages']['pam_cracklib'] = 'pam_cracklib'
   default['os-hardening']['packages']['pam_pwquality'] = 'libpwquality'
+  default['os-hardening']['packages']['auditd'] = 'audit'
 
   if node['platform_version'].to_f < 7
     default['os-hardening']['auth']['pam']['passwdqc']['enable']  = true
@@ -38,16 +39,19 @@ when 'debian'
   default['os-hardening']['packages']['pam_ccreds'] = 'libpam-ccreds'
   default['os-hardening']['packages']['pam_passwdqc'] = 'libpam-passwdqc'
   default['os-hardening']['packages']['pam_cracklib'] = 'libpam-cracklib'
+  default['os-hardening']['packages']['auditd'] = 'auditd'
 
 when 'arch'
   default['os-hardening']['packages']['pam_ccreds'] = 'pam_ccreds'
   default['os-hardening']['packages']['pam_passwdqc'] = 'pam_passwdqc'
   default['os-hardening']['packages']['pam_cracklib'] = 'pam_cracklib'
+  default['os-hardening']['packages']['auditd'] = 'audit'
 
 else
   default['os-hardening']['packages']['pam_ccreds'] = 'pam_ccreds'
   default['os-hardening']['packages']['pam_passwdqc'] = 'pam_passwdqc'
   default['os-hardening']['packages']['pam_cracklib'] = 'pam_cracklib'
+  default['os-hardening']['packages']['auditd'] = 'audit'
 end
 
 # rhel, centos autoconf configuration
