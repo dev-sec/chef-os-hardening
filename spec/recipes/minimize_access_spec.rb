@@ -82,8 +82,8 @@ describe 'os-hardening::minimize_access' do
   it 'creates /etc/shadow' do
     is_expected.to create_file('/etc/shadow').with(
       user: 'root',
-      group: 'root',
-      mode: '0600'
+      group: 'shadow',
+      mode: '0640'
     )
   end
 
