@@ -40,3 +40,5 @@ suites:
   verifier:
     inspec_tests:
     - path: test/integration/default
+    attributes:
+      kernel_modules_disabled: 1
