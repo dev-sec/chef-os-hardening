@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 #
 # Cookbook Name:: os-hardening
 # Library:: suid_sgid
@@ -54,10 +55,10 @@ class Chef
       end
 
       def self.remove_suid_sgid_from_unknown(whitelist = [], root = '/', dry_run = false)
-        all_suid_sgid_files = find_all_suid_sgid_files(root).select do |file|
+        all_suid_sgid_files = find_all_suid_sgid_files(root).reject do |file|
           in_whitelist = whitelist.include?(file)
           Chef::Log.info "suid_sgid: Whitelisted file '#{file}', not altering SUID/SGID bit" if in_whitelist && !dry_run
-          !in_whitelist
+          in_whitelist
         end
 
         all_suid_sgid_files.each do |file|

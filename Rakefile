@@ -1,5 +1,6 @@
-#!/usr/bin/env rake
 # encoding: utf-8
+
+# rubocop:disable Style/SymbolArray
 
 require 'foodcritic'
 require 'rspec/core/rake_task'
