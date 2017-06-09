@@ -4,6 +4,7 @@
 driver:
   name: digitalocean
   size: 512mb
+  region: nyc3
 
 transport:
   ssh_key: '~/.ssh/ci_id_rsa'
