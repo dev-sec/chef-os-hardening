@@ -1,5 +1,24 @@
 # Change Log
 
+## [v2.1.0](https://github.com/dev-sec/chef-os-hardening/tree/v2.1.0) (2017-06-12)
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v2.0.1...v2.1.0)
+
+**Closed issues:**
+
+- Testing of chef 13 in the CI [\#155](https://github.com/dev-sec/chef-os-hardening/issues/155)
+- auditd package is not installed [\#145](https://github.com/dev-sec/chef-os-hardening/issues/145)
+- Procps conditional failing [\#48](https://github.com/dev-sec/chef-os-hardening/issues/48)
+
+**Merged pull requests:**
+
+- CI: update to ruby 2.4.1 and gem update [\#164](https://github.com/dev-sec/chef-os-hardening/pull/164) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Proper testing if kernel modules are disabled [\#163](https://github.com/dev-sec/chef-os-hardening/pull/163) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Proper permissions for shadow on debian family [\#162](https://github.com/dev-sec/chef-os-hardening/pull/162) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Support auditd installation on different distros [\#161](https://github.com/dev-sec/chef-os-hardening/pull/161) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Docs: fix the wrong kitchen URL and add inspec [\#160](https://github.com/dev-sec/chef-os-hardening/pull/160) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Chef 13 and 12 CI testing and cleanup of EOL distros [\#159](https://github.com/dev-sec/chef-os-hardening/pull/159) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Install auditd package [\#158](https://github.com/dev-sec/chef-os-hardening/pull/158) ([artem-sidorenko](https://github.com/artem-sidorenko))
+
 ## [v2.0.1](https://github.com/dev-sec/chef-os-hardening/tree/v2.0.1) (2017-04-11)
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v2.0.0...v2.0.1)
 
