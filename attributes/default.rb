@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 #
 # Cookbook Name:: os-hardening
 # Attributes:: default
@@ -76,7 +77,7 @@ default['os-hardening']['auth']['allow_homeless']                     = false
 default['os-hardening']['auth']['pam']['passwdqc']['options']           = 'min=disabled,disabled,16,12,8'
 default['os-hardening']['auth']['pam']['cracklib']['options']           = 'try_first_pass retry=3 type='
 default['os-hardening']['auth']['pam']['pwquality']['options']          = 'try_first_pass retry=3 type='
-default['os-hardening']['auth']['root_ttys']                          = %w(console tty1 tty2 tty3 tty4 tty5 tty6)
+default['os-hardening']['auth']['root_ttys']                          = %w[console tty1 tty2 tty3 tty4 tty5 tty6]
 default['os-hardening']['auth']['uid_min']                             = 1000
 default['os-hardening']['auth']['gid_min']                             = 1000
 default['os-hardening']['auth']['sys_uid_min']                         = 100
