@@ -1,0 +1,9 @@
+<% node['config_disclaimer'].to_s.split("\n").each do |l| %>
+# <%= l %>
+<% end %>
+#
+#--
+
+<% @filesystems.each do |fs| %>
+install <%= fs %> /bin/true
+<% end %>

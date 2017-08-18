@@ -365,4 +365,47 @@ describe 'os-hardening::sysctl' do
       end
     end
   end
+
+  describe 'filesystems' do
+    let(:disable_filesystems) { nil }
+    let(:chef_run) do
+      ChefSpec::SoloRunner.new do |node|
+        if disable_filesystems
+          node.normal['os-hardening']['security']['kernel']['disable_filesystems'] =
+            disable_filesystems
+        end
+      end.converge(described_recipe)
+    end
+
+    describe 'when unused filesystems are disabled with default values' do
+      it 'should render the proper modprobe file' do
+        %w[cramfs freevxfs jffs2 hfs hfsplus squashfs udf vfat].each do |fs|
+          expect(chef_run).to render_file('/etc/modprobe.d/dev-sec.conf').
+            with_content("install #{fs} /bin/true")
+        end
+      end
+    end
+
+    describe 'when only some filesystems are disabled' do
+      let(:disable_filesystems) { %w[vfat udf] }
+
+      it 'should render the proper modprobe file' do
+        %w[udf vfat].each do |fs|
+          expect(chef_run).to render_file('/etc/modprobe.d/dev-sec.conf').
+            with_content("install #{fs} /bin/true")
+        end
+
+        expect(chef_run).not_to render_file('/etc/modprobe.d/dev-sec.conf').
+          with_content('install cramfs /bin/true')
+      end
+    end
+
+    describe 'when unused filesystems are not disabled' do
+      let(:disable_filesystems) { %w[] }
+
+      it 'should delete the modprobe file' do
+        expect(chef_run).to delete_file('/etc/modprobe.d/dev-sec.conf')
+      end
+    end
+  end
 end

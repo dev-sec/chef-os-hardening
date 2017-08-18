@@ -170,3 +170,18 @@ when 'debian'
     end
   end
 end
+
+# CIS requirement: disable unused filesystems
+if node['os-hardening']['security']['kernel']['disable_filesystems'].empty?
+  file '/etc/modprobe.d/dev-sec.conf' do
+    action :delete
+  end
+else
+  template '/etc/modprobe.d/dev-sec.conf' do
+    source 'filesystem_blacklisting.erb'
+    mode 0440
+    owner 'root'
+    group 'root'
+    variables filesystems: node['os-hardening']['security']['kernel']['disable_filesystems']
+  end
+end

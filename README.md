@@ -70,6 +70,8 @@ It will not:
   list of things, that a user is allowed to do. May contain: `change_user`
 * `['os-hardening']['security']['kernel']['enable_module_loading'] = true`
   true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
+* `['os-hardening']['security']['kernel']['disable_filesystems'] = ['cramfs', 'freevxfs', 'jffs2', 'hfs', 'hfsplus', 'squashfs', 'udf', 'vfat']`
+  list of kernel file system modules, which are blacklisted for loading (e.g. they are unused and can be disabled). Set this to `[]` to completely avoid this blacklisting
 * `['os-hardening']['security']['kernel']['enable_sysrq'] = false`
 * `['os-hardening']['security']['kernel']['enable_core_dump'] = false`
 * `['os-hardening']['security']['suid_sgid']['enforce'] = true`
