@@ -32,7 +32,9 @@ supports 'centos', '>= 5.0'
 supports 'redhat', '>= 5.0'
 supports 'oracle', '>= 6.4'
 
-depends 'sysctl', '>= 0.6.0'
+# temporary version pinning of sysctl
+# https://github.com/dev-sec/chef-os-hardening/issues/166#issuecomment-322433264
+depends 'sysctl', '<= 0.9.0'
 depends 'compat_resource', '>= 12.16.3'
 
 recipe 'os-hardening::default', 'harden the operating system (all recipes)'
