@@ -92,10 +92,12 @@ default['sysctl']['params']['net']['ipv6']['conf']['all']['accept_ra'] = 0
 default['sysctl']['params']['net']['ipv6']['conf']['default']['accept_ra'] = 0
 
 # ExecShield protection against buffer overflows
-# unless node['platform'] == "ubuntu" # ["nx"].include?(node['cpu'][0]['flags']) or
 case node['platform_family']
 when 'rhel', 'fedora'
-  default['sysctl']['params']['kernel']['exec-shield'] = 1
+  # on RHEL 7 its enabled per default and can't be disabled
+  if node['platform_version'].to_f < 7
+    default['sysctl']['params']['kernel']['exec-shield'] = 1
+  end
 end
 
 # Virtual memory regions protection
