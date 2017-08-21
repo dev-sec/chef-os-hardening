@@ -88,6 +88,7 @@ default['os-hardening']['auth']['sys_gid_max']                         = 999
 # may contain: change_user
 default['os-hardening']['security']['users']['allow']                  = []
 default['os-hardening']['security']['kernel']['enable_module_loading'] = true
+default['os-hardening']['security']['kernel']['disable_filesystems']   = %w[cramfs freevxfs jffs2 hfs hfsplus squashfs udf vfat]
 default['os-hardening']['security']['kernel']['enable_sysrq']          = false
 default['os-hardening']['security']['kernel']['enable_core_dump']      = false
 default['os-hardening']['security']['suid_sgid']['enforce']            = true

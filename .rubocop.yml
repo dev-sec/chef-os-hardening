@@ -8,6 +8,7 @@ AllCops:
 Metrics/AbcSize:
   Max: 29
 Metrics/LineLength:
+  Max: 100
   Include:
     - spec/**/*.rb
 Metrics/MethodLength:
