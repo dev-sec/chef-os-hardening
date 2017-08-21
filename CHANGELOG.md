@@ -1,5 +1,16 @@
 # Change Log
 
+## [v2.1.1](https://github.com/dev-sec/chef-os-hardening/tree/v2.1.1) (2017-08-21)
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v2.1.0...v2.1.1)
+
+**Closed issues:**
+
+- Cookbook fails on CentOS Linux release 7.2.1511 - kernel.exec-shield [\#166](https://github.com/dev-sec/chef-os-hardening/issues/166)
+
+**Merged pull requests:**
+
+- Fix: do not touch exec-shield on RHEL 7 [\#168](https://github.com/dev-sec/chef-os-hardening/pull/168) ([artem-sidorenko](https://github.com/artem-sidorenko))
+
 ## [v2.1.0](https://github.com/dev-sec/chef-os-hardening/tree/v2.1.0) (2017-06-12)
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v2.0.1...v2.1.0)
 
