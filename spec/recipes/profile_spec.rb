@@ -17,18 +17,46 @@
 #
 
 describe 'os-hardening::profile' do
-  cached(:chef_run) do
-    ChefSpec::ServerRunner.new.converge(described_recipe)
+  let(:enable_core_dump) { nil }
+  let(:chef_run) do
+    ChefSpec::ServerRunner.new do |node|
+      node.override['os-hardening']['security']['kernel']['enable_core_dump'] = enable_core_dump if enable_core_dump # rubocop:disable Metrics/LineLength
+    end.converge(described_recipe)
   end
 
   subject { chef_run }
 
-  it 'create /etc/profile.d/pinerolo_profile.sh' do
-    is_expected.to create_template('/etc/profile.d/pinerolo_profile.sh').with(
-      source: 'profile.conf.erb',
-      mode: 0755,
-      owner: 'root',
-      group: 'root'
-    )
+  context 'enable_core_dump has its default value' do
+    it 'create /etc/profile.d/pinerolo_profile.sh' do
+      is_expected.to create_template('/etc/profile.d/pinerolo_profile.sh').with(
+        source: 'profile.conf.erb',
+        mode: 0755,
+        owner: 'root',
+        group: 'root'
+      )
+    end
+  end
+
+  context 'enable_core_dump is disabled' do
+    let(:enable_core_dump) { false }
+
+    it 'create /etc/profile.d/pinerolo_profile.sh' do
+      is_expected.to create_template('/etc/profile.d/pinerolo_profile.sh').with(
+        source: 'profile.conf.erb',
+        mode: 0755,
+        owner: 'root',
+        group: 'root'
+      )
+    end
+  end
+
+  context 'enable_core_dump is enabled' do
+    let(:enable_core_dump) { true }
+
+    it 'should remove the settings file' do
+      is_expected.to delete_template(
+        '/etc/profile.d/pinerolo_profile.sh'
+      )
+    end
   end
 end

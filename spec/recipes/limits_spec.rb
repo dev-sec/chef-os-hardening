@@ -23,16 +23,6 @@ describe 'os-hardening::limits' do
 
   subject { chef_run }
 
-  it 'creates /etc/sysconfig/init' do
-    is_expected.to create_template(
-      '/etc/security/limits.d/10.hardcore.conf'
-    ).with(
-      user:   'root',
-      group:  'root',
-      mode: '0440'
-    )
-  end
-
   it 'creates /etc/security/limits.d directory' do
     is_expected.to create_directory('/etc/security/limits.d').with(
       user:   'root',
@@ -40,5 +30,50 @@ describe 'os-hardening::limits' do
       mode: '0755',
       recursive: true
     )
+  end
+
+  describe 'core dump setting' do
+    let(:enable_core_dump) { nil }
+    let(:chef_run) do
+      ChefSpec::ServerRunner.new do |node|
+        node.override['os-hardening']['security']['kernel']['enable_core_dump'] = enable_core_dump if enable_core_dump # rubocop:disable Metrics/LineLength
+      end.converge(described_recipe)
+    end
+
+    context 'enable_core_dump has its default value' do
+      it 'should create the settings file' do
+        is_expected.to create_template(
+          '/etc/security/limits.d/10.hardcore.conf'
+        ).with(
+          user:   'root',
+          group:  'root',
+          mode: '0440'
+        )
+      end
+    end
+
+    context 'enable_core_dump is disabled' do
+      let(:enable_core_dump) { false }
+
+      it 'should create the settings file' do
+        is_expected.to create_template(
+          '/etc/security/limits.d/10.hardcore.conf'
+        ).with(
+          user:   'root',
+          group:  'root',
+          mode: '0440'
+        )
+      end
+    end
+
+    context 'enable_core_dump is enabled' do
+      let(:enable_core_dump) { true }
+
+      it 'should remove the settings file' do
+        is_expected.to delete_template(
+          '/etc/security/limits.d/10.hardcore.conf'
+        )
+      end
+    end
   end
 end
