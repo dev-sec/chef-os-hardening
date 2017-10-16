@@ -6,9 +6,9 @@ driver:
 platforms:
 - name: ubuntu-14.04
 - name: ubuntu-16.04
-- name: centos-6.8
-- name: centos-7.3
-- name: oracle-6.8
+- name: centos-6.9
+- name: centos-7.4
+- name: oracle-6.9
 - name: oracle-7.3
 - name: debian-7.11
 - name: debian-8.6
