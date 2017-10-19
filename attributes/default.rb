@@ -116,6 +116,9 @@ default['os-hardening']['security']['packages']['list']               = [
   'rsh-server'
 ]
 
+# SELinux enforcing (enforcing, permissive, unmanaged)
+default['os-hardening']['security']['selinux_mode']                      = 'unmanaged'
+
 # SYSTEM CONFIGURATION
 # ====================
 # These are not meant to be modified by the user
