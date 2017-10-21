@@ -95,6 +95,8 @@ It will not:
   * ypserv ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.4)
   * telnet-server ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.2)
   * rsh-server ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.3)
+* `['os-hardening']['security']['selinux_mode'] = 'unmanaged'`
+  set to `unmanaged` if you want to let selinux configuration as it is. Set to `enforcing` to enforce or `permissive` to permissive SELinux.
 
 ## Usage
 

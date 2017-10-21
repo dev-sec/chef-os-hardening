@@ -42,3 +42,12 @@ suites:
     - path: test/integration/default
     attributes:
       kernel_modules_disabled: 1
+- name: selinux_enabled
+  run_list:
+  - recipe[os-hardening::default]
+  includes:
+    - centos-7.3
+  attributes:
+    os-hardening:
+      security:
+        selinux_mode: enforcing

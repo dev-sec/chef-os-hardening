@@ -1,0 +1,5 @@
+name: os-hardening-integration-tests-selinux
+version: 1.0.0
+depends:
+  - name: os-hardening-integration-tests
+    path: test/integration/default
