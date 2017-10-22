@@ -4,17 +4,39 @@ driver:
   name: vagrant
 
 platforms:
-- name: ubuntu-14.04
-- name: ubuntu-16.04
-- name: centos-6.9
-- name: centos-7.4
-- name: oracle-6.9
-- name: oracle-7.3
-- name: debian-7.11
-- name: debian-8.6
-- name: fedora-24
+- name: ubuntu-14-04
+  driver_config:
+    box: bento/ubuntu-14.04
+- name: ubuntu-16-04
+  driver_config:
+    box: bento/ubuntu-16.04
+- name: centos-6
+  driver_config:
+    box: bento/centos-6.9
+- name: centos-7
+  driver_config:
+    box: bento/centos-7.4
+- name: oracle-6
+  driver_config:
+    box: bento/oracle-6.9
+- name: oracle-7
+  driver_config:
+    box: bento/oracle-7.3
+- name: debian-7
+  driver_config:
+    box: bento/debian-7.11
+- name: debian-8
+  driver_config:
+    box: bento/debian-8.6
 - name: fedora-25
-- name: opensuse-leap-42.1
+  driver_config:
+    box: bento/fedora-25
+- name: fedora-26
+  driver_config:
+    box: bento/fedora-26
+- name: opensuse-leap-42
+  driver_config:
+    box: bento/opensuse-leap-42.1
 
 provisioner:
   name: chef_solo
@@ -46,7 +68,7 @@ suites:
   run_list:
   - recipe[os-hardening::default]
   includes:
-    - centos-7.3
+    - centos-7
   attributes:
     os-hardening:
       security:
