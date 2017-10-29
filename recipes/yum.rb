@@ -51,7 +51,7 @@ if node['os-hardening']['security']['packages']['clean']
 
   # remove packages
   node['os-hardening']['security']['packages']['list'].each do |pkg|
-    yum_package pkg do
+    package pkg do
       action :purge
     end
   end
