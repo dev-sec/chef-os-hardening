@@ -65,7 +65,6 @@ default['os-hardening']['network']['forwarding']                      = false
 default['os-hardening']['network']['ipv6']['enable']                   = false
 default['os-hardening']['network']['arp']['restricted']                = true
 default['os-hardening']['env']['extra_user_paths']                    = []
-default['os-hardening']['env']['umask']                               = '027'
 default['os-hardening']['env']['root_path']                           = '/'
 default['os-hardening']['auth']['pw_max_age']                         = 60
 default['os-hardening']['auth']['pw_min_age']                         = 7 # discourage password cycling
@@ -80,10 +79,20 @@ default['os-hardening']['auth']['pam']['pwquality']['options']          = 'try_f
 default['os-hardening']['auth']['root_ttys']                          = %w[console tty1 tty2 tty3 tty4 tty5 tty6]
 default['os-hardening']['auth']['uid_min']                             = 1000
 default['os-hardening']['auth']['gid_min']                             = 1000
-default['os-hardening']['auth']['sys_uid_min']                         = 100
 default['os-hardening']['auth']['sys_uid_max']                         = 999
-default['os-hardening']['auth']['sys_gid_min']                         = 100
 default['os-hardening']['auth']['sys_gid_max']                         = 999
+
+# RH has a bit different defaults on some places
+case node['platform_family']
+when 'rhel', 'fedora'
+  default['os-hardening']['env']['umask'] = '077'
+  default['os-hardening']['auth']['sys_uid_min'] = 201
+  default['os-hardening']['auth']['sys_gid_min'] = 201
+else
+  default['os-hardening']['env']['umask'] = '027'
+  default['os-hardening']['auth']['sys_uid_min'] = 100
+  default['os-hardening']['auth']['sys_gid_min'] = 100
+end
 
 # may contain: change_user
 default['os-hardening']['security']['users']['allow']                  = []
