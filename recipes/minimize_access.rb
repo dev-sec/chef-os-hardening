@@ -33,7 +33,11 @@ end
 # (otherwise screensavers might break etc)
 file '/etc/shadow' do
   owner 'root'
-  if node['platform_family'] == 'debian'
+  case node['platform_family']
+  when 'rhel', 'fedora'
+    group 'root'
+    mode '0000'
+  when 'debian'
     group 'shadow'
     mode '0640'
   else
