@@ -53,3 +53,9 @@ file '/bin/su' do
   mode '0750'
   not_if { node['os-hardening']['security']['users']['allow'].include?('change_user') }
 end
+
+# /var/log should restricted to root or syslog on ubuntu systems
+directory '/var/log' do
+  owner 'root'
+  group node['platform'] == 'ubuntu' ? 'syslog' : 'root'
+end
