@@ -84,7 +84,7 @@ default['os-hardening']['auth']['sys_gid_max']                         = 999
 
 # RH has a bit different defaults on some places
 case node['platform_family']
-when 'rhel', 'fedora'
+when 'rhel'
   default['os-hardening']['env']['umask'] = '077'
   default['os-hardening']['auth']['sys_uid_min'] = 201
   default['os-hardening']['auth']['sys_gid_min'] = 201
