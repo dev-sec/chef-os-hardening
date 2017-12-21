@@ -1,5 +1,29 @@
 # Change Log
 
+## [v3.0.0](https://github.com/dev-sec/chef-os-hardening/tree/v3.0.0) (2017-12-21)
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v2.1.1...v3.0.0)
+
+**Closed issues:**
+
+- os-10 from linux-baseline is missing [\#167](https://github.com/dev-sec/chef-os-hardening/issues/167)
+- Removal of core dump hardening configuration if core dumps are allowed [\#165](https://github.com/dev-sec/chef-os-hardening/issues/165)
+- Integration testing of this cookbook in the CI [\#142](https://github.com/dev-sec/chef-os-hardening/issues/142)
+- Selinux enforcing support for RHEL/Centos? [\#106](https://github.com/dev-sec/chef-os-hardening/issues/106)
+- If I "enable" core dumps with chef-os-hardening, am I really fully enabling core dumps? [\#105](https://github.com/dev-sec/chef-os-hardening/issues/105)
+
+**Merged pull requests:**
+
+- Skip auditd tests [\#181](https://github.com/dev-sec/chef-os-hardening/pull/181) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Make fedora tests pass [\#179](https://github.com/dev-sec/chef-os-hardening/pull/179) ([shoekstra](https://github.com/shoekstra))
+- Control ownership of /var/log [\#178](https://github.com/dev-sec/chef-os-hardening/pull/178) ([shoekstra](https://github.com/shoekstra))
+- RH family: adapt some settings, as RH has better defaults [\#177](https://github.com/dev-sec/chef-os-hardening/pull/177) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Fix for fedora: lets use generic package resource [\#176](https://github.com/dev-sec/chef-os-hardening/pull/176) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Kitchen: Using the same names for platforms for different drivers [\#175](https://github.com/dev-sec/chef-os-hardening/pull/175) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Enable core dumps if they are enabled via attribute [\#174](https://github.com/dev-sec/chef-os-hardening/pull/174) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Selinux enforcing support for RHEL/Centos [\#173](https://github.com/dev-sec/chef-os-hardening/pull/173) ([AnMoeller](https://github.com/AnMoeller))
+- Kitchen: Update of testing boxes/images [\#172](https://github.com/dev-sec/chef-os-hardening/pull/172) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Lets disable unused filesystems per default [\#169](https://github.com/dev-sec/chef-os-hardening/pull/169) ([artem-sidorenko](https://github.com/artem-sidorenko))
+
 ## [v2.1.1](https://github.com/dev-sec/chef-os-hardening/tree/v2.1.1) (2017-08-21)
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v2.1.0...v2.1.1)
 
