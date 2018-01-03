@@ -20,6 +20,13 @@
 # limitations under the License.
 #
 
+# Do not run the sysctl recipe on LXD/LXC containers as the values cannot be
+# changed from within a container.
+if node['virtualization']['system'] == 'lxd' && node['virtualization']['role'] == 'guest'
+  Chef::Log.warn "Skipping #{cookbook_name}::#{recipe_name} recipe; Node is an LXD Guest Container."
+  return
+end
+
 # default attributes
 # We can not set this kind of defaults in the attribute files
 # as we react on value of other attributes
