@@ -22,7 +22,12 @@
 package node['os-hardening']['packages']['auditd']
 
 service "auditd" do
-  action [ :enable, :start ]
+  supports [:start, :stop, :restart, :reload, :status]
+  if (node['platform_family'] == 'rhel' && node['platform_version'].to_f >= 7) ||
+     (node['platform_family'] == 'fedora')
+    restart_command 'service auditd restart'
+  end 
+  action [ :enable ]
 end
 unless (node['os-hardening']['auditd']['flush'].match? /^INCREMENTAL|INCREMENTAL_ASYNC$/ || 
    node['os-hardening']['auditd']['flush'].empty?)
