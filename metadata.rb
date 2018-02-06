@@ -22,7 +22,7 @@ maintainer_email 'dominik.richter@googlemail.com'
 license          'Apache-2.0'
 description      'Installs and configures operating system hardening'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '3.2.0'
+version          '3.1.0'
 
 chef_version '>= 12.5' if respond_to?(:chef_version)
 
