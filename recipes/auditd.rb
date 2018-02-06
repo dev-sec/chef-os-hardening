@@ -29,6 +29,7 @@ service "auditd" do
   end 
   action [ :enable ]
 end
+
 unless (node['os-hardening']['auditd']['flush'].match? /^INCREMENTAL|INCREMENTAL_ASYNC$/ || 
    node['os-hardening']['auditd']['flush'].empty?)
   Chef::Log.fatal('If specifying a value for auditd flush parameter, must be one of INCREMENTAL or INCREMENTAL_ASYNC')
