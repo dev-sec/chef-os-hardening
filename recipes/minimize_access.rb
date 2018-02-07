@@ -34,7 +34,7 @@ end
 file '/etc/shadow' do
   owner 'root'
   case node['platform_family']
-  when 'rhel'
+  when 'rhel', 'fedora'
     group 'root'
     mode '0000'
   when 'debian'
