@@ -28,12 +28,12 @@ platforms:
 - name: debian-8
   driver_config:
     box: bento/debian-8.6
-- name: fedora-25
-  driver_config:
-    box: bento/fedora-25
 - name: fedora-26
   driver_config:
     box: bento/fedora-26
+- name: fedora-27
+  driver_config:
+    box: bento/fedora-27
 - name: opensuse-leap-42
   driver_config:
     box: bento/opensuse-leap-42.1

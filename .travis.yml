@@ -19,8 +19,8 @@ env:
  - INSTANCE=centos-7 CHEF_VERSION=12.5.1
  - INSTANCE=debian-7
  - INSTANCE=debian-8
- - INSTANCE=fedora-25
  - INSTANCE=fedora-26
+ - INSTANCE=fedora-27
 
 script:
   -  bundle exec rake prepare_do_env kitchen KITCHEN_LOCAL_YAML=.kitchen.do.local.yml
@@ -35,8 +35,8 @@ matrix:
   - env: INSTANCE=centos-7 CHEF_VERSION=12.5.1
   - env: INSTANCE=debian-7
   - env: INSTANCE=debian-8
-  - env: INSTANCE=fedora-25
   - env: INSTANCE=fedora-26
+  - env: INSTANCE=fedora-27
   include:
     - env: UNIT_AND_LINT=1
       script:
