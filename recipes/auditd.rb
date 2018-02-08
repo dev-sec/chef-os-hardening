@@ -19,4 +19,7 @@
 # limitations under the License.
 #
 
-package node['os-hardening']['packages']['auditd']
+package node['os-hardening']['packages']['auditd'] do
+  # Do not install auditd within an LXC guest as it requires kernel access
+  not_if { node['virtualization']['system'] == 'lxd' && node['virtualization']['role'] == 'guest' }
+end
