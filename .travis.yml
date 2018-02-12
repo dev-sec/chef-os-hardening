@@ -13,10 +13,10 @@ before_install:
 env:
  - INSTANCE=ubuntu-14-04
  - INSTANCE=ubuntu-16-04
- - INSTANCE=ubuntu-16-04 CHEF_VERSION=12.5.1
+ - INSTANCE=ubuntu-16-04 CHEF_VERSION=12.14.60
  - INSTANCE=centos-6
  - INSTANCE=centos-7
- - INSTANCE=centos-7 CHEF_VERSION=12.5.1
+ - INSTANCE=centos-7 CHEF_VERSION=12.14.60
  - INSTANCE=debian-7
  - INSTANCE=debian-8
  - INSTANCE=fedora-26
@@ -29,10 +29,10 @@ matrix:
   allow_failures: # allow failues of integration tests as the forks might miss the DO token
   - env: INSTANCE=ubuntu-14-04
   - env: INSTANCE=ubuntu-16-04
-  - env: INSTANCE=ubuntu-16-04 CHEF_VERSION=12.5.1
+  - env: INSTANCE=ubuntu-16-04 CHEF_VERSION=12.14.60
   - env: INSTANCE=centos-6
   - env: INSTANCE=centos-7
-  - env: INSTANCE=centos-7 CHEF_VERSION=12.5.1
+  - env: INSTANCE=centos-7 CHEF_VERSION=12.14.60
   - env: INSTANCE=debian-7
   - env: INSTANCE=debian-8
   - env: INSTANCE=fedora-26
