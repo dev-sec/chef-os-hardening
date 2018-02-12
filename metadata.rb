@@ -32,7 +32,7 @@ supports 'centos', '>= 5.0'
 supports 'redhat', '>= 5.0'
 supports 'oracle', '>= 6.4'
 
-depends 'sysctl'
+depends 'sysctl', '> 0.9.0'
 depends 'compat_resource', '>= 12.16.3'
 
 recipe 'os-hardening::default', 'harden the operating system (all recipes)'
