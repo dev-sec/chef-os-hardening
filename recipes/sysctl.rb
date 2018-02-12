@@ -185,3 +185,11 @@ else
     variables filesystems: node['os-hardening']['security']['kernel']['disable_filesystems']
   end
 end
+
+# Delete conf_file from previous version of sysctl, if it exists
+if node['sysctl'].attribute?('conf_file')
+  file node['sysctl']['conf_file'] do
+    action :delete
+  end
+end
+
