@@ -22,7 +22,7 @@
 # SELinux enforcing support
 
 case node['platform_family']
-when 'rhel', 'fedora'
+when 'rhel', 'fedora', 'amazon'
   unless node['os-hardening']['security']['selinux_mode'] == 'unmanaged'
     semode = case node['os-hardening']['security']['selinux_mode']
              when 'enforcing'

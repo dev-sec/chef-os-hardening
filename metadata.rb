@@ -26,6 +26,7 @@ version          '3.0.0'
 
 chef_version '>= 12.5' if respond_to?(:chef_version)
 
+supports 'amazon'
 supports 'ubuntu', '>= 12.04'
 supports 'debian', '>= 6.0'
 supports 'centos', '>= 5.0'

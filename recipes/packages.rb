@@ -27,6 +27,6 @@ end
 
 # do package config for rhel-family
 case node['platform_family']
-when 'rhel', 'fedora'
+when 'rhel', 'fedora', 'amazon'
   include_recipe('os-hardening::yum')
 end
