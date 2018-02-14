@@ -37,6 +37,9 @@ platforms:
 - name: opensuse-leap-42
   driver_config:
     box: bento/opensuse-leap-42.1
+- name: amzn2
+  driver_config:
+    box: stakahashi/amazonlinux2
 
 provisioner:
   name: chef_solo

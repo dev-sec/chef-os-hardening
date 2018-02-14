@@ -21,7 +21,7 @@
 
 # Define the packages based on operating system
 case node['platform_family']
-when 'rhel', 'fedora'
+when 'rhel', 'fedora', 'amazon'
   default['os-hardening']['packages']['pam_ccreds'] = 'pam_ccreds'
   default['os-hardening']['packages']['pam_passwdqc'] = 'pam_passwdqc'
   default['os-hardening']['packages']['pam_cracklib'] = 'pam_cracklib'
@@ -84,7 +84,7 @@ default['os-hardening']['auth']['sys_gid_max']                         = 999
 
 # RH has a bit different defaults on some places
 case node['platform_family']
-when 'rhel'
+when 'rhel', 'amazon'
   default['os-hardening']['env']['umask'] = '077'
   default['os-hardening']['auth']['sys_uid_min'] = 201
   default['os-hardening']['auth']['sys_gid_min'] = 201

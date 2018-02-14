@@ -150,7 +150,7 @@ end
 # NSA 2.2.4.1 Set Daemon umask
 # do config for rhel-family
 case node['platform_family']
-when 'rhel', 'fedora'
+when 'rhel', 'fedora', 'amazon'
   template '/etc/sysconfig/init' do
     source 'rhel_sysconfig_init.erb'
     mode 0544
