@@ -50,6 +50,7 @@ when 'debian'
     # configure passwdqc via central module:
     template passwdqc_path do
       source 'pam_passwdqc.erb'
+      cookbook node['os-hardening']['auth']['pam']['passwdqc']['template_cookbook']
       mode 0640
       owner 'root'
       group 'root'
@@ -78,6 +79,7 @@ when 'debian'
 
     template tally2_path do
       source 'pam_tally2.erb'
+      cookbook node['os-hardening']['auth']['pam']['tally2']['template_cookbook']
       mode 0640
       owner 'root'
       group 'root'
@@ -122,6 +124,7 @@ when 'rhel', 'fedora'
   # configure passwdqc and tally via central system-auth confic:
   template '/etc/pam.d/system-auth-ac' do
     source 'rhel_system_auth.erb'
+    cookbook node['os-hardening']['auth']['pam']['system-auth']['template_cookbook']
     mode 0640
     owner 'root'
     group 'root'
