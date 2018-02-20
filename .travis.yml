@@ -1,9 +1,12 @@
 ---
-sudo: false
+sudo: required
 language: ruby
 bundler_args: "--without development"
 dist: trusty
 cache: bundler
+
+services:
+- docker
 
 rvm: 2.4.1
 
@@ -11,32 +14,35 @@ before_install:
   - gem update --system # see https://github.com/bundler/bundler/issues/5357
 
 env:
- - INSTANCE=ubuntu-14-04
- - INSTANCE=ubuntu-16-04
- - INSTANCE=ubuntu-16-04 CHEF_VERSION=12.14.60
- - INSTANCE=centos-6
- - INSTANCE=centos-7
- - INSTANCE=centos-7 CHEF_VERSION=12.14.60
- - INSTANCE=debian-7
- - INSTANCE=debian-8
- - INSTANCE=fedora-26
- - INSTANCE=fedora-27
+ - INSTANCE=ubuntu-14-04 KITCHEN_LOCAL_YAML=.kitchen.do.yml
+ - INSTANCE=ubuntu-16-04 KITCHEN_LOCAL_YAML=.kitchen.do.yml
+ - INSTANCE=ubuntu-16-04 CHEF_VERSION=12.14.60 KITCHEN_LOCAL_YAML=.kitchen.do.yml
+ - INSTANCE=centos-6 KITCHEN_LOCAL_YAML=.kitchen.do.yml
+ - INSTANCE=centos-7 KITCHEN_LOCAL_YAML=.kitchen.do.yml
+ - INSTANCE=centos-7 CHEF_VERSION=12.14.60 KITCHEN_LOCAL_YAML=.kitchen.do.yml
+ - INSTANCE=debian-7 KITCHEN_LOCAL_YAML=.kitchen.do.yml
+ - INSTANCE=debian-8 KITCHEN_LOCAL_YAML=.kitchen.do.yml
+ - INSTANCE=fedora-26 KITCHEN_LOCAL_YAML=.kitchen.do.yml
+ - INSTANCE=fedora-27 KITCHEN_LOCAL_YAML=.kitchen.do.yml
+ - INSTANCE=ubuntu-14-04 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=ubuntu-16-04 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=ubuntu-16-04 CHEF_VERSION=12.14.60 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=centos-6 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=centos-7 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=centos-7 CHEF_VERSION=12.14.60 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=oracle-6 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=oracle-7 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=debian-7 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=debian-8 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=fedora-26 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=fedora-27 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=opensuse-42 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=amazonlinux-2 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
 
 script:
-  -  bundle exec rake prepare_do_env kitchen KITCHEN_LOCAL_YAML=.kitchen.do.local.yml
+  -  bundle exec rake kitchen
 
 matrix:
-  allow_failures: # allow failues of integration tests as the forks might miss the DO token
-  - env: INSTANCE=ubuntu-14-04
-  - env: INSTANCE=ubuntu-16-04
-  - env: INSTANCE=ubuntu-16-04 CHEF_VERSION=12.14.60
-  - env: INSTANCE=centos-6
-  - env: INSTANCE=centos-7
-  - env: INSTANCE=centos-7 CHEF_VERSION=12.14.60
-  - env: INSTANCE=debian-7
-  - env: INSTANCE=debian-8
-  - env: INSTANCE=fedora-26
-  - env: INSTANCE=fedora-27
   include:
     - env: UNIT_AND_LINT=1
       script:
