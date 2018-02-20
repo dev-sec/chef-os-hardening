@@ -33,7 +33,7 @@ supports 'centos', '>= 5.0'
 supports 'redhat', '>= 5.0'
 supports 'oracle', '>= 6.4'
 
-depends 'sysctl', '>= 0.10.0'
+depends 'sysctl', '~> 0.10'
 
 recipe 'os-hardening::default', 'harden the operating system (all recipes)'
 recipe 'os-hardening::limits', 'prevent core dumps'
