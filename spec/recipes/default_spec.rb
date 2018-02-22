@@ -52,4 +52,34 @@ describe 'os-hardening::default' do
     is_expected.to include_recipe 'os-hardening::sysctl'
     is_expected.to include_recipe 'os-hardening::auditd'
   end
+
+  context 'with disabled auditd' do
+    cached(:chef_run) do
+      ChefSpec::ServerRunner.new do |node|
+        node.normal['os-hardening']['auditd']['enabled'] = false
+
+        %w[
+          /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+        ].each do |folder|
+          stub_command(
+            "find #{folder}  -perm -go+w -type f | wc -l | egrep '^0$'"
+          ).and_return(false)
+        end
+      end.converge(described_recipe)
+    end
+
+    subject { chef_run }
+
+    it "won't include auditd" do
+      is_expected.to include_recipe 'os-hardening::packages'
+      is_expected.to include_recipe 'os-hardening::limits'
+      is_expected.to include_recipe 'os-hardening::login_defs'
+      is_expected.to include_recipe 'os-hardening::minimize_access'
+      is_expected.to include_recipe 'os-hardening::pam'
+      is_expected.to include_recipe 'os-hardening::profile'
+      is_expected.to include_recipe 'os-hardening::securetty'
+      is_expected.to include_recipe 'os-hardening::sysctl'
+      is_expected.not_to include_recipe 'os-hardening::auditd'
+    end
+  end
 end

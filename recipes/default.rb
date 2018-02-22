@@ -29,5 +29,5 @@ include_recipe('os-hardening::profile')
 include_recipe('os-hardening::securetty')
 include_recipe('os-hardening::suid_sgid') if node['os-hardening']['security']['suid_sgid']['enforce']
 include_recipe('os-hardening::sysctl')
-include_recipe('os-hardening::auditd')
+include_recipe('os-hardening::auditd') if node['os-hardening']['auditd']['enabled']
 include_recipe('os-hardening::selinux') if node['platform_family'] == 'rhel' || node['platform_family'] == 'fedora'
