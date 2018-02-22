@@ -66,6 +66,12 @@ It will not:
   true if you want to use strong password checking in PAM using passwdqc
 * `['os-hardening']['auth']['pam']['passwdqc']['options'] = "min=disabled,disabled,16,12,8"`
   set to any option line (as a string) that you want to pass to passwdqc
+* `['os-hardening']['auth']['pam']['passwdqc']['template_cookbook'] = 'os-hardening'`
+  set to the name of the cookbook from which the template is obtained for the `/usr/share/pam-configs/passwdqc` file
+* `['os-hardening']['auth']['pam']['tally2']['template_cookbook'] = 'os-hardening'`
+  set to the name of the cookbook from which the template is obtained for the `/usr/share/pam-configs/tally2` file
+* `['os-hardening']['auth']['pam']['system-auth']['template_cookbook'] = 'os-hardening'`
+  set to the name of the cookbook from which the template is obtained for the `/etc/pam.d/system-auth-ac` file
 * `['os-hardening']['security']['users']['allow'] = []`
   list of things, that a user is allowed to do. May contain: `change_user`
 * `['os-hardening']['security']['kernel']['enable_module_loading'] = true`
