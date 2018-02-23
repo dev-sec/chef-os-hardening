@@ -131,6 +131,9 @@ default['os-hardening']['security']['packages']['list']               = [
 # SELinux enforcing (enforcing, permissive, unmanaged)
 default['os-hardening']['security']['selinux_mode']                      = 'unmanaged'
 
+# De-/Activate auditd recipe
+default['os-hardening']['auditd']['enabled']                             = true
+
 # SYSTEM CONFIGURATION
 # ====================
 # These are not meant to be modified by the user
