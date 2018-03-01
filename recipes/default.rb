@@ -20,14 +20,31 @@
 # limitations under the License.
 #
 
-include_recipe('os-hardening::packages')
-include_recipe('os-hardening::limits')
-include_recipe('os-hardening::login_defs')
-include_recipe('os-hardening::minimize_access')
-include_recipe('os-hardening::pam')
-include_recipe('os-hardening::profile')
-include_recipe('os-hardening::securetty')
-include_recipe('os-hardening::suid_sgid') if node['os-hardening']['security']['suid_sgid']['enforce']
-include_recipe('os-hardening::sysctl')
-include_recipe('os-hardening::auditd')
-include_recipe('os-hardening::selinux') if node['platform_family'] == 'rhel' || node['platform_family'] == 'fedora'
+# here we try to determine which components should be included.
+# You can control the behaviour via setting the node['os-hardening']['components'][recipe_name]
+# to true (to include it) or to false (to skip it) on the override level, e.g.
+#
+# override['os-hardening']['components']['sysctl'] = false
+#
+
+# generic components, include them per default
+%w[packages limits login_defs minimize_access pam profile securetty].each do |cp|
+  node.default['os-hardening']['components'][cp] = true
+end
+
+node.default['os-hardening']['components']['suid_sgid'] = node['os-hardening']['security']['suid_sgid']['enforce']
+
+# components which are not suitable for containers
+unless node['virtualization']['system'] =~ /^(lxc|docker)$/ && node['virtualization']['role'] == 'guest'
+  node.default['os-hardening']['components']['sysctl'] = true
+  node.default['os-hardening']['components']['auditd'] = true
+
+  # selinux should be included only on RH based systems
+  node.default['os-hardening']['components']['selinux'] =
+    node['platform_family'] == 'rhel' || node['platform_family'] == 'fedora'
+end
+
+# include all required components
+node['os-hardening']['components'].each do |component, state|
+  include_recipe "#{cookbook_name}::#{component}" if state
+end
