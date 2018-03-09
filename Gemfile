@@ -24,7 +24,7 @@ end
 group :integration do
   gem 'kitchen-digitalocean'
   gem 'kitchen-dokken'
-  gem 'kitchen-inspec'
+  gem 'kitchen-inspec', '>= 0.23.1'
   gem 'kitchen-vagrant'
   gem 'test-kitchen', '~> 1.0'
 end
