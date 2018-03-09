@@ -35,6 +35,7 @@ It will not:
 
 ## Attributes
 
+* `['os-hardening']['components'][COMPONENT_NAME]` - allows the fine control over which components should be executed via default recipe. See below for more details
 * `['os-hardening']['desktop']['enable'] = false`
   true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
 * `['os-hardening']['network']['forwarding'] = false`
@@ -104,6 +105,22 @@ It will not:
 * `['os-hardening']['security']['selinux_mode'] = 'unmanaged'`
   set to `unmanaged` if you want to let selinux configuration as it is. Set to `enforcing` to enforce or `permissive` to permissive SELinux.
 
+### Controlling the included components
+
+`default.rb` includes other components based on the ohai autodetection attributes of your system. E.g. do not execute selinux on non-RHEL systems. You can override this behavior and force components to be executed or not via setting attributes in `node['os-hardening']['components']` on the override level. Example
+
+```ruby
+# some attribute file
+# do not include sysctl and auditd
+override['os-hardening']['components']['sysctl'] = false
+override['os-hardening']['components']['auditd'] = false
+
+# force selinux to be included
+override['os-hardening']['components']['selinux'] = true
+```
+
+In the current implementation different components are located in the different recipes. See the available recipes or `default.rb` for possible component names.
+
 ## Usage
 
 Add the recipes to the `run_list`, it should be last:
@@ -149,11 +166,12 @@ $ kitchen test
 
 ### CI testing of forks
 
-You can enable testing of your fork in [Travis CI](http://travis-ci.org/). By default you will get linting and spec tests.
+You can enable testing of your fork in [Travis CI](http://travis-ci.org/). By default you will get linting, spec tests and integration tests with [kitchen-dokken].
 
-Integration tests of this repository are conducted using [DigitalOcean](http://digitalocean.com/).
+Integration tests with [kitchen-dokken] do not cover everything as they run in the container environment.
+Full integration tests can be executed using [DigitalOcean](http://digitalocean.com/).
 
-If you want to have integration tests for your fork, you will have to add following [environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings) in the settings of your fork:
+If you want to have full integration tests for your fork, you will have to add following [environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings) in the settings of your fork:
 - `DIGITALOCEAN_ACCESS_TOKEN` - [access token for DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api-v2)
 - `CI_SSH_KEY` - private part of some ssh key, available on DigitalOcean for your instances, in base64 encoded form (e.g. `cat id_rsa | base64 -w0 ; echo`)
 - `DIGITALOCEAN_SSH_KEY_IDS` - ID in DigitalOcean of `CI_SSH_KEY`, see [this](https://github.com/test-kitchen/kitchen-digitalocean#installation-and-setup) for more information
@@ -165,6 +183,7 @@ If you want to have integration tests for your fork, you will have to add follow
 * Christoph Hartmann [chris-rock](https://github.com/chris-rock)
 * Edmund Haselwanter [ehaselwanter](https://github.com/ehaselwanter)
 * Patrick Meier [atomic111](https://github.com/atomic111)
+* Artem Sidorenko [artem-sidorenko](https://github.com/artem-sidorenko)
 
 This cookbook is mostly based on guides by:
 
@@ -202,3 +221,4 @@ limitations under the License.
 [3]: https://coveralls.io/r/dev-sec/chef-os-hardening
 [4]: https://gemnasium.com/dev-sec/chef-os-hardening
 [5]: https://gitter.im/dev-sec/general
+[kitchen-dokken]: https://github.com/someara/kitchen-dokken

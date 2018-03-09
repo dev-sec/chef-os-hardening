@@ -57,5 +57,10 @@ end
 # /var/log should restricted to root or syslog on ubuntu systems
 directory '/var/log' do
   owner 'root'
-  group node['platform'] == 'ubuntu' ? 'syslog' : 'root'
+  # ubuntu with containers does not have rsyslog installed and syslog group does not exist
+  if node['platform'] == 'ubuntu' && node['packages']['rsyslog']
+    group 'syslog'
+  else
+    group 'root'
+  end
 end

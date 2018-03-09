@@ -65,24 +65,30 @@ end
 
 desc 'Run kitchen integration tests'
 task :kitchen do
+  SSH_KEY_FILE = '~/.ssh/ci_id_rsa'.freeze
+  SSH_KEY_ENV_VAR_NAME = 'CI_SSH_KEY'.freeze
   concurrency = ENV['CONCURRENCY'] || 1
   instance = ENV['INSTANCE'] || ''
   args = ENV['CI'] ? '--destroy=always' : ''
-  sh('sh', '-c', "bundle exec kitchen test -c #{concurrency} #{args} #{instance}")
-end
 
-desc 'Prepare CI environment for DigitalOcean usage'
-task :prepare_do_env do
-  SSH_KEY_FILE = '~/.ssh/ci_id_rsa'.freeze
-  ENV_VAR_NAME = 'CI_SSH_KEY'.freeze
+  if ENV['CI'] && ENV['KITCHEN_LOCAL_YAML'] == '.kitchen.do.yml'
+    puts 'Preparing CI environment for DigitalOcean...'
 
-  ['DIGITALOCEAN_ACCESS_TOKEN', 'DIGITALOCEAN_SSH_KEY_IDS', ENV_VAR_NAME].each do |var|
-    raise "Environment variable #{var} should be set" unless ENV[var]
+    ['DIGITALOCEAN_ACCESS_TOKEN', 'DIGITALOCEAN_SSH_KEY_IDS', SSH_KEY_ENV_VAR_NAME].each do |var|
+      unless ENV[var] # rubocop:disable Style/Next
+        puts "#{var} isn't defined. Skipping the task"
+        # We are not raising exit 1 as we want our CI tests in the forks to succeed.
+        # Our forks usually do not have the DO environment variables and are tested via dokken
+        exit
+      end
+    end
+
+    ssh_file = File.expand_path(SSH_KEY_FILE)
+    dir = File.dirname(ssh_file)
+    Dir.mkdir(dir, 0o700) unless Dir.exist?(dir)
+    File.open(ssh_file, 'w') { |f| f.puts Base64.decode64(ENV[SSH_KEY_ENV_VAR_NAME]) }
+    File.chmod(0o600, ssh_file)
   end
 
-  ssh_file = File.expand_path(SSH_KEY_FILE)
-  dir = File.dirname(ssh_file)
-  Dir.mkdir(dir, 0o700) unless Dir.exist?(dir)
-  File.open(ssh_file, 'w') { |f| f.puts Base64.decode64(ENV[ENV_VAR_NAME]) }
-  File.chmod(0o600, ssh_file)
+  sh('sh', '-c', "bundle exec kitchen test -c #{concurrency} #{args} #{instance}")
 end
