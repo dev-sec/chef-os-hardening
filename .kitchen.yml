@@ -37,6 +37,9 @@ platforms:
 - name: opensuse-leap-42
   driver_config:
     box: bento/opensuse-leap-42.1
+- name: amazonlinux-1
+  driver_config:
+    box: realreadme/amazon2016.09
 - name: amazonlinux-2
   driver_config:
     box: stakahashi/amazonlinux2
