@@ -32,7 +32,7 @@ ruby_block 'check package signature in repo files' do
 
     Dir.glob('/etc/yum.repos.d/*').each do |file|
       config_file = '/etc/yum.conf'
-      unless node['os-hardening']['yum']['gpg_exclude'].include? config_file
+      unless node['os-hardening']['yum']['gpg_exclude'].include? file
         GPGCheck.check(file)
       end
     end
