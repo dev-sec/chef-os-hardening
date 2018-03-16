@@ -33,6 +33,18 @@ It will not:
 * Cookbooks:
   * Sander van Zoest sysctl `https://github.com/svanzoest-cookbooks/sysctl`
 
+### Platform
+
+- Debian 7, 8
+- Ubuntu 14.04, 16.04
+- RHEL 6, 7
+- CentOS 6, 7
+- Oracle Linux 6, 7
+- Fedora 26, 27
+- OpenSuse Leap 42
+- Amazon Linux 1, 2
+
+
 ## Attributes
 
 * `['os-hardening']['components'][COMPONENT_NAME]` - allows the fine control over which components should be executed via default recipe. See below for more details
