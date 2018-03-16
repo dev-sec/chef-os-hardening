@@ -26,13 +26,14 @@ ruby_block 'check package signature in repo files' do
   block do
     # TODO: harmonize with latter function
     config_file = '/etc/yum.conf'
+    # Only check files not listed in gpg_exclude array
     unless node['os-hardening']['yum']['gpg_exclude'].include? config_file
       GPGCheck.check(config_file)
     end
 
     Dir.glob('/etc/yum.repos.d/*').each do |file|
       config_file = '/etc/yum.conf'
-      puts "file=#{file}"
+      # Only check files not listed in gpg_exclude array
       unless node['os-hardening']['yum']['gpg_exclude'].include? file
         GPGCheck.check(file)
       end
@@ -40,6 +41,7 @@ ruby_block 'check package signature in repo files' do
 
     rhn_conf = '/etc/yum/pluginconf.d/rhnplugin.conf'
     File.file?(rhn_conf) do
+      # Only check files not listed in gpg_exclude array
       unless node['os-hardening']['yum']['gpg_exclude'].include? rhn_conf
         GPGCheck.check(rhn_conf)
       end
