@@ -37,6 +37,7 @@ env:
  - INSTANCE=fedora-26 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=fedora-27 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=opensuse-42 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=amazonlinux-1 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=amazonlinux-2 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
 
 script:

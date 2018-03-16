@@ -73,6 +73,10 @@ platforms:
   driver:
     image: opensuse:leap
     pid_one_command: /usr/lib/systemd/systemd
+- name: amazonlinux-1
+  driver:
+    image: dokken/amazonlinux
+    pid_one_command: /sbin/init
 - name: amazonlinux-2
   driver:
     image: dokken/amazonlinux-2
