@@ -34,7 +34,7 @@ It will not:
   * Sander van Zoest sysctl `https://github.com/svanzoest-cookbooks/sysctl`
 
 ## Attributes
-
+* `['os-hardening']['package']['gpg']` - hash of package configurations to ensure gpg checked
 * `['os-hardening']['components'][COMPONENT_NAME]` - allows the fine control over which components should be executed via default recipe. See below for more details
 * `['os-hardening']['desktop']['enable'] = false`
   true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
