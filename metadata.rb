@@ -27,11 +27,14 @@ version          '3.0.0'
 chef_version '>= 12.5' if respond_to?(:chef_version)
 
 supports 'amazon'
-supports 'ubuntu', '>= 12.04'
+supports 'ubuntu', '>= 14.04'
 supports 'debian', '>= 6.0'
-supports 'centos', '>= 5.0'
-supports 'redhat', '>= 5.0'
+supports 'centos', '>= 6.0'
+supports 'redhat', '>= 6.0'
 supports 'oracle', '>= 6.4'
+supports 'fedora', '>= 26.0'
+supports 'suse'
+supports 'opensuseleap', '>= 42.1'
 
 depends 'sysctl', '~> 0.10'
 
