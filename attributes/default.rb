@@ -55,6 +55,10 @@ else
   default['os-hardening']['packages']['auditd'] = 'audit'
 end
 
+%w(packages limits login_defs minimize_access pam profile securetty).each do |cp|
+  node.default['os-hardening']['components'][cp] = true
+end
+
 # rhel, centos autoconf configuration
 default['os-hardening']['authconfig']['shadow']['enable'] = true
 default['os-hardening']['authconfig']['md5']['enable'] = true
@@ -71,6 +75,7 @@ default['os-hardening']['auth']['pw_min_age']                         = 7 # disc
 default['os-hardening']['auth']['pw_warn_age']                        = 7
 default['os-hardening']['auth']['retries']                            = 5
 default['os-hardening']['auth']['lockout_time']                       = 600 # 10min
+default['os-hardening']['auth']['maildir']                            = '/var/mail'
 default['os-hardening']['auth']['timeout']                            = 60
 default['os-hardening']['auth']['allow_homeless']                     = false
 default['os-hardening']['auth']['pam']['passwdqc']['options']           = 'min=disabled,disabled,16,12,8'
@@ -79,7 +84,7 @@ default['os-hardening']['auth']['pam']['pwquality']['options']          = 'try_f
 default['os-hardening']['auth']['pam']['tally2']['template_cookbook']        = 'os-hardening'
 default['os-hardening']['auth']['pam']['passwdqc']['template_cookbook']      = 'os-hardening'
 default['os-hardening']['auth']['pam']['system-auth']['template_cookbook']   = 'os-hardening'
-default['os-hardening']['auth']['root_ttys']                          = %w[console tty1 tty2 tty3 tty4 tty5 tty6]
+default['os-hardening']['auth']['root_ttys']                          = %w(console tty1 tty2 tty3 tty4 tty5 tty6)
 default['os-hardening']['auth']['uid_min']                             = 1000
 default['os-hardening']['auth']['gid_min']                             = 1000
 default['os-hardening']['auth']['sys_uid_max']                         = 999
@@ -100,7 +105,7 @@ end
 # may contain: change_user
 default['os-hardening']['security']['users']['allow']                  = []
 default['os-hardening']['security']['kernel']['enable_module_loading'] = true
-default['os-hardening']['security']['kernel']['disable_filesystems']   = %w[cramfs freevxfs jffs2 hfs hfsplus squashfs udf vfat]
+default['os-hardening']['security']['kernel']['disable_filesystems']   = %w(cramfs freevxfs jffs2 hfs hfsplus squashfs udf vfat)
 default['os-hardening']['security']['kernel']['enable_sysrq']          = false
 default['os-hardening']['security']['kernel']['enable_core_dump']      = false
 default['os-hardening']['security']['suid_sgid']['enforce']            = true
@@ -125,7 +130,7 @@ default['os-hardening']['security']['packages']['list']               = [
   'inetd',
   'ypserv',
   'telnet-server',
-  'rsh-server'
+  'rsh-server',
 ]
 
 # SELinux enforcing (enforcing, permissive, unmanaged)

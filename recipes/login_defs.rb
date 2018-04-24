@@ -39,6 +39,7 @@ template '/etc/login.defs' do
     sys_uid_min: node['os-hardening']['auth']['sys_uid_min'],
     sys_uid_max: node['os-hardening']['auth']['sys_uid_max'],
     sys_gid_min: node['os-hardening']['auth']['sys_gid_min'],
-    sys_gid_max: node['os-hardening']['auth']['sys_gid_max']
+    sys_gid_max: node['os-hardening']['auth']['sys_gid_max'],
+    mail_dir: node['os-hardening']['auth']['maildir'] 
   )
 end

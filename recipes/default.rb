@@ -27,11 +27,6 @@
 # override['os-hardening']['components']['sysctl'] = false
 #
 
-# generic components, include them per default
-%w[packages limits login_defs minimize_access pam profile securetty].each do |cp|
-  node.default['os-hardening']['components'][cp] = true
-end
-
 node.default['os-hardening']['components']['suid_sgid'] = node['os-hardening']['security']['suid_sgid']['enforce']
 
 # components which are not suitable for containers
