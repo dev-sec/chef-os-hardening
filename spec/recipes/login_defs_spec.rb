@@ -47,7 +47,8 @@ describe 'os-hardening::login_defs' do
         sys_uid_min: 100,
         sys_uid_max: 999,
         sys_gid_min: 100,
-        sys_gid_max: 999
+        sys_gid_max: 999,
+        mail_dir: '/var/mail'
       }
     )
   end
