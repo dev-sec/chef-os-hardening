@@ -42,15 +42,171 @@ end
 # as we react on value of other attributes
 # https://github.com/dev-sec/chef-ssh-hardening/issues/140#issuecomment-267779720
 
+# Enable RFC-recommended source validation feature. It should not be used for
+# routers on complex networks, but is helpful for end hosts and routers serving
+# small networks.
+sysctl_param 'net.ipv4.conf.all.rp_filter' do
+  value 1
+end
+sysctl_param 'net.ipv4.conf.default.rp_filter' do
+  value 1
+end
+
+# Reduce the surface on SMURF attacks. Make sure to ignore ECHO broadcasts,
+# which are only required in broad network analysis.
+sysctl_param 'net.ipv4.icmp_echo_ignore_broadcasts' do
+  value 1
+end
+
+# There is no reason to accept bogus error responses from ICMP, so ignore them
+# instead.
+sysctl_param 'net.ipv4.icmp_ignore_bogus_error_responses' do
+  value 1
+end
+
+# Limit the amount of traffic the system uses for ICMP.
+sysctl_param 'net.ipv4.icmp_ratelimit' do
+  value 100
+end
+
+# Adjust the ICMP ratelimit to include: ping, dst unreachable, source quench,
+# time exceed, param problem, timestamp reply, information reply
+sysctl_param 'net.ipv4.icmp_ratemask' do
+  value 88089
+end
+
+# Protect against wrapping sequence numbers at gigabit speeds:
+sysctl_param 'net.ipv4.tcp_timestamps' do
+  value 0
+end
+
+# RFC 1337 fix F1
+sysctl_param 'net.ipv4.tcp_rfc1337' do
+  value 1
+end
+
+# Syncookies is used to prevent SYN-flooding attacks.
+sysctl_param 'net.ipv4.tcp_syncookies' do
+  value 1
+end
+
+sysctl_param 'net.ipv4.conf.all.shared_media' do
+  value 1
+end
+sysctl_param 'net.ipv4.conf.default.shared_media' do
+  value 1
+end
+
+# Accepting source route can lead to malicious networking behavior, so disable
+# it if not needed.
+sysctl_param 'net.ipv4.conf.all.accept_source_route' do
+  value 0
+end
+sysctl_param 'net.ipv4.conf.default.accept_source_route' do
+  value 0
+end
+
+# Accepting redirects can lead to malicious networking behavior, so disable
+# it if not needed.
+sysctl_param 'net.ipv4.conf.all.accept_redirects' do
+  value 0
+end
+sysctl_param 'net.ipv4.conf.default.accept_redirects' do
+  value 0
+end
+sysctl_param 'net.ipv6.conf.all.accept_redirects' do
+  value 0
+end
+sysctl_param 'net.ipv6.conf.default.accept_redirects' do
+  value 0
+end
+sysctl_param 'net.ipv4.conf.all.secure_redirects' do
+  value 0
+end
+sysctl_param 'net.ipv4.conf.default.secure_redirects' do
+  value 0
+end
+
+# For non-routers: don't send redirects, these settings are 0
+sysctl_param 'net.ipv4.conf.all.send_redirects' do
+  value 0
+end
+sysctl_param 'net.ipv4.conf.default.send_redirects' do
+  value 0
+end
+
+# log martian packets
+sysctl_param 'net.ipv4.conf.all.log_martians' do
+  value 1
+end
+sysctl_param 'net.ipv4.conf.default.log_martians' do
+  value 1
+end
+
+# ipv6 config
+# NSA 2.5.3.2.5 Limit Network-Transmitted Configuration
+sysctl_param 'net.ipv6.conf.default.router_solicitations' do
+  value 0
+end
+sysctl_param 'net.ipv6.conf.default.accept_ra_rtr_pref' do
+  value 0
+end
+sysctl_param 'net.ipv6.conf.default.accept_ra_pinfo' do
+  value 0
+end
+sysctl_param 'net.ipv6.conf.default.accept_ra_defrtr' do
+  value 0
+end
+sysctl_param 'net.ipv6.conf.default.autoconf' do
+  value 0
+end
+sysctl_param 'net.ipv6.conf.default.dad_transmits' do
+  value 0
+end
+sysctl_param 'net.ipv6.conf.default.max_addresses' do
+  value 1
+end
+
+# Disable acceptance of router advertisements
+#
+# * **0**  - do not accept router advertisements
+# * **1**  - accept router advertisements if forwarding is disabled
+# * **2**  - accept router advertisements even if forwarding is enabled
+sysctl_param 'net.ipv6.conf.all.accept_ra' do
+  value 0
+end
+sysctl_param 'net.ipv6.conf.default.accept_ra' do
+  value 0
+end
+
+# ExecShield protection against buffer overflows
+case node['platform_family']
+when 'rhel', 'fedora'
+  # on RHEL 7 its enabled per default and can't be disabled
+  if node['platform_version'].to_f < 7
+    sysctl_param 'kernel.exec-shield' do
+      value 1
+    end
+  end
+end
+
+# Virtual memory regions protection
+sysctl_param 'kernel.randomize_va_space' do
+  value 2
+end
+
 # Only enable IP traffic forwarding, if required.
-node.default['sysctl']['params']['net']['ipv4']['ip_forward'] =
-  node['os-hardening']['network']['forwarding'] ? 1 : 0
-node.default['sysctl']['params']['net']['ipv6']['conf']['all']['forwarding'] =
-  node['os-hardening']['network']['ipv6']['enable'] && node['os-hardening']['network']['forwarding'] ? 1 : 0
+sysctl_param 'net.ipv4.ip_forward' do
+  value node['os-hardening']['network']['forwarding'] ? 1 : 0
+end
+sysctl_param 'net.ipv6.conf.all.forwarding' do
+  value(node['os-hardening']['network']['ipv6']['enable'] && node['os-hardening']['network']['forwarding'] ? 1 : 0)
+end
 
 # Disable or Enable IPv6 as it is needed.
-node.default['sysctl']['params']['net']['ipv6']['conf']['all']['disable_ipv6'] =
-  node['os-hardening']['network']['ipv6']['enable'] ? 0 : 1
+sysctl_param 'net.ipv6.conf.all.disable_ipv6' do
+  value node['os-hardening']['network']['ipv6']['enable'] ? 0 : 1
+end
 
 # Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:
 #
@@ -65,8 +221,9 @@ node.default['sysctl']['params']['net']['ipv6']['conf']['all']['disable_ipv6'] =
 #           resolutions for global and link addresses are replied
 # * **4-7** - reserved
 # * **8** - do not reply for all local addresses
-node.default['sysctl']['params']['net']['ipv4']['conf']['all']['arp_ignore'] =
-  node['os-hardening']['network']['arp']['restricted'] ? 1 : 0
+sysctl_param 'net.ipv4.conf.all.arp_ignore' do
+  value node['os-hardening']['network']['arp']['restricted'] ? 1 : 0
+end
 
 # Define different restriction levels for announcing the local source IP
 # address from IP packets in ARP requests sent on interface:
@@ -91,14 +248,16 @@ node.default['sysctl']['params']['net']['ipv4']['conf']['all']['arp_ignore'] =
 #           request and even sometimes no matter the source IP address we
 #           announce.
 #
-node.default['sysctl']['params']['net']['ipv4']['conf']['all']['arp_announce'] =
-  node['os-hardening']['network']['arp']['restricted'] ? 2 : 0
+sysctl_param 'net.ipv4.conf.all.arp_announce' do
+  value node['os-hardening']['network']['arp']['restricted'] ? 2 : 0
+end
 
 # This setting controls how the kernel behaves towards module changes at
 # runtime. Setting to 1 will disable module loading at runtime.
 # Setting it to 0 is actually never supported.
-unless node['os-hardening']['security']['kernel']['enable_module_loading']
-  node.default['sysctl']['params']['kernel']['modules_disabled'] = 1
+sysctl_param 'kernel.modules_disabled' do
+  value 1
+  not_if { node['os-hardening']['security']['kernel']['enable_module_loading'] }
 end
 
 # Magic Sysrq should be disabled, but can also be set to a safe value if so
@@ -117,16 +276,15 @@ end
 # * **64**  - signalling of processes (term, kill, oom-kill)
 # * **128** - reboot/poweroff
 # * **256** - nicing of all RT tasks
-node.default['sysctl']['params']['kernel']['sysrq'] =
-  node['os-hardening']['security']['kernel']['enable_sysrq'] ? node['os-hardening']['security']['kernel']['secure_sysrq'] : 0
+sysctl_param 'kernel.sysrq' do
+  value node['os-hardening']['security']['kernel']['enable_sysrq'] ? node['os-hardening']['security']['kernel']['secure_sysrq'] : 0
+end
 
 # Prevent core dumps with SUID. These are usually only needed by developers and
 # may contain sensitive information.
-node.default['sysctl']['params']['fs']['suid_dumpable'] =
-  node['os-hardening']['security']['kernel']['enable_core_dump'] ? 2 : 0
-
-# include sysctl recipe and set /etc/sysctl.d/99-chef-attributes.conf
-include_recipe 'sysctl::apply'
+sysctl_param 'fs.suid_dumpable' do
+  value node['os-hardening']['security']['kernel']['enable_core_dump'] ? 2 : 0
+end
 
 # try to determine the real cpu vendor
 begin

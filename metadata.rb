@@ -36,7 +36,7 @@ supports 'fedora', '>= 26.0'
 supports 'suse'
 supports 'opensuseleap', '>= 42.1'
 
-depends 'sysctl', '~> 0.10'
+depends 'sysctl', '~> 1.0'
 
 recipe 'os-hardening::default', 'harden the operating system (all recipes)'
 recipe 'os-hardening::limits', 'prevent core dumps'
