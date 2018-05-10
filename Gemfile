@@ -8,7 +8,7 @@ gem 'chef', '~> 12.5' # chefspec builds get stucked with 13.1
 group :test do
   gem 'chefspec', '~> 7.1.0'
   gem 'coveralls', require: false
-  gem 'foodcritic', '~> 11.1'
+  gem 'foodcritic', '~> 13.0'
   gem 'rake'
   gem 'rubocop', '~> 0.49.0'
   gem 'simplecov', '~> 0.10'
