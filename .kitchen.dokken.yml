@@ -4,9 +4,7 @@
 driver:
   name: dokken
   privileged: true # because Docker and SystemD/Upstart
-<% if ENV['CHEF_VERSION'] %>
-  chef_version: <%= ENV['CHEF_VERSION'] %>
-<% end %>
+  chef_version: <%= ENV['CHEF_VERSION'] || 'current' %>
 
 transport:
   name: dokken
