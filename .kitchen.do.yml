@@ -23,9 +23,6 @@ platforms:
 - name: centos-7
   driver_config:
     image: centos-7-x64
-- name: debian-7
-  driver_config:
-    image: debian-7-x64
 - name: debian-8
   driver_config:
     image: debian-8-x64
