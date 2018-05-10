@@ -8,7 +8,7 @@ cache: bundler
 services:
 - docker
 
-rvm: 2.4.1
+rvm: 2.4.4
 
 before_install:
   - gem update --system # see https://github.com/bundler/bundler/issues/5357
