@@ -17,10 +17,12 @@ env:
  - INSTANCE=ubuntu-14-04 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=ubuntu-16-04 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=ubuntu-16-04 CHEF_VERSION=12.14.60 KITCHEN_LOCAL_YAML=.kitchen.do.yml
+ - INSTANCE=ubuntu-18-04 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=centos-6 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=centos-7 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=centos-7 CHEF_VERSION=12.14.60 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=debian-8 KITCHEN_LOCAL_YAML=.kitchen.do.yml
+ - INSTANCE=debian-9 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=fedora-26 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=fedora-27 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=ubuntu-14-04 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
