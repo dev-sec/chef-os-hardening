@@ -20,7 +20,9 @@ describe 'os-hardening::login_defs' do
   cached(:chef_run) do
     ChefSpec::ServerRunner.new do |node|
       node.normal['os-hardening']['auth']['uid_min'] = 5000
+      node.normal['os-hardening']['auth']['uid_max'] = 6000
       node.normal['os-hardening']['auth']['gid_min'] = 5000
+      node.normal['os-hardening']['auth']['gid_max'] = 6000
     end.converge(described_recipe)
   end
 
@@ -43,7 +45,9 @@ describe 'os-hardening::login_defs' do
         chfn_restrict: '',
         allow_login_without_home: false,
         uid_min: 5000,
+        uid_max: 6000,
         gid_min: 5000,
+        gid_max: 6000,
         sys_uid_min: 100,
         sys_uid_max: 999,
         sys_gid_min: 100,
@@ -57,6 +61,8 @@ describe 'os-hardening::login_defs' do
     is_expected.to render_file('/etc/login.defs').
       with_content(/^PASS_WARN_AGE\s+7$/).
       with_content(/^UID_MIN\s+5000$/).
-      with_content(/^GID_MIN\s+5000$/)
+      with_content(/^UID_MAX\s+6000$/).
+      with_content(/^GID_MIN\s+5000$/).
+      with_content(/^GID_MAX\s+6000$/)
   end
 end

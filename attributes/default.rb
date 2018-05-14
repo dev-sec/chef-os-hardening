@@ -86,7 +86,9 @@ default['os-hardening']['auth']['pam']['passwdqc']['template_cookbook']      = '
 default['os-hardening']['auth']['pam']['system-auth']['template_cookbook']   = 'os-hardening'
 default['os-hardening']['auth']['root_ttys']                          = %w[console tty1 tty2 tty3 tty4 tty5 tty6]
 default['os-hardening']['auth']['uid_min']                             = 1000
+default['os-hardening']['auth']['uid_max']                             = 60000
 default['os-hardening']['auth']['gid_min']                             = 1000
+default['os-hardening']['auth']['gid_max']                             = 60000
 default['os-hardening']['auth']['sys_uid_max']                         = 999
 default['os-hardening']['auth']['sys_gid_max']                         = 999
 
