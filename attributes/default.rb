@@ -55,6 +55,10 @@ else
   default['os-hardening']['packages']['auditd'] = 'audit'
 end
 
+%w[packages limits login_defs minimize_access pam profile securetty].each do |cp|
+  node.default['os-hardening']['components'][cp] = true
+end
+
 # rhel, centos autoconf configuration
 default['os-hardening']['authconfig']['shadow']['enable'] = true
 default['os-hardening']['authconfig']['md5']['enable'] = true
@@ -71,6 +75,7 @@ default['os-hardening']['auth']['pw_min_age']                         = 7 # disc
 default['os-hardening']['auth']['pw_warn_age']                        = 7
 default['os-hardening']['auth']['retries']                            = 5
 default['os-hardening']['auth']['lockout_time']                       = 600 # 10min
+default['os-hardening']['auth']['maildir']                            = '/var/mail'
 default['os-hardening']['auth']['timeout']                            = 60
 default['os-hardening']['auth']['allow_homeless']                     = false
 default['os-hardening']['auth']['pam']['passwdqc']['options']           = 'min=disabled,disabled,16,12,8'

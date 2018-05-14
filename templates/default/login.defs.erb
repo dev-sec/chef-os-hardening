@@ -23,7 +23,7 @@
 # 
 # See default PAM configuration files provided for login, su, etc.
 # This is a temporary situation: setting these variables will soon move to `/etc/default/useradd` and the variables will then be no more supported
-MAIL_DIR        /var/mail
+MAIL_DIR        <%= @mail_dir %>
 #MAIL_FILE      .mail
 
 # Enable logging and display of `/var/log/faillog` login failure info. This option conflicts with the `pam_tally` PAM module.
