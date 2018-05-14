@@ -20,6 +20,8 @@
 # limitations under the License.
 #
 
+::Chef::Recipe.send(:include, SysctlCookbook::SysctlHelpers::Param)
+
 # cleanup of old sysctl related configurations. This can be removed at some point in the future
 # https://github.com/dev-sec/chef-os-hardening/issues/166#issuecomment-322433264
 # https://github.com/sous-chefs/sysctl/pull/61/files#diff-25e5d4a4446ae12a0d6f1162b6160375
@@ -125,8 +127,14 @@ node.default['sysctl']['params']['kernel']['sysrq'] =
 node.default['sysctl']['params']['fs']['suid_dumpable'] =
   node['os-hardening']['security']['kernel']['enable_core_dump'] ? 2 : 0
 
-# include sysctl recipe and set /etc/sysctl.d/99-chef-attributes.conf
-include_recipe 'sysctl::apply'
+if node.attribute?('sysctl') && node['sysctl'].attribute?('params')
+  coerce_attributes(node['sysctl']['params']).each do |x|
+    k, v = x.split('=')
+    sysctl_param k do
+      value v
+    end
+  end
+end
 
 # try to determine the real cpu vendor
 begin

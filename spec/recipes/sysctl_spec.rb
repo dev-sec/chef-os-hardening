@@ -154,15 +154,13 @@ describe 'os-hardening::sysctl' do
     end
 
     describe 'IPv4 forwarding' do
-      subject do
-        chef_run.node['sysctl']['params']['net']['ipv4']['ip_forward']
-      end
-
       context 'when forwarding is enabled' do
         let(:network_forwarding) { true }
 
         it 'should enable IPv4 forwarding in sysctl attributes' do
-          is_expected.to eq(1)
+          expect(chef_run).to apply_sysctl_param('net.ipv4.ip_forward').with(
+            value: '1'
+          )
         end
       end
 
@@ -170,17 +168,19 @@ describe 'os-hardening::sysctl' do
         let(:network_forwarding) { false }
 
         it 'should disable IPv4 forwarding in sysctl attributes' do
-          is_expected.to eq(0)
+          expect(chef_run).to apply_sysctl_param('net.ipv4.ip_forward').with(
+            value: '0'
+          )
         end
       end
     end
 
     describe 'IPv6 forwarding' do
       RSpec.shared_examples 'IPv6 forwarding in sysctl attributes' do |state|
-        subject { chef_run.node['sysctl']['params']['net']['ipv6']['conf']['all']['forwarding'] } # rubocop:disable Metrics/LineLength
-
         it "should #{state == 1 ? 'enable' : 'disable'} IPv6 forwarding in sysctl attributes" do # rubocop:disable Metrics/LineLength
-          is_expected.to eq(state)
+          expect(chef_run).to apply_sysctl_param('net.ipv6.conf.all.forwarding').with(
+            value: state.to_s
+          )
         end
       end
 
@@ -217,16 +217,13 @@ describe 'os-hardening::sysctl' do
     end
 
     describe 'Control IPv6' do
-      subject do
-        chef_run.
-          node['sysctl']['params']['net']['ipv6']['conf']['all']['disable_ipv6']
-      end
-
       context 'when IPv6 is enabled' do
         let(:ipv6_enable) { true }
 
         it 'should not disable IPv6' do
-          is_expected.to eq(0)
+          expect(chef_run).to apply_sysctl_param('net.ipv4.ip_forward').with(
+            value: '0'
+          )
         end
       end
 
@@ -234,7 +231,9 @@ describe 'os-hardening::sysctl' do
         let(:ipv6_enable) { false }
 
         it 'should not disable IPv6' do
-          is_expected.to eq(1)
+          expect(chef_run).to apply_sysctl_param('net.ipv6.conf.all.forwarding').with(
+            value: '0'
+          )
         end
       end
     end
@@ -242,22 +241,18 @@ describe 'os-hardening::sysctl' do
     describe 'ARP restrictions' do
       RSpec.shared_examples 'ARP restrictions in sysctl attributes' do |arp_ignore, arp_announce| # rubocop:disable Metrics/LineLength
         describe 'arp_ignore' do
-          subject do
-            chef_run.node['sysctl']['params']['net']['ipv4']['conf']['all']['arp_ignore'] # rubocop:disable Metrics/LineLength
-          end
-
           it "should be set to #{arp_ignore}" do
-            is_expected.to eq(arp_ignore)
+            expect(chef_run).to apply_sysctl_param('net.ipv4.conf.all.arp_ignore').with(
+              value: arp_ignore.to_s
+            )
           end
         end
 
         describe 'arp_announce' do
-          subject do
-            chef_run.node['sysctl']['params']['net']['ipv4']['conf']['all']['arp_announce'] # rubocop:disable Metrics/LineLength
-          end
-
           it "should be set to #{arp_announce}" do
-            is_expected.to eq(arp_announce)
+            expect(chef_run).to apply_sysctl_param('net.ipv4.conf.all.arp_announce').with(
+              value: arp_announce.to_s
+            )
           end
         end
       end
@@ -276,15 +271,11 @@ describe 'os-hardening::sysctl' do
     end
 
     describe 'Module loading' do
-      subject do
-        chef_run.node['sysctl']['params']['kernel']['modules_disabled']
-      end
-
       context 'when module loading is enabled' do
         let(:enable_module_loading) { true }
 
         it 'should not set the sysctl flag' do
-          is_expected.to eq(nil)
+          expect(chef_run).to_not apply_sysctl_param('kernel.modules_disabled')
         end
 
         describe 'rebuild of initramfs' do
@@ -304,7 +295,9 @@ describe 'os-hardening::sysctl' do
         let(:enable_module_loading) { false }
 
         it 'should disable module loading via sysctl flag' do
-          is_expected.to eq(1)
+          expect(chef_run).to apply_sysctl_param('kernel.modules_disabled').with(
+            value: '1'
+          )
         end
 
         describe 'rebuild of initramfs' do
@@ -322,15 +315,13 @@ describe 'os-hardening::sysctl' do
     end
 
     describe 'Control magic SysRq' do
-      subject do
-        chef_run.node['sysctl']['params']['kernel']['sysrq']
-      end
-
       context 'when sysrq is enabled' do
         let(:enable_sysrq) { true }
 
         it 'should enable sysrq with safe value' do
-          is_expected.to eq(244)
+          expect(chef_run).to apply_sysctl_param('kernel.sysrq').with(
+            value: '244'
+          )
         end
       end
 
@@ -338,21 +329,21 @@ describe 'os-hardening::sysctl' do
         let(:enable_sysrq) { false }
 
         it 'should disable sysrq' do
-          is_expected.to eq(0)
+          expect(chef_run).to apply_sysctl_param('kernel.sysrq').with(
+            value: '0'
+          )
         end
       end
     end
 
     describe 'Core dumps with SUID' do
-      subject do
-        chef_run.node['sysctl']['params']['fs']['suid_dumpable']
-      end
-
       context 'when core dumps are enabled' do
         let(:enable_core_dump) { true }
 
         it 'should set suid_dumpable to safe value' do
-          is_expected.to eq(2)
+          expect(chef_run).to apply_sysctl_param('fs.suid_dumpable').with(
+            value: '2'
+          )
         end
       end
 
@@ -360,7 +351,9 @@ describe 'os-hardening::sysctl' do
         let(:enable_core_dump) { false }
 
         it 'should set suid_dumpable to default value' do
-          is_expected.to eq(0)
+          expect(chef_run).to apply_sysctl_param('fs.suid_dumpable').with(
+            value: '0'
+          )
         end
       end
     end
