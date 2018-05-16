@@ -1,5 +1,36 @@
 # Change Log
 
+## [v3.1.0](https://github.com/dev-sec/chef-os-hardening/tree/v3.1.0) (2018-05-14)
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v3.0.0...v3.1.0)
+
+**Fixed bugs:**
+
+- fix metadata [\#204](https://github.com/dev-sec/chef-os-hardening/pull/204) ([chris-rock](https://github.com/chris-rock))
+
+**Closed issues:**
+
+- earlier version [\#205](https://github.com/dev-sec/chef-os-hardening/issues/205)
+- Make auditd recipe optional [\#200](https://github.com/dev-sec/chef-os-hardening/issues/200)
+- Dependency on pinned, old version of sysctl [\#192](https://github.com/dev-sec/chef-os-hardening/issues/192)
+- compat\_resource deprecated [\#186](https://github.com/dev-sec/chef-os-hardening/issues/186)
+- Usage of azure as cloud provider for CI [\#183](https://github.com/dev-sec/chef-os-hardening/issues/183)
+
+**Merged pull requests:**
+
+- Test with Foodcritic 13 [\#212](https://github.com/dev-sec/chef-os-hardening/pull/212) ([tas50](https://github.com/tas50))
+- Test on Ruby 2.4.4 [\#211](https://github.com/dev-sec/chef-os-hardening/pull/211) ([tas50](https://github.com/tas50))
+- use sysctl 1.0 [\#210](https://github.com/dev-sec/chef-os-hardening/pull/210) ([dhohengassner](https://github.com/dhohengassner))
+- added mail\_dir attribute and moved component attributes to attributes… [\#209](https://github.com/dev-sec/chef-os-hardening/pull/209) ([ekelson-bcove](https://github.com/ekelson-bcove))
+- improve testing around amazon linux [\#202](https://github.com/dev-sec/chef-os-hardening/pull/202) ([chris-rock](https://github.com/chris-rock))
+- Container support and dokken tests in travis CI [\#199](https://github.com/dev-sec/chef-os-hardening/pull/199) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Lazy pin the sysctl major version [\#197](https://github.com/dev-sec/chef-os-hardening/pull/197) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Feature/allow setting template source [\#196](https://github.com/dev-sec/chef-os-hardening/pull/196) ([eyespies](https://github.com/eyespies))
+- Unpin sysctl dependency [\#195](https://github.com/dev-sec/chef-os-hardening/pull/195) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- add basic support for amazon linux [\#194](https://github.com/dev-sec/chef-os-hardening/pull/194) ([chris-rock](https://github.com/chris-rock))
+- Fix fedora shadow permissions [\#190](https://github.com/dev-sec/chef-os-hardening/pull/190) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Fedora 25 is EOL, replacing with 27 [\#189](https://github.com/dev-sec/chef-os-hardening/pull/189) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Remove dependency on compat\_resource [\#188](https://github.com/dev-sec/chef-os-hardening/pull/188) ([bablakely](https://github.com/bablakely))
+
 ## [v3.0.0](https://github.com/dev-sec/chef-os-hardening/tree/v3.0.0) (2017-12-21)
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v2.1.1...v3.0.0)
 
