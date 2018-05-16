@@ -35,7 +35,9 @@ template '/etc/login.defs' do
     chfn_restrict: '', # "rwh"
     allow_login_without_home: node['os-hardening']['auth']['allow_homeless'],
     uid_min: node['os-hardening']['auth']['uid_min'],
+    uid_max: node['os-hardening']['auth']['uid_max'],
     gid_min: node['os-hardening']['auth']['gid_min'],
+    gid_max: node['os-hardening']['auth']['gid_max'],
     sys_uid_min: node['os-hardening']['auth']['sys_uid_min'],
     sys_uid_max: node['os-hardening']['auth']['sys_uid_max'],
     sys_gid_min: node['os-hardening']['auth']['sys_gid_min'],

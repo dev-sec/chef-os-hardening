@@ -4,23 +4,23 @@
 #---
 
 # Configuration control definitions for the login package.
-# 
+#
 # Three items must be defined:  `MAIL_DIR`, `ENV_SUPATH`, and `ENV_PATH`. If unspecified, some arbitrary (and possibly incorrect) value will be assumed.  All other items are optional - if not specified then the described action or option will be inhibited.
-# 
+#
 # Comment lines (lines beginning with `#`) and blank lines are ignored.
 #
 #-- Modified for Linux.  --marekm
 
 # *REQUIRED for useradd/userdel/usermod*
-# 
+#
 # Directory where mailboxes reside, _or_ name of file, relative to the home directory.  If you _do_ define `MAIL_DIR` and `MAIL_FILE`, `MAIL_DIR` takes precedence.
 # Essentially:
-# 
+#
 # * `MAIL_DIR` defines the location of users mail spool files (for mbox use) by appending the username to `MAIL_DIR` as defined below.
 # * `MAIL_FILE` defines the location of the users mail spool files as the fully-qualified filename obtained by prepending the user home directory before `$MAIL_FILE`
 #
 # *NOTE*: This is no more used for setting up users MAIL environment variable which is, starting from shadow 4.0.12-1 in Debian, entirely the job of the pam_mail PAM modules.
-# 
+#
 # See default PAM configuration files provided for login, su, etc.
 # This is a temporary situation: setting these variables will soon move to `/etc/default/useradd` and the variables will then be no more supported
 MAIL_DIR        <%= @mail_dir %>
@@ -30,7 +30,7 @@ MAIL_DIR        <%= @mail_dir %>
 FAILLOG_ENAB		yes
 
 # Enable display of unknown usernames when login failures are recorded.
-# 
+#
 # *WARNING*: Unknown usernames may become world readable. See #290803 and #298773 for details about how this could become a security concern
 LOG_UNKFAIL_ENAB	no
 
@@ -110,7 +110,7 @@ PASS_WARN_AGE	<%= @password_warn_age.to_s %>
 
 # Min/max values for automatic uid selection in useradd
 UID_MIN			 <%= @uid_min.to_s %>
-UID_MAX			60000
+UID_MAX			 <%= @uid_max.to_s %>
 <% unless node['platform_family'] == 'rhel' and node['platform_version'].to_f < 6.0 %>
 # System accounts
 SYS_UID_MIN		  <%= @sys_uid_min.to_s %>
@@ -119,7 +119,7 @@ SYS_UID_MAX		  <%= @sys_uid_max.to_s %>
 
 # Min/max values for automatic gid selection in groupadd
 GID_MIN			 <%= @gid_min.to_s %>
-GID_MAX			60000
+GID_MAX			 <%= @gid_max.to_s %>
 <% unless node['platform_family'] == 'rhel' and node['platform_version'].to_f < 6.0 %>
 # System accounts
 SYS_GID_MIN		  <%= @sys_gid_min.to_s %>
@@ -216,4 +216,3 @@ ENCRYPT_METHOD SHA512
 # This variable is deprecated. You should use ENCRYPT_METHOD.
 #
 #MD5_CRYPT_ENAB no
-

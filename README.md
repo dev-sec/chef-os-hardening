@@ -67,6 +67,14 @@ It will not:
 * `['os-hardening']['auth']['pw_warn_age'] = 7`
   number of days before maximum password age occurs to warn of impending
   change
+* `['os-hardening']['auth']['uid_min'] = 1000`
+  lower bound of UIDs assigned by useradd
+* `['os-hardening']['auth']['uid_max'] = 60000`
+  upper bound of UIDs assigned by useradd
+* `['os-hardening']['auth']['gid_min'] = 1000`
+  lower bound of GIDs assigned by groupadd
+* `['os-hardening']['auth']['gid_max'] = 60000`
+  upper bound of GIDs assigned by groupadd
 * `['os-hardening']['auth']['retries'] = 5`
   the maximum number of authentication attempts, before the account is locked for some time
 * `['os-hardening']['auth']['lockout_time'] = 600`
