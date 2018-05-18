@@ -102,7 +102,7 @@ when 'rhel', 'fedora'
   # therefore we edit /etc/pam.d/system-auth-ac/
   # @see http://serverfault.com/questions/292406/puppet-configuration-using-augeas-fails-if-combined-with-notify
 
-  if node['platform_version'].to_f < 7
+  if node['platform_version'].to_f < 7 && node['platform'] != 'amazon'
     # remove pam_cracklib, because it does not play nice with passwdqc in versions less than 7
     package 'pam-cracklib' do
       package_name node['os-hardening']['packages']['pam_cracklib']
