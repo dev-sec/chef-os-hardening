@@ -78,6 +78,7 @@ default['os-hardening']['auth']['lockout_time']                       = 600 # 10
 default['os-hardening']['auth']['maildir']                            = '/var/mail'
 default['os-hardening']['auth']['timeout']                            = 60
 default['os-hardening']['auth']['allow_homeless']                     = false
+default['os-hardening']['auth']['login_defs']['template_cookbook']    = 'os-hardening'
 default['os-hardening']['auth']['pam']['passwdqc']['options']           = 'min=disabled,disabled,16,12,8'
 default['os-hardening']['auth']['pam']['cracklib']['options']           = 'try_first_pass retry=3 type='
 default['os-hardening']['auth']['pam']['pwquality']['options']          = 'try_first_pass retry=3 type='
