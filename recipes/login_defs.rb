@@ -21,6 +21,7 @@
 
 template '/etc/login.defs' do
   source 'login.defs.erb'
+  cookbook node['os-hardening']['auth']['login_defs']['template_cookbook']
   mode '0444'
   owner 'root'
   group 'root'
