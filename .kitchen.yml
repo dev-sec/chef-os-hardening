@@ -1,5 +1,4 @@
 ---
-
 driver:
   name: vagrant
 
@@ -10,33 +9,18 @@ platforms:
 - name: ubuntu-16-04
   driver_config:
     box: bento/ubuntu-16.04
+- name: ubuntu-18-04
+  driver_config:
+    box: bento/ubuntu-18.04
 - name: centos-6
-  driver_config:
-    box: bento/centos-6.9
 - name: centos-7
-  driver_config:
-    box: bento/centos-7.4
 - name: oracle-6
-  driver_config:
-    box: bento/oracle-6.9
 - name: oracle-7
-  driver_config:
-    box: bento/oracle-7.3
-- name: debian-7
-  driver_config:
-    box: bento/debian-7.11
 - name: debian-8
-  driver_config:
-    box: bento/debian-8.6
+- name: debian-9
 - name: fedora-26
-  driver_config:
-    box: bento/fedora-26
 - name: fedora-27
-  driver_config:
-    box: bento/fedora-27
 - name: opensuse-leap-42
-  driver_config:
-    box: bento/opensuse-leap-42.1
 - name: amazonlinux-1
   driver_config:
     box: realreadme/amazon2016.09
