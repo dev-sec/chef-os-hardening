@@ -95,7 +95,7 @@ default['sysctl']['params']['net']['ipv6']['conf']['default']['accept_ra'] = 0
 case node['platform_family']
 when 'rhel', 'fedora'
   # on RHEL 7 its enabled per default and can't be disabled
-  if node['platform_version'].to_f < 7
+  if node['platform_version'].to_f < 7 && node['platform'] != 'amazon'
     default['sysctl']['params']['kernel']['exec-shield'] = 1
   end
 end

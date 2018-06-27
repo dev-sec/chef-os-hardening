@@ -46,7 +46,7 @@ It will not:
 
 
 ## Attributes
-
+* `['os-hardening']['yum']['gpg_exclude'] = []` - Array of yum configuration files to exclude from gpgcheck
 * `['os-hardening']['components'][COMPONENT_NAME]` - allows the fine control over which components should be executed via default recipe. See below for more details
 * `['os-hardening']['desktop']['enable'] = false`
   true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
