@@ -35,5 +35,8 @@ password    required      pam_deny.so
 
 session     optional      pam_keyinit.so revoke
 session     required      pam_limits.so
+<% if node['os-hardening']['auth']['pam']['pam_systemd']['enable'] %>
+session     optional       pam_systemd.so
+<% end %>
 session     [success=1 default=ignore] pam_succeed_if.so service in crond quiet use_uid
 session     required      pam_unix.so
