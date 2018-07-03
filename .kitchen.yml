@@ -40,9 +40,11 @@ verifier:
 suites:
 - name: default
   run_list:
+  - recipe[test]
   - recipe[os-hardening::default]
 - name: modules_disabled
   run_list:
+  - recipe[test]
   - recipe[os-hardening::default]
   attributes:
     os-hardening:
@@ -56,6 +58,7 @@ suites:
       kernel_modules_disabled: 1
 - name: selinux_enabled
   run_list:
+  - recipe[test]
   - recipe[os-hardening::default]
   includes:
     - centos-7
