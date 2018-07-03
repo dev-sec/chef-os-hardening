@@ -54,13 +54,13 @@ platforms:
     pid_one_command: /bin/systemd
 - name: fedora-26
   driver:
-    image: dokken/fedora-26
+    image: dokken/fedora-27
     pid_one_command: /usr/lib/systemd/systemd
     intermediate_instructions:
     - RUN dnf install -y yum
 - name: fedora-27
   driver:
-    image: dokken/fedora-27
+    image: dokken/fedora-28
     pid_one_command: /usr/lib/systemd/systemd
     intermediate_instructions:
     - RUN dnf install -y yum

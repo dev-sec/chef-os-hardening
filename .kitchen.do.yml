@@ -32,9 +32,9 @@ platforms:
 - name: debian-9
   driver_config:
     image: debian-9-x64
-- name: fedora-26
-  driver_config:
-    image: fedora-26-x64
 - name: fedora-27
   driver_config:
     image: fedora-27-x64
+- name: fedora-28
+  driver_config:
+    image: fedora-28-x64
