@@ -36,7 +36,7 @@ It will not:
 ### Platform
 
 - Debian 7, 8
-- Ubuntu 14.04, 16.04
+- Ubuntu 14.04, 16.04, 18.04
 - RHEL 6, 7
 - CentOS 6, 7
 - Oracle Linux 6, 7
