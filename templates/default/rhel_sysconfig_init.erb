@@ -31,4 +31,4 @@ ACTIVE_CONSOLES=/dev/tty[1-6]
 SINGLE=<%= @single ? '/sbin/sulogin' : '/sbin/sushell' %>
 
 # NSA 2.2.4.1 Set Daemon umask
-umask 027
+umask <%= @umask %>
