@@ -125,6 +125,7 @@ default['os-hardening']['security']['suid_sgid']['dry_run_on_unknown']  = false
 default['os-hardening']['security']['init']['prompt']                   = true
 # Require root password for single user mode. (rhel, centos)
 default['os-hardening']['security']['init']['single']                   = false
+default['os-hardening']['security']['init']['daemon_umask']             = '027'
 
 # remove packages with known issues
 default['os-hardening']['security']['packages']['clean']               = true
