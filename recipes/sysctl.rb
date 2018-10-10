@@ -166,7 +166,8 @@ when 'rhel', 'fedora', 'amazon'
     group 'root'
     variables(
       prompt: node['os-hardening']['security']['init']['prompt'],
-      single: node['os-hardening']['security']['init']['single']
+      single: node['os-hardening']['security']['init']['single'],
+      umask: node['os-hardening']['security']['init']['daemon_umask']
     )
   end
 end
