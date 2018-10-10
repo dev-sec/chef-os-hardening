@@ -8,6 +8,7 @@ gem 'chef', '~> 12.5' # chefspec builds get stucked with 13.1
 group :test do
   gem 'chefspec', '~> 7.1.0'
   gem 'coveralls', require: false
+  gem 'cucumber-core', '~> 3.2.1' # it fails with cucumber 4
   gem 'foodcritic', '~> 13.0'
   gem 'rake'
   gem 'rubocop', '~> 0.49.0'
