@@ -27,9 +27,7 @@ It will not:
 
 ## Requirements
 
-* Chef >= 14
-* Cookbooks:
-  * Sander van Zoest sysctl `https://github.com/svanzoest-cookbooks/sysctl`
+* Chef >= 14.0
 
 ### Platform
 
