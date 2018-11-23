@@ -1,17 +1,12 @@
 ---
-sudo: required
 language: ruby
 bundler_args: "--without development"
-dist: trusty
 cache: bundler
 
 services:
 - docker
 
-rvm: 2.4.4
-
-before_install:
-  - gem update --system # see https://github.com/bundler/bundler/issues/5357
+rvm: 2.5.1
 
 env:
  - INSTANCE=ubuntu-14-04 KITCHEN_LOCAL_YAML=.kitchen.do.yml
