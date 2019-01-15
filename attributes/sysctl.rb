@@ -94,8 +94,11 @@ default['sysctl']['params']['net']['ipv6']['conf']['default']['accept_ra'] = 0
 # ExecShield protection against buffer overflows
 case node['platform_family']
 when 'rhel', 'fedora'
+  # on Oracle Linux with UEK it is not available; this helps address UEK on Oracle Linux 6
+  is_oracle_uek = (node['platform'] == 'oracle' && node['kernel']['release'] =~ /^4\..*uek/)
+
   # on RHEL 7 its enabled per default and can't be disabled
-  if node['platform_version'].to_f < 7
+  if node['platform_version'].to_f < 7 && !is_oracle_uek
     default['sysctl']['params']['kernel']['exec-shield'] = 1
   end
 end
