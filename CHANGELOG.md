@@ -1,6 +1,32 @@
 # Change Log
 
-## [v3.1.0](https://github.com/dev-sec/chef-os-hardening/tree/v3.1.0) (2018-05-14)
+## [v3.2.0](https://github.com/dev-sec/chef-os-hardening/tree/v3.2.0) (2019-01-16)
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v3.1.0...v3.2.0)
+
+**Closed issues:**
+
+- Missing cookbook Chai [\#232](https://github.com/dev-sec/chef-os-hardening/issues/232)
+- Bug: unable to use override to disable module [\#208](https://github.com/dev-sec/chef-os-hardening/issues/208)
+- PAM config prevents launching of GDM on Fedora 27 [\#206](https://github.com/dev-sec/chef-os-hardening/issues/206)
+- Migration to the new major sysctl cookbook version [\#198](https://github.com/dev-sec/chef-os-hardening/issues/198)
+
+**Merged pull requests:**
+
+- Update the CI settings - this fixes it again [\#231](https://github.com/dev-sec/chef-os-hardening/pull/231) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Update issue templates [\#229](https://github.com/dev-sec/chef-os-hardening/pull/229) ([rndmh3ro](https://github.com/rndmh3ro))
+- Fix CI: pin cucumber 3 [\#227](https://github.com/dev-sec/chef-os-hardening/pull/227) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Make the daemon umask configurable [\#226](https://github.com/dev-sec/chef-os-hardening/pull/226) ([jaksi](https://github.com/jaksi))
+- Ubuntu 18.04 is supported [\#223](https://github.com/dev-sec/chef-os-hardening/pull/223) ([frederikbosch](https://github.com/frederikbosch))
+- Fix Fedora EOL [\#221](https://github.com/dev-sec/chef-os-hardening/pull/221) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Fix fedora EOL in the CI [\#220](https://github.com/dev-sec/chef-os-hardening/pull/220) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Fixing debian-9 CI tests [\#219](https://github.com/dev-sec/chef-os-hardening/pull/219) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Fedora 26 is EOL, replacing with 28 [\#218](https://github.com/dev-sec/chef-os-hardening/pull/218) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- added ability to use template cookbook for login.defs [\#217](https://github.com/dev-sec/chef-os-hardening/pull/217) ([ekelson-bcove](https://github.com/ekelson-bcove))
+- allow setting uid/gid max by attribute [\#215](https://github.com/dev-sec/chef-os-hardening/pull/215) ([mattlqx](https://github.com/mattlqx))
+- Update kitchen config for more platforms [\#213](https://github.com/dev-sec/chef-os-hardening/pull/213) ([tas50](https://github.com/tas50))
+- Add pam\_systemd.so to system-auth-ac [\#207](https://github.com/dev-sec/chef-os-hardening/pull/207) ([avanier](https://github.com/avanier))
+
+## [v3.1.0](https://github.com/dev-sec/chef-os-hardening/tree/v3.1.0) (2018-05-16)
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v3.0.0...v3.1.0)
 
 **Fixed bugs:**
