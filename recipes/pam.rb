@@ -92,7 +92,7 @@ when 'debian'
   end
 
   execute 'update-pam' do
-    command 'pam-auth-update --package'
+    command '/usr/sbin/pam-auth-update --package'
   end
 
   # do config for rhel-family
