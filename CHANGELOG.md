@@ -1,12 +1,23 @@
 # Change Log
 
+## [v3.2.1](https://github.com/dev-sec/chef-os-hardening/tree/v3.2.1) (2019-03-07)
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v3.2.0...v3.2.1)
+
+**Fixed bugs:**
+
+- execute\[update-pam\] resource fails on Ubuntu 14.04 on Azure [\#237](https://github.com/dev-sec/chef-os-hardening/issues/237)
+- exec-shield incompatible with Oracle Linux UEK [\#234](https://github.com/dev-sec/chef-os-hardening/issues/234)
+
+**Merged pull requests:**
+
+- Use full path for executing pam-auth-update [\#238](https://github.com/dev-sec/chef-os-hardening/pull/238) ([sean-nixon](https://github.com/sean-nixon))
+- Do not apply exec-shield if running Oracle Linux with UEK - addresses \#234 [\#235](https://github.com/dev-sec/chef-os-hardening/pull/235) ([eyespies](https://github.com/eyespies))
+
 ## [v3.2.0](https://github.com/dev-sec/chef-os-hardening/tree/v3.2.0) (2019-01-16)
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v3.1.0...v3.2.0)
 
 **Closed issues:**
 
-- Missing cookbook Chai [\#232](https://github.com/dev-sec/chef-os-hardening/issues/232)
-- Bug: unable to use override to disable module [\#208](https://github.com/dev-sec/chef-os-hardening/issues/208)
 - PAM config prevents launching of GDM on Fedora 27 [\#206](https://github.com/dev-sec/chef-os-hardening/issues/206)
 - Migration to the new major sysctl cookbook version [\#198](https://github.com/dev-sec/chef-os-hardening/issues/198)
 
