@@ -15,13 +15,6 @@ group :test do
   gem 'simplecov', '~> 0.16'
 end
 
-group :development do
-  gem 'guard'
-  gem 'guard-foodcritic', '~> 3.0'
-  gem 'guard-rspec'
-  gem 'guard-rubocop'
-end
-
 group :integration do
   gem 'kitchen-digitalocean'
   gem 'kitchen-dokken'
