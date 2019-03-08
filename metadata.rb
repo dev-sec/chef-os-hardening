@@ -16,15 +16,15 @@
 # limitations under the License.
 #
 
-name             'os-hardening'
-maintainer       'Artem Sidorenko'
+name 'os-hardening'
+maintainer 'Artem Sidorenko'
 maintainer_email 'artem@posteo.de'
-license          'Apache-2.0'
-description      'Installs and configures operating system hardening'
+license 'Apache-2.0'
+description 'Installs and configures operating system hardening'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '3.2.1'
-source_url       'https://github.com/dev-sec/chef-os-hardening'
-issues_url       'https://github.com/dev-sec/chef-os-hardening/issues'
+version '3.2.1'
+source_url 'https://github.com/dev-sec/chef-os-hardening'
+issues_url 'https://github.com/dev-sec/chef-os-hardening/issues'
 
 chef_version '>= 14'
 
