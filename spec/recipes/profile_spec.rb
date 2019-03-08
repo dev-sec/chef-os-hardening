@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# frozen_string_literal: true
 
 #
 # Copyright 2014, Deutsche Telekom AG
@@ -30,9 +30,9 @@ describe 'os-hardening::profile' do
     it 'create /etc/profile.d/pinerolo_profile.sh' do
       is_expected.to create_template('/etc/profile.d/pinerolo_profile.sh').with(
         source: 'profile.conf.erb',
-        mode: 0755,
-        owner: 'root',
-        group: 'root'
+        mode:   '0755',
+        owner:  'root',
+        group:  'root'
       )
     end
   end
@@ -43,9 +43,9 @@ describe 'os-hardening::profile' do
     it 'create /etc/profile.d/pinerolo_profile.sh' do
       is_expected.to create_template('/etc/profile.d/pinerolo_profile.sh').with(
         source: 'profile.conf.erb',
-        mode: 0755,
-        owner: 'root',
-        group: 'root'
+        mode:   '0755',
+        owner:  'root',
+        group:  'root'
       )
     end
   end

@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# frozen_string_literal: true
 
 #
 # Copyright 2014, Deutsche Telekom AG
@@ -25,9 +25,9 @@ describe 'os-hardening::limits' do
 
   it 'creates /etc/security/limits.d directory' do
     is_expected.to create_directory('/etc/security/limits.d').with(
-      user:   'root',
-      group:  'root',
-      mode: '0755',
+      user:      'root',
+      group:     'root',
+      mode:      '0755',
       recursive: true
     )
   end
@@ -45,9 +45,9 @@ describe 'os-hardening::limits' do
         is_expected.to create_template(
           '/etc/security/limits.d/10.hardcore.conf'
         ).with(
-          user:   'root',
-          group:  'root',
-          mode: '0440'
+          user:  'root',
+          group: 'root',
+          mode:  '0440'
         )
       end
     end
@@ -59,9 +59,9 @@ describe 'os-hardening::limits' do
         is_expected.to create_template(
           '/etc/security/limits.d/10.hardcore.conf'
         ).with(
-          user:   'root',
-          group:  'root',
-          mode: '0440'
+          user:  'root',
+          group: 'root',
+          mode:  '0440'
         )
       end
     end

@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 #
 # Cookbook Name: os-hardening
@@ -51,7 +51,7 @@ when 'debian'
     template passwdqc_path do
       source 'pam_passwdqc.erb'
       cookbook node['os-hardening']['auth']['pam']['passwdqc']['template_cookbook']
-      mode 0640
+      mode '0640'
       owner 'root'
       group 'root'
     end
@@ -73,14 +73,14 @@ when 'debian'
   end
 
   # configure tally2
-  if node['os-hardening']['auth']['retries'] > 0
+  if node['os-hardening']['auth']['retries'].positive?
     # tally2 is needed for pam
     package 'libpam-modules'
 
     template tally2_path do
       source 'pam_tally2.erb'
       cookbook node['os-hardening']['auth']['pam']['tally2']['template_cookbook']
-      mode 0640
+      mode '0640'
       owner 'root'
       group 'root'
     end
@@ -125,7 +125,7 @@ when 'rhel', 'fedora'
   template '/etc/pam.d/system-auth-ac' do
     source 'rhel_system_auth.erb'
     cookbook node['os-hardening']['auth']['pam']['system-auth']['template_cookbook']
-    mode 0640
+    mode '0640'
     owner 'root'
     group 'root'
   end
@@ -133,7 +133,7 @@ when 'rhel', 'fedora'
   # NSA 2.3.3.5 Upgrade Password Hashing Algorithm to SHA-512
   template '/etc/libuser.conf' do
     source 'rhel_libuser.conf.erb'
-    mode 0640
+    mode '0640'
     owner 'root'
     group 'root'
   end

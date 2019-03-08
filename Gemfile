@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 source 'https://rubygems.org'
 
@@ -10,7 +10,7 @@ group :test do
   gem 'coveralls', require: false
   gem 'foodcritic', '~> 15.1'
   gem 'rake'
-  gem 'rubocop', '~> 0.49.0'
+  gem 'rubocop', '~> 0.65.0'
   gem 'simplecov', '~> 0.16'
 end
 

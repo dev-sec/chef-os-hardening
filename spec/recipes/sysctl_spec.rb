@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# frozen_string_literal: true
 
 #
 # Copyright 2014, Deutsche Telekom AG
@@ -38,9 +38,9 @@ describe 'os-hardening::sysctl' do
 
       it 'creates /etc/sysctl.conf' do
         is_expected.to create_file('/etc/sysctl.conf').with(
-          user: 'root',
+          user:  'root',
           group: 'root',
-          mode: 0440
+          mode:  '0440'
         )
       end
 
@@ -76,9 +76,9 @@ describe 'os-hardening::sysctl' do
 
       it 'creates /etc/sysctl.conf' do
         is_expected.to create_file('/etc/sysctl.conf').with(
-          user: 'root',
+          user:  'root',
           group: 'root',
-          mode: 0440
+          mode:  '0440'
         )
       end
 
@@ -113,9 +113,9 @@ describe 'os-hardening::sysctl' do
 
       it 'creates /etc/sysctl.conf' do
         is_expected.to create_file('/etc/sysctl.conf').with(
-          user: 'root',
+          user:  'root',
           group: 'root',
-          mode: 0440
+          mode:  '0440'
         )
       end
 

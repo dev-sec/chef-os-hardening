@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# frozen_string_literal: true
 
 #
 # Copyright 2014, Deutsche Telekom AG
@@ -30,29 +30,29 @@ describe 'os-hardening::login_defs' do
 
   it 'creates /etc/login.defs' do
     is_expected.to create_template('/etc/login.defs').with(
-      source: 'login.defs.erb',
-      mode: '0444',
-      owner: 'root',
-      group: 'root',
+      source:    'login.defs.erb',
+      mode:      '0444',
+      owner:     'root',
+      group:     'root',
       variables: {
-        additional_user_paths: '',
-        umask: '027',
-        password_max_age: 60,
-        password_min_age: 7,
-        password_warn_age: 7,
-        login_retries: 5,
-        login_timeout: 60,
-        chfn_restrict: '',
+        additional_user_paths:    '',
+        umask:                    '027',
+        password_max_age:         60,
+        password_min_age:         7,
+        password_warn_age:        7,
+        login_retries:            5,
+        login_timeout:            60,
+        chfn_restrict:            '',
         allow_login_without_home: false,
-        uid_min: 5000,
-        uid_max: 6000,
-        gid_min: 5000,
-        gid_max: 6000,
-        sys_uid_min: 100,
-        sys_uid_max: 999,
-        sys_gid_min: 100,
-        sys_gid_max: 999,
-        mail_dir: '/var/mail'
+        uid_min:                  5000,
+        uid_max:                  6000,
+        gid_min:                  5000,
+        gid_max:                  6000,
+        sys_uid_min:              100,
+        sys_uid_max:              999,
+        sys_gid_min:              100,
+        sys_gid_max:              999,
+        mail_dir:                 '/var/mail'
       }
     )
   end

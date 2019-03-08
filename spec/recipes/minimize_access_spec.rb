@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# frozen_string_literal: true
 
 #
 # Copyright 2014, Deutsche Telekom AG
@@ -82,17 +82,17 @@ describe 'os-hardening::minimize_access' do
 
   it 'creates /etc/shadow' do
     is_expected.to create_file('/etc/shadow').with(
-      user: 'root',
+      user:  'root',
       group: 'shadow',
-      mode: '0640'
+      mode:  '0640'
     )
   end
 
   it 'creates /etc/su' do
     is_expected.to create_file('/bin/su').with(
-      user: 'root',
+      user:  'root',
       group: 'root',
-      mode: '0750'
+      mode:  '0750'
     )
   end
 end

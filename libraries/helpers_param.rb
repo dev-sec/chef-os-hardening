@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 #
 # Cookbook Name:: os-hardening
@@ -23,15 +23,15 @@
 module SysctlCookbook
   module SysctlHelpers
     module Param
-      def coerce_attributes(a, out = nil)
-        case a
+      def coerce_attributes(attr, out = nil)
+        case attr
         when Array
-          "#{out}=#{a.join(' ')}"
+          "#{out}=#{attr.join(' ')}"
         when String, Integer
-          "#{out}=#{a}"
+          "#{out}=#{attr}"
         when Hash
           out += '.' unless out.nil?
-          a.map { |k, v| coerce_attributes(v, "#{out}#{k}") }.flatten.sort
+          attr.map { |k, v| coerce_attributes(v, "#{out}#{k}") }.flatten.sort
         end
       end
     end

@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# frozen_string_literal: true
 
 #
 # Copyright 2014, Deutsche Telekom AG
@@ -25,10 +25,10 @@ describe 'os-hardening::securetty' do
 
   it 'creates /etc/securetty' do
     is_expected.to create_template('/etc/securetty').with(
-      source: 'securetty.erb',
-      user:   'root',
-      group:  'root',
-      mode: '0400',
+      source:    'securetty.erb',
+      user:      'root',
+      group:     'root',
+      mode:      '0400',
       variables: {
         ttys: "console\ntty1\ntty2\ntty3\ntty4\ntty5\ntty6"
       }

@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 #
 # Cookbook Name:: os-hardening
@@ -24,9 +24,7 @@ class Chef
   class Recipe
     def cookbook_version(cookbook_name, version_contraint)
       cb = run_context.cookbook_collection[cookbook_name]
-      if cb.nil?
-        raise "Can't find cookbook #{cookbook_name}! Can't determine its version."
-      end
+      raise "Can't find cookbook #{cookbook_name}! Can't determine its version." if cb.nil?
 
       v = cb.metadata.version
       Chef::VersionConstraint::Platform.new(version_contraint).include?(v)
