@@ -46,7 +46,6 @@ matrix:
     - env: INSTANCE=centos-7 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
     - env: INSTANCE=centos-7 CHEF_VERSION=14.0.190 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
     - env: INSTANCE=opensuse-42 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
-    - env: INSTANCE=amazonlinux-2 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml # https://github.com/inspec/train/pull/312
   include:
     - env: UNIT_AND_LINT=1
       script:
