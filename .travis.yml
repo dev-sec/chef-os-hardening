@@ -24,9 +24,11 @@ env:
  - INSTANCE=ubuntu-16-04 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=ubuntu-18-04 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=ubuntu-16-04 CHEF_VERSION=14.0.190 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=ubuntu-16-04 CHEF_VERSION=current KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=centos-6 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=centos-7 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=centos-7 CHEF_VERSION=14.0.190 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=centos-7 CHEF_VERSION=current KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=oracle-6 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=oracle-7 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=debian-8 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
@@ -41,11 +43,15 @@ script:
   -  bundle exec rake kitchen
 
 matrix:
-  allow_failures: # temporaray disable failing tests until all problems are fixed
+  allow_failures:
+    # temporaray disable failing tests until all problems are fixed
     - env: INSTANCE=ubuntu-16-04 CHEF_VERSION=14.0.190 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
     - env: INSTANCE=centos-7 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
     - env: INSTANCE=centos-7 CHEF_VERSION=14.0.190 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
     - env: INSTANCE=opensuse-42 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+    # allow runs with latest non-stable chef version to fail
+    - env: INSTANCE=ubuntu-16-04 CHEF_VERSION=current KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+    - env: INSTANCE=centos-7 CHEF_VERSION=current KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
   include:
     - env: UNIT_AND_LINT=1
       script:
