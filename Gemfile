@@ -8,7 +8,6 @@ gem 'chef', '~> 14.11'
 group :test do
   gem 'chefspec', '~> 7.3.4'
   gem 'coveralls', require: false
-  gem 'cucumber-core', '~> 3.2.1' # it fails with cucumber 4
   gem 'foodcritic', '~> 15.1'
   gem 'rake'
   gem 'rubocop', '~> 0.49.0'
