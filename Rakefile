@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 # rubocop:disable Style/SymbolArray
 
@@ -65,8 +65,8 @@ end
 
 desc 'Run kitchen integration tests'
 task :kitchen do
-  SSH_KEY_FILE = '~/.ssh/ci_id_rsa'.freeze
-  SSH_KEY_ENV_VAR_NAME = 'CI_SSH_KEY'.freeze
+  SSH_KEY_FILE = '~/.ssh/ci_id_rsa'
+  SSH_KEY_ENV_VAR_NAME = 'CI_SSH_KEY'
   concurrency = ENV['CONCURRENCY'] || 1
   instance = ENV['INSTANCE'] || ''
   args = ENV['CI'] ? '--destroy=always' : ''
@@ -92,3 +92,4 @@ task :kitchen do
 
   sh('sh', '-c', "bundle exec kitchen test -c #{concurrency} #{args} #{instance}")
 end
+# rubocop:enable Style/SymbolArray

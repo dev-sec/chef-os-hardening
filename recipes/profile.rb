@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 #
 # Cookbook Name: os-hardening
@@ -21,10 +21,8 @@
 
 template '/etc/profile.d/pinerolo_profile.sh' do
   source 'profile.conf.erb'
-  mode 0755
+  mode '0755'
   owner 'root'
   group 'root'
-  if node['os-hardening']['security']['kernel']['enable_core_dump']
-    action :delete
-  end
+  action :delete if node['os-hardening']['security']['kernel']['enable_core_dump']
 end

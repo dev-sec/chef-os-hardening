@@ -4,7 +4,7 @@ AllCops:
   Exclude:
   - vendor/**/*
   - test/**/*
-  TargetRubyVersion: 2.1 # we need this because of chef 12.5.1 support
+  TargetRubyVersion: 2.5
 Metrics/AbcSize:
   Max: 29
 Metrics/LineLength:
@@ -17,26 +17,17 @@ Style/Documentation:
   Enabled: false
 Layout/DotPosition:
   EnforcedStyle: trailing
-  Enabled: true
-Style/Encoding:
-  EnforcedStyle: always
-  Enabled: true
 Layout/ExtraSpacing:
   Exclude:
     - attributes/default.rb
-Style/HashSyntax:
-  Enabled: true
-Style/NumericLiteralPrefix:
-  Enabled: false
+Layout/AlignHash:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
 Style/NumericLiterals:
   MinDigits: 10
-Style/RegexpLiteral:
-  AllowInnerSlashes: true
 Layout/SpaceAroundOperators:
   Exclude:
     - attributes/default.rb
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
-Style/FrozenStringLiteralComment:
-  Enabled: false

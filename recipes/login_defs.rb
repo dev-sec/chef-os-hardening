@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 #
 # Cookbook Name: os-hardening
@@ -26,23 +26,23 @@ template '/etc/login.defs' do
   owner 'root'
   group 'root'
   variables(
-    additional_user_paths: node['os-hardening']['env']['extra_user_paths'].join(':'), # :/usr/local/games:/usr/games
-    umask: node['os-hardening']['env']['umask'],
-    password_max_age: node['os-hardening']['auth']['pw_max_age'],
-    password_min_age: node['os-hardening']['auth']['pw_min_age'],
-    password_warn_age: node['os-hardening']['auth']['pw_warn_age'],
-    login_retries: node['os-hardening']['auth']['retries'],
-    login_timeout: node['os-hardening']['auth']['timeout'],
-    chfn_restrict: '', # "rwh"
+    additional_user_paths:    node['os-hardening']['env']['extra_user_paths'].join(':'), # :/usr/local/games:/usr/games
+    umask:                    node['os-hardening']['env']['umask'],
+    password_max_age:         node['os-hardening']['auth']['pw_max_age'],
+    password_min_age:         node['os-hardening']['auth']['pw_min_age'],
+    password_warn_age:        node['os-hardening']['auth']['pw_warn_age'],
+    login_retries:            node['os-hardening']['auth']['retries'],
+    login_timeout:            node['os-hardening']['auth']['timeout'],
+    chfn_restrict:            '', # "rwh"
     allow_login_without_home: node['os-hardening']['auth']['allow_homeless'],
-    uid_min: node['os-hardening']['auth']['uid_min'],
-    uid_max: node['os-hardening']['auth']['uid_max'],
-    gid_min: node['os-hardening']['auth']['gid_min'],
-    gid_max: node['os-hardening']['auth']['gid_max'],
-    sys_uid_min: node['os-hardening']['auth']['sys_uid_min'],
-    sys_uid_max: node['os-hardening']['auth']['sys_uid_max'],
-    sys_gid_min: node['os-hardening']['auth']['sys_gid_min'],
-    sys_gid_max: node['os-hardening']['auth']['sys_gid_max'],
-    mail_dir: node['os-hardening']['auth']['maildir']
+    uid_min:                  node['os-hardening']['auth']['uid_min'],
+    uid_max:                  node['os-hardening']['auth']['uid_max'],
+    gid_min:                  node['os-hardening']['auth']['gid_min'],
+    gid_max:                  node['os-hardening']['auth']['gid_max'],
+    sys_uid_min:              node['os-hardening']['auth']['sys_uid_min'],
+    sys_uid_max:              node['os-hardening']['auth']['sys_uid_max'],
+    sys_gid_min:              node['os-hardening']['auth']['sys_gid_min'],
+    sys_gid_max:              node['os-hardening']['auth']['sys_gid_max'],
+    mail_dir:                 node['os-hardening']['auth']['maildir']
   )
 end

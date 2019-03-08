@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 #
 # Cookbook Name: os-hardening
@@ -142,7 +142,7 @@ begin
                sub(/^.*GenuineIntel.*$/, 'intel').
                sub(/^.*AuthenticAMD.*$/, 'amd')
   node.default['os-hardening']['security']['cpu_vendor'] = cpu_vendor
-rescue
+rescue # rubocop:disable Style/RescueStandardError
   log 'WARNING: Could not properly determine the cpu vendor. Fallback to intel cpu.' do
     level :warn
   end
@@ -150,7 +150,7 @@ end
 
 # protect sysctl.conf
 file '/etc/sysctl.conf' do
-  mode 0440
+  mode '0440'
   owner 'root'
   group 'root'
 end
@@ -161,13 +161,13 @@ case node['platform_family']
 when 'rhel', 'fedora', 'amazon'
   template '/etc/sysconfig/init' do
     source 'rhel_sysconfig_init.erb'
-    mode 0544
+    mode '0544'
     owner 'root'
     group 'root'
     variables(
       prompt: node['os-hardening']['security']['init']['prompt'],
       single: node['os-hardening']['security']['init']['single'],
-      umask: node['os-hardening']['security']['init']['daemon_umask']
+      umask:  node['os-hardening']['security']['init']['daemon_umask']
     )
   end
 end
@@ -181,11 +181,11 @@ when 'debian'
   unless node['os-hardening']['security']['kernel']['enable_module_loading']
     template '/etc/initramfs-tools/modules' do
       source 'modules.erb'
-      mode 0440
+      mode '0440'
       owner 'root'
       group 'root'
       variables(
-        x86_64: !(node['kernel']['machine'] =~ /x86_64/).nil?,
+        x86_64:    !(node['kernel']['machine'] =~ /x86_64/).nil?,
         cpuVendor: node['os-hardening']['security']['cpu_vendor']
       )
     end
@@ -205,7 +205,7 @@ if node['os-hardening']['security']['kernel']['disable_filesystems'].empty?
 else
   template '/etc/modprobe.d/dev-sec.conf' do
     source 'filesystem_blacklisting.erb'
-    mode 0440
+    mode '0440'
     owner 'root'
     group 'root'
     variables filesystems: node['os-hardening']['security']['kernel']['disable_filesystems']
