@@ -26,7 +26,7 @@ version          '3.2.1'
 source_url       'https://github.com/dev-sec/chef-os-hardening'
 issues_url       'https://github.com/dev-sec/chef-os-hardening/issues'
 
-chef_version '~> 14.0'
+chef_version '>= 14'
 
 supports 'amazon'
 supports 'ubuntu', '>= 14.04'

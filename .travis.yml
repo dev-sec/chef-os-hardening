@@ -11,11 +11,11 @@ rvm: 2.5.1
 env:
  - INSTANCE=ubuntu-14-04 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=ubuntu-16-04 KITCHEN_LOCAL_YAML=.kitchen.do.yml
- - INSTANCE=ubuntu-16-04 CHEF_VERSION=12.14.60 KITCHEN_LOCAL_YAML=.kitchen.do.yml
+ - INSTANCE=ubuntu-16-04 CHEF_VERSION=14.0.190 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=ubuntu-18-04 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=centos-6 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=centos-7 KITCHEN_LOCAL_YAML=.kitchen.do.yml
- - INSTANCE=centos-7 CHEF_VERSION=12.14.60 KITCHEN_LOCAL_YAML=.kitchen.do.yml
+ - INSTANCE=centos-7 CHEF_VERSION=14.0.190 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=debian-8 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=debian-9 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=fedora-27 KITCHEN_LOCAL_YAML=.kitchen.do.yml
@@ -23,10 +23,10 @@ env:
  - INSTANCE=ubuntu-14-04 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=ubuntu-16-04 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=ubuntu-18-04 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
- - INSTANCE=ubuntu-16-04 CHEF_VERSION=12.14.60 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=ubuntu-16-04 CHEF_VERSION=14.0.190 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=centos-6 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=centos-7 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
- - INSTANCE=centos-7 CHEF_VERSION=12.14.60 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+ - INSTANCE=centos-7 CHEF_VERSION=14.0.190 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=oracle-6 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=oracle-7 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=debian-8 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
@@ -42,9 +42,9 @@ script:
 
 matrix:
   allow_failures: # temporaray disable failing tests until all problems are fixed
-    - env: INSTANCE=ubuntu-16-04 CHEF_VERSION=12.14.60 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+    - env: INSTANCE=ubuntu-16-04 CHEF_VERSION=14.0.190 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
     - env: INSTANCE=centos-7 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
-    - env: INSTANCE=centos-7 CHEF_VERSION=12.14.60 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+    - env: INSTANCE=centos-7 CHEF_VERSION=14.0.190 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
     - env: INSTANCE=opensuse-42 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
     - env: INSTANCE=amazonlinux-2 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml # https://github.com/inspec/train/pull/312
   include:
