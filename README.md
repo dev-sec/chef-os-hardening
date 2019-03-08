@@ -1,10 +1,8 @@
 # os-hardening (Chef cookbook)
 
 [![Supermarket](http://img.shields.io/cookbook/v/os-hardening.svg)][1]
-[![Build Status](http://img.shields.io/travis/dev-sec/chef-os-hardening.svg)][2]
+[![Build Status](https://travis-ci.org/dev-sec/chef-os-hardening.svg?branch=master)][2]
 [![Code Coverage](http://img.shields.io/coveralls/dev-sec/chef-os-hardening.svg)][3]
-[![Dependencies](http://img.shields.io/gemnasium/dev-sec/chef-os-hardening.svg)][4]
-[![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][5]
 
 ## Description
 
@@ -29,7 +27,7 @@ It will not:
 
 ## Requirements
 
-* Chef >= 12.5.1
+* Chef >= 14
 * Cookbooks:
   * Sander van Zoest sysctl `https://github.com/svanzoest-cookbooks/sysctl`
 
@@ -239,6 +237,4 @@ limitations under the License.
 [1]: https://supermarket.getchef.com/cookbooks/os-hardening
 [2]: http://travis-ci.org/dev-sec/chef-os-hardening
 [3]: https://coveralls.io/r/dev-sec/chef-os-hardening
-[4]: https://gemnasium.com/dev-sec/chef-os-hardening
-[5]: https://gitter.im/dev-sec/general
 [kitchen-dokken]: https://github.com/someara/kitchen-dokken
