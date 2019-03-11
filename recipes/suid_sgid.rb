@@ -23,15 +23,15 @@
 # make user-defined blacklist/whitelist override our default lists
 sb = node['os-hardening']['security']['suid_sgid']['system_blacklist']
 sw = node['os-hardening']['security']['suid_sgid']['system_whitelist']
-b  = node['os-hardening']['security']['suid_sgid']['blacklist']
-w  = node['os-hardening']['security']['suid_sgid']['whitelist']
+b = node['os-hardening']['security']['suid_sgid']['blacklist']
+w = node['os-hardening']['security']['suid_sgid']['whitelist']
 
 blacklist = (sb - w + b).uniq
 whitelist = (sw - b + w).uniq
 
 # root    = "/"
-dry_run   = node['os-hardening']['security']['suid_sgid']['dry_run_on_unknown']
-root      = node['os-hardening']['env']['root_path']
+dry_run = node['os-hardening']['security']['suid_sgid']['dry_run_on_unknown']
+root = node['os-hardening']['env']['root_path']
 
 # walk the blacklist and remove suid and sgid bits from these items
 ruby_block 'remove_suid_from_blacklists' do

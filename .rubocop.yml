@@ -17,9 +17,6 @@ Style/Documentation:
   Enabled: false
 Layout/DotPosition:
   EnforcedStyle: trailing
-Layout/ExtraSpacing:
-  Exclude:
-    - attributes/default.rb
 Layout/AlignHash:
   EnforcedHashRocketStyle: table
   EnforcedColonStyle: table
@@ -28,6 +25,8 @@ Style/NumericLiterals:
 Layout/SpaceAroundOperators:
   Exclude:
     - attributes/default.rb
+Layout/ExtraSpacing:
+  AllowForAlignment: false
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'

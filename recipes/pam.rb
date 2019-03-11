@@ -31,7 +31,7 @@ case node['platform_family']
 when 'debian'
 
   passwdqc_path = '/usr/share/pam-configs/passwdqc'
-  tally2_path   = '/usr/share/pam-configs/tally2'
+  tally2_path = '/usr/share/pam-configs/tally2'
 
   # See NSA 2.3.3.1.2
   if node['os-hardening']['auth']['pam']['passwdqc']['enable']
