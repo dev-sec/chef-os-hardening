@@ -130,7 +130,7 @@ node.default['sysctl']['params']['fs']['suid_dumpable'] =
 if node.attribute?('sysctl') && node['sysctl'].attribute?('params')
   coerce_attributes(node['sysctl']['params']).each do |x|
     k, v = x.split('=')
-    sysctl_param k do
+    sysctl k do
       value v
     end
   end
