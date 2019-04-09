@@ -9,7 +9,6 @@ services:
 rvm: 2.5.1
 
 env:
- - INSTANCE=ubuntu-14-04 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=ubuntu-16-04 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=ubuntu-16-04 CHEF_VERSION=14.0.190 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=ubuntu-18-04 KITCHEN_LOCAL_YAML=.kitchen.do.yml
@@ -19,7 +18,6 @@ env:
  - INSTANCE=debian-9 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=fedora-27 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=fedora-28 KITCHEN_LOCAL_YAML=.kitchen.do.yml
- - INSTANCE=ubuntu-14-04 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=ubuntu-16-04 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=ubuntu-18-04 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=ubuntu-16-04 CHEF_VERSION=14.0.190 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
