@@ -16,7 +16,6 @@ platforms:
 - name: centos-7
 - name: oracle-6
 - name: oracle-7
-- name: debian-8
 - name: debian-9
 - name: fedora-27
 - name: fedora-28
