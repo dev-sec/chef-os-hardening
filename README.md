@@ -31,15 +31,14 @@ It will not:
 
 ### Platform
 
-- Debian 7, 8
-- Ubuntu 14.04, 16.04, 18.04
+- Debian 9
+- Ubuntu 16.04, 18.04
 - RHEL 6, 7
 - CentOS 6, 7
 - Oracle Linux 6, 7
-- Fedora 26, 27
+- Fedora 28, 29
 - OpenSuse Leap 42
 - Amazon Linux 1, 2
-
 
 ## Attributes
 
