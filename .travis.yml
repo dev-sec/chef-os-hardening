@@ -16,7 +16,6 @@ env:
  - INSTANCE=centos-6 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=centos-7 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=centos-7 CHEF_VERSION=14.0.190 KITCHEN_LOCAL_YAML=.kitchen.do.yml
- - INSTANCE=debian-8 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=debian-9 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=fedora-27 KITCHEN_LOCAL_YAML=.kitchen.do.yml
  - INSTANCE=fedora-28 KITCHEN_LOCAL_YAML=.kitchen.do.yml
@@ -31,7 +30,6 @@ env:
  - INSTANCE=centos-7 CHEF_VERSION=current KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=oracle-6 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=oracle-7 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
- - INSTANCE=debian-8 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=debian-9 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=fedora-27 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
  - INSTANCE=fedora-28 KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
