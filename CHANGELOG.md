@@ -1,5 +1,27 @@
 # Change Log
 
+## [v4.0.0](https://github.com/dev-sec/chef-os-hardening/tree/v4.0.0) (2019-04-10)
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v3.2.1...v4.0.0)
+
+**Closed issues:**
+
+- Deprecated feature sysctl\_param used [\#230](https://github.com/dev-sec/chef-os-hardening/issues/230)
+
+**Merged pull requests:**
+
+- Update of metadata with supported distros [\#252](https://github.com/dev-sec/chef-os-hardening/pull/252) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Removal of config disclaimer attribute [\#249](https://github.com/dev-sec/chef-os-hardening/pull/249) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Docs: update of supported distros [\#247](https://github.com/dev-sec/chef-os-hardening/pull/247) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Removal of fedora 27 as its EOL [\#246](https://github.com/dev-sec/chef-os-hardening/pull/246) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Removal of Ubuntu 14.04 support [\#245](https://github.com/dev-sec/chef-os-hardening/pull/245) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Removal of Debian 8 as its EOL [\#244](https://github.com/dev-sec/chef-os-hardening/pull/244) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- CI: improvements with handling of different chef versions [\#243](https://github.com/dev-sec/chef-os-hardening/pull/243) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Updates of metadata and readme [\#242](https://github.com/dev-sec/chef-os-hardening/pull/242) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Eliminating spacing for alligment [\#241](https://github.com/dev-sec/chef-os-hardening/pull/241) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Update of rubocop to 0.65 [\#240](https://github.com/dev-sec/chef-os-hardening/pull/240) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- CI: Run unit tests on chef 14, update of some gems, small cleanup [\#239](https://github.com/dev-sec/chef-os-hardening/pull/239) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Remove sysctl cookbook dependency and use new native sysctl resource [\#228](https://github.com/dev-sec/chef-os-hardening/pull/228) ([josqu4red](https://github.com/josqu4red))
+
 ## [v3.2.1](https://github.com/dev-sec/chef-os-hardening/tree/v3.2.1) (2019-03-07)
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v3.2.0...v3.2.1)
 
