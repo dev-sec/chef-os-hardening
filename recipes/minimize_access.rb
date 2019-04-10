@@ -37,7 +37,7 @@ file '/etc/shadow' do
   when 'rhel', 'fedora', 'amazon'
     group 'root'
     mode '0000'
-  when 'debian'
+  when 'debian', 'suse'
     group 'shadow'
     mode '0640'
   else
