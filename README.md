@@ -27,7 +27,7 @@ It will not:
 
 ## Requirements
 
-* Chef >= 14.0
+* Chef >= 14.13.11
 
 ### Platform
 

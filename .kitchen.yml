@@ -29,9 +29,11 @@ provisioner:
 <% if ENV['CHEF_VERSION'] %>
   require_chef_omnibus: <%= ENV['CHEF_VERSION'] %>
 <% end %>
+  chef_license: accept
 
 verifier:
   name: inspec
+  chef_license: accept
 
 suites:
 - name: default
