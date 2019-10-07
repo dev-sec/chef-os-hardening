@@ -204,7 +204,7 @@ This cookbook is mostly based on guides by:
 
 * [Arch Linux wiki, Sysctl hardening](https://wiki.archlinux.org/index.php/Sysctl)
 * [Ubuntu Security/Features](https://wiki.ubuntu.com/Security/Features)
-* [NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5](https://www.iad.gov/iad/library/ia-guidance/security-configuration/operating-systems/guide-to-the-secure-configuration-of-red-hat-enterprise.cfm)
+* [NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5](https://apps.nsa.gov/iaarchive/library/ia-guidance/security-configuration/operating-systems/guide-to-the-secure-configuration-of-red-hat-enterprise.cfm)
 * [Deutsche Telekom, Group IT Security, Security Requirements (German)](https://www.telekom.com/psa)
 
 
