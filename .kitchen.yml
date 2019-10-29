@@ -14,6 +14,7 @@ platforms:
 - name: oracle-6
 - name: oracle-7
 - name: debian-9
+- name: debian-10
 - name: fedora-28
 - name: fedora-29
 - name: opensuse-leap-42

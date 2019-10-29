@@ -46,6 +46,12 @@ platforms:
     intermediate_instructions:
     - RUN /usr/bin/apt-get update
     pid_one_command: /bin/systemd
+- name: debian-10
+  driver:
+    image: dokken/debian-10
+    intermediate_instructions:
+    - RUN /usr/bin/apt-get update
+    pid_one_command: /bin/systemd
 - name: fedora-28
   driver:
     image: dokken/fedora-28
