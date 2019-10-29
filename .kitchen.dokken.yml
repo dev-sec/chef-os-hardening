@@ -33,6 +33,10 @@ platforms:
   driver:
     image: dokken/centos-7
     pid_one_command: /usr/lib/systemd/systemd
+- name: centos-8
+  driver:
+    image: dokken/centos-8
+    pid_one_command: /usr/lib/systemd/systemd
 - name: oracle-6
   driver:
     image: oraclelinux:6
