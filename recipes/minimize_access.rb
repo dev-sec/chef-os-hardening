@@ -51,6 +51,7 @@ file '/bin/su' do
   owner 'root'
   group 'root'
   mode '0750'
+  manage_symlink_source true
   not_if { node['os-hardening']['security']['users']['allow'].include?('change_user') }
 end
 
