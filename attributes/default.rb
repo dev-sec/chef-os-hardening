@@ -100,6 +100,7 @@ default['os-hardening'].tap do |os_hardening|
       pam['passwdqc']['options'] = 'min=disabled,disabled,16,12,8'
       pam['cracklib']['options'] = 'try_first_pass retry=3 type='
       pam['pwquality']['options'] = 'try_first_pass retry=3 type='
+      pam['unix']['options'] = 'shadow nullok try_first_pass use_authtok remember=5'
       pam['tally2']['template_cookbook'] = 'os-hardening'
       pam['passwdqc']['template_cookbook'] = 'os-hardening'
       pam['system-auth']['template_cookbook'] = 'os-hardening'

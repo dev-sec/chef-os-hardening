@@ -31,7 +31,7 @@ password    requisite     pam_cracklib.so <%= node['os-hardening']['auth']['pam'
 
 # NSA 2.3.3.5 Upgrade Password Hashing Algorithm to SHA-512
 # NSA 2.3.3.6 Limit Password Reuse
-password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok remember=5
+password    sufficient    pam_unix.so sha512 <%= node['os-hardening']['auth']['pam']['unix']['options'] %>
 password    required      pam_deny.so
 
 session     optional      pam_keyinit.so revoke
