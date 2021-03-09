@@ -74,7 +74,7 @@ end
 cron_directories = %w[/etc/cron.hourly /etc/cron.daily /etc/cron.weekly /etc/cron.monthly /etc/cron.d]
 cron_directories.each do |cron_path|
   directory cron_path.to_s do
-    mode '0600'
+    mode '0700'
     only_if { ::Dir.exist?(cron_path) }
   end
 end
