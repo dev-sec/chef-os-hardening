@@ -65,3 +65,11 @@ directory '/var/log' do
     group 'root'
   end
 end
+
+# Ubuntu and Amazon Linux are expecting cron files and folders to not be readable or writable by groups or others
+cron_directories = %w[/etc/crontab /etc/cron.hourly /etc/cron.daily /etc/cron.weekly /etc/cron.monthly /etc/cron.d]
+cron_directories.each do |cron_path|
+  execute "remove read/write permission from #{cron_path}" do
+    command "chmod go-rw -R #{cron_path}"
+  end
+end
