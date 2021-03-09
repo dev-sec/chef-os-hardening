@@ -69,11 +69,11 @@ end
 # Ubuntu and Amazon Linux are expecting cron files and folders to not be readable or writable by groups or others
 file '/etc/crontab' do
   mode '0600'
-  only_if { ::File.exist?('/etc/crontab') ]
+  only_if { ::File.exist?('/etc/crontab') }
 end
 cron_directories = %w[/etc/cron.hourly /etc/cron.daily /etc/cron.weekly /etc/cron.monthly /etc/cron.d]
 cron_directories.each do |cron_path|
   directory #{cron_path}.to_s do
     mode '0600'
-  only_if { ::Dir.exist?(cron_path) ]
+  only_if { ::Dir.exist?(cron_path) }
 end
