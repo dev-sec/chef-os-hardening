@@ -80,4 +80,3 @@ cron_directories.each do |cron_path|
     mode '0700'
   end
 end
-
