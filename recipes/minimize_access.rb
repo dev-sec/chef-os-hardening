@@ -66,7 +66,7 @@ directory '/var/log' do
   end
 end
 
-# Test kitchen for Ubuntu and Amazon Linux 2 is expecting cron files and folders to not be readable or writable by groups or others
+# Cron files and folders should not be readable or writable by groups or others
 file '/etc/crontab' do
   mode '0600'
   only_if { ::File.exist?('/etc/crontab') }
