@@ -23,5 +23,5 @@ group :integration do
 end
 
 group :tools do
-  gem 'github_changelog_generator', '=> 1.15.2'
+  gem 'github_changelog_generator', '== 1.15.2'
 end
