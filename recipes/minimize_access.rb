@@ -65,18 +65,3 @@ directory '/var/log' do
     group 'root'
   end
 end
-
-# Test kitchen for Ubuntu and Amazon Linux 2 is expecting cron files and folders to not be readable or writable by groups or others
-file '/etc/crontab' do
-  mode '0600'
-  only_if { ::File.exist?('/etc/crontab') }
-end
-
-cron_directories = %w[/etc/cron.hourly /etc/cron.daily /etc/cron.weekly /etc/cron.monthly /etc/cron.d]
-cron_directories.each do |cron_path|
-  next unless ::Dir.exist?(cron_path)
-
-  directory cron_path.to_s do
-    mode '0700'
-  end
-end
