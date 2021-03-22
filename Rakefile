@@ -54,7 +54,7 @@ begin
 
   # build changelog
   require 'github_changelog_generator/task'
-  GitHubChangelogGenerator::RakeTask.new do |config|
+  GitHubChangelogGenerator::RakeTask.new :changelog do |config|
     config.future_release = "v#{metadata.version}"
     config.user = 'dev-sec'
     config.project = 'chef-os-hardening'
