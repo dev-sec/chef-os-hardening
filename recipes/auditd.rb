@@ -24,7 +24,8 @@ package node['os-hardening']['packages']['auditd']
 service 'auditd' do
   supports %i[start stop restart reload status]
   if (node['platform_family'] == 'rhel' && node['platform_version'].to_f >= 7) ||
-     (node['platform_family'] == 'fedora' && node['platform_version'].to_f >= 27)
+     (node['platform_family'] == 'fedora' && node['platform_version'].to_f >= 27) ||
+     (node['platform_family'] == 'amazon' && node['platform_version'].to_f >= 2)
     restart_command 'service auditd restart'
   end
   action [:enable]
