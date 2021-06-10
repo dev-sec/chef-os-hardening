@@ -4,7 +4,7 @@
 driver:
   name: dokken
   privileged: true # because Docker and SystemD/Upstart
-  chef_version: <%= ENV['CHEF_VERSION'] || 'current' %>
+  chef_version: <%= ENV['CHEF_VERSION'] || 'latest' %>
 
 transport:
   name: dokken
@@ -33,6 +33,10 @@ platforms:
   driver:
     image: dokken/centos-7
     pid_one_command: /usr/lib/systemd/systemd
+- name: centos-8
+  driver:
+    image: dokken/centos-8
+    pid_one_command: /usr/lib/systemd/systemd
 - name: oracle-6
   driver:
     image: oraclelinux:6
@@ -40,27 +44,27 @@ platforms:
   driver:
     image: oraclelinux:7
     pid_one_command: /usr/lib/systemd/systemd
-- name: debian-8
-  driver:
-    image: dokken/debian-8
-    intermediate_instructions:
-    - RUN /usr/bin/apt-get update
-    pid_one_command: /bin/systemd
 - name: debian-9
   driver:
     image: dokken/debian-9
     intermediate_instructions:
     - RUN /usr/bin/apt-get update
     pid_one_command: /bin/systemd
-- name: fedora-27
+- name: debian-10
   driver:
-    image: dokken/fedora-27
-    pid_one_command: /usr/lib/systemd/systemd
+    image: dokken/debian-10
     intermediate_instructions:
-    - RUN dnf install -y yum
+    - RUN /usr/bin/apt-get update
+    pid_one_command: /bin/systemd
 - name: fedora-28
   driver:
     image: dokken/fedora-28
+    pid_one_command: /usr/lib/systemd/systemd
+    intermediate_instructions:
+    - RUN dnf install -y yum
+- name: fedora-29
+  driver:
+    image: dokken/fedora-29
     pid_one_command: /usr/lib/systemd/systemd
     intermediate_instructions:
     - RUN dnf install -y yum
@@ -68,12 +72,6 @@ platforms:
   driver:
     image: dokken/opensuse-leap
     pid_one_command: /bin/systemd
-- name: ubuntu-14-04
-  driver:
-    image: dokken/ubuntu-14.04
-    pid_one_command: /sbin/init
-    intermediate_instructions:
-      - RUN /usr/bin/apt-get update
 - name: ubuntu-16-04
   driver:
     image: dokken/ubuntu-16.04

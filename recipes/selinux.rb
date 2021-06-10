@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 #
 # Cookbook Name: os-hardening
@@ -40,7 +40,7 @@ when 'rhel', 'fedora', 'amazon'
 
     template '/etc/selinux/config' do
       source 'rhel_selinuxconfig.erb'
-      mode 0644
+      mode '0644'
       owner 'root'
       group 'root'
       variables selinux_mode: node['os-hardening']['security']['selinux_mode']

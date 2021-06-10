@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 #
 # Cookbook Name: os-hardening
@@ -51,6 +51,7 @@ file '/bin/su' do
   owner 'root'
   group 'root'
   mode '0750'
+  manage_symlink_source true
   not_if { node['os-hardening']['security']['users']['allow'].include?('change_user') }
 end
 
@@ -62,5 +63,20 @@ directory '/var/log' do
     group 'syslog'
   else
     group 'root'
+  end
+end
+
+# Cron files and folders should not be readable or writable by groups or others
+file '/etc/crontab' do
+  mode '0600'
+  only_if { ::File.exist?('/etc/crontab') }
+end
+
+cron_directories = %w[/etc/cron.hourly /etc/cron.daily /etc/cron.weekly /etc/cron.monthly /etc/cron.d]
+cron_directories.each do |cron_path|
+  next unless ::Dir.exist?(cron_path)
+
+  directory cron_path.to_s do
+    mode '0700'
   end
 end

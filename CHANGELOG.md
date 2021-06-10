@@ -1,6 +1,65 @@
 # Change Log
 
-## [v3.1.0](https://github.com/dev-sec/chef-os-hardening/tree/v3.1.0) (2018-05-14)
+## [v4.0.0](https://github.com/dev-sec/chef-os-hardening/tree/v4.0.0) (2019-04-10)
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v3.2.1...v4.0.0)
+
+**Closed issues:**
+
+- Deprecated feature sysctl\_param used [\#230](https://github.com/dev-sec/chef-os-hardening/issues/230)
+
+**Merged pull requests:**
+
+- Update of metadata with supported distros [\#252](https://github.com/dev-sec/chef-os-hardening/pull/252) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Removal of config disclaimer attribute [\#249](https://github.com/dev-sec/chef-os-hardening/pull/249) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Docs: update of supported distros [\#247](https://github.com/dev-sec/chef-os-hardening/pull/247) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Removal of fedora 27 as its EOL [\#246](https://github.com/dev-sec/chef-os-hardening/pull/246) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Removal of Ubuntu 14.04 support [\#245](https://github.com/dev-sec/chef-os-hardening/pull/245) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Removal of Debian 8 as its EOL [\#244](https://github.com/dev-sec/chef-os-hardening/pull/244) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- CI: improvements with handling of different chef versions [\#243](https://github.com/dev-sec/chef-os-hardening/pull/243) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Updates of metadata and readme [\#242](https://github.com/dev-sec/chef-os-hardening/pull/242) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Eliminating spacing for alligment [\#241](https://github.com/dev-sec/chef-os-hardening/pull/241) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Update of rubocop to 0.65 [\#240](https://github.com/dev-sec/chef-os-hardening/pull/240) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- CI: Run unit tests on chef 14, update of some gems, small cleanup [\#239](https://github.com/dev-sec/chef-os-hardening/pull/239) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Remove sysctl cookbook dependency and use new native sysctl resource [\#228](https://github.com/dev-sec/chef-os-hardening/pull/228) ([josqu4red](https://github.com/josqu4red))
+
+## [v3.2.1](https://github.com/dev-sec/chef-os-hardening/tree/v3.2.1) (2019-03-07)
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v3.2.0...v3.2.1)
+
+**Fixed bugs:**
+
+- execute\[update-pam\] resource fails on Ubuntu 14.04 on Azure [\#237](https://github.com/dev-sec/chef-os-hardening/issues/237)
+- exec-shield incompatible with Oracle Linux UEK [\#234](https://github.com/dev-sec/chef-os-hardening/issues/234)
+
+**Merged pull requests:**
+
+- Use full path for executing pam-auth-update [\#238](https://github.com/dev-sec/chef-os-hardening/pull/238) ([sean-nixon](https://github.com/sean-nixon))
+- Do not apply exec-shield if running Oracle Linux with UEK - addresses \#234 [\#235](https://github.com/dev-sec/chef-os-hardening/pull/235) ([eyespies](https://github.com/eyespies))
+
+## [v3.2.0](https://github.com/dev-sec/chef-os-hardening/tree/v3.2.0) (2019-01-16)
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v3.1.0...v3.2.0)
+
+**Closed issues:**
+
+- PAM config prevents launching of GDM on Fedora 27 [\#206](https://github.com/dev-sec/chef-os-hardening/issues/206)
+- Migration to the new major sysctl cookbook version [\#198](https://github.com/dev-sec/chef-os-hardening/issues/198)
+
+**Merged pull requests:**
+
+- Update the CI settings - this fixes it again [\#231](https://github.com/dev-sec/chef-os-hardening/pull/231) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Update issue templates [\#229](https://github.com/dev-sec/chef-os-hardening/pull/229) ([rndmh3ro](https://github.com/rndmh3ro))
+- Fix CI: pin cucumber 3 [\#227](https://github.com/dev-sec/chef-os-hardening/pull/227) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Make the daemon umask configurable [\#226](https://github.com/dev-sec/chef-os-hardening/pull/226) ([jaksi](https://github.com/jaksi))
+- Ubuntu 18.04 is supported [\#223](https://github.com/dev-sec/chef-os-hardening/pull/223) ([frederikbosch](https://github.com/frederikbosch))
+- Fix Fedora EOL [\#221](https://github.com/dev-sec/chef-os-hardening/pull/221) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Fix fedora EOL in the CI [\#220](https://github.com/dev-sec/chef-os-hardening/pull/220) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Fixing debian-9 CI tests [\#219](https://github.com/dev-sec/chef-os-hardening/pull/219) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Fedora 26 is EOL, replacing with 28 [\#218](https://github.com/dev-sec/chef-os-hardening/pull/218) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- added ability to use template cookbook for login.defs [\#217](https://github.com/dev-sec/chef-os-hardening/pull/217) ([ekelson-bcove](https://github.com/ekelson-bcove))
+- allow setting uid/gid max by attribute [\#215](https://github.com/dev-sec/chef-os-hardening/pull/215) ([mattlqx](https://github.com/mattlqx))
+- Update kitchen config for more platforms [\#213](https://github.com/dev-sec/chef-os-hardening/pull/213) ([tas50](https://github.com/tas50))
+- Add pam\_systemd.so to system-auth-ac [\#207](https://github.com/dev-sec/chef-os-hardening/pull/207) ([avanier](https://github.com/avanier))
+
+## [v3.1.0](https://github.com/dev-sec/chef-os-hardening/tree/v3.1.0) (2018-05-16)
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v3.0.0...v3.1.0)
 
 **Fixed bugs:**

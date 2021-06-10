@@ -1,4 +1,4 @@
-# encoding: utf-8 # ~FC061
+# frozen_string_literal: true
 
 #
 # Copyright 2014, Deutsche Telekom AG
@@ -16,27 +16,27 @@
 # limitations under the License.
 #
 
-name             'os-hardening'
-maintainer       'Dominik Richter'
-maintainer_email 'dominik.richter@googlemail.com'
-license          'Apache-2.0'
-description      'Installs and configures operating system hardening'
+name 'os-hardening'
+maintainer 'Artem Sidorenko'
+maintainer_email 'artem@posteo.de'
+license 'Apache-2.0'
+description 'Installs and configures operating system hardening'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '3.1.0'
+version '4.0.0'
+source_url 'https://github.com/dev-sec/chef-os-hardening'
+issues_url 'https://github.com/dev-sec/chef-os-hardening/issues'
 
-chef_version '>= 12.5' if respond_to?(:chef_version)
+chef_version '>= 14'
 
 supports 'amazon'
-supports 'ubuntu', '>= 14.04'
-supports 'debian', '>= 6.0'
+supports 'ubuntu', '>= 16.04'
+supports 'debian', '>= 9.0'
 supports 'centos', '>= 6.0'
 supports 'redhat', '>= 6.0'
 supports 'oracle', '>= 6.4'
-supports 'fedora', '>= 26.0'
+supports 'fedora', '>= 28.0'
 supports 'suse'
 supports 'opensuseleap', '>= 42.1'
-
-depends 'sysctl', '~> 1.0'
 
 recipe 'os-hardening::default', 'harden the operating system (all recipes)'
 recipe 'os-hardening::limits', 'prevent core dumps'
@@ -47,6 +47,3 @@ recipe 'os-hardening::profile', 'harden settings in /etc/profile.d'
 recipe 'os-hardening::securetty', 'limit the allowed TTYs for root login'
 recipe 'os-hardening::suid_sgid', 'reduce SUID and SGID bits in the filesystem'
 recipe 'os-hardening::sysctl', 'set sane sysctl values'
-
-source_url 'https://github.com/dev-sec/chef-os-hardening'
-issues_url 'https://github.com/dev-sec/chef-os-hardening/issues'

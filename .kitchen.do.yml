@@ -11,9 +11,6 @@ transport:
   max_wait_until_ready: 30
 
 platforms:
-- name: ubuntu-14-04
-  driver_config:
-    image: ubuntu-14-04-x64
 - name: ubuntu-16-04
   driver_config:
     image: ubuntu-16-04-x64
@@ -26,15 +23,18 @@ platforms:
 - name: centos-7
   driver_config:
     image: centos-7-x64
-- name: debian-8
+- name: centos-8
   driver_config:
-    image: debian-8-x64
+    image: centos-8-x64
 - name: debian-9
   driver_config:
     image: debian-9-x64
-- name: fedora-27
+- name: debian-10
   driver_config:
-    image: fedora-27-x64
+    image: debian-10-x64
 - name: fedora-28
   driver_config:
     image: fedora-28-x64
+- name: fedora-29
+  driver_config:
+    image: fedora-29-x64

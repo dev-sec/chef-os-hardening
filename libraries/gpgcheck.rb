@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 #
 # Cookbook Name:: os-hardening
@@ -31,6 +31,7 @@ class Chef
         File.open(file) do |f|
           f.each_line do |line|
             next unless pattern.match(line)
+
             Chef::Log.warn file + ': gpgcheck=1 not properly configured'
           end
         end
