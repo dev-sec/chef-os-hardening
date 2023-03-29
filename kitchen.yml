@@ -1,20 +1,21 @@
-# this file is used for configuration of kitchen dokken
-# for integration tests in the CI
 ---
 driver:
   name: dokken
-  privileged: true # because Docker and SystemD/Upstart
-  chef_version: <%= ENV['CHEF_VERSION'] || 'latest' %>
-
-transport:
-  name: dokken
+  privileged: true # because Docker and systemd
+  chef_image: cincproject/cinc
+  chef_version: <%= ENV['CINC_VERSION'] || 'latest' %>
 
 provisioner:
   name: dokken
+  product_name: cinc
+  chef_binary: /opt/cinc/bin/cinc-client
 
 verifier:
   name: inspec
   sudo: true
+
+transport:
+  name: dokken
 
 platforms:
 - name: amazonlinux-1
@@ -25,10 +26,6 @@ platforms:
   driver:
     image: dokken/amazonlinux-2
     pid_one_command: /usr/lib/systemd/systemd
-- name: centos-6
-  driver:
-    image: dokken/centos-6
-    pid_one_command: /sbin/init
 - name: centos-7
   driver:
     image: dokken/centos-7
@@ -37,9 +34,6 @@ platforms:
   driver:
     image: dokken/centos-8
     pid_one_command: /usr/lib/systemd/systemd
-- name: oracle-6
-  driver:
-    image: oraclelinux:6
 - name: oracle-7
   driver:
     image: oraclelinux:7
@@ -84,3 +78,9 @@ platforms:
     pid_one_command: /bin/systemd
     intermediate_instructions:
       - RUN /usr/bin/apt-get update
+
+suites:
+- name: default
+  run_list:
+  - recipe[test]
+  - recipe[os-hardening::default]
