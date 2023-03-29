@@ -2,9 +2,7 @@
 
 # rubocop:disable Style/SymbolArray
 
-require 'foodcritic'
 require 'rspec/core/rake_task'
-require 'rubocop/rake_task'
 require 'base64'
 require 'chef/cookbook/metadata'
 
@@ -16,7 +14,7 @@ task default: [:lint, :spec]
 
 # Lint the cookbook
 desc 'Run all linters: rubocop and foodcritic'
-task lint: [:rubocop, :foodcritic]
+task lint: [:cookstyle]
 
 # Run the whole shebang
 desc 'Run all tests'
@@ -29,20 +27,9 @@ task :spec do
   RSpec::Core::RakeTask.new(:spec)
 end
 
-# Foodcritic
-desc 'Run foodcritic lint checks'
-task :foodcritic do
-  puts 'Running Foodcritic tests...'
-  FoodCritic::Rake::LintTask.new do |t|
-    t.options = { fail_tags: ['any'] }
-    puts 'done.'
-  end
-end
-
-# Rubocop
-desc 'Run Rubocop lint checks'
-task :rubocop do
-  RuboCop::RakeTask.new
+desc 'Run cookstyle on cookbooks in this repository'
+task :cookstyle do
+  sh 'cookstyle --fail-level r'
 end
 
 # Automatically generate a changelog for this project. Only loaded if
