@@ -1,0 +1,26 @@
+---
+name: "Tests"
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cinc_workstation_version: [ '22', '23' ]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: |
+            .cache
+          key: ${{ runner.os }}-${{ matrix.cinc_workstation_version }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.cinc_workstation_version }}
+      - name: setup environment
+        run: |
+          mkdir -p .cache
+          curl -L https://omnitruck.cinc.sh/install.sh | sudo bash -s -- -P cinc-workstation -d .cache -v ${{ matrix.cinc_workstation_version }}
