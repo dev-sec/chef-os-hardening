@@ -1,4 +1,6 @@
 ---
+inherit_from: .rubocop_todo.yml
+
 AllCops:
   DisplayCopNames: true
   Exclude:
@@ -7,7 +9,7 @@ AllCops:
   TargetRubyVersion: 2.5
 Metrics/AbcSize:
   Max: 29
-Metrics/LineLength:
+Layout/LineLength:
   Max: 100
   Include:
     - spec/**/*.rb
@@ -17,7 +19,7 @@ Style/Documentation:
   Enabled: false
 Layout/DotPosition:
   EnforcedStyle: trailing
-Layout/AlignHash:
+Layout/HashAlignment:
   EnforcedHashRocketStyle: table
   EnforcedColonStyle: table
 Style/NumericLiterals:

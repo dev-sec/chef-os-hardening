@@ -8,6 +8,7 @@ coverage
 exp.*
 pkg/
 shared_test_repo/
+.envrc
 
 # Berkshelf
 .vagrant

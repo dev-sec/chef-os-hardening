@@ -6,7 +6,7 @@ on:
       - '*'
 
 jobs:
-  linting:
+  cookstyle:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -24,3 +24,6 @@ jobs:
         run: |
           mkdir -p .cache
           curl -L https://omnitruck.cinc.sh/install.sh | sudo bash -s -- -P cinc-workstation -d .cache -v ${{ matrix.cinc_workstation_version }}
+      - name: cookstyle
+        run: |
+          cinc exec rake cookstyle
