@@ -1,0 +1,16 @@
+driver:
+  name: digitalocean
+  size: s-1vcpu-1gb
+  region: nyc3
+
+transport:
+  ssh_key: '~/.ssh/id_rsa'
+  max_wait_until_ready: 30
+
+platforms:
+- name: centos-7
+  driver_config:
+    image: centos-7-x64
+- name: debian-10
+  driver_config:
+    image: debian-10-x64

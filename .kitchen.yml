@@ -26,13 +26,14 @@ platforms:
 
 provisioner:
   name: chef_zero
+  product_name: cinc
 <% if ENV['CINC_VERSION'] %>
-  product_version: <%= ENV['CINC_VERSION'] %>
+  product_version: '<%= ENV['CINC_VERSION'] %>'
 <% end %>
-  download_url: https://omnitruck.cinc.sh/install.sh
 
 verifier:
   name: inspec
+  sudo: true
 
 suites:
 - name: default
