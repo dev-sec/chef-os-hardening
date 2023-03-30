@@ -60,5 +60,6 @@ jobs:
       - name: kitchen
         env:
           CINC_VERSION: ${{ matrix.cinc_version }}
+          KITCHEN_LOCAL_YAML: .kitchen.dokken.yml
         run: |
           kitchen test --color --destroy=always ${{ matrix.kitchen_distro }}

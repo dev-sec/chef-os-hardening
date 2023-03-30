@@ -1,3 +1,5 @@
+# this file is used for kitchen dokken
+# especially for integration tests in the CI
 ---
 driver:
   name: dokken
@@ -78,9 +80,3 @@ platforms:
     pid_one_command: /bin/systemd
     intermediate_instructions:
       - RUN /usr/bin/apt-get update
-
-suites:
-- name: default
-  run_list:
-  - recipe[test]
-  - recipe[os-hardening::default]
