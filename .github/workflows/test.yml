@@ -104,10 +104,23 @@ jobs:
           kitchen test --color --destroy=always ${{ matrix.kitchen_distro }}
 
   pass-all-tests:
-    if: always()
+    if: github.repository != 'dev-sec/chef-os-hardening'
     needs:
     - cookstyle
     - kitchen-dokken
+    runs-on: ubuntu-latest
+    steps:
+    - name: Decide whether the needed jobs succeeded or failed
+      uses: re-actors/alls-green@release/v1
+      with:
+        jobs: ${{ toJSON(needs) }}
+
+  pass-all-tests-with-digitalocean:
+    if:  github.repository == 'dev-sec/chef-os-hardening'
+    needs:
+    - cookstyle
+    - kitchen-dokken
+    - kitchen-digitalocean
     runs-on: ubuntu-latest
     steps:
     - name: Decide whether the needed jobs succeeded or failed
