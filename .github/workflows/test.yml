@@ -53,7 +53,7 @@ jobs:
           path: |
             .cache
           key: ${{ runner.os }}-${{ env.cinc_workstation_version }}
-      - name: setup environment
+      - name: setup cinc workstation
         run: |
           mkdir -p .cache
           curl -L https://omnitruck.cinc.sh/install.sh | sudo bash -s -- -P cinc-workstation -d .cache -v ${{ env.cinc_workstation_version }}
@@ -63,3 +63,54 @@ jobs:
           KITCHEN_LOCAL_YAML: .kitchen.dokken.yml
         run: |
           kitchen test --color --destroy=always ${{ matrix.kitchen_distro }}
+
+  kitchen-digitalocean:
+    if: github.repository == 'dev-sec/chef-os-hardening' && success()
+    needs: # run expensive VM tests only if cheap dokken tests are passing
+      - kitchen-dokken
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        cinc_version: [ '17' ]
+        kitchen_distro:
+          - default-centos-7
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: |
+            .cache
+          key: ${{ runner.os }}-${{ env.cinc_workstation_version }}
+      - name: setup cinc workstation
+        run: |
+          mkdir -p .cache
+          curl -L https://omnitruck.cinc.sh/install.sh | sudo bash -s -- -P cinc-workstation -d .cache -v ${{ env.cinc_workstation_version }}
+      - name: setup ssh key
+        env:
+          SSH_KEY: ${{ secrets.DO_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 700 ~/.ssh
+          chmod 600 ~/.ssh/id_rsa
+      - name: kitchen
+        env:
+          CINC_VERSION: ${{ matrix.cinc_version }}
+          KITCHEN_LOCAL_YAML: .kitchen.do.yml
+          DIGITALOCEAN_SSH_KEY_IDS: ${{ secrets.DO_SSH_KEY_ID }}
+          DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DO_ACCESS_TOKEN }}
+        run: |
+          kitchen test --color --destroy=always ${{ matrix.kitchen_distro }}
+
+  pass-all-tests:
+    if: always()
+    needs:
+    - cookstyle
+    - kitchen-dokken
+    runs-on: ubuntu-latest
+    steps:
+    - name: Decide whether the needed jobs succeeded or failed
+      uses: re-actors/alls-green@release/v1
+      with:
+        jobs: ${{ toJSON(needs) }}

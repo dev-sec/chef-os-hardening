@@ -12,10 +12,6 @@ provisioner:
   product_name: cinc
   chef_binary: /opt/cinc/bin/cinc-client
 
-verifier:
-  name: inspec
-  sudo: true
-
 transport:
   name: dokken
 

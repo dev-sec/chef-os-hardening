@@ -1,7 +1,7 @@
 # os-hardening (Chef cookbook)
 
 [![Supermarket](http://img.shields.io/cookbook/v/os-hardening.svg)][1]
-[![Build Status](https://travis-ci.org/dev-sec/chef-os-hardening.svg?branch=master)][2]
+[![Tests](https://github.com/dev-sec/chef-os-hardening/actions/workflows/test.yml/badge.svg)][2]
 [![Code Coverage](http://img.shields.io/coveralls/dev-sec/chef-os-hardening.svg)][3]
 
 ## Description
@@ -232,6 +232,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 [1]: https://supermarket.getchef.com/cookbooks/os-hardening
-[2]: http://travis-ci.org/dev-sec/chef-os-hardening
+[2]: https://github.com/dev-sec/chef-os-hardening/actions/workflows/test.yml
 [3]: https://coveralls.io/r/dev-sec/chef-os-hardening
 [kitchen-dokken]: https://github.com/someara/kitchen-dokken
