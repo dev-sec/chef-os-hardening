@@ -160,8 +160,8 @@
 
 **Implemented enhancements:**
 
-- Remove dependenies to apt and yum cookbooks. [\#132](https://github.com/dev-sec/chef-os-hardening/pull/132) ([artem-sidorenko](https://github.com/artem-sidorenko))
-- Using braket syntax to resolve deprecation message [\#131](https://github.com/dev-sec/chef-os-hardening/pull/131) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Remove dependencies to apt and yum cookbooks. [\#132](https://github.com/dev-sec/chef-os-hardening/pull/132) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Using bracket syntax to resolve deprecation message [\#131](https://github.com/dev-sec/chef-os-hardening/pull/131) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - remove old content [\#126](https://github.com/dev-sec/chef-os-hardening/pull/126) ([chris-rock](https://github.com/chris-rock))
 - Own attribute namespace for os-hardening [\#114](https://github.com/dev-sec/chef-os-hardening/pull/114) ([joshmyers](https://github.com/joshmyers))
 
@@ -183,13 +183,13 @@
 - Disable entropy testing [\#146](https://github.com/dev-sec/chef-os-hardening/pull/146) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - Execute integration tests in DigitalOcean [\#144](https://github.com/dev-sec/chef-os-hardening/pull/144) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - Update of Gemfile [\#141](https://github.com/dev-sec/chef-os-hardening/pull/141) ([artem-sidorenko](https://github.com/artem-sidorenko))
-- Remove dependenies to apt and yum cookbooks. [\#140](https://github.com/dev-sec/chef-os-hardening/pull/140) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Remove dependencies to apt and yum cookbooks. [\#140](https://github.com/dev-sec/chef-os-hardening/pull/140) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - Update of kitchen vagrant file [\#139](https://github.com/dev-sec/chef-os-hardening/pull/139) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - Fix the version in metadata.rb [\#138](https://github.com/dev-sec/chef-os-hardening/pull/138) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - Cleanup, update of links in readme [\#137](https://github.com/dev-sec/chef-os-hardening/pull/137) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - Use caching to improve spec performance [\#136](https://github.com/dev-sec/chef-os-hardening/pull/136) ([ncs-alane](https://github.com/ncs-alane))
 - Add attribute to control login.defs PASS\_WARN\_AGE [\#135](https://github.com/dev-sec/chef-os-hardening/pull/135) ([ncs-alane](https://github.com/ncs-alane))
-- Revert "Remove dependenies to apt and yum cookbooks." [\#133](https://github.com/dev-sec/chef-os-hardening/pull/133) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Revert "Remove dependencies to apt and yum cookbooks." [\#133](https://github.com/dev-sec/chef-os-hardening/pull/133) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - Update test-kitchen settings [\#130](https://github.com/dev-sec/chef-os-hardening/pull/130) ([shortdudey123](https://github.com/shortdudey123))
 - Opscode =\> Chef [\#128](https://github.com/dev-sec/chef-os-hardening/pull/128) ([shortdudey123](https://github.com/shortdudey123))
 - Update Rubocop, Foodcritic, and Chefspec coverage [\#127](https://github.com/dev-sec/chef-os-hardening/pull/127) ([shortdudey123](https://github.com/shortdudey123))
@@ -250,7 +250,7 @@
 - possible incompatibility with Chef client release 12.4 [\#82](https://github.com/dev-sec/chef-os-hardening/issues/82)
 - ERROR: No resource or method named `File' for `Chef::Recipe "sysctl"' [\#80](https://github.com/dev-sec/chef-os-hardening/issues/80)
 - update tutorial.md [\#67](https://github.com/dev-sec/chef-os-hardening/issues/67)
-- Installation doesnt work [\#66](https://github.com/dev-sec/chef-os-hardening/issues/66)
+- Installation doesn't work [\#66](https://github.com/dev-sec/chef-os-hardening/issues/66)
 
 **Merged pull requests:**
 
@@ -260,7 +260,7 @@
 - common files: centos7 + rubocop [\#76](https://github.com/dev-sec/chef-os-hardening/pull/76) ([arlimus](https://github.com/arlimus))
 - update common kitchen.yml platforms [\#75](https://github.com/dev-sec/chef-os-hardening/pull/75) ([arlimus](https://github.com/arlimus))
 - update common readme badges [\#74](https://github.com/dev-sec/chef-os-hardening/pull/74) ([arlimus](https://github.com/arlimus))
-- fix SUID/SGID bit cleaning API spelling \(unkown -\> unknown\) [\#72](https://github.com/dev-sec/chef-os-hardening/pull/72) ([dupuy](https://github.com/dupuy))
+- fix SUID/SGID bit cleaning API spelling \(unknown -\> unknown\) [\#72](https://github.com/dev-sec/chef-os-hardening/pull/72) ([dupuy](https://github.com/dupuy))
 - RHN config check should work [\#71](https://github.com/dev-sec/chef-os-hardening/pull/71) ([rapenchukd](https://github.com/rapenchukd))
 - update tutorial [\#68](https://github.com/dev-sec/chef-os-hardening/pull/68) ([chris-rock](https://github.com/chris-rock))
 
@@ -322,9 +322,9 @@
 - passwordless users not able to log in [\#32](https://github.com/dev-sec/chef-os-hardening/issues/32)
 - remove ntp [\#19](https://github.com/dev-sec/chef-os-hardening/issues/19)
 - Tests for suid bits [\#15](https://github.com/dev-sec/chef-os-hardening/issues/15)
-- forwarding isnt configured [\#9](https://github.com/dev-sec/chef-os-hardening/issues/9)
+- forwarding isn't configured [\#9](https://github.com/dev-sec/chef-os-hardening/issues/9)
 - properly handle sysctl again [\#8](https://github.com/dev-sec/chef-os-hardening/issues/8)
-- enfore security updates [\#7](https://github.com/dev-sec/chef-os-hardening/issues/7)
+- enforce security updates [\#7](https://github.com/dev-sec/chef-os-hardening/issues/7)
 - enable\_sysrq-check is faulty [\#6](https://github.com/dev-sec/chef-os-hardening/issues/6)
 - Validate suid-bit removal from /bin/screen [\#5](https://github.com/dev-sec/chef-os-hardening/issues/5)
 
@@ -334,7 +334,7 @@
 - intend fix [\#38](https://github.com/dev-sec/chef-os-hardening/pull/38) ([chris-rock](https://github.com/chris-rock))
 - fix wrong class definition [\#37](https://github.com/dev-sec/chef-os-hardening/pull/37) ([arlimus](https://github.com/arlimus))
 - fix wrong class definition [\#36](https://github.com/dev-sec/chef-os-hardening/pull/36) ([chris-rock](https://github.com/chris-rock))
-- add commont lint task. fix issues [\#35](https://github.com/dev-sec/chef-os-hardening/pull/35) ([ehaselwanter](https://github.com/ehaselwanter))
+- add common lint task. fix issues [\#35](https://github.com/dev-sec/chef-os-hardening/pull/35) ([ehaselwanter](https://github.com/ehaselwanter))
 - update with common run\_all\_linters task [\#33](https://github.com/dev-sec/chef-os-hardening/pull/33) ([ehaselwanter](https://github.com/ehaselwanter))
 - add Gemfile.lock to ignore list and remove it from tree [\#31](https://github.com/dev-sec/chef-os-hardening/pull/31) ([ehaselwanter](https://github.com/ehaselwanter))
 - streamline .rubocop config [\#30](https://github.com/dev-sec/chef-os-hardening/pull/30) ([ehaselwanter](https://github.com/ehaselwanter))
