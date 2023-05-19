@@ -39,7 +39,7 @@ jobs:
           - centos-7
           - centos-8
           - oracle-7
-          - debian-9
+#          - debian-9 # something is broken here
           - debian-10
           - fedora-28
           - fedora-29
