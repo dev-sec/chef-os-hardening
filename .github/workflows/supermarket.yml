@@ -1,0 +1,57 @@
+name: Publish new supermarket release
+
+env:
+  cinc_workstation_version: 23
+  cookbook_name: os-hardening
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  supermarket-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/cache@v3
+        with:
+          path: |
+            .cache
+          key: ${{ runner.os }}-${{ env.cinc_workstation_version }}
+      - name: setup environment
+        run: |
+          mkdir -p .cache
+          curl -L https://omnitruck.cinc.sh/install.sh | sudo bash -s -- -P cinc-workstation -d .cache -v ${{ env.cinc_workstation_version }}
+      - name: setup knife environment
+        run: |
+          mkdir -p .cinc cookbooks
+          cat > .cinc/config.rb <<EOF
+          current_dir = File.dirname(__FILE__)
+          log_level                :info
+          log_location             STDOUT
+          node_name                "${{ secrets.SUPERMARKET_LOGIN }}"
+          client_key               "#{current_dir}/key.pem"
+          chef_server_url          "https://api.chef.io/organizations/${{ secrets.SUPERMARKET_LOGIN }}"
+          cookbook_path            ["#{current_dir}/../cookbooks"]
+          EOF
+          cat > .cinc/key.pem <<EOF
+          ${{ secrets.SUPERMARKET_KEY }}
+          EOF
+      - name: checkout cookbook
+        uses: actions/checkout@v3
+        with:
+          path: cookbooks/${{ env.cookbook_name }}
+      - name: TEMP change the metadata.rb
+        run: |
+          cat > cookbooks/${{ env.cookbook_name }}/metadata.rb <<EOF
+          name 'artem-test-cookbook'
+          maintainer 'The Authors'
+          maintainer_email 'you@example.com'
+          license 'All Rights Reserved'
+          description 'Installs/Configures artem-test-cookbook'
+          version '0.1.2'
+          chef_version '>= 16.0'
+          EOF
+      - name: upload to the supermarket
+        run: |
+          knife supermarket share ${{ env.cookbook_name }}
