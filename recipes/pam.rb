@@ -36,7 +36,7 @@ when 'debian'
   # See NSA 2.3.3.1.2
   if node['os-hardening']['auth']['pam']['passwdqc']['enable']
 
-    # remove pam_cracklib, because it does not play nice wiht passwdqc
+    # remove pam_cracklib, because it does not play nice with passwdqc
     package 'pam-cracklib' do
       package_name node['os-hardening']['packages']['pam_cracklib']
       action :remove

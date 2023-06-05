@@ -127,7 +127,7 @@ SYS_GID_MIN		  <%= @sys_gid_min.to_s %>
 SYS_GID_MAX		  <%= @sys_gid_max.to_s %>
 <% end %>
 
-# Max number of login retries if password is bad. This will most likely be overriden by PAM, since the default pam_unix module has it's own built in of 3 retries. However, this is a safe fallback in case you are using an authentication module that does not enforce PAM_MAXTRIES.
+# Max number of login retries if password is bad. This will most likely be overridden by PAM, since the default pam_unix module has it's own built in of 3 retries. However, this is a safe fallback in case you are using an authentication module that does not enforce PAM_MAXTRIES.
 LOGIN_RETRIES		<%= @login_retries.to_s %>
 
 # Max time in seconds for login
@@ -147,7 +147,7 @@ DEFAULT_HOME	<%= @allow_login_without_home ? "yes" : "no" %>
 # the user to be removed (passed as the first argument).
 #USERDEL_CMD	/usr/sbin/userdel_local
 
-# Instead of the real user shell, the program specified by this parameter will be launched, although its visible name (`argv[0]`) will be the shell's. The program may do whatever it wants (logging, additional authentification, banner, ...) before running the actual shell.
+# Instead of the real user shell, the program specified by this parameter will be launched, although its visible name (`argv[0]`) will be the shell's. The program may do whatever it wants (logging, additional authentication, banner, ...) before running the actual shell.
 #FAKE_SHELL /bin/fakeshell
 
 # If defined, either full pathname of a file containing device names or a ":" delimited list of device names.  Root logins will be allowed only upon these devices.
