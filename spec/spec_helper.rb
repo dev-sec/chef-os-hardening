@@ -18,11 +18,6 @@
 
 require 'chefspec'
 require 'chefspec/berkshelf'
-require 'coveralls'
-
-# coverage report
-Coveralls.wear!
-at_exit { ChefSpec::Coverage.report! }
 
 RSpec.configure do |config|
   # OS and version for mocking of ohai data, needed by chefspec
