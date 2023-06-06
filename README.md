@@ -2,7 +2,6 @@
 
 [![Supermarket](http://img.shields.io/cookbook/v/os-hardening.svg)][1]
 [![Tests](https://github.com/dev-sec/chef-os-hardening/actions/workflows/test.yml/badge.svg)][2]
-[![Code Coverage](http://img.shields.io/coveralls/dev-sec/chef-os-hardening.svg)][3]
 
 ## Description
 
