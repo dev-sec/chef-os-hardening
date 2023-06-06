@@ -1,6 +1,41 @@
-# Change Log
+# Changelog
+
+## [v4.1.0](https://github.com/dev-sec/chef-os-hardening/tree/v4.1.0) (2023-06-06)
+
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v4.0.0...v4.1.0)
+
+**Closed issues:**
+
+- Amazon Linux 2 Auditd fails to restart [\#270](https://github.com/dev-sec/chef-os-hardening/issues/270)
+- pwquality.conf defaults or suggested config [\#267](https://github.com/dev-sec/chef-os-hardening/issues/267)
+- Configuration conflict when using both chef-ssh-hardening and chef-os-hardening [\#264](https://github.com/dev-sec/chef-os-hardening/issues/264)
+- Chef warning when /bin/su is a symlink [\#262](https://github.com/dev-sec/chef-os-hardening/issues/262)
+- os-hardening::profile recipe creating pinerolo\_profile.sh file with .old extension on each chef-client run [\#255](https://github.com/dev-sec/chef-os-hardening/issues/255)
+
+**Merged pull requests:**
+
+- CI : release workflow with upload to supermarket [\#290](https://github.com/dev-sec/chef-os-hardening/pull/290) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- CI: supermarket upload workflow [\#289](https://github.com/dev-sec/chef-os-hardening/pull/289) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- CI: disable debian-9 dokken tests for now [\#288](https://github.com/dev-sec/chef-os-hardening/pull/288) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- CI: add spellchecking with codespell [\#287](https://github.com/dev-sec/chef-os-hardening/pull/287) ([schurzi](https://github.com/schurzi))
+- CI: another catch-all job for runs on the main code [\#286](https://github.com/dev-sec/chef-os-hardening/pull/286) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- CI: tests on the real DO VMs [\#285](https://github.com/dev-sec/chef-os-hardening/pull/285) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- CI : Kitchen - vagrant and dokken tests [\#284](https://github.com/dev-sec/chef-os-hardening/pull/284) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- CI: Configure Renovate [\#283](https://github.com/dev-sec/chef-os-hardening/pull/283) ([renovate[bot]](https://github.com/apps/renovate))
+- CI: run dokken jobs [\#282](https://github.com/dev-sec/chef-os-hardening/pull/282) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- CI: run cookstyle [\#281](https://github.com/dev-sec/chef-os-hardening/pull/281) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- CI: setup cinc WS in the GH actions [\#280](https://github.com/dev-sec/chef-os-hardening/pull/280) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Hardening of crontabs and directories [\#273](https://github.com/dev-sec/chef-os-hardening/pull/273) ([mfortin](https://github.com/mfortin))
+- Amazon Linux 2 AuditD issue [\#271](https://github.com/dev-sec/chef-os-hardening/pull/271) ([mfortin](https://github.com/mfortin))
+- expose pam\_unix.so options to an attribute [\#268](https://github.com/dev-sec/chef-os-hardening/pull/268) ([bcg62](https://github.com/bcg62))
+- Fix warning on managing /bin/su symlink [\#263](https://github.com/dev-sec/chef-os-hardening/pull/263) ([sean-nixon](https://github.com/sean-nixon))
+- Initial \(sans Arch\) auditd management support. [\#260](https://github.com/dev-sec/chef-os-hardening/pull/260) ([b-dean](https://github.com/b-dean))
+- CI: testing of Centos 8 [\#259](https://github.com/dev-sec/chef-os-hardening/pull/259) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- CI: testing of Debian 10 [\#258](https://github.com/dev-sec/chef-os-hardening/pull/258) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Fix CI: run testing on Chef 14 and 15 [\#256](https://github.com/dev-sec/chef-os-hardening/pull/256) ([artem-sidorenko](https://github.com/artem-sidorenko))
 
 ## [v4.0.0](https://github.com/dev-sec/chef-os-hardening/tree/v4.0.0) (2019-04-10)
+
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v3.2.1...v4.0.0)
 
 **Closed issues:**
@@ -23,6 +58,7 @@
 - Remove sysctl cookbook dependency and use new native sysctl resource [\#228](https://github.com/dev-sec/chef-os-hardening/pull/228) ([josqu4red](https://github.com/josqu4red))
 
 ## [v3.2.1](https://github.com/dev-sec/chef-os-hardening/tree/v3.2.1) (2019-03-07)
+
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v3.2.0...v3.2.1)
 
 **Fixed bugs:**
@@ -36,6 +72,7 @@
 - Do not apply exec-shield if running Oracle Linux with UEK - addresses \#234 [\#235](https://github.com/dev-sec/chef-os-hardening/pull/235) ([eyespies](https://github.com/eyespies))
 
 ## [v3.2.0](https://github.com/dev-sec/chef-os-hardening/tree/v3.2.0) (2019-01-16)
+
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v3.1.0...v3.2.0)
 
 **Closed issues:**
@@ -60,6 +97,7 @@
 - Add pam\_systemd.so to system-auth-ac [\#207](https://github.com/dev-sec/chef-os-hardening/pull/207) ([avanier](https://github.com/avanier))
 
 ## [v3.1.0](https://github.com/dev-sec/chef-os-hardening/tree/v3.1.0) (2018-05-16)
+
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v3.0.0...v3.1.0)
 
 **Fixed bugs:**
@@ -91,6 +129,7 @@
 - Remove dependency on compat\_resource [\#188](https://github.com/dev-sec/chef-os-hardening/pull/188) ([bablakely](https://github.com/bablakely))
 
 ## [v3.0.0](https://github.com/dev-sec/chef-os-hardening/tree/v3.0.0) (2017-12-21)
+
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v2.1.1...v3.0.0)
 
 **Closed issues:**
@@ -115,6 +154,7 @@
 - Lets disable unused filesystems per default [\#169](https://github.com/dev-sec/chef-os-hardening/pull/169) ([artem-sidorenko](https://github.com/artem-sidorenko))
 
 ## [v2.1.1](https://github.com/dev-sec/chef-os-hardening/tree/v2.1.1) (2017-08-21)
+
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v2.1.0...v2.1.1)
 
 **Closed issues:**
@@ -126,6 +166,7 @@
 - Fix: do not touch exec-shield on RHEL 7 [\#168](https://github.com/dev-sec/chef-os-hardening/pull/168) ([artem-sidorenko](https://github.com/artem-sidorenko))
 
 ## [v2.1.0](https://github.com/dev-sec/chef-os-hardening/tree/v2.1.0) (2017-06-12)
+
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v2.0.1...v2.1.0)
 
 **Closed issues:**
@@ -145,6 +186,7 @@
 - Install auditd package [\#158](https://github.com/dev-sec/chef-os-hardening/pull/158) ([artem-sidorenko](https://github.com/artem-sidorenko))
 
 ## [v2.0.1](https://github.com/dev-sec/chef-os-hardening/tree/v2.0.1) (2017-04-11)
+
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v2.0.0...v2.0.1)
 
 **Fixed bugs:**
@@ -156,6 +198,7 @@
 - Default value for \['os-hardening'\]\['desktop'\]\['enable'\] [\#154](https://github.com/dev-sec/chef-os-hardening/pull/154) ([artem-sidorenko](https://github.com/artem-sidorenko))
 
 ## [v2.0.0](https://github.com/dev-sec/chef-os-hardening/tree/v2.0.0) (2017-04-06)
+
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v1.4.1...v2.0.0)
 
 **Implemented enhancements:**
@@ -173,7 +216,7 @@
 - fixing the 4 rspec failure [\#121](https://github.com/dev-sec/chef-os-hardening/issues/121)
 - pam node attribute namespace error [\#118](https://github.com/dev-sec/chef-os-hardening/issues/118)
 - Use travis for integration testing [\#115](https://github.com/dev-sec/chef-os-hardening/issues/115)
-- attributes need to be localized to the `node\['chef-os-hardening'\]` namespace [\#113](https://github.com/dev-sec/chef-os-hardening/issues/113)
+- attributes need to be localized to the `node['chef-os-hardening']` namespace [\#113](https://github.com/dev-sec/chef-os-hardening/issues/113)
 
 **Merged pull requests:**
 
@@ -201,6 +244,7 @@
 - Fix issues highlighted in \#114 [\#116](https://github.com/dev-sec/chef-os-hardening/pull/116) ([chris-rock](https://github.com/chris-rock))
 
 ## [v1.4.1](https://github.com/dev-sec/chef-os-hardening/tree/v1.4.1) (2016-05-29)
+
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v1.3.1...v1.4.1)
 
 **Implemented enhancements:**
@@ -236,6 +280,7 @@
 - fixes \#84 [\#85](https://github.com/dev-sec/chef-os-hardening/pull/85) ([chris-rock](https://github.com/chris-rock))
 
 ## [v1.3.1](https://github.com/dev-sec/chef-os-hardening/tree/v1.3.1) (2015-07-04)
+
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v1.3.0...v1.3.1)
 
 **Closed issues:**
@@ -243,6 +288,7 @@
 - 1.3.0 release on supermarket is broken [\#83](https://github.com/dev-sec/chef-os-hardening/issues/83)
 
 ## [v1.3.0](https://github.com/dev-sec/chef-os-hardening/tree/v1.3.0) (2015-06-29)
+
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v1.2.0...v1.3.0)
 
 **Closed issues:**
@@ -260,11 +306,12 @@
 - common files: centos7 + rubocop [\#76](https://github.com/dev-sec/chef-os-hardening/pull/76) ([arlimus](https://github.com/arlimus))
 - update common kitchen.yml platforms [\#75](https://github.com/dev-sec/chef-os-hardening/pull/75) ([arlimus](https://github.com/arlimus))
 - update common readme badges [\#74](https://github.com/dev-sec/chef-os-hardening/pull/74) ([arlimus](https://github.com/arlimus))
-- fix SUID/SGID bit cleaning API spelling \(unknown -\> unknown\) [\#72](https://github.com/dev-sec/chef-os-hardening/pull/72) ([dupuy](https://github.com/dupuy))
+- fix SUID/SGID bit cleaning API spelling [\#72](https://github.com/dev-sec/chef-os-hardening/pull/72) ([dupuy](https://github.com/dupuy))
 - RHN config check should work [\#71](https://github.com/dev-sec/chef-os-hardening/pull/71) ([rapenchukd](https://github.com/rapenchukd))
 - update tutorial [\#68](https://github.com/dev-sec/chef-os-hardening/pull/68) ([chris-rock](https://github.com/chris-rock))
 
 ## [v1.2.0](https://github.com/dev-sec/chef-os-hardening/tree/v1.2.0) (2015-01-08)
+
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v1.1.2...v1.2.0)
 
 **Fixed bugs:**
@@ -296,6 +343,7 @@
 - Drop procps service [\#47](https://github.com/dev-sec/chef-os-hardening/pull/47) ([bkw](https://github.com/bkw))
 
 ## [v1.1.2](https://github.com/dev-sec/chef-os-hardening/tree/v1.1.2) (2014-09-08)
+
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v1.1.1...v1.1.2)
 
 **Closed issues:**
@@ -309,9 +357,13 @@
 - add more documentation about test run [\#40](https://github.com/dev-sec/chef-os-hardening/pull/40) ([chris-rock](https://github.com/chris-rock))
 
 ## [v1.1.1](https://github.com/dev-sec/chef-os-hardening/tree/v1.1.1) (2014-07-28)
+
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v1.1.0...v1.1.1)
 
 ## [v1.1.0](https://github.com/dev-sec/chef-os-hardening/tree/v1.1.0) (2014-07-28)
+
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/7edf75f30f33563d7544089a24da2b470cb68dcd...v1.1.0)
+
 **Implemented enhancements:**
 
 - Conservative package update [\#10](https://github.com/dev-sec/chef-os-hardening/issues/10)
@@ -333,7 +385,6 @@
 - updated kitchen images to current batch \(mysql-equivalent\) [\#39](https://github.com/dev-sec/chef-os-hardening/pull/39) ([arlimus](https://github.com/arlimus))
 - intend fix [\#38](https://github.com/dev-sec/chef-os-hardening/pull/38) ([chris-rock](https://github.com/chris-rock))
 - fix wrong class definition [\#37](https://github.com/dev-sec/chef-os-hardening/pull/37) ([arlimus](https://github.com/arlimus))
-- fix wrong class definition [\#36](https://github.com/dev-sec/chef-os-hardening/pull/36) ([chris-rock](https://github.com/chris-rock))
 - add common lint task. fix issues [\#35](https://github.com/dev-sec/chef-os-hardening/pull/35) ([ehaselwanter](https://github.com/ehaselwanter))
 - update with common run\_all\_linters task [\#33](https://github.com/dev-sec/chef-os-hardening/pull/33) ([ehaselwanter](https://github.com/ehaselwanter))
 - add Gemfile.lock to ignore list and remove it from tree [\#31](https://github.com/dev-sec/chef-os-hardening/pull/31) ([ehaselwanter](https://github.com/ehaselwanter))
@@ -360,4 +411,4 @@
 
 
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
