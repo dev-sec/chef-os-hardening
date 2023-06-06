@@ -1,5 +1,13 @@
 # Changelog
 
+## [v4.1.2](https://github.com/dev-sec/chef-os-hardening/tree/v4.1.2) (2023-06-06)
+
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v4.1.1...v4.1.2)
+
+**Merged pull requests:**
+
+- CI: run the test workflow also on the release branches [\#295](https://github.com/dev-sec/chef-os-hardening/pull/295) ([artem-sidorenko](https://github.com/artem-sidorenko))
+
 ## [v4.1.1](https://github.com/dev-sec/chef-os-hardening/tree/v4.1.1) (2023-06-06)
 
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v4.1.0...v4.1.1)
