@@ -8,6 +8,11 @@ on:
   push:
     branches:
       - '*'
+  pull_request:
+    types:
+      - opened
+    branches:
+      - master
 
 jobs:
   cookstyle:
