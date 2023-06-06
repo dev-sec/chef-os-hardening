@@ -1,5 +1,9 @@
 name: Create a new release
 
+env:
+  cinc_workstation_version: 23
+  cookbook_name: os-hardening
+
 on:
   workflow_dispatch:
     inputs:
@@ -117,3 +121,42 @@ jobs:
           tag_name: ${{ needs.version-info.outputs.new_tag }}
           body: ${{ needs.generate-changelog.outputs.release_changelog }}
           target_commitish: ${{ steps.commit-and-push.outputs.commit }}
+
+  supermarket-upload:
+    runs-on: ubuntu-latest
+    needs:
+      - version-info
+      - release-pull-request
+    steps:
+      - uses: actions/cache@v3
+        with:
+          path: |
+            .cache
+          key: ${{ runner.os }}-${{ env.cinc_workstation_version }}
+      - name: setup environment
+        run: |
+          mkdir -p .cache
+          curl -L https://omnitruck.cinc.sh/install.sh | sudo bash -s -- -P cinc-workstation -d .cache -v ${{ env.cinc_workstation_version }}
+      - name: setup knife environment
+        run: |
+          mkdir -p .cinc cookbooks
+          cat > .cinc/config.rb <<EOF
+          current_dir = File.dirname(__FILE__)
+          log_level                :info
+          log_location             STDOUT
+          node_name                "${{ secrets.SUPERMARKET_LOGIN }}"
+          client_key               "#{current_dir}/key.pem"
+          chef_server_url          "https://api.chef.io/organizations/${{ secrets.SUPERMARKET_LOGIN }}"
+          cookbook_path            ["#{current_dir}/../cookbooks"]
+          EOF
+          cat > .cinc/key.pem <<EOF
+          ${{ secrets.SUPERMARKET_KEY }}
+          EOF
+      - name: checkout cookbook
+        uses: actions/checkout@v3
+        with:
+          path: cookbooks/${{ env.cookbook_name }}
+          ref: ${{ needs.version-info.outputs.new_tag }}
+      - name: upload to the supermarket
+        run: |
+          knife supermarket share ${{ env.cookbook_name }}
