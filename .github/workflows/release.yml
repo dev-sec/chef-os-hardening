@@ -1,0 +1,119 @@
+name: Create a new release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number (e.g. 1.2.3)'
+        required: true
+      version_confirm:
+        description: 'Version confirmation (just repeat the version)'
+        required: true
+
+jobs:
+  version-info:
+    runs-on: ubuntu-latest
+    outputs:
+      last_tag: ${{ steps.last_tag.outputs.tag }}
+      new_tag: ${{ steps.new_tag.outputs.tag }}
+    steps:
+      - name: check the new tag data
+        run: |
+          if [ "${{ github.event.inputs.version }}" != "${{ github.event.inputs.version_confirm }}" ]; then
+            echo "Version and it's confirmation don't match (${{ github.event.inputs.version }} vs ${{ github.event.inputs.version_confirm }})";
+            exit 1;
+          fi
+          if [[ ! "${{ github.event.inputs.version }}" =~ ^[0-9]*\.[0-9]*\.[0-9]*$ ]]; then
+            echo "Given version ${{ github.event.inputs.version }} doesn't match the versioning scheme 1.2.3";
+            exit 1;
+          fi
+      - name: get the new tag
+        id: new_tag
+        run: echo "tag=v${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: get last tag information
+        id: last_tag
+        run: echo "tag=$(git describe --tags $(git rev-list --tags --max-count=1 ))" >> $GITHUB_OUTPUT
+
+  generate-changelog:
+    runs-on: ubuntu-latest
+    needs: version-info
+    outputs:
+      release_changelog: ${{ steps.release_changelog.outputs.content }}
+    permissions:
+      issues: read
+      pull-requests: read
+      contents: read
+    steps:
+      - name: Generate full changelog for repository
+        uses: charmixer/auto-changelog-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          future_release: ${{ needs.version-info.outputs.new_tag }}
+          exclude_labels: duplicate,question,invalid,wontfix,release
+      - uses: actions/upload-artifact@v3
+        with:
+          name: CHANGELOG.md
+          path: CHANGELOG.md
+      - name: Generate changelog with release information only
+        uses: charmixer/auto-changelog-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          future_release: ${{ needs.version-info.outputs.new_tag }}
+          exclude_labels: duplicate,question,invalid,wontfix,release
+          since_tag: ${{ needs.version-info.outputs.last_tag }}
+          output: 'CHANGELOGRELEASE.md'
+      - name: Read the release changelog
+        id: release_changelog
+        run: |
+          OUTPUT="$(cat CHANGELOGRELEASE.md)"
+          # https://github.com/orgs/community/discussions/26288#discussioncomment-3876281
+          delimiter="$(openssl rand -hex 8)"
+          echo "content<<${delimiter}" >> "$GITHUB_OUTPUT"
+          echo "$OUTPUT" >> $GITHUB_OUTPUT
+          echo "${delimiter}" >> "$GITHUB_OUTPUT"
+
+  release-pull-request:
+    runs-on: ubuntu-latest
+    needs:
+      - generate-changelog
+      - version-info
+    permissions:
+      contents: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: CHANGELOG.md
+      - name: Update metadata with new version
+        run: |
+          sed -i "s/^version '.*'$/version '${{ github.event.inputs.version }}'/" metadata.rb
+      - name: Commit changelog and metadata and push it
+        id: commit-and-push
+        run: |
+          git checkout -b release/${{ needs.version-info.outputs.new_tag }}
+          git config user.name "GitHub Actions"
+          git config user.email noreply@github.com
+          git add CHANGELOG.md metadata.rb
+          git commit -m 'Version update ${{ needs.version-info.outputs.new_tag }}' -s
+          echo "commit=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+          git push origin release/${{ needs.version-info.outputs.new_tag }}
+          git tag ${{ needs.version-info.outputs.new_tag }}
+          git push origin ${{ needs.version-info.outputs.new_tag }}
+      - name: create pull request and auto merge it
+        env:
+          GH_TOKEN: ${{ secrets.BOT_PAT }}
+        run: |
+          url=$(gh pr create -b "${{ needs.generate-changelog.outputs.release_changelog }}" -t "Release ${{ needs.version-info.outputs.new_tag }}" -l release | grep -F 'https://github.com' )
+          gh pr merge $url --auto -m
+      - name: create a new release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ needs.version-info.outputs.new_tag }}
+          body: ${{ needs.generate-changelog.outputs.release_changelog }}
+          target_commitish: ${{ steps.commit-and-push.outputs.commit }}
