@@ -22,7 +22,7 @@ maintainer_email 'artem@posteo.de'
 license 'Apache-2.0'
 description 'Installs and configures operating system hardening'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '4.1.0'
+version '4.1.1'
 source_url 'https://github.com/dev-sec/chef-os-hardening'
 issues_url 'https://github.com/dev-sec/chef-os-hardening/issues'
 

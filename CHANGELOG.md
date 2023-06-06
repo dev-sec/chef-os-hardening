@@ -1,5 +1,14 @@
 # Changelog
 
+## [v4.1.1](https://github.com/dev-sec/chef-os-hardening/tree/v4.1.1) (2023-06-06)
+
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v4.1.0...v4.1.1)
+
+**Merged pull requests:**
+
+- Removing coveralls [\#293](https://github.com/dev-sec/chef-os-hardening/pull/293) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- CI: fix - we need three guard jobs [\#292](https://github.com/dev-sec/chef-os-hardening/pull/292) ([artem-sidorenko](https://github.com/artem-sidorenko))
+
 ## [v4.1.0](https://github.com/dev-sec/chef-os-hardening/tree/v4.1.0) (2023-06-06)
 
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v4.0.0...v4.1.0)
