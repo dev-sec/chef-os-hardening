@@ -14,9 +14,15 @@ platforms:
 - name: debian-10
   driver_config:
     image: debian-10-x64
+  lifecycle:
+    post_create:
+      - remote: sleep 10; while pgrep apt-get >/dev/null; do echo "Waiting for apt-get..."; sleep 5; done # let the installation of DO droplet-agent to finish and unlock dpkg
 - name: debian-11
   driver_config:
     image: debian-11-x64
+  lifecycle:
+    post_create:
+      - remote: sleep 10; while pgrep apt-get >/dev/null; do echo "Waiting for apt-get..."; sleep 5; done # let the installation of DO droplet-agent to finish and unlock dpkg
 - name: ubuntu-18-04
   driver_config:
     image: ubuntu-18-04-x64

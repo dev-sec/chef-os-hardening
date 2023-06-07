@@ -44,8 +44,8 @@ jobs:
           - centos-7
           - centos-8
           - oracle-7
-#          - debian-9 # something is broken here
           - debian-10
+          - debian-11
           - fedora-28
           - fedora-29
 #          - opensuse-42 # something is broken here
@@ -82,6 +82,8 @@ jobs:
           - default-centos-7
           - default-ubuntu-18-04
           - default-ubuntu-20-04
+          - default-debian-10
+          - default-debian-11
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3

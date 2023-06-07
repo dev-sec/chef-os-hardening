@@ -30,7 +30,7 @@ It will not:
 
 ### Platform
 
-- Debian 9
+- Debian 10, 11
 - Ubuntu 18.04, 20.04
 - RHEL 6, 7
 - CentOS 6, 7
