@@ -11,6 +11,12 @@ platforms:
 - name: centos-7
   driver_config:
     image: centos-7-x64
+- name: fedora-37
+  driver_config:
+    image: fedora-37-x64
+- name: fedora-38
+  driver_config:
+    image: fedora-38-x64
 - name: debian-10
   driver_config:
     image: debian-10-x64
