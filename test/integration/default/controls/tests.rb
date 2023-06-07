@@ -9,4 +9,6 @@ include_controls 'linux-baseline' do
   # skip entropy test, as our short living test VMs usually do not
   # have enough
   skip_control 'os-08'
+  # skip CPU vulnerability testing, in the DO VMs sometimes (ubuntu) kernel reports missing microcode
+  skip_control 'os-12'
 end

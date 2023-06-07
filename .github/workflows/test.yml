@@ -49,8 +49,8 @@ jobs:
           - fedora-28
           - fedora-29
 #          - opensuse-42 # something is broken here
-          - ubuntu-16-04
           - ubuntu-18-04
+          - ubuntu-20-04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3
@@ -77,9 +77,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        cinc_version: [ '17' ]
+        cinc_version: [ '18' ]
         kitchen_distro:
           - default-centos-7
+          - default-ubuntu-18-04
+          - default-ubuntu-20-04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3
