@@ -32,9 +32,10 @@ It will not:
 
 - Debian 10, 11
 - Ubuntu 18.04, 20.04
-- RHEL 6, 7
-- CentOS 6, 7
-- Oracle Linux 6, 7
+- RHEL 7
+- CentOS 7
+- Oracle Linux 7
+- CentOS Stream 8, 9
 - Fedora 37, 38
 - OpenSuse Leap 42
 - Amazon Linux 1, 2
