@@ -44,6 +44,10 @@ jobs:
           - centos-7
           - centos-stream-8
           - centos-stream-9
+          - almalinux-8
+          - almalinux-9
+          - rockylinux-8
+          - rockylinux-9
           - oracle-7
           - debian-10
           - debian-11
@@ -83,6 +87,10 @@ jobs:
           - default-centos-7
           - default-centos-stream-8
           - default-centos-stream-9
+          - default-almalinux-8
+          - default-almalinux-9
+          - default-rockylinux-8
+          - default-rockylinux-9
           - default-ubuntu-18-04
           - default-ubuntu-20-04
           - default-debian-10
