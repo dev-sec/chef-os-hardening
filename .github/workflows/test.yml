@@ -28,7 +28,7 @@ jobs:
           curl -L https://omnitruck.cinc.sh/install.sh | sudo bash -s -- -P cinc-workstation -d .cache -v ${{ env.cinc_workstation_version }}
       - name: cookstyle
         run: |
-          cinc exec rake cookstyle
+          cinc exec cookstyle --fail-level r
 
   kitchen-dokken:
     runs-on: ubuntu-latest
