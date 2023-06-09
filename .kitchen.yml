@@ -10,7 +10,8 @@ platforms:
   driver_config:
     box: bento/ubuntu-20.04
 - name: centos-7
-- name: centos-8
+- name: centos-stream-8
+- name: centos-stream-9
 - name: oracle-7
 - name: debian-10
 - name: debian-11
