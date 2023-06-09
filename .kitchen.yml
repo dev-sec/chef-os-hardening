@@ -12,6 +12,10 @@ platforms:
 - name: centos-7
 - name: centos-stream-8
 - name: centos-stream-9
+- name: almalinux-8
+- name: almalinux-9
+- name: rockylinux-8
+- name: rockylinux-9
 - name: oracle-7
 - name: debian-10
 - name: debian-11
