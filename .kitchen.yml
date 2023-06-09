@@ -14,8 +14,8 @@ platforms:
 - name: oracle-7
 - name: debian-10
 - name: debian-11
-- name: fedora-28
-- name: fedora-29
+- name: fedora-37
+- name: fedora-38
 - name: opensuse-leap-42
 - name: amazonlinux-1
   driver_config:

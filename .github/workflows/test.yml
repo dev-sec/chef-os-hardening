@@ -46,8 +46,8 @@ jobs:
           - oracle-7
           - debian-10
           - debian-11
-          - fedora-28
-          - fedora-29
+          - fedora-37
+          - fedora-38
 #          - opensuse-42 # something is broken here
           - ubuntu-18-04
           - ubuntu-20-04
@@ -84,6 +84,7 @@ jobs:
           - default-ubuntu-20-04
           - default-debian-10
           - default-debian-11
+          - default-fedora-38
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3

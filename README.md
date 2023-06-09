@@ -35,7 +35,7 @@ It will not:
 - RHEL 6, 7
 - CentOS 6, 7
 - Oracle Linux 6, 7
-- Fedora 28, 29
+- Fedora 37, 38
 - OpenSuse Leap 42
 - Amazon Linux 1, 2
 
