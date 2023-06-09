@@ -32,12 +32,12 @@ It will not:
 
 - Debian 10, 11
 - Ubuntu 18.04, 20.04
-- RHEL 7
+- RHEL 7, 8, 9
 - CentOS 7
-- Oracle Linux 7
+- CentOS Stream 8, 9
+- Oracle Linux 7, 8, 9
 - AlmaLinux 8, 9
 - Rocky Linux 8, 9
-- CentOS Stream 8, 9
 - Fedora 37, 38
 - OpenSuse Leap 42
 - Amazon Linux 1, 2
