@@ -35,6 +35,8 @@ It will not:
 - RHEL 7
 - CentOS 7
 - Oracle Linux 7
+- AlmaLinux 8, 9
+- Rocky Linux 8, 9
 - CentOS Stream 8, 9
 - Fedora 37, 38
 - OpenSuse Leap 42

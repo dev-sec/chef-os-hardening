@@ -17,6 +17,18 @@ platforms:
 - name: centos-stream-9
   driver_config:
     image: centos-stream-9-x64
+- name: almalinux-8
+  driver_config:
+    image: almalinux-8-x64
+- name: almalinux-9
+  driver_config:
+    image: almalinux-9-x64
+- name: rockylinux-8
+  driver_config:
+    image: rockylinux-8-x64
+- name: rockylinux-9
+  driver_config:
+    image: rockylinux-9-x64
 - name: fedora-37
   driver_config:
     image: fedora-37-x64
