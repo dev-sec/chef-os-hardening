@@ -54,7 +54,15 @@ platforms:
     pid_one_command: /usr/lib/systemd/systemd
 - name: oracle-7
   driver:
-    image: oraclelinux:7
+    image: dokken/oraclelinux-7
+    pid_one_command: /usr/lib/systemd/systemd
+- name: oracle-8
+  driver:
+    image: dokken/oraclelinux-8
+    pid_one_command: /usr/lib/systemd/systemd
+- name: oracle-9
+  driver:
+    image: dokken/oraclelinux-9
     pid_one_command: /usr/lib/systemd/systemd
 - name: debian-10
   driver:

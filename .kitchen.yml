@@ -17,6 +17,8 @@ platforms:
 - name: rockylinux-8
 - name: rockylinux-9
 - name: oracle-7
+- name: oracle-8
+- name: oracle-9
 - name: debian-10
 - name: debian-11
 - name: fedora-37
