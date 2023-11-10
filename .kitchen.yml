@@ -3,9 +3,6 @@ driver:
   name: vagrant
 
 platforms:
-- name: ubuntu-18-04
-  driver_config:
-    box: bento/ubuntu-18.04
 - name: ubuntu-20-04
   driver_config:
     box: bento/ubuntu-20.04

@@ -56,7 +56,6 @@ jobs:
           - fedora-37
           - fedora-38
 #          - opensuse-42 # something is broken here
-          - ubuntu-18-04
           - ubuntu-20-04
     steps:
       - uses: actions/checkout@v3
@@ -93,7 +92,6 @@ jobs:
           - default-almalinux-9
           - default-rockylinux-8
           - default-rockylinux-9
-          - default-ubuntu-18-04
           - default-ubuntu-20-04
           - default-debian-10
           - default-debian-11
