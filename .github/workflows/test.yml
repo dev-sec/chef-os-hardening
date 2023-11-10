@@ -16,7 +16,7 @@ jobs:
   cookstyle:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/cache@v3
         with:
           path: |
@@ -56,7 +56,7 @@ jobs:
 #          - opensuse-42 # something is broken here
           - ubuntu-20-04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/cache@v3
         with:
           path: |
@@ -95,7 +95,7 @@ jobs:
           - default-debian-11
           - default-fedora-38
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/cache@v3
         with:
           path: |
