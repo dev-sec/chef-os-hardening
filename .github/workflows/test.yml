@@ -9,8 +9,6 @@ on:
     branches:
       - '*'
   pull_request:
-    types:
-      - opened
     branches:
       - master
 
