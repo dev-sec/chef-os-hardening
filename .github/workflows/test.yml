@@ -93,7 +93,6 @@ jobs:
           - default-ubuntu-20-04
           - default-debian-10
           - default-debian-11
-          - default-fedora-38
     steps:
       - uses: actions/checkout@v4
       - uses: actions/cache@v3
