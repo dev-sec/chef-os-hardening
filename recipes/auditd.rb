@@ -43,20 +43,30 @@ template '/etc/audit/auditd.conf' do
   owner 'root'
   group 'root'
   variables(
-    flush:               node['os-hardening']['auditd']['flush'],
-    log_group:           node['os-hardening']['auditd']['log_group'],
-    priority_boost:      node['os-hardening']['auditd']['priority_boost'],
-    freq:                node['os-hardening']['auditd']['freq'],
-    num_logs:            node['os-hardening']['auditd']['num_logs'],
-    disp_qos:            node['os-hardening']['auditd']['disp_qos'],
-    dispatcher:          node['os-hardening']['auditd']['dispatcher'],
-    name_format:         node['os-hardening']['auditd']['name_format'],
-    max_log_file:        node['os-hardening']['auditd']['max_log_file'],
-    tcp_listen_queue:    node['os-hardening']['auditd']['tcp_listen_queue'],
-    tcp_max_per_addr:    node['os-hardening']['auditd']['tcp_max_per_addr'],
-    tcp_client_max_idle: node['os-hardening']['auditd']['tcp_client_max_idle'],
-    enable_krb5:         node['os-hardening']['auditd']['enable_krb5'],
-    krb5_principal:      node['os-hardening']['auditd']['krb5_principal']
+    log_file:                node['os-hardening']['auditd']['log_file'],
+    log_format:              node['os-hardening']['auditd']['log_format'],
+    max_log_file_action:     node['os-hardening']['auditd']['max_log_file_action'],
+    space_left:              node['os-hardening']['auditd']['space_left'],
+    action_mail_acct:        node['os-hardening']['auditd']['action_mail_acct'],
+    space_left_action:       node['os-hardening']['auditd']['space_left_action'],
+    admin_space_left:        node['os-hardening']['auditd']['admin_space_left'],
+    admin_space_left_action: node['os-hardening']['auditd']['admin_space_left_action'],
+    disk_full_action:        node['os-hardening']['auditd']['disk_full_action'],
+    disk_error_action:       node['os-hardening']['auditd']['disk_error_action'],
+    flush:                   node['os-hardening']['auditd']['flush'],
+    log_group:               node['os-hardening']['auditd']['log_group'],
+    priority_boost:          node['os-hardening']['auditd']['priority_boost'],
+    freq:                    node['os-hardening']['auditd']['freq'],
+    num_logs:                node['os-hardening']['auditd']['num_logs'],
+    disp_qos:                node['os-hardening']['auditd']['disp_qos'],
+    dispatcher:              node['os-hardening']['auditd']['dispatcher'],
+    name_format:             node['os-hardening']['auditd']['name_format'],
+    max_log_file:            node['os-hardening']['auditd']['max_log_file'],
+    tcp_listen_queue:        node['os-hardening']['auditd']['tcp_listen_queue'],
+    tcp_max_per_addr:        node['os-hardening']['auditd']['tcp_max_per_addr'],
+    tcp_client_max_idle:     node['os-hardening']['auditd']['tcp_client_max_idle'],
+    enable_krb5:             node['os-hardening']['auditd']['enable_krb5'],
+    krb5_principal:          node['os-hardening']['auditd']['krb5_principal']
   )
   notifies :restart, 'service[auditd]'
   action :create

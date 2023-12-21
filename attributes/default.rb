@@ -253,6 +253,16 @@ end
 # rubocop:enable Metrics/BlockLength
 
 # auditd config
+default['os-hardening']['auditd']['log_file'] = '/var/log/audit/audit.log'
+default['os-hardening']['auditd']['log_format'] = 'RAW'
+default['os-hardening']['auditd']['max_log_file_action'] = 'keep_logs'
+default['os-hardening']['auditd']['space_left'] = 75
+default['os-hardening']['auditd']['action_mail_acct'] = 'root'
+default['os-hardening']['auditd']['space_left_action'] = 'SYSLOG'
+default['os-hardening']['auditd']['admin_space_left'] = 50
+default['os-hardening']['auditd']['admin_space_left_action'] = 'SUSPEND'
+default['os-hardening']['auditd']['disk_full_action'] = 'SUSPEND'
+default['os-hardening']['auditd']['disk_error_action'] = 'SUSPEND'
 default['os-hardening']['auditd']['flush'] = 'INCREMENTAL'
 default['os-hardening']['auditd']['log_group'] = 'root'
 default['os-hardening']['auditd']['priority_boost'] = '4'

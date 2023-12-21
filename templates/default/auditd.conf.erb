@@ -5,17 +5,17 @@
 #--
 
 # Specified by linux-baseline
-log_file = /var/log/audit/audit.log
-log_format = RAW
+log_file = <%= @log_file %>
+log_format = <%= @log_format %>
 flush = <%= @flush %>
-max_log_file_action = keep_logs
-space_left = 75
-action_mail_acct = root
-space_left_action = SYSLOG
-admin_space_left = 50
-admin_space_left_action = SUSPEND
-disk_full_action = SUSPEND
-disk_error_action = SUSPEND
+max_log_file_action = <%= @max_log_file_action %>
+space_left = <%= @space_left %>
+action_mail_acct = <%= @action_mail_acct %>
+space_left_action = <%= @space_left_action %>
+admin_space_left = <%= @admin_space_left %>
+admin_space_left_action = <%= @admin_space_left_action %>
+disk_full_action = <%= @disk_full_action %>
+disk_error_action = <%= @disk_error_action %>
 
 # Unspecified, auditd defaults unless overwritten
 log_group = <%= @log_group %>
