@@ -57,7 +57,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           future_release: ${{ needs.version-info.outputs.new_tag }}
           exclude_labels: duplicate,question,invalid,wontfix,release
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: CHANGELOG.md
           path: CHANGELOG.md
