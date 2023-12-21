@@ -34,7 +34,7 @@ jobs:
       - name: get the new tag
         id: new_tag
         run: echo "tag=v${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: get last tag information
@@ -90,7 +90,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - uses: actions/download-artifact@v3
         with:
           name: CHANGELOG.md
@@ -153,7 +153,7 @@ jobs:
           ${{ secrets.SUPERMARKET_KEY }}
           EOF
       - name: checkout cookbook
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: cookbooks/${{ env.cookbook_name }}
           ref: ${{ needs.version-info.outputs.new_tag }}

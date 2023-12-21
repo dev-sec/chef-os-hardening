@@ -9,8 +9,6 @@ on:
     branches:
       - '*'
   pull_request:
-    types:
-      - opened
     branches:
       - master
 
@@ -18,7 +16,7 @@ jobs:
   cookstyle:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/cache@v3
         with:
           path: |
@@ -30,7 +28,7 @@ jobs:
           curl -L https://omnitruck.cinc.sh/install.sh | sudo bash -s -- -P cinc-workstation -d .cache -v ${{ env.cinc_workstation_version }}
       - name: cookstyle
         run: |
-          cinc exec rake cookstyle
+          cinc exec cookstyle --fail-level r
 
   kitchen-dokken:
     runs-on: ubuntu-latest
@@ -56,10 +54,9 @@ jobs:
           - fedora-37
           - fedora-38
 #          - opensuse-42 # something is broken here
-          - ubuntu-18-04
           - ubuntu-20-04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/cache@v3
         with:
           path: |
@@ -93,13 +90,11 @@ jobs:
           - default-almalinux-9
           - default-rockylinux-8
           - default-rockylinux-9
-          - default-ubuntu-18-04
           - default-ubuntu-20-04
           - default-debian-10
           - default-debian-11
-          - default-fedora-38
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/cache@v3
         with:
           path: |
