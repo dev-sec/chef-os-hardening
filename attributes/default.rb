@@ -252,9 +252,6 @@ default['os-hardening'].tap do |os_hardening|
 end
 # rubocop:enable Metrics/BlockLength
 
-
-
-
 # auditd config
 default['os-hardening']['auditd']['log_file'] = '/var/log/audit/audit.log'
 default['os-hardening']['auditd']['log_format'] = 'RAW'
