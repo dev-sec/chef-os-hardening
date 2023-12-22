@@ -1,5 +1,32 @@
 # Changelog
 
+## [v4.2.0](https://github.com/dev-sec/chef-os-hardening/tree/v4.2.0) (2023-12-22)
+
+[Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v4.1.2...v4.2.0)
+
+**Closed issues:**
+
+- Dependency Dashboard [\#305](https://github.com/dev-sec/chef-os-hardening/issues/305)
+- Support for RHEL 8 / Rocky Linux 8 [\#279](https://github.com/dev-sec/chef-os-hardening/issues/279)
+- Linux Baseline tests are failing for os-13 [\#272](https://github.com/dev-sec/chef-os-hardening/issues/272)
+- chef exec rake lint fails, foodcritic deprecated [\#265](https://github.com/dev-sec/chef-os-hardening/issues/265)
+
+**Merged pull requests:**
+
+- Update actions/upload-artifact action to v4 [\#312](https://github.com/dev-sec/chef-os-hardening/pull/312) ([renovate[bot]](https://github.com/apps/renovate))
+- Update actions/download-artifact action to v4 [\#311](https://github.com/dev-sec/chef-os-hardening/pull/311) ([renovate[bot]](https://github.com/apps/renovate))
+- Allow more changes to AuditD [\#310](https://github.com/dev-sec/chef-os-hardening/pull/310) ([tdekoning93](https://github.com/tdekoning93))
+- CI: run for all PRs [\#309](https://github.com/dev-sec/chef-os-hardening/pull/309) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Deprecation of Ubuntu 18.04 [\#308](https://github.com/dev-sec/chef-os-hardening/pull/308) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- CI: Update actions/checkout action to v4 [\#304](https://github.com/dev-sec/chef-os-hardening/pull/304) ([renovate[bot]](https://github.com/apps/renovate))
+- Removal of Gemfile and Rakefile [\#303](https://github.com/dev-sec/chef-os-hardening/pull/303) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Testing on Oraclelinux 8 and 9 [\#302](https://github.com/dev-sec/chef-os-hardening/pull/302) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Testing on Almalinux and Rockylinux 8/9 [\#301](https://github.com/dev-sec/chef-os-hardening/pull/301) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Testing on the CentOS Stream 8 and 9 [\#300](https://github.com/dev-sec/chef-os-hardening/pull/300) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Run tests on the current fedora 37 and 38 [\#299](https://github.com/dev-sec/chef-os-hardening/pull/299) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Testing on debian 10 and 11 [\#298](https://github.com/dev-sec/chef-os-hardening/pull/298) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Testing on ubuntu 18.04 and 20.04 [\#297](https://github.com/dev-sec/chef-os-hardening/pull/297) ([artem-sidorenko](https://github.com/artem-sidorenko))
+
 ## [v4.1.2](https://github.com/dev-sec/chef-os-hardening/tree/v4.1.2) (2023-06-06)
 
 [Full Changelog](https://github.com/dev-sec/chef-os-hardening/compare/v4.1.1...v4.1.2)
