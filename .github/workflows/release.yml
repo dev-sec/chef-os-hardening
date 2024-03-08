@@ -116,7 +116,7 @@ jobs:
           url=$(gh pr create -b "${{ needs.generate-changelog.outputs.release_changelog }}" -t "Release ${{ needs.version-info.outputs.new_tag }}" -l release | grep -F 'https://github.com' )
           gh pr merge $url --auto -m
       - name: create a new release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ needs.version-info.outputs.new_tag }}
           body: ${{ needs.generate-changelog.outputs.release_changelog }}
