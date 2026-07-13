@@ -1,7 +1,7 @@
 name: Create a new release
 
 env:
-  cinc_workstation_version: 23
+  cinc_workstation_version: 26
   cookbook_name: os-hardening
 
 on:
