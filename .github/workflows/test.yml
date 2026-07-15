@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/cache@v3
+      - uses: actions/cache@v6
         with:
           path: |
             .cache
@@ -62,7 +62,7 @@ jobs:
           - fedora-43
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/cache@v3
+      - uses: actions/cache@v6
         with:
           path: |
             .cache
@@ -109,7 +109,7 @@ jobs:
           - default-fedora-44
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/cache@v3
+      - uses: actions/cache@v6
         with:
           path: |
             .cache
