@@ -57,7 +57,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           future_release: ${{ needs.version-info.outputs.new_tag }}
           exclude_labels: duplicate,question,invalid,wontfix,release
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: CHANGELOG.md
           path: CHANGELOG.md
@@ -91,7 +91,7 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: CHANGELOG.md
       - name: Update metadata with new version
