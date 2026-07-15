@@ -16,7 +16,7 @@ jobs:
   cookstyle:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/cache@v3
         with:
           path: |
@@ -61,7 +61,7 @@ jobs:
 
           - fedora-43
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/cache@v3
         with:
           path: |
@@ -108,7 +108,7 @@ jobs:
           - default-fedora-43
           - default-fedora-44
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/cache@v3
         with:
           path: |
