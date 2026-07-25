@@ -2,7 +2,7 @@
 name: "Tests"
 
 env:
-  cinc_workstation_version: 25
+  cinc_workstation_version: 26
 
 on:
   push:
