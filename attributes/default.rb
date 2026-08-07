@@ -124,7 +124,7 @@ default['os-hardening'].tap do |os_hardening|
     # may contain: change_user
     security['users']['allow'] = []
     security['kernel']['enable_module_loading'] = true
-    security['kernel']['disable_filesystems'] = %w[cramfs freevxfs jffs2 hfs hfsplus squashfs udf vfat]
+    security['kernel']['disable_filesystems'] = %w[cramfs freevxfs jffs2 hfs hfsplus squashfs udf]
     security['kernel']['enable_sysrq'] = false
     security['kernel']['enable_core_dump'] = false
     security['suid_sgid']['enforce'] = true
