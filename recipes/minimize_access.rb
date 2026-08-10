@@ -72,7 +72,7 @@ file '/etc/crontab' do
   only_if { ::File.exist?('/etc/crontab') }
 end
 
-cron_directories = %w[/etc/cron.hourly /etc/cron.daily /etc/cron.weekly /etc/cron.monthly /etc/cron.d]
+cron_directories = %w[/etc/cron.hourly /etc/cron.daily /etc/cron.weekly /etc/cron.monthly /etc/cron.yearly /etc/cron.d]
 cron_directories.each do |cron_path|
   next unless ::Dir.exist?(cron_path)
 
