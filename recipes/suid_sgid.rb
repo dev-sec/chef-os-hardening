@@ -38,6 +38,8 @@ ruby_block 'remove_suid_from_blacklists' do
   block do
     SuidSgid.remove_suid_sgid_from_blacklist(blacklist)
   end
+  # only run when a blacklisted file still has a SUID or SGID bit
+  only_if { blacklist.any? { |file| File.setuid?(file) || File.setgid?(file) } }
 end
 
 # remove suid bits from unknown, if desired

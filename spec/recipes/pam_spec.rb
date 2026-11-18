@@ -26,4 +26,10 @@ describe 'os-hardening::pam' do
   it 'remove pam-ccreds' do
     is_expected.to remove_package('pam-ccreds')
   end
+
+  it 'runs pam-auth-update only when a profile changes' do
+    expect(chef_run.execute('update-pam')).to do_nothing
+    expect(chef_run.template('/usr/share/pam-configs/tally2')).to notify('execute[update-pam]').to(:run).delayed
+    expect(chef_run.file('/usr/share/pam-configs/passwdqc')).to notify('execute[update-pam]').to(:run).delayed
+  end
 end

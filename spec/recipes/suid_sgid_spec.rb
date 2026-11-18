@@ -17,13 +17,30 @@
 #
 
 describe 'os-hardening::suid_sgid' do
-  cached(:chef_run) do
+  let(:chef_run) do
     ChefSpec::ServerRunner.new.converge(described_recipe)
   end
 
   subject { chef_run }
 
-  it 'run remove_suid_from_blacklists ruby_block' do
-    is_expected.to run_ruby_block('remove_suid_from_blacklists')
+  before do
+    allow(::File).to receive(:setuid?).and_return(false)
+    allow(::File).to receive(:setgid?).and_return(false)
+  end
+
+  context 'when a blacklisted file has a SUID bit' do
+    before do
+      allow(::File).to receive(:setuid?).with('/usr/bin/rcp').and_return(true)
+    end
+
+    it 'run remove_suid_from_blacklists ruby_block' do
+      is_expected.to run_ruby_block('remove_suid_from_blacklists')
+    end
+  end
+
+  context 'when no blacklisted file has a SUID or SGID bit' do
+    it 'does not run remove_suid_from_blacklists ruby_block' do
+      is_expected.not_to run_ruby_block('remove_suid_from_blacklists')
+    end
   end
 end

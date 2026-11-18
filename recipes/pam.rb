@@ -54,6 +54,7 @@ when 'debian'
       mode '0640'
       owner 'root'
       group 'root'
+      notifies :run, 'execute[update-pam]'
     end
 
     # deactivate passwdqc
@@ -62,6 +63,7 @@ when 'debian'
     # delete passwdqc file on ubuntu and debian
     file passwdqc_path do
       action :delete
+      notifies :run, 'execute[update-pam]'
     end
 
     # make sure the package is not on the system,
@@ -83,16 +85,20 @@ when 'debian'
       mode '0640'
       owner 'root'
       group 'root'
+      notifies :run, 'execute[update-pam]'
     end
   else
 
     file tally2_path do
       action :delete
+      notifies :run, 'execute[update-pam]'
     end
   end
 
+  # only run when one of the profiles above changed
   execute 'update-pam' do
     command '/usr/sbin/pam-auth-update --package'
+    action :nothing
   end
 
   # do config for rhel-family
